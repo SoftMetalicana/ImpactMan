@@ -41,8 +41,30 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Constants\Consequential\ConsequentialConstants.cs" />
+    <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
+    <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Initializer.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
+    <Compile Include="Interfaces\Core\IInitializer.cs" />
+    <Compile Include="Interfaces\Globals\IAsset.cs" />
+    <Compile Include="Interfaces\Globals\IConsequence.cs" />
+    <Compile Include="Interfaces\Globals\IConsequential.cs" />
+    <Compile Include="Interfaces\Globals\IPositionable.cs" />
+    <Compile Include="Interfaces\Globals\IUnit.cs" />
+    <Compile Include="Interfaces\IO\InputListeners\IInputListener.cs" />
+    <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
+    <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
+    <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
+    <Compile Include="IO\InputListeners\InputListener.cs" />
+    <Compile Include="IO\InputListeners\Events\KeyPressedEventHandler.cs" />
+    <Compile Include="Models\Consequences\Consequence.cs" />
+    <Compile Include="Models\Consequences\Consequential.cs" />
+    <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\Players\PacMan.cs" />
+    <Compile Include="Models\Players\Player.cs" />
+    <Compile Include="Models\Units\Unit.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +81,10 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

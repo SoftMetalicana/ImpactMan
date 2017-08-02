@@ -1,6 +1,11 @@
 ﻿namespace ImpactMan.Core
 {
-    using ImpactMan.Interfaces.Core;
+    using Constants.Graphics;
+    using ImpactMan.Interfaces.IO.InputListeners;
+    using ImpactMan.Interfaces.Models.Players;
+    using ImpactMan.IO.InputListeners;
+    using ImpactMan.Models.Players;
+    using Interfaces.Core;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
@@ -13,10 +18,25 @@
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
+        private IPlayer player;
+
+        private IInitializer initializer;
+        private IInputListener inputListener;
+
         public Engine()
+            : this(new Initializer(),
+                   new InputListener())
+        {
+        }
+
+        public Engine(IInitializer initializer,
+                      IInputListener inputListener)
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
+
+            this.initializer = initializer;
+            this.inputListener = inputListener;
         }
 
         /// <summary>
@@ -28,6 +48,17 @@
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            
+            // MUST BE DONE FROM HERE
+            this.player = new PacMan(0, 0, "food", "goshko ot gorica");
+            this.player.Load(this.Content);
+            this.inputListener.KeyPressed += this.player.OnKeyPressed;
+            // TO HERE
+
+            this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
+            this.initializer.SetGraphicsWindowSize(this.graphics,
+                                                   GraphicsConstants.PreferredBufferWidth,
+                                                   GraphicsConstants.PreferredBufferHeight);
 
             base.Initialize();
         }
@@ -60,8 +91,15 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            KeyboardState currentKeyboardState = Keyboard.GetState();
+            this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
+
+            this.player.Update(gameTime, currentKeyboardState);
 
             // TODO: Add your update logic here
 
@@ -74,9 +112,12 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            this.GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
             // TODO: Add your drawing code here
+            this.spriteBatch.Begin();
+            this.player.Draw(this.spriteBatch);
+            this.spriteBatch.End();
 
             base.Draw(gameTime);
         }

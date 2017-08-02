@@ -2,7 +2,9 @@
 {
     using System;
     using Core;
-    using ImpactMan.Interfaces.Core;
+    using ImpactMan.Interfaces.Models.Enemies;
+    using ImpactMan.Models.Enemies;
+    using Interfaces.Core;
 
 #if WINDOWS || LINUX
     /// <summary>
