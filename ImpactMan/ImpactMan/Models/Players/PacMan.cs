@@ -11,11 +11,32 @@
         {
         }
 
+        /// <summary>
+        /// Maybe need invoke keyboartstates with Reflection.
+        /// This is only test.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="keyboardState"></param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 this.Rectangle = new Rectangle(this.Rectangle.X + 5, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Left))
+            {
+                this.Rectangle = new Rectangle(this.Rectangle.X - 5, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Down))
+            {
+                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y + 5, this.Texture.Width, this.Texture.Height);
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Up))
+            {
+                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - 5, this.Texture.Width, this.Texture.Height);
             }
         }
     }
