@@ -1,7 +1,11 @@
 ﻿namespace ImpactMan.Context.Db
 {
     using System.Data.Entity;
-    
+
+    /// <summary>
+    /// 
+    /// The Context is responsible for saving the user information in the database
+    /// </summary>
     public class ImpactManContext : DbContext
     {
         private DbSet<User> users;
@@ -9,7 +13,8 @@
         public ImpactManContext()
             : base("GameContext")
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists <ImpactManContext>());
+            ///Initialize  the database onlt if it does not exists
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ImpactManContext>());
         }
 
         public DbSet<User> Users
