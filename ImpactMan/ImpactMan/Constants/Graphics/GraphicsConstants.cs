@@ -18,5 +18,9 @@
         /// Initial mouse state.
         /// </summary>
         public const bool IsMouseVisible = true;
+
+        public const string WindowTitle =
+                "ImpactMan: A new begining                                                                                                                              " +
+                "Press Home for GameMenu";
     }
 }

@@ -5,5 +5,9 @@
     public interface IEngine : IDisposable
     {
         void Run();
+
+        void ChangeGameMenuCurrentStatus();
+
+        void Quit();
     }
 }

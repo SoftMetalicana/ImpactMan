@@ -1,6 +1,6 @@
 ﻿namespace ImpactMan.Core
 {
-    using ImpactMan.Interfaces.Core;
+    using Interfaces.Core;
     using Microsoft.Xna.Framework;
 
     public class Initializer : IInitializer

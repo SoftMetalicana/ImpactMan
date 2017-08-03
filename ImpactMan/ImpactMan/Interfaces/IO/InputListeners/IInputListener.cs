@@ -7,7 +7,10 @@
     public interface IInputListener
     {
         event KeyPressedEventHandler KeyPressed;
+        event MouseClickedEventHandler MouseClicked;
 
         void GetKeyboardState(KeyboardState keyboardState, GameTime gameTime);
+
+        void GetMouseState(MouseState mouseState, GameTime gameTime);
     }
 }

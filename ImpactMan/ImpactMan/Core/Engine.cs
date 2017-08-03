@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.Core.Factories;
+
+namespace ImpactMan.Core
 {
     using Constants.Graphics;
     using ImpactMan.Context.Db;
@@ -10,7 +12,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -18,11 +20,14 @@
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-
+        
         private IPlayer player;
 
         private IInitializer initializer;
         private IInputListener inputListener;
+        private MenuController menuController;
+        private MenuCommandFactory menuCommandFactory;
+        private bool isGameMenuActive;
 
         ImpactManContext context;
 
@@ -37,8 +42,8 @@
                       IInputListener inputListener)
         {
             this.graphics = new GraphicsDeviceManager(this);
-            this.Content.RootDirectory = "Content";
 
+            this.Content.RootDirectory = "Content";
             this.initializer = initializer;
             this.inputListener = inputListener;
         }
@@ -51,7 +56,8 @@
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            this.menuCommandFactory = new MenuCommandFactory();
+            this.menuController = new MenuController(this, this.menuCommandFactory);
 
             // MUST BE DONE FROM HERE
             this.context = new ImpactManContext();
@@ -59,13 +65,18 @@
             this.player = new PacMan(0, 0, "food", "goshko ot gorica");
             this.player.Load(this.Content);
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
+            this.inputListener.MouseClicked += this.menuController.OnMouseClicked;
+
+            this.menuController.Initialize();
+
+            this.isGameMenuActive = true;
             // TO HERE
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,
                                                    GraphicsConstants.PreferredBufferWidth,
                                                    GraphicsConstants.PreferredBufferHeight);
-
+            SetWindowTitle();
             base.Initialize();
         }
 
@@ -79,6 +90,9 @@
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            this.menuController.Load(Content);
+
         }
 
         /// <summary>
@@ -98,16 +112,24 @@
         protected override void Update(GameTime gameTime)
         {
             KeyboardState currentKeyboardState = Keyboard.GetState();
-            this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+            MouseState currentMouseState = Mouse.GetState();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.Escape))
+            if (currentKeyboardState.IsKeyDown(Keys.Home) && !this.isGameMenuActive)
             {
-                Exit();
+                ChangeGameMenuCurrentStatus();
+
             }
 
-            this.player.Update(gameTime, currentKeyboardState);
+            if (isGameMenuActive)
+            {
+                this.inputListener.GetMouseState(currentMouseState, gameTime);
+            }
 
-            // TODO: Add your update logic here
+            else
+            {
+
+                this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -120,12 +142,35 @@
         {
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
-            // TODO: Add your drawing code here
             this.spriteBatch.Begin();
-            this.player.Draw(this.spriteBatch);
+
+            if (isGameMenuActive)
+            {
+                this.menuController.Draw(spriteBatch);
+            }
+            else
+            {
+                this.player.Draw(this.spriteBatch);
+            }
+
             this.spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void ChangeGameMenuCurrentStatus()
+        {
+            this.isGameMenuActive = !isGameMenuActive;
+        }
+
+        public void Quit()
+        {
+            Exit();
+        }
+
+        public void SetWindowTitle(string title = GraphicsConstants.WindowTitle)
+        {
+            this.Window.Title = title;
         }
     }
 }
