@@ -6,6 +6,9 @@
     /// </summary>
     public static class UnitConstants
     {
+        /// <summary>
+        /// The width of all units.
+        /// </summary>
         public const int Width = 50;
         public const int Height = 50;
     }
