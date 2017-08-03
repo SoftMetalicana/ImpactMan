@@ -1,6 +1,7 @@
 ﻿namespace ImpactMan.Core
 {
     using Constants.Graphics;
+    using ImpactMan.Context.Db;
     using ImpactMan.Interfaces.IO.InputListeners;
     using ImpactMan.Interfaces.Models.Players;
     using ImpactMan.IO.InputListeners;
@@ -22,6 +23,9 @@
 
         private IInitializer initializer;
         private IInputListener inputListener;
+
+        ImpactManContext context;
+
 
         public Engine()
             : this(new Initializer(),
@@ -48,8 +52,10 @@
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+
             // MUST BE DONE FROM HERE
+            this.context = new ImpactManContext();
+            this.context.Database.Initialize(true);
             this.player = new PacMan(0, 0, "food", "goshko ot gorica");
             this.player.Load(this.Content);
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
