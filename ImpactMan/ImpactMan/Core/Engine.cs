@@ -51,8 +51,6 @@
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             // MUST BE DONE FROM HERE
             this.context = new ImpactManContext();
             this.context.Database.Initialize(true);

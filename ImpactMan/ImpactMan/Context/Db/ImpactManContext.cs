@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ImpactMan.Context.Db
+﻿namespace ImpactMan.Context.Db
 {
-    class ImpactManContext:DbContext
+    using System.Data.Entity;
+    
+    public class ImpactManContext : DbContext
     {
-        public ImpactManContext():base("GameContext")
+        private DbSet<User> users;
+
+        public ImpactManContext()
+            : base("GameContext")
         {
-            Database.SetInitializer<ImpactManContext>(new CreateDatabaseIfNotExists <ImpactManContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists <ImpactManContext>());
         }
-        DbSet<User> users { get; set; }
+
+        public DbSet<User> Users
+        {
+            get
+            {
+                return this.users;
+            }
+
+            set
+            {
+                this.users = value;
+            }
+        }
     }
 }

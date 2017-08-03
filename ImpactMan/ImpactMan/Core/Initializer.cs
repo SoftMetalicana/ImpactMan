@@ -3,8 +3,20 @@
     using ImpactMan.Interfaces.Core;
     using Microsoft.Xna.Framework;
 
+    /// <summary>
+    /// This object takes care of initializing other objects like GraphicWindow.
+    /// Be careful when using the initializer. 
+    /// Always check if constants are provided in the corresponding consant class.
+    /// Dare to pass values to the constants only if constants aren't provided.
+    /// </summary>
     public class Initializer : IInitializer
     {
+        /// <summary>
+        /// Sets the initial size of the graphic window.
+        /// </summary>
+        /// <param name="graphics">The graphics of the game. The graphics is taken from the engine.</param>
+        /// <param name="preferredBufferWidth">Preferred width of the window/console</param>
+        /// <param name="preferredBufferHeight">Preferred height of the window/console</param>
         public void SetGraphicsWindowSize(GraphicsDeviceManager graphics, int preferredBufferWidth, int preferredBufferHeight)
         {
             graphics.PreferredBackBufferWidth = preferredBufferWidth;
@@ -12,6 +24,11 @@
             graphics.ApplyChanges();
         }
 
+        /// <summary>
+        /// Sets the initial state of the mouse in the game.
+        /// </summary>
+        /// <param name="game">The game is taken from the engine.</param>
+        /// <param name="isMouseVisible">The wanted mouse state.</param>
         public void SetGameMouse(Game game, bool isMouseVisible)
         {
             game.IsMouseVisible = isMouseVisible;
