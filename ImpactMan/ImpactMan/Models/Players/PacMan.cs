@@ -1,19 +1,29 @@
 ﻿namespace ImpactMan.Models.Players
 {
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
+    /// <summary>
+    /// Concrete implemtation of a Player.
+    /// For more information visit the player class.
+    /// </summary>
     public class PacMan : Player
     {
+        /// <summary>
+        /// Instantiates the object.
+        /// </summary>
+        /// <param name="x">The x coordinates of the object on the map/window/console</param>
+        /// <param name="y">The y coordinates of the object on the map/window/console</param>
+        /// <param name="assetName">The name of the picture that is loaded from the pipeline.</param>
+        /// <param name="playerName">The name of the player.</param>
         public PacMan(int x, int y, string assetName, string playerName) 
             : base(x, y, assetName, playerName)
         {
         }
 
         /// <summary>
-        /// Maybe need invoke keyboartstates with Reflection.
-        /// This is only test.
+        /// When a key is pressed this method is trigerred.
+        /// This method raises an event for the Mediator which takes care for the player.
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="keyboardState"></param>

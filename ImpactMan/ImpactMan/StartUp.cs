@@ -2,13 +2,12 @@
 {
     using System;
     using Core;
-    using ImpactMan.Interfaces.Models.Enemies;
-    using ImpactMan.Models.Enemies;
     using Interfaces.Core;
 
 #if WINDOWS || LINUX
     /// <summary>
-    /// The main class.
+    /// The class which the games start from.
+    /// Holds the Main method which is the start point of the program.
     /// </summary>
     public static class StartUp
     {
