@@ -116,6 +116,8 @@ namespace ImpactMan.Core
             if (currentKeyboardState.IsKeyDown(Keys.Home) && !this.isGameMenuActive)
             {
                 ChangeGameMenuCurrentStatus();
+                this.menuController.Initialize("MainMenu");
+                this.menuController.Load(Content);
 
             }
 
