@@ -18,57 +18,54 @@ namespace ImpactMan.Core
     public class MenuController
     {
         private MenuHolder menu;
-        private Engine engine;
-        private MenuCommandFactory menuCommandFacotry;
-        private string query;
+        private MenuCommandFactory menuCommandFactory;
 
-        public MenuController(string query, Engine engine, MenuCommandFactory menuCommandFactory)
+        public MenuController(MenuCommandFactory menuCommandFactory)
         {
-            this.query = query;
-            this.engine = engine;
-            this.menuCommandFacotry = menuCommandFactory;
+            this.menuCommandFactory = menuCommandFactory;
         }
 
-        public void Initialize()
+        public void Initialize(string query)
         {
-            int menuItemsCount = MenuConstants.menuItemLabels[this.query].Count;
+            bool currentMenuContainsMenuItems = MenuConstants.menuItemLabels.ContainsKey(query);
 
-            int menuWidth = GetEnumValue("Width");
-            int menuHeight = GetEnumValue("Height");
+            int menuItemsCount = currentMenuContainsMenuItems
+                ? MenuConstants.menuItemLabels[query].Count 
+                : 0;
 
-            int menuPaddingTop = GetEnumValue("PaddingTop");
-            int menuPaddingLeft = GetEnumValue("PaddingLeft");
+            int menuWidth = GetEnumValue(query, "Width");
+            int menuHeight = GetEnumValue(query, "Height");
 
-            int menuItemHeight = GetEnumValue("ItemHeight");
-            int menuItemWidth = GetEnumValue("ItemWidth");
+            int menuPaddingTop = GetEnumValue(query, "PaddingTop");
+            int menuPaddingLeft = GetEnumValue(query, "PaddingLeft");
+
+            int menuItemHeight = GetEnumValue(query, "ItemHeight");
+            int menuItemWidth = GetEnumValue(query, "ItemWidth");
 
             int menuItemsInbetweenSpace = (menuHeight - menuPaddingTop - menuItemsCount * menuItemHeight) / (menuItemsCount + 1);
-
-
 
             IList<IMenuItem> currentMenuItemsList = new List<IMenuItem>();
             int instantiatedMenuItemsCount = 0;
 
-            foreach (var menuItem in MenuConstants.menuItemLabels[this.query])
+            if (currentMenuContainsMenuItems)
             {
-                currentMenuItemsList.Add(new MenuItem(menuPaddingLeft,
-                    menuPaddingTop + instantiatedMenuItemsCount * menuItemHeight + (instantiatedMenuItemsCount + 1) * menuItemsInbetweenSpace,
-                    menuItemWidth,
-                    menuItemHeight,
-                    menuItem, this.menuCommandFacotry.GetInstance(menuItem, this.engine)));
+                foreach (var menuItem in MenuConstants.menuItemLabels[query])
+                {
+                    currentMenuItemsList.Add(new MenuItem(menuPaddingLeft,
+                        menuPaddingTop + instantiatedMenuItemsCount * menuItemHeight + (instantiatedMenuItemsCount + 1) * menuItemsInbetweenSpace,
+                        menuItemWidth,
+                        menuItemHeight,
+                        menuItem, this.menuCommandFactory.GetInstance(menuItem, this)));
 
-                instantiatedMenuItemsCount++;
+                    instantiatedMenuItemsCount++;
+                }
             }
 
-            switch (this.query)
-            {
-                case "MainMenu":
-                    int x = (GraphicsConstants.PreferredBufferWidth - menuWidth) / 2;
-                    int y = (GraphicsConstants.PreferredBufferHeight - menuHeight) / 2;
+            int x = (GraphicsConstants.PreferredBufferWidth - menuWidth) / 2;
+            int y = (GraphicsConstants.PreferredBufferHeight - menuHeight) / 2;
 
-                    this.menu = new MenuHolder(x, y, menuWidth, menuHeight, this.query, currentMenuItemsList);
-                    break;
-            }            
+            this.menu = new MenuHolder(x, y, menuWidth, menuHeight, query, currentMenuItemsList);
+
         }
 
         public void OnMouseClicked(IInputListener sender, MouseClickedEventArgs eventArgs)
@@ -94,9 +91,9 @@ namespace ImpactMan.Core
             menu.Draw(spriteBatch);
         }
 
-        public int GetEnumValue(string valueType)
+        public int GetEnumValue(string query, string valueType)
         {
-            return (int) Enum.Parse(typeof(Menu), $"{this.query}{valueType}");
+            return (int)Enum.Parse(typeof(Menu), $"{query}{valueType}");
         }
     }
 }

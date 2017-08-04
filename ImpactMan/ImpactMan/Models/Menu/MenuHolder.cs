@@ -48,6 +48,11 @@ namespace ImpactMan.Models.Menu
         {
             base.Draw(spriteBatch);
 
+            if (this.MenuItems.Count == 0)
+            {
+                return;
+            }
+
             this.MenuItems.ToList().ForEach(i => i.Draw(spriteBatch));
         }
     }

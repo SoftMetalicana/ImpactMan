@@ -7,11 +7,18 @@ namespace ImpactMan.Constants.Units
         public static readonly Dictionary<string, List<string>> menuItemLabels = new Dictionary<string, List<string>>()
         {
             {"MainMenu", new List<string>()
-                {
-                    "NewGame",
-                    "ResumeGame",
-                    "Quit"
-                } }
+            {
+                "NewGame",
+                "ResumeGame",
+                "Quit"
+            } },
+
+            {"NewGameMenu", new List<string>()
+            {
+                "NewGame",
+                "ResumeGame",
+                "Quit"
+            } }
         };
     }
 }

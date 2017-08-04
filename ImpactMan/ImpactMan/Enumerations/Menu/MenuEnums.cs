@@ -13,5 +13,14 @@
 
 
 
+        NewGameMenuWidth = 450,
+        NewGameMenuHeight = 450,
+
+        NewGameMenuItemWidth = 150,
+        NewGameMenuItemHeight = 50,
+
+        NewGameMenuPaddingTop = 155,
+        NewGameMenuPaddingLeft = 580,
+
     }   
 }

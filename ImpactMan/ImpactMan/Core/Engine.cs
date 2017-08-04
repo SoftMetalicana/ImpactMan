@@ -55,8 +55,8 @@ namespace ImpactMan.Core
         /// </summary>
         protected override void Initialize()
         {
-            this.menuCommandFactory = new MenuCommandFactory();
-            this.menuController = new MenuController("MainMenu", this, this.menuCommandFactory);
+            this.menuCommandFactory = new MenuCommandFactory(this, this.Content);
+            this.menuController = new MenuController(this.menuCommandFactory);
 
             // MUST BE DONE FROM HERE
             this.context = new ImpactManContext();
@@ -66,7 +66,7 @@ namespace ImpactMan.Core
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
             this.inputListener.MouseClicked += this.menuController.OnMouseClicked;
 
-            this.menuController.Initialize();
+            this.menuController.Initialize("MainMenu");
 
             this.isGameMenuActive = true;
             // TO HERE

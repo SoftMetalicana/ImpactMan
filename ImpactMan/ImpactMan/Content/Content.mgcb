@@ -97,7 +97,7 @@
 /processorParam:TextureFormat=Color
 /build:MainMenu.jpg
 
-#begin menu.png
+#begin NewGameMenu.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,5 +107,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:menu.png
+/build:NewGameMenu.jpg
 
