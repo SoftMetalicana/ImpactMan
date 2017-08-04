@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.IO.InputListeners
+﻿using ImpactMan.Context.Models;
+
+namespace ImpactMan.IO.InputListeners
 {
     using ImpactMan.Interfaces.IO.InputListeners;
     using ImpactMan.IO.InputListeners.Events;
@@ -38,9 +40,9 @@
 
 
         //Mouse input
-        public void GetMouseState(MouseState mouseState, GameTime gameTime)
+        public void GetMouseState(MouseState mouseState, GameTime gameTime, User user)
         {
-            this.OnMouseClicked(new MouseClickedEventArgs(mouseState, gameTime));
+            this.OnMouseClicked(new MouseClickedEventArgs(mouseState, gameTime, user));
         }
 
         protected virtual void OnMouseClicked(MouseClickedEventArgs eventArgs)

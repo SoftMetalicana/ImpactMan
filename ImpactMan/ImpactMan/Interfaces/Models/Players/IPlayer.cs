@@ -1,7 +1,7 @@
 ﻿namespace ImpactMan.Interfaces.Models.Players
 {
-    using ImpactMan.Interfaces.Globals;
-    using ImpactMan.Interfaces.IO.InputListeners;
+    using Globals;
+    using IO.InputListeners;
     using ImpactMan.IO.InputListeners.Events;
 
     /// <summary>

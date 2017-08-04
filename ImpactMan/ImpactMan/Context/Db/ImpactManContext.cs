@@ -1,4 +1,7 @@
-﻿namespace ImpactMan.Context.Db
+﻿using System.Collections.Generic;
+using ImpactMan.Context.Models;
+
+namespace ImpactMan.Context.Db
 {
     using System.Data.Entity;
 

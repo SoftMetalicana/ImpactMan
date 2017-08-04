@@ -1,26 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ImpactMan.Core;
-using ImpactMan.Interfaces.Core;
-using ImpactMan.Interfaces.Models.Menu;
-using Microsoft.Xna.Framework.Content;
-
-namespace ImpactMan.Models.Menu.MenuCommands
+﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Context.Models;
+    using Core;
+    using Interfaces.Core;
+    using Interfaces.Models.Menu;
+    using Microsoft.Xna.Framework.Content;
+
     public abstract class MenuCommand : IMenuCommand
     {
         private IEngine engine;
         private MenuController menuController;
         private ContentManager content;
+        private AccountManager accountManager;
+        private User user;
 
-        protected MenuCommand(IEngine engine, MenuController menuController, ContentManager content)
+        protected MenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager,User user)
         {
             this.Engine = engine;
             this.MenuController = menuController;
             this.Content = content;
+            this.AccountManager = accountManager;
+            this.User = user;
+        }
+
+        public AccountManager AccountManager
+        {
+            get { return this.accountManager; }
+            protected set { this.accountManager = value; }
+        }
+
+        public User User
+        {
+            get { return this.user; }
+            protected set { this.user = value; }
         }
 
         public ContentManager Content
@@ -41,6 +53,6 @@ namespace ImpactMan.Models.Menu.MenuCommands
             protected set { this.menuController = value; }
         }
 
-        public abstract void Execute();      
+        public abstract void Execute(User user);      
     }
 }

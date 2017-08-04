@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace ImpactMan.IO.InputListeners.Events
+﻿namespace ImpactMan.IO.InputListeners.Events
 {
+    using Context.Models;
+    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using System;
 
@@ -9,11 +9,19 @@ namespace ImpactMan.IO.InputListeners.Events
     {
         private MouseState mouseState;
         private GameTime gameTime;
+        private User user;
 
-        public MouseClickedEventArgs(MouseState mouseState, GameTime gameTime)
+        public MouseClickedEventArgs(MouseState mouseState, GameTime gameTime, User user)
         {
-            this.mouseState = mouseState;
-            this.gameTime = gameTime;
+            this.MouseState = mouseState;
+            this.GameTime = gameTime;
+            this.User = user;
+        }
+
+        public User User
+        {
+            get { return this.user; }
+            private set { this.user = value; }
         }
 
         public MouseState MouseState

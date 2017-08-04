@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Units
 {
+    using Context.Models;
     using Interfaces.Globals;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
@@ -100,7 +101,7 @@
         /// </summary>
         /// <param name="gameTime">Info about the current time in game. Can be taken from the Engine.</param>
         /// <param name="mouseState">Info about the keyboard state. Can be taken from the Engine or the InputListener.</param>
-        public abstract void Update(GameTime gameTime, MouseState mouseState);
+        public abstract void Update(GameTime gameTime, MouseState mouseState, User user);
 
         /// <summary>
         /// Logic about how the object is drawn.

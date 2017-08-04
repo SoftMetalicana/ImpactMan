@@ -1,7 +1,7 @@
 ﻿namespace ImpactMan.Models.Consequences
 {
     using Interfaces.Globals;
-    using Models.Units;
+    using Units;
 
     /// <summary>
     /// This is a object that when you step on it has consequences.

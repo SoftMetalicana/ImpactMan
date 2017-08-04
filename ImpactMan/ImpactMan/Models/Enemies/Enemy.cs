@@ -1,11 +1,11 @@
 ﻿namespace ImpactMan.Models.Enemies
 {
     using System;
-    using Models.Consequences;
+    using Consequences;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using Constants.Consequential;
-    using ImpactMan.Interfaces.Models.Enemies;
+    using Interfaces.Models.Enemies;
 
     /// <summary>
     /// Concrete implementation of the enemy.

@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Interfaces.IO.InputListeners
 {
+    using Context.Models;
     using ImpactMan.IO.InputListeners.Events;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
@@ -25,6 +26,6 @@
         /// <param name="gameTime">Info about the time in the game. Can be taken from the Engine.</param>
         void GetKeyboardState(KeyboardState keyboardState, GameTime gameTime);
 
-        void GetMouseState(MouseState mouseState, GameTime gameTime);
+        void GetMouseState(MouseState mouseState, GameTime gameTime, User user);
     }
 }

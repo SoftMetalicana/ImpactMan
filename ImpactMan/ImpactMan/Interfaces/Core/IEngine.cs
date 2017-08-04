@@ -1,5 +1,7 @@
 ﻿namespace ImpactMan.Interfaces.Core
 {
+    using ImpactMan.Core;
+
     using System;
     
     /// <summary>
@@ -13,7 +15,13 @@
         /// </summary>
         void Run();
 
-        void ChangeGameMenuCurrentStatus();
+        void ChangeGameState(GameState gameState);
+
+        void ChangeUserInputState();
+
+        void ChangeErrorMessage(string message);
+
+        void ClearCurrentUserDetails();
 
         void Quit();
     }

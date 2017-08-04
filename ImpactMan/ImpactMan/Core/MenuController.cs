@@ -1,24 +1,26 @@
-﻿using ImpactMan.Constants.Graphics;
-using ImpactMan.Constants.Units;
-using ImpactMan.Core.Factories;
-using ImpactMan.Enumerations.Menu;
-using ImpactMan.Interfaces.IO.InputListeners;
-using ImpactMan.Interfaces.Models.Menu;
-using ImpactMan.IO.InputListeners.Events;
-using ImpactMan.Models.Menu;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
+    using Constants.Graphics;
+    using Constants.Units;
+    using Context.Models;
+    using Factories;
+    using Enumerations.Menu;
+    using Interfaces.IO.InputListeners;
+    using Interfaces.Models.Menu;
+    using IO.InputListeners.Events;
+    using Models.Menu;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
+    using System;
+    using System.Collections.Generic;
+
     public class MenuController
     {
         private MenuHolder menu;
         private MenuCommandFactory menuCommandFactory;
+        private bool isUserLoggedIn;
 
         public MenuController(MenuCommandFactory menuCommandFactory)
         {
@@ -70,7 +72,7 @@ namespace ImpactMan.Core
 
         public void OnMouseClicked(IInputListener sender, MouseClickedEventArgs eventArgs)
         {
-            this.Update(eventArgs.GameTime, eventArgs.MouseState);
+            this.Update(eventArgs.GameTime, eventArgs.MouseState, eventArgs.User);
         }
 
         public void Load(ContentManager content)
@@ -78,10 +80,10 @@ namespace ImpactMan.Core
             this.menu.Load(content);
         }
 
-        public void Update(GameTime gameTime, MouseState mouseState)
+        public void Update(GameTime gameTime, MouseState mouseState, User user)
         {
 
-            this.menu.Update(gameTime, mouseState);
+            this.menu.Update(gameTime, mouseState, user);
 
 
         }

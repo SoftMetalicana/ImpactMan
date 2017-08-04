@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Interfaces.Globals
 {
+    using Context.Models;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
 
@@ -10,6 +11,6 @@
         /// </summary>
         /// <param name="gameTime">Info about the game time. Can be taken from the engine</param>
         /// <param name="keyboardState">Current keyboard state. Can be taken from the engine and the IInputListener</param>
-        void Update(GameTime gameTime, MouseState mouseState);
+        void Update(GameTime gameTime, MouseState mouseState, User user);
     }
 }

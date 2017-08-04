@@ -3,7 +3,7 @@
     using Interfaces.IO.InputListeners;
     using IO.InputListeners.Events;
     using Interfaces.Models.Players;
-    using Models.Units;
+    using Units;
 
     /// <summary>
     /// Usually there is only one player in the game.

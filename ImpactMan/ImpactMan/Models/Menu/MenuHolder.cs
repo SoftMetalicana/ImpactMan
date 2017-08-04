@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
-using ImpactMan.Models.Units;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace ImpactMan.Models.Menu
+﻿namespace ImpactMan.Models.Menu
 {
-    using System.Collections.Generic;
+    using Context.Models;
+    using Units;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
+    using System.Linq;
     using Interfaces.Models.Menu;
+    using System.Collections.Generic;
 
     public class MenuHolder : GameControlUnit, IMenuHolder
     {
@@ -39,9 +38,9 @@ namespace ImpactMan.Models.Menu
             base.Load(content);
         }
 
-        public override void Update(GameTime gameTime, MouseState mouseState)
+        public override void Update(GameTime gameTime, MouseState mouseState, User user)
         {
-            this.MenuItems.ToList().ForEach(i => i.Update(gameTime, mouseState));
+            this.MenuItems.ToList().ForEach(i => i.Update(gameTime, mouseState, user));
         }
 
         public override void Draw(SpriteBatch spriteBatch)

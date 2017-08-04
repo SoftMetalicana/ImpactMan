@@ -47,6 +47,7 @@
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Context\Db\ImpactManContext.cs" />
     <Compile Include="Context\Models\User.cs" />
+    <Compile Include="Core\AccountManager.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\Initializer.cs" />
@@ -75,9 +76,13 @@
     <Compile Include="Models\Consequences\Consequence.cs" />
     <Compile Include="Models\Consequences\Consequential.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\QuitMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\RegisterBackMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\RegisterDoneMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\RegisterMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\ResumeGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />

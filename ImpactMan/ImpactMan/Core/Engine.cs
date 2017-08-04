@@ -1,17 +1,24 @@
-﻿using ImpactMan.Core.Factories;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
+    using System.Text;
     using Constants.Graphics;
     using Context.Db;
+    using Context.Models;
+    using Factories;
+    using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Players;
     using IO.InputListeners;
-    using Models.Players;
-    using Interfaces.Core;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Models.Players;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public enum GameState { MainMenuActive, LoginMenuActive, GameMode }
+    public enum UserInpuState { NameInput, PasswordInput }
 
     /// <summary>
     /// This is the main type for your game.
@@ -20,14 +27,24 @@ namespace ImpactMan.Core
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        
+        private SpriteFont spriteFont;
+
         private IPlayer player;
+        private User user;
+        private User userInputDetails;
+        private string userName;
+        private string userPassword;
+        private string errorMessage;
+
+        private List<Keys> pressedKeys = new List<Keys>();
 
         private IInitializer initializer;
         private IInputListener inputListener;
         private MenuController menuController;
         private MenuCommandFactory menuCommandFactory;
-        private bool isGameMenuActive;
+        private AccountManager accountManager;
+        private GameState gameState;
+        private UserInpuState userInputState;
 
         ImpactManContext context;
 
@@ -55,20 +72,32 @@ namespace ImpactMan.Core
         /// </summary>
         protected override void Initialize()
         {
-            this.menuCommandFactory = new MenuCommandFactory(this, this.Content);
+            this.userInputDetails = new User();
+            this.user = new User();
+            this.userName = String.Empty;
+            this.userPassword = String.Empty;
+            this.errorMessage = String.Empty;
+
+            this.accountManager = new AccountManager();
+            this.menuCommandFactory = new MenuCommandFactory(this, this.Content, this.accountManager, this.user);
             this.menuController = new MenuController(this.menuCommandFactory);
 
+
             // MUST BE DONE FROM HERE
-            this.context = new ImpactManContext();
-            this.context.Database.Initialize(true);
+            /*            this.context = new ImpactManContext();
+                        this.context.Database.Initialize(true);*/
+
             this.player = new PacMan(0, 0, "food", "goshko ot gorica");
             this.player.Load(this.Content);
+
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
             this.inputListener.MouseClicked += this.menuController.OnMouseClicked;
 
-            this.menuController.Initialize("MainMenu");
+            this.menuController.Initialize("LoginMenu");
 
-            this.isGameMenuActive = true;
+            this.gameState = GameState.LoginMenuActive;
+            this.userInputState = UserInpuState.NameInput;
+
             // TO HERE
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
@@ -91,6 +120,7 @@ namespace ImpactMan.Core
             // TODO: use this.Content to load your game content here
 
             this.menuController.Load(Content);
+            this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
 
         }
 
@@ -113,22 +143,29 @@ namespace ImpactMan.Core
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 
-            if (currentKeyboardState.IsKeyDown(Keys.Home) && !this.isGameMenuActive)
+            if (currentKeyboardState.IsKeyDown(Keys.Home) && this.gameState == GameState.GameMode)
             {
-                ChangeGameMenuCurrentStatus();
+                ChangeGameState(GameState.MainMenuActive);
                 this.menuController.Initialize("MainMenu");
                 this.menuController.Load(Content);
 
             }
 
-            if (isGameMenuActive)
+            if (gameState != GameState.GameMode)
             {
-                this.inputListener.GetMouseState(currentMouseState, gameTime);
+                this.inputListener.GetMouseState(currentMouseState, gameTime, this.userInputDetails);
+            }
+
+            if (gameState == GameState.LoginMenuActive)
+            {
+                GetPressedKeys();
+
+                this.userInputDetails.Name = this.userName;
+                this.userInputDetails.Password = this.userPassword;
             }
 
             else
             {
-
                 this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
             }
 
@@ -145,11 +182,19 @@ namespace ImpactMan.Core
 
             this.spriteBatch.Begin();
 
-            if (isGameMenuActive)
+            if (gameState != GameState.GameMode)
             {
                 this.menuController.Draw(spriteBatch);
             }
-            else
+
+            if (gameState == GameState.LoginMenuActive)
+            {
+                spriteBatch.DrawString(spriteFont, userName, new Vector2(340, 205), Color.Black);
+                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(340, 420), Color.Black);
+                spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(340, 600), Color.Black);
+            }
+
+            else if(this.gameState == GameState.GameMode)
             {
                 this.player.Draw(this.spriteBatch);
             }
@@ -159,9 +204,9 @@ namespace ImpactMan.Core
             base.Draw(gameTime);
         }
 
-        public void ChangeGameMenuCurrentStatus()
+        public void ChangeGameState(GameState gameStateToChange)
         {
-            this.isGameMenuActive = !isGameMenuActive;
+            this.gameState = gameStateToChange;
         }
 
         public void Quit()
@@ -172,6 +217,95 @@ namespace ImpactMan.Core
         public void SetWindowTitle(string title = GraphicsConstants.WindowTitle)
         {
             this.Window.Title = title;
+        }
+
+        private void GetPressedKeys()
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            List<Keys> currentKeys = keyboardState.GetPressedKeys().ToList();
+
+            foreach (Keys key in pressedKeys)
+            {
+                if (!currentKeys.Contains(key))
+                {
+                    OnReleasedKey(key);
+                }
+            }
+
+            pressedKeys = currentKeys;
+        }
+
+        public void ChangeUserInputState()
+        {
+            this.userInputState = (UserInpuState)(((int)userInputState + 1) % 2);
+        }
+
+        private void OnReleasedKey(Keys key)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (key == Keys.Enter)
+            {
+                ChangeUserInputState();
+            }
+
+            if (userInputState == UserInpuState.NameInput)
+            {
+                sb = new StringBuilder(userName);
+            }
+            else
+            {
+                sb = new StringBuilder(userPassword);
+            }
+
+            if (IsKeyLetter(key))
+            {
+                sb.Append(key);
+            }
+
+            else if (IsKeyDigit(key))
+            {
+                sb.Append(key.ToString().Replace("NumPad", "").Replace("D", ""));
+            }
+
+            else if (key == Keys.Back)
+            {
+                if (sb.Length > 0)
+                {
+                    sb.Remove(sb.Length - 1, 1);
+                }
+            }
+
+            if (userInputState == UserInpuState.NameInput)
+            {
+                userName = sb.ToString();
+            }
+            else
+            {
+                userPassword = sb.ToString();
+            }
+
+        }
+
+        private bool IsKeyLetter(Keys key)
+        {
+            return key >= Keys.A && key <= Keys.Z;
+        }
+
+        private bool IsKeyDigit(Keys key)
+        {
+            return key >= Keys.D0 && key <= Keys.D9 || key >= Keys.NumPad0 && key <= Keys.NumPad9;
+        }
+
+        public void ChangeErrorMessage(string message)
+        {
+            this.errorMessage = message;
+        }
+
+        public void ClearCurrentUserDetails()
+        {
+            this.userName = String.Empty;
+            this.userPassword = String.Empty;
         }
     }
 }

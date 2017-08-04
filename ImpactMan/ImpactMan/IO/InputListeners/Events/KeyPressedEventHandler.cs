@@ -1,7 +1,5 @@
 ﻿namespace ImpactMan.IO.InputListeners.Events
 {
-    using ImpactMan.Interfaces.IO.InputListeners;
-    
     using Interfaces.IO.InputListeners;
 
     /// <summary>

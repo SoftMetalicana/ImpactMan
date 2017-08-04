@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace ImpactMan.Interfaces.Globals
+﻿namespace ImpactMan.Interfaces.Globals
 {
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;
+
     public interface IUnit : IPositionable, IAsset
     {
         /// <summary>

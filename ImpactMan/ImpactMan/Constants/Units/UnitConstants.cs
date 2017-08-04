@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ImpactMan.Constants.Units
+﻿namespace ImpactMan.Constants.Units
 {
     /// <summary>
     /// Provides constants for the units in the game.

@@ -5,18 +5,18 @@
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
 
-    public class NewGameMenuCommand : MenuCommand
+    public class RegisterMenuCommand : MenuCommand
     {
-        public NewGameMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) 
+        public RegisterMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) 
             : base(engine, menuController, content, accountManager, user)
         {
         }
 
         public override void Execute(User user)
         {
-            this.MenuController.Initialize("NewGameMenu");
+            this.MenuController.Initialize("RegisterMenu");
             this.MenuController.Load(this.Content);
-            this.Engine.ChangeGameState(GameState.MainMenuActive);
+            this.Engine.ClearCurrentUserDetails();
         }
     }
 }

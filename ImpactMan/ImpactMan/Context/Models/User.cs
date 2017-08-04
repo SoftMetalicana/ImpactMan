@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Context
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ImpactMan.Context.Models
 {
     public class User
     {
