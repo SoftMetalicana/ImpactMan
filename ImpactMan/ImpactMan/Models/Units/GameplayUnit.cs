@@ -12,7 +12,7 @@
     /// Holds info about the units size, position and so.
     /// Holds logic about loading and so.
     /// </summary>
-    public abstract class Unit : IUnit
+    public abstract class GameplayUnit : IGameplayUnit
     {
         /// <summary>
         /// The way the unit looks. Usually a picture is used from the game pipeline.
@@ -34,7 +34,7 @@
         /// <param name="x">The x coordinates of the object on the console/map/window.</param>
         /// <param name="y">The y coordinates of the object on the console/map/window.</param>
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
-        public Unit(int x, int y, string assetName)
+        public GameplayUnit(int x, int y, string assetName)
             : this(x, y, UnitConstants.Width, UnitConstants.Height, assetName)
         {
         }
@@ -47,7 +47,7 @@
         /// <param name="width">The width of the object in the map/console.</param>
         /// <param name="height">The height of the object in the map/console.</param>
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
-        public Unit(int x, int y, int width, int height, string assetName)
+        public GameplayUnit(int x, int y, int width, int height, string assetName)
         {
             this.Rectangle = new Rectangle(x, y, width, height);
             this.AssetName = assetName; 

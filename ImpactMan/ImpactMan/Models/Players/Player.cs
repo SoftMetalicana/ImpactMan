@@ -9,7 +9,7 @@
     /// Usually there is only one player in the game.
     /// Holds logic for the visualising, updating, drawing.
     /// </summary>
-    public abstract class Player : Unit, IPlayer
+    public abstract class Player : GameplayUnit, IPlayer
     {
         /// <summary>
         /// The player name that is gonna be used in the DB record.

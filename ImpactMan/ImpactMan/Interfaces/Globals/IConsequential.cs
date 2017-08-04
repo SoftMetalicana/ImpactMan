@@ -4,7 +4,7 @@
     /// Everything seen in the map inherits from this interface.
     /// It returns the consequences 
     /// </summary>
-    public interface IConsequential : IUnit
+    public interface IConsequential : IGameplayUnit
     {
         /// <summary>
         /// This method always gives info about a consequence.

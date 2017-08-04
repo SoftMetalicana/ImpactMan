@@ -8,7 +8,7 @@
     /// If you want a new player in the game you must inherit from this interface.
     /// Holds vital info for a player.
     /// </summary>
-    public interface IPlayer : IUnit
+    public interface IPlayer : IGameplayUnit
     {
         /// <summary>
         /// The name of the player.

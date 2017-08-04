@@ -6,7 +6,7 @@
     /// <summary>
     /// This is a object that when you step on it has consequences.
     /// </summary>
-    public abstract class Consequential : Unit, IConsequential
+    public abstract class Consequential : GameplayUnit, IConsequential
     {
         /// <summary>
         /// The bonus points that you give to the player.

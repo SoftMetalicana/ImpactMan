@@ -3,11 +3,11 @@
 namespace ImpactMan.Core
 {
     using Constants.Graphics;
-    using ImpactMan.Context.Db;
-    using ImpactMan.Interfaces.IO.InputListeners;
-    using ImpactMan.Interfaces.Models.Players;
-    using ImpactMan.IO.InputListeners;
-    using ImpactMan.Models.Players;
+    using Context.Db;
+    using Interfaces.IO.InputListeners;
+    using Interfaces.Models.Players;
+    using IO.InputListeners;
+    using Models.Players;
     using Interfaces.Core;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -30,7 +30,6 @@ namespace ImpactMan.Core
         private bool isGameMenuActive;
 
         ImpactManContext context;
-
 
         public Engine()
             : this(new Initializer(),
@@ -57,7 +56,7 @@ namespace ImpactMan.Core
         protected override void Initialize()
         {
             this.menuCommandFactory = new MenuCommandFactory();
-            this.menuController = new MenuController(this, this.menuCommandFactory);
+            this.menuController = new MenuController("MainMenu", this, this.menuCommandFactory);
 
             // MUST BE DONE FROM HERE
             this.context = new ImpactManContext();

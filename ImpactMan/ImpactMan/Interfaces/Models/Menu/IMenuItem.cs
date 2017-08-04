@@ -1,6 +1,8 @@
-﻿namespace ImpactMan.Interfaces.Models.Menu
+﻿using ImpactMan.Interfaces.Globals;
+
+namespace ImpactMan.Interfaces.Models.Menu
 {
-    public interface IMenuItem
+    public interface IMenuItem : IGameControlUnit
     {
         IMenuCommand MenuCommand { get; }
     }

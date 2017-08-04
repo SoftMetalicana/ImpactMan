@@ -51,16 +51,20 @@
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\Initializer.cs" />
     <Compile Include="Core\MenuController.cs" />
+    <Compile Include="Enumerations\Menu\MenuEnums.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
     <Compile Include="Interfaces\Globals\IAsset.cs" />
     <Compile Include="Interfaces\Globals\IConsequence.cs" />
     <Compile Include="Interfaces\Globals\IConsequential.cs" />
+    <Compile Include="Interfaces\Globals\IGameControlUnit.cs" />
     <Compile Include="Interfaces\Globals\IPositionable.cs" />
+    <Compile Include="Interfaces\Globals\IGameplayUnit.cs" />
     <Compile Include="Interfaces\Globals\IUnit.cs" />
     <Compile Include="Interfaces\IO\InputListeners\IInputListener.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuCommand.cs" />
+    <Compile Include="Interfaces\Models\Menu\IMenuHolder.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuItem.cs" />
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
@@ -75,11 +79,12 @@
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\QuitMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\ResumeGameMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
-    <Compile Include="Models\Menu\Menu.cs" />
     <Compile Include="Models\Players\PacMan.cs" />
     <Compile Include="Models\Players\Player.cs" />
-    <Compile Include="Models\Units\Unit.cs" />
+    <Compile Include="Models\Units\GameControlUnit.cs" />
+    <Compile Include="Models\Units\GameplayUnit.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
