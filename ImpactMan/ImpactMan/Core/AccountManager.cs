@@ -23,18 +23,28 @@ namespace ImpactMan.Core
 
         public bool Login(User user)
         {
-            return users.Any(u => u.Name == user.Name && u.Password == user.Password);
+            return UserExists(user) && IsPasswordCorrect(user);
         }
 
         public bool Register(User user)
         {
-            if (users.Any(u => u.Name == user.Name && u.Password == user.Password))
+            if (UserExists(user))
             {
                 return false;
             }
 
-            users.Add(user);
+            this.users.Add(user);
             return true;
+        }
+
+        private bool UserExists(User user)
+        {
+            return this.users.Any(u => u.Name == user.Name);
+        }
+
+        private bool IsPasswordCorrect(User user)
+        {
+            return this.users.Any(u => u.Name == user.Name && u.Password == user.Password);
         }
     }
 }
