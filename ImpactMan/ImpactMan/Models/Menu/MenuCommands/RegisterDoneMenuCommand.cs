@@ -17,6 +17,7 @@
             {
                 this.MenuController.Initialize("LoginMenu");
                 this.MenuController.Load(this.Content);
+                this.Engine.ChangeGameState(GameState.LoginMenuActive);
                 this.Engine.ClearCurrentUserDetails();
                 this.Engine.ChangeUserInputState();
             }

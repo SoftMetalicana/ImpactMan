@@ -17,7 +17,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public enum GameState { MainMenuActive, LoginMenuActive, GameMode }
+    public enum GameState { MainMenuActive, LoginMenuActive, SignUpMenuActive, GameMode }
     public enum UserInpuState { NameInput, PasswordInput }
 
     /// <summary>
@@ -156,7 +156,7 @@
                 this.inputListener.GetMouseState(currentMouseState, gameTime, this.userInputDetails);
             }
 
-            if (gameState == GameState.LoginMenuActive)
+            if (gameState == GameState.LoginMenuActive || gameState == GameState.SignUpMenuActive)
             {
                 GetPressedKeys();
 
@@ -189,9 +189,16 @@
 
             if (gameState == GameState.LoginMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, userName, new Vector2(340, 205), Color.Black);
-                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(340, 420), Color.Black);
-                spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(340, 600), Color.Black);
+                spriteBatch.DrawString(spriteFont, userName, new Vector2(530, 293), Color.Black);
+                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(530, 355), Color.Black);
+                spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
+            }
+
+            else if (gameState == GameState.SignUpMenuActive)
+            {
+                spriteBatch.DrawString(spriteFont, userName, new Vector2(542, 299), Color.Black);
+                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(542, 365), Color.Black);
+                spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
             }
 
             else if(this.gameState == GameState.GameMode)
@@ -244,7 +251,7 @@
         {
             StringBuilder sb = new StringBuilder();
 
-            if (key == Keys.Enter)
+            if (key == Keys.Tab)
             {
                 ChangeUserInputState();
             }

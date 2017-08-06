@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Enumerations.Menu
+﻿using ImpactMan.Constants.Graphics;
+
+namespace ImpactMan.Enumerations.Menu
 {
     public enum Menu
     {
@@ -24,25 +26,25 @@
 
 
 
-        LoginMenuWidth = 450,
-        LoginMenuHeight = 650,
+        LoginMenuWidth = GraphicsConstants.PreferredBufferWidth,
+        LoginMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
 
-        LoginMenuItemWidth = 150,
-        LoginMenuItemHeight = 50,
+        LoginMenuItemWidth = 100,
+        LoginMenuItemHeight = 30,
 
-        LoginMenuPaddingTop = 500,
-        LoginMenuPaddingLeft = 500,
-
-
+        LoginMenuPaddingTop = 260,
+        LoginMenuPaddingLeft = 590,
 
 
-        RegisterMenuWidth = 450,
-        RegisterMenuHeight = 650,
 
-        RegisterMenuItemWidth = 150,
-        RegisterMenuItemHeight = 50,
 
-        RegisterMenuPaddingTop = 500,
-        RegisterMenuPaddingLeft = 500,
+        RegisterMenuWidth = GraphicsConstants.PreferredBufferWidth,
+        RegisterMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
+
+        RegisterMenuItemWidth = 100,
+        RegisterMenuItemHeight = 30,
+
+        RegisterMenuPaddingTop = 300,
+        RegisterMenuPaddingLeft = 592,
     }   
 }

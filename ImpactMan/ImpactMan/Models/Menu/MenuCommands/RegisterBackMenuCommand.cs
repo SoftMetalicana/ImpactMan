@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Models.Menu.MenuCommands
+﻿using System;
+
+namespace ImpactMan.Models.Menu.MenuCommands
 {
     using Context.Models;
     using Core;
@@ -15,6 +17,8 @@
         {
             this.MenuController.Initialize("LoginMenu");
             this.MenuController.Load(this.Content);
+            this.Engine.ChangeGameState(GameState.LoginMenuActive);
+            this.Engine.ClearCurrentUserDetails();
         }
     }
 }

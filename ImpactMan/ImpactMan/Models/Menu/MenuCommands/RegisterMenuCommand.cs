@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Models.Menu.MenuCommands
+﻿using System;
+
+namespace ImpactMan.Models.Menu.MenuCommands
 {
     using Context.Models;
     using Core;
@@ -17,6 +19,8 @@
             this.MenuController.Initialize("RegisterMenu");
             this.MenuController.Load(this.Content);
             this.Engine.ClearCurrentUserDetails();
+            this.Engine.ChangeErrorMessage(String.Empty);
+            this.Engine.ChangeGameState(GameState.SignUpMenuActive);
         }
     }
 }
