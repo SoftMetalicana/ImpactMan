@@ -7,9 +7,9 @@ namespace ImpactMan.Models.Menu.MenuCommands
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
 
-    public class RegisterBackMenuCommand : MenuCommand
+    public class RegisterBackButtonMenuCommand : MenuCommand
     {
-        public RegisterBackMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) : base(engine, menuController, content, accountManager, user)
+        public RegisterBackButtonMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) : base(engine, menuController, content, accountManager, user)
         {
         }
 

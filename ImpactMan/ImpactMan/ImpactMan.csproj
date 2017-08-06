@@ -81,9 +81,9 @@
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\QuitMenuCommand.cs" />
-    <Compile Include="Models\Menu\MenuCommands\RegisterBackMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\RegisterBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterDoneMenuCommand.cs" />
-    <Compile Include="Models\Menu\MenuCommands\RegisterMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\RegisterMenuButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\SettingsMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />

@@ -1,4 +1,7 @@
-﻿namespace ImpactMan.Core.Factories
+﻿using System;
+using System.Reflection;
+
+namespace ImpactMan.Core.Factories
 {
     using Context.Models;
     using Interfaces.Models.Menu;
@@ -22,47 +25,9 @@
 
         public IMenuCommand GetInstance(string menuItem, MenuController menuController)
         {
-            IMenuCommand command = null;
-
-            if (menuItem == "NewGame")
-            {
-                command =  new NewGameMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "Quit")
-            {
-                command = new QuitMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "LoginDone")
-            {
-                command = new LoginDoneMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "RegisterMenuButton")
-            {
-                command = new RegisterMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "RegisterDone")
-            {
-                command = new RegisterDoneMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "RegisterBackButton")
-            {
-                command = new RegisterBackMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "HighScores")
-            {
-                command = new HighScoresMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
-            else if (menuItem == "Settings")
-            {
-                command = new SettingsMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
+            Type type = Type.GetType("ImpactMan.Models.Menu.MenuCommands." + menuItem + "MenuCommand");
+            IMenuCommand command = (MenuCommand) Activator.CreateInstance(type, this.engine, menuController, this.content,
+                this.accountManager, this.user);
 
             return command;
         }
