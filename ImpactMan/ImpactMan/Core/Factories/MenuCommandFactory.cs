@@ -29,11 +29,6 @@
                 command =  new NewGameMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
             }
 
-            else if (menuItem == "ResumeGame")
-            {
-                command = new ResumeGameMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
-            }
-
             else if (menuItem == "Quit")
             {
                 command = new QuitMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
@@ -57,6 +52,16 @@
             else if (menuItem == "RegisterBackButton")
             {
                 command = new RegisterBackMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
+            }
+
+            else if (menuItem == "HighScores")
+            {
+                command = new HighScoresMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
+            }
+
+            else if (menuItem == "Settings")
+            {
+                command = new SettingsMenuCommand(this.engine, menuController, this.content, this.accountManager, this.user);
             }
 
             return command;

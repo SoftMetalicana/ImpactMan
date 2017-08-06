@@ -19,6 +19,7 @@
                 this.MenuController.Initialize("MainMenu");
                 this.MenuController.Load(this.Content);
                 this.Engine.ClearCurrentUserDetails();
+                this.Engine.ChangeGameState(GameState.MainMenuActive);
             }
             else
             {

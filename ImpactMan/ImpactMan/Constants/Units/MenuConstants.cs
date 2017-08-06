@@ -9,7 +9,8 @@
             {"MainMenu", new List<string>()
             {
                 "NewGame",
-                "ResumeGame",
+                "HighScores",
+                "Settings",
                 "Quit"
             } },
 

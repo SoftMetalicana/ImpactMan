@@ -4,14 +4,14 @@ namespace ImpactMan.Enumerations.Menu
 {
     public enum Menu
     {
-        MainMenuWidth = 600,
-        MainMenuHeight = 600,
+        MainMenuWidth = GraphicsConstants.PreferredBufferWidth,
+        MainMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
 
-        MainMenuItemWidth = 150,
+        MainMenuItemWidth = 400,
         MainMenuItemHeight = 50,
 
-        MainMenuPaddingTop = 155,
-        MainMenuPaddingLeft = 580,
+        MainMenuPaddingTop = 100,
+        MainMenuPaddingLeft = 450,
 
 
 

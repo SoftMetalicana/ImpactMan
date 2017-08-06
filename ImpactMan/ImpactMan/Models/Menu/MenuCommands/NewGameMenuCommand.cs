@@ -14,9 +14,7 @@
 
         public override void Execute(User user)
         {
-            this.MenuController.Initialize("NewGameMenu");
-            this.MenuController.Load(this.Content);
-            this.Engine.ChangeGameState(GameState.MainMenuActive);
+            this.Engine.ChangeGameState(GameState.GameMode);
         }
     }
 }
