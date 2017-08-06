@@ -28,7 +28,7 @@ namespace ImpactMan.Core
 
         public bool Register(User user)
         {
-            if (users.Contains(user))
+            if (users.Any(u => u.Name == user.Name && u.Password == user.Password))
             {
                 return false;
             }
