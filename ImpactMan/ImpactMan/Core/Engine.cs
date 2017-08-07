@@ -20,6 +20,8 @@ namespace ImpactMan.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using ImpactMan.Interfaces.Models.Mediators;
+    using ImpactMan.Models.Mediators;
 
     /// <summary>
     /// This is the main type for your game.
@@ -33,6 +35,8 @@ namespace ImpactMan.Core
         private ConsoleTextWriter textWriter;
 
         private IPlayer player;
+        private IPlayerConsequenceMediator playerConsequenceMediator;
+
         private User user;
         private User userInputDetails;
         private string errorMessage;
@@ -65,12 +69,14 @@ namespace ImpactMan.Core
 
         public Engine()
             : this(new Initializer(),
-                   new InputListener())
+                   new InputListener(),
+                   new PlayerConsequenceMediator())
         {
         }
 
         public Engine(IInitializer initializer,
-                      IInputListener inputListener)
+                      IInputListener inputListener,
+                      IPlayerConsequenceMediator playerConsequenceMediator)
         {
             this.Content.RootDirectory = "Content";
 
@@ -79,6 +85,8 @@ namespace ImpactMan.Core
 
             this.initializer = initializer;
             this.inputListener = inputListener;
+
+            this.playerConsequenceMediator = playerConsequenceMediator;
         }
 
         /// <summary>
@@ -105,6 +113,7 @@ namespace ImpactMan.Core
 
             this.player = new PacMan(0, 0);
             this.player.Load(this.Content);
+            this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
             this.inputListener.MouseClicked += this.menuController.OnMouseClicked;

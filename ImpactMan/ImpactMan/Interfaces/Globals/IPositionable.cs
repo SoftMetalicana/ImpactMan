@@ -17,6 +17,6 @@
         /// Holds the position and the size of an object in the game.
         /// The size is usually taken from the texture.
         /// </summary>
-        Rectangle Rectangle { get; }
+        Rectangle Rectangle { get; set; }
     }
 }

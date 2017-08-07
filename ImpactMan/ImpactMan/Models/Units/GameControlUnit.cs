@@ -64,7 +64,7 @@
                 return this.rectangle;
             }
 
-            protected set
+            set
             {
                 this.rectangle = value;
             }

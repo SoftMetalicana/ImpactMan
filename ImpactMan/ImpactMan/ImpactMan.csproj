@@ -72,6 +72,7 @@
     <Compile Include="Interfaces\Globals\IUnit.cs" />
     <Compile Include="Interfaces\IO\InputListeners\IInputListener.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
+    <Compile Include="Interfaces\Models\Mediators\IPlayerConsequenceMediator.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuCommand.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuHolder.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuItem.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Models\Consequences\Consequential.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
     <Compile Include="Models\Levels\Level.cs" />
+    <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />

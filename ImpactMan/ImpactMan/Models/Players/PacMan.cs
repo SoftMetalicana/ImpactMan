@@ -69,8 +69,6 @@
                 desiredRectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - calculatedDistance, this.Texture.Width, this.Texture.Height);
             }
 
-            this.Rectangle = desiredRectangle;
-
             this.OnPlayerTriedToMove(new PlayerTriedToMoveEventArgs(desiredRectangle));
         }
 
