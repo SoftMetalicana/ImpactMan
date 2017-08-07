@@ -14,27 +14,85 @@
         /// <summary>
         /// Current executing assembly.
         /// </summary>
-        public static readonly Assembly ExecutingAssembly;
+        private static Assembly executingAssembly;
         /// <summary>
-        /// All types in assembly filtered.
+        /// All types in assembly.
         /// </summary>
-        public static readonly IEnumerable<Type> AllTypesInAssembly;
+        private static IEnumerable<Type> allTypesInAssembly;
         /// <summary>
-        /// Query which on execution will get all the map objects in the current assembly.
+        /// Holds types by CSV key name.
+        /// The CSV key name is the one that is in the levels files.
         /// </summary>
-        public static readonly IEnumerable<Type> MapObjectTypesInAssemblyQuery;
-        /// <summary>
-        /// Executet map objects query. Holds result of the query execution.
-        /// </summary>
-        public static readonly IEnumerable<Type> FilteredMapObjectTypesInAssembly;
+        private static Dictionary<string, Type> typesByCsvKeyName;
 
+        /// <summary>
+        /// Initializes the static readonly fields.
+        /// </summary>
         static ImpactManContext()
         {
             ExecutingAssembly = Assembly.GetExecutingAssembly();
-            AllTypesInAssembly = ExecutingAssembly.GetTypes();
-            MapObjectTypesInAssemblyQuery = AllTypesInAssembly
-                                                .Where(t => t.GetCustomAttributes().Any(a => a is MapObjectAttribute));
-            FilteredMapObjectTypesInAssembly = MapObjectTypesInAssemblyQuery.ToArray();
+            AllTypesInAssembly = executingAssembly.GetTypes();
+
+            typesByCsvKeyName = new Dictionary<string, Type>();
+            foreach (Type type in allTypesInAssembly)
+            {
+                IEnumerable<Attribute> customAttributes = type.GetCustomAttributes();
+                foreach (Attribute attribute in customAttributes)
+                {
+                    if (attribute is MapObjectAttribute)
+                    {
+                        string csvKeyName = (attribute as MapObjectAttribute).CsvKeyName;
+
+                        typesByCsvKeyName[csvKeyName] = type;
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Current executing assembly.
+        /// </summary>
+        public static Assembly ExecutingAssembly
+        {
+            get
+            {
+                return executingAssembly;
+            }
+
+            private set
+            {
+                executingAssembly = value;
+            }
+        }
+
+        /// <summary>
+        /// All types in assembly.
+        /// </summary>
+        public static IEnumerable<Type> AllTypesInAssembly
+        {
+            get
+            {
+                return allTypesInAssembly;
+            }
+
+            private set
+            {
+                allTypesInAssembly = value;
+            }
+        }
+
+        /// <summary>
+        /// Holds types by CSV key name.
+        /// The CSV key name is the one that is in the levels files.
+        /// </summary>
+        public static IReadOnlyDictionary<string, Type> TypesByCsvKeyName
+        {
+            get
+            {
+                return typesByCsvKeyName;
+            }
         }
     }
 }
