@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Mediators
 {
+    using ImpactMan.Interfaces.Models.Levels;
     using ImpactMan.Interfaces.Models.Mediators;
     using ImpactMan.Interfaces.Models.Players;
     using ImpactMan.Models.Players.Events;
@@ -10,6 +11,13 @@
     /// </summary>
     public class PlayerConsequenceMediator : IPlayerConsequenceMediator
     {
+        //private ILevel level;
+
+        //public PlayerConsequenceMediator(ILevel level)
+        //{
+        //    this.level = level;
+        //}
+
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {
             sender.Rectangle = eventArgs.DesiredPosition;
