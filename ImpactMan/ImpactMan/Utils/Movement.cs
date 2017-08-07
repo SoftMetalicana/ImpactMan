@@ -21,7 +21,7 @@
         /// <returns>The value that you must add to obj.Rectangle.X or obj.Rectangle.Y</returns>
         public static int CalculateDistanceToAdd(int speedRatio, GameTime gameTime)
         {
-            return (int)Math.Ceiling(speedRatio * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            return (int)Math.Ceiling(speedRatio * gameTime.ElapsedGameTime.TotalSeconds);
         }
     }
 }
