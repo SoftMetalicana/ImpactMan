@@ -54,7 +54,7 @@ namespace ImpactMan.Enumerations.Menu
         HighScoresMenuItemWidth = 100,
         HighScoresMenuItemHeight = 30,
 
-        HighScoresMenuPaddingTop = 300,
-        HighScoresMenuPaddingLeft = 592,
+        HighScoresMenuPaddingTop = 670,
+        HighScoresMenuPaddingLeft = 55,
     }   
 }

@@ -42,7 +42,7 @@ namespace ImpactMan.Constants.Units
             {
                 "HighScoresMenu", new List<string>()
                 {
-                    
+                    "HighScoresMenuBackButton"
                 }
             }
         };
@@ -54,7 +54,7 @@ namespace ImpactMan.Constants.Units
         public const int LoginMenuUsernameY = 293;
 
         public const int LoginMenuPasswordX = 530;
-        public const int LoginMenuPasswordY = 355;
+        public const int LoginMenuPasswordY = 357;
 
         public const int LoginMenuErrorMessageX = 505;
         public const int LoginMenuErrorMessageY = 775;
@@ -63,10 +63,10 @@ namespace ImpactMan.Constants.Units
         /// Signup menu text postition constants
         /// </summary>
         public const int SignupMenuUsernameX = 542;
-        public const int SignupMenuUsernameY = 299;
+        public const int SignupMenuUsernameY = 300;
 
         public const int SignupMenuPasswordX = 542;
-        public const int SignupMenuPasswordY = 365;
+        public const int SignupMenuPasswordY = 366;
 
         public const int SignupMenuErrorMessageX = 505;
         public const int SignupMenuErrorMessageY = 775;

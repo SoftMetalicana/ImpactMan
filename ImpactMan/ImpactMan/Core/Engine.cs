@@ -1,4 +1,5 @@
 ﻿using ImpactMan.Constants.Units;
+using ImpactMan.Interfaces.Writer;
 using ImpactMan.IO.Writers;
 
 namespace ImpactMan.Core
@@ -30,7 +31,7 @@ namespace ImpactMan.Core
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
         private SoundManager soundManager;
-        private ConsoleTextWriter textWriter;
+        private ITextWriter textWriter;
 
         private IPlayer player;
         private User user;
@@ -51,15 +52,15 @@ namespace ImpactMan.Core
         //This data should be in database
         private Dictionary<string, int> highScores = new Dictionary<string, int>()
         {
-            {"Ivan", 22565 },
-            {"Petkan", 5522 },
-            {"Dragan", 102 },
-            {"Toni", 55896 },
-            {"Moni", 11255254 },
-            {"Boni", 5595 },
-            {"Dancho", 787 },
-            {"Mancho", 14 },
-            {"Gancho", 6698 },
+            {"Ivan", 44323424 },
+            {"Petkan", 43242 },
+            {"Dragan", 55 },
+            {"Toni", 82 },
+            {"Moni", 999575799 },
+            {"Boni", 57 },
+            {"Dancho", 5 },
+            {"Mancho", 7575757 },
+            {"Gancho", 17575729 },
 
         };
 
@@ -194,7 +195,6 @@ namespace ImpactMan.Core
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
             this.spriteBatch.Begin();
-
             if (gameState != GameState.GameMode)
             {
                 this.menuController.Draw(spriteBatch);
@@ -238,15 +238,23 @@ namespace ImpactMan.Core
 
             else if (gameState == GameState.HighScoresMenuActive)
             {
-                int xCoordinate = 760;
-                int yCoordinate = 313;
+                int xCoordinate = 60;
+                int yCoordinate = 140;
+                int count = 0;
+
+                StringBuilder sb = new StringBuilder();
 
                 foreach (var player in this.highScores.OrderByDescending(x => x.Value).Take(10))
                 {
-                    textWriter.Write($"{player.Key} - {player.Value}", new Vector2(xCoordinate, yCoordinate), Color.White);
 
-                    yCoordinate += 45;
+                    string score = player.Value.ToString("### ### ### ### ###");
+
+                    sb.AppendLine($"{++count}. {player.Key,-10} {score,15}");
+                    sb.AppendLine();
+
                 }
+
+                textWriter.Write(sb.ToString(), new Vector2(xCoordinate, yCoordinate), Color.Black);
             }
 
             else if(this.gameState == GameState.GameMode)
