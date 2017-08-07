@@ -79,6 +79,7 @@
     <Compile Include="IO\InputListeners\Events\MouseClickedEventHandler.cs" />
     <Compile Include="IO\InputListeners\InputListener.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventHandler.cs" />
+    <Compile Include="IO\OutputWriter\ConsoleTextWriter.cs" />
     <Compile Include="Models\Consequences\Consequence.cs" />
     <Compile Include="Models\Consequences\Consequential.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />

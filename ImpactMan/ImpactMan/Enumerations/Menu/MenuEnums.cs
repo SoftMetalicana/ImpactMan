@@ -46,5 +46,15 @@ namespace ImpactMan.Enumerations.Menu
 
         RegisterMenuPaddingTop = 300,
         RegisterMenuPaddingLeft = 592,
+
+
+        HighScoresMenuWidth = GraphicsConstants.PreferredBufferWidth,
+        HighScoresMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
+
+        HighScoresMenuItemWidth = 100,
+        HighScoresMenuItemHeight = 30,
+
+        HighScoresMenuPaddingTop = 300,
+        HighScoresMenuPaddingLeft = 592,
     }   
 }
