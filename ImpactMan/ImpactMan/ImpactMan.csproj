@@ -72,6 +72,7 @@
     <Compile Include="Interfaces\Globals\IUnit.cs" />
     <Compile Include="Interfaces\IO\InputListeners\IInputListener.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
+    <Compile Include="Interfaces\Models\Levels\ILevel.cs" />
     <Compile Include="Interfaces\Models\Mediators\IPlayerConsequenceMediator.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuCommand.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuHolder.cs" />
