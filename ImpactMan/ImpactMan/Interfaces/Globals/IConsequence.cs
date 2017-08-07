@@ -1,5 +1,7 @@
 ﻿namespace ImpactMan.Interfaces.Globals
 {
+    using Microsoft.Xna.Framework;
+    
     /// <summary>
     /// Everything that is seen in the map inherits returns this interface from a method.
     /// When the player object wants to step somewhere he always steps on something that has consquences.

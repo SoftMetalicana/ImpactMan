@@ -1,6 +1,7 @@
 ﻿namespace ImpactMan.Models.Consequences
 {
     using Interfaces.Globals;
+    using Microsoft.Xna.Framework;
 
     /// <summary>
     /// Concrete implementation of the IConsequence interface.

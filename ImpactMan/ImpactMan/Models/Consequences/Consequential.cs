@@ -1,6 +1,7 @@
 ﻿namespace ImpactMan.Models.Consequences
 {
     using Interfaces.Globals;
+    using Microsoft.Xna.Framework;
     using Units;
 
     /// <summary>

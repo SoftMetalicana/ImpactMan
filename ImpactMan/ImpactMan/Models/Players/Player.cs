@@ -4,6 +4,7 @@
     using IO.InputListeners.Events;
     using Interfaces.Models.Players;
     using Units;
+    using Models.Players.Events;
 
     /// <summary>
     /// Usually there is only one player in the game.
@@ -11,6 +12,11 @@
     /// </summary>
     public abstract class Player : GameplayUnit, IPlayer
     {
+        /// <summary>
+        /// An event that notifice the ones that subscribed.
+        /// </summary>
+        public event PlayerTriedToMoveEventHandler PlayerTriedToMove;
+        
         /// <summary>
         /// The players points that are gonna be used in the DB record.
         /// </summary>
@@ -42,6 +48,16 @@
             {
                 this.points = value;
             }
+        }
+
+        /// <summary>
+        /// This is an event trigger. Every time the player tries to move
+        /// the subscibers will be notified.
+        /// </summary>
+        /// <param name="eventArgs"></param>
+        protected virtual void OnPlayerTriedToMove(PlayerTriedToMoveEventArgs eventArgs)
+        {
+            this.PlayerTriedToMove?.Invoke(this, eventArgs);
         }
 
         /// <summary>
