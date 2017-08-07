@@ -3,6 +3,7 @@
     using Globals;
     using IO.InputListeners;
     using ImpactMan.IO.InputListeners.Events;
+    using ImpactMan.Models.Players.Events;
 
     /// <summary>
     /// If you want a new player in the game you must inherit from this interface.
@@ -10,6 +11,11 @@
     /// </summary>
     public interface IPlayer : IGameplayUnit
     {
+        /// <summary>
+        /// An event that notifice the ones that subscribed.
+        /// </summary>
+        event PlayerTriedToMoveEventHandler PlayerTriedToMove;
+
         /// <summary>
         /// The current points of the player.
         /// This points are going the be used as a record in the database.

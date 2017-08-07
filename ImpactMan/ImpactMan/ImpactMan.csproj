@@ -101,6 +101,8 @@
     <Compile Include="Models\Menu\MenuCommands\SettingsMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
+    <Compile Include="Models\Players\Events\PlayerTriedToMoveEventArgs.cs" />
+    <Compile Include="Models\Players\Events\PlayerTriedToMoveEventHandler.cs" />
     <Compile Include="Models\Players\PacMan.cs" />
     <Compile Include="Models\Players\Player.cs" />
     <Compile Include="Models\Static\Food.cs" />
