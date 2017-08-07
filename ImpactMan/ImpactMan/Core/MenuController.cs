@@ -26,15 +26,17 @@ namespace ImpactMan.Core
         private User user;
         private MenuHolder menu;
         private MenuCommandFactory menuCommandFactory;
+        private SoundManager soundManager;
         private bool isUserLoggedIn;
 
-        public MenuController(IEngine engine, ContentManager content, AccountManager accountManager, User user)
+        public MenuController(IEngine engine, ContentManager content, AccountManager accountManager, User user, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;
             this.accountManager = accountManager;
             this.user = user;
-            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.user);
+            this.soundManager = soundManager;
+            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.user, this.soundManager);
         }
 
         public void Initialize(string query)

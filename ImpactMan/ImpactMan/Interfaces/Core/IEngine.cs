@@ -1,9 +1,10 @@
-﻿namespace ImpactMan.Interfaces.Core
-{
-    using ImpactMan.Core;
+﻿
 
+namespace ImpactMan.Interfaces.Core
+{
+    using Enumerations.Game;
     using System;
-    
+
     /// <summary>
     /// The engine of the game must inherit from this interface.
     /// Engine inherits from IDisposable so take care of disposing the engine after using it.

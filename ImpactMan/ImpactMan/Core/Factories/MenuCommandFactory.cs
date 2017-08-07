@@ -18,14 +18,16 @@ namespace ImpactMan.Core.Factories
         private AccountManager accountManager;
         private MenuController menuController;
         private User user;
+        private SoundManager soundManager;
 
-        public MenuCommandFactory(IEngine engine, ContentManager content, AccountManager accountManager, MenuController menuController, User user)
+        public MenuCommandFactory(IEngine engine, ContentManager content, AccountManager accountManager, MenuController menuController, User user, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;
             this.accountManager = accountManager;
             this.menuController = menuController;
             this.user = user;
+            this.soundManager = soundManager;
         }
 
         public IMenuCommand GetInstance(string menuItem, MenuController menuController)

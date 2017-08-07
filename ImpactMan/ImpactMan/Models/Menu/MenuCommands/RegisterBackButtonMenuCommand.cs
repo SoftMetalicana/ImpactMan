@@ -1,8 +1,7 @@
-﻿using System;
-using ImpactMan.Attributes;
-
-namespace ImpactMan.Models.Menu.MenuCommands
+﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Enumerations.Game;
+    using Attributes;
     using Context.Models;
     using Core;
     using Interfaces.Core;
@@ -16,8 +15,8 @@ namespace ImpactMan.Models.Menu.MenuCommands
         [Inject]
         private ContentManager content;
 
-        public RegisterBackButtonMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
-            : base(engine/*, menuController, content, accountManager, user*/)
+        public RegisterBackButtonMenuCommand(IEngine engine) 
+            : base(engine)
         {
         }
 
