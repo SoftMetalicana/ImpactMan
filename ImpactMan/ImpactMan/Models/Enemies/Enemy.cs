@@ -6,6 +6,7 @@
     using Microsoft.Xna.Framework.Input;
     using Constants.Consequential;
     using Interfaces.Models.Enemies;
+    using ImpactMan.Constants.Units;
 
     /// <summary>
     /// Concrete implementation of the enemy.
@@ -13,6 +14,16 @@
     /// </summary>
     public class Enemy : Consequential, IEnemy
     {
+        /// <summary>
+        /// Instantiates the enemy.
+        /// </summary>
+        /// <param name="x">The x coordinates of the object on the console/map/window.</param>
+        /// <param name="y">The y coordinates of the object on the console/map/window.</param>
+        public Enemy(int x, int y)
+            : this(x, y, UnitConstants.EnemyAssetName)
+        {
+        }
+
         /// <summary>
         /// Instantiates the enemy.
         /// </summary>

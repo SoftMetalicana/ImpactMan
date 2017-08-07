@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Players
 {
+    using ImpactMan.Constants.Units;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
 
@@ -14,15 +15,24 @@
         /// </summary>
         /// <param name="x">The x coordinates of the object on the map/window/console</param>
         /// <param name="y">The y coordinates of the object on the map/window/console</param>
-        /// <param name="assetName">The name of the picture that is loaded from the pipeline.</param>
-        /// <param name="playerName">The name of the player.</param>
-        public PacMan(int x, int y, string assetName, string playerName) 
-            : base(x, y, assetName, playerName)
+        public PacMan(int x, int y)
+            : this(x, y, UnitConstants.PlayerAssetName)
         {
         }
 
         /// <summary>
-        /// When a key is pressed this method is trigerred.
+        /// Instantiates the object.
+        /// </summary>
+        /// <param name="x">The x coordinates of the object on the map/window/console</param>
+        /// <param name="y">The y coordinates of the object on the map/window/console</param>
+        /// <param name="assetName">The name of the picture that is loaded from the pipeline.</param>
+        public PacMan(int x, int y, string assetName) 
+            : base(x, y, assetName)
+        {
+        }
+
+        /// <summary>
+        /// When a key is pressed this method is trigerred and you should take care of the player condition.
         /// This method raises an event for the Mediator which takes care for the player.
         /// </summary>
         /// <param name="gameTime"></param>

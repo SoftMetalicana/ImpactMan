@@ -89,6 +89,7 @@
     <Compile Include="Models\Menu\MenuItem.cs" />
     <Compile Include="Models\Players\PacMan.cs" />
     <Compile Include="Models\Players\Player.cs" />
+    <Compile Include="Models\Static\Food.cs" />
     <Compile Include="Models\Units\GameControlUnit.cs" />
     <Compile Include="Models\Units\GameplayUnit.cs" />
     <Compile Include="StartUp.cs" />

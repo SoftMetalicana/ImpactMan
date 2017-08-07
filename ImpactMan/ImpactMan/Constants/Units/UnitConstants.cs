@@ -14,5 +14,11 @@
         /// The height of all units.
         /// </summary>
         public const int Height = 50;
+
+        public const string EnemyAssetName = "enemy";
+        public const string GroundAssetName = "ground";
+        public const string WallAssetName = "wall";
+        public const string PlayerAssetName = "player";
+        public const string FoodAssetName = "food";
     }   
 }

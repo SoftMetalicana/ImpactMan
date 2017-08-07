@@ -7,8 +7,9 @@
     public static class ConsequentialConstants
     {
         /// <summary>
-        /// The bonus points given from an enemy.
+        /// The bonus points given from the consequential objects.
         /// </summary>
         public const int EnemyBonusPoints = 100;
+        public const int FoodBonusPoints = 10;
     }
 }

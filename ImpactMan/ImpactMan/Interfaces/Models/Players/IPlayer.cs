@@ -11,12 +11,6 @@
     public interface IPlayer : IGameplayUnit
     {
         /// <summary>
-        /// The name of the player.
-        /// This name is going to be used as a record in the database.
-        /// </summary>
-        string Name { get; }
-        
-        /// <summary>
         /// The current points of the player.
         /// This points are going the be used as a record in the database.
         /// </summary>

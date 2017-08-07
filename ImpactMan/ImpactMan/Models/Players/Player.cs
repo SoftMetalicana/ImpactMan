@@ -12,10 +12,6 @@
     public abstract class Player : GameplayUnit, IPlayer
     {
         /// <summary>
-        /// The player name that is gonna be used in the DB record.
-        /// </summary>
-        private string name;
-        /// <summary>
         /// The players points that are gonna be used in the DB record.
         /// </summary>
         private int points;
@@ -27,26 +23,9 @@
         /// <param name="y">The y coordinates of the object on the map/window/console</param>
         /// <param name="assetName">The name of the picture that is loaded from the pipeline.</param>
         /// <param name="playerName">The name of the player.</param>
-        public Player(int x, int y, string assetName, string playerName)
+        public Player(int x, int y, string assetName)
             : base(x, y, assetName)
         {
-            this.Name = playerName;
-        }
-
-        /// <summary>
-        /// The player name that is gonna be used in the DB record.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-
-            private set
-            {
-                this.name = value;
-            }
         }
 
         /// <summary>
