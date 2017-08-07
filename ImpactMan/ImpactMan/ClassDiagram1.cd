@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ImpactMan.Attributes.InjectAttribute" Collapsed="true">
+    <Position X="24.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\InjectAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Attributes.MapObjectAttribute" Collapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\MapObjectAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Constants.Consequential.ConsequentialConstants" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Constants\Consequential\ConsequentialConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Constants.Graphics.GraphicsConstants" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAABAAAAAAAAAAAAAAAAAAQAAAAAAAAABA=</HashCode>
+      <FileName>Constants\Graphics\GraphicsConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Constants.Units.MenuConstants" Collapsed="true">
+    <Position X="26.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Constants\Units\MenuConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Constants.Units.UnitConstants" Collapsed="true">
+    <Position X="21" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAARAAACEIAAAAAAkAAAAAAAAAAAAAEgAAAAAI=</HashCode>
+      <FileName>Constants\Units\UnitConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Constants.Utils.MovementConstants" Collapsed="true">
+    <Position X="24.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Constants\Utils\MovementConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Context.Db.ImpactManContext" Collapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Context\Db\ImpactManContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Context.Models.User" Collapsed="true">
+    <Position X="22.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAADAAAAAAAAAAA=</HashCode>
+      <FileName>Context\Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Core.AccountManager" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAQAAQAAAAAAAAAAAAABAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Core\AccountManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Core.Engine" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQCENFAIAAAAwAUBCCEAJCAAAAAAAgRAAAkAAAEAQQ=</HashCode>
+      <FileName>Core\Engine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ImpactMan.Core.Initializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Initializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ImpactMan.Core.MenuController" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASCgAAAIAAAAwEAgACAAAgAAAAAAAQAAAAAAAQAAQA=</HashCode>
+      <FileName>Core\MenuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Core.SoundManager" Collapsed="true">
+    <Position X="26.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Core.Factories.MenuCommandFactory" Collapsed="true">
+    <Position X="24.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAEAACAAAAABAAAAAAAABAAAAQAAQA=</HashCode>
+      <FileName>Core\Factories\MenuCommandFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.IO.InputListeners.Events.KeyPressedEventArgs" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAACAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IO\InputListeners\Events\KeyPressedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.IO.InputListeners.Events.MouseClickedEventArgs" Collapsed="true">
+    <Position X="21" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAkAAAAIAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>IO\InputListeners\Events\MouseClickedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.IO.InputListeners.InputListener" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEQAAAAAAAAAAAAAAAAAAwAAAgAAABAAAA=</HashCode>
+      <FileName>IO\InputListeners\InputListener.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ImpactMan.IO.Readers.CsvFileReader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAACAAAAAAAAAAAAAAAAAAAAAAAFAAAABQAAA=</HashCode>
+      <FileName>IO\Readers\CsvFileReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ImpactMan.Models.Consequences.Consequence" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\Consequences\Consequence.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ImpactMan.Models.Consequences.Consequential" Collapsed="true">
+    <Position X="6.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAA=</HashCode>
+      <FileName>Models\Consequences\Consequential.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Enemies.Enemy" Collapsed="true">
+    <Position X="9.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enemies\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Levels.Level" Collapsed="true">
+    <Position X="21" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAA=</HashCode>
+      <FileName>Models\Levels\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.HighScoresMenuCommand" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\HighScoresMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.LoginDoneMenuCommand" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\LoginDoneMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.MenuCommand" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAQAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\MenuCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.NewGameMenuCommand" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\NewGameMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.QuitMenuCommand" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\QuitMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.RegisterBackButtonMenuCommand" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\RegisterBackButtonMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.RegisterDoneMenuCommand" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\RegisterDoneMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.RegisterMenuButtonMenuCommand" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\RegisterMenuButtonMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuCommands.SettingsMenuCommand" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuCommands\SettingsMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuHolder" Collapsed="true">
+    <Position X="10.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAhAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Menu\MenuHolder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Menu.MenuItem" Collapsed="true">
+    <Position X="12.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQA=</HashCode>
+      <FileName>Models\Menu\MenuItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Players.PacMan" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Players\PacMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Players.Player" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Players\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Static.Food" Collapsed="true">
+    <Position X="2.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Static\Food.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Static.Ground" Collapsed="true">
+    <Position X="5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Static\Ground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Static.Wall" Collapsed="true">
+    <Position X="7.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Static\Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Models.Units.GameControlUnit" Collapsed="true">
+    <Position X="11.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAACgAAAAgAACAAAAAgAgAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Units\GameControlUnit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.Models.Units.GameplayUnit" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAACgAAAAgAACAAAAAgAgAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Units\GameplayUnit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpactMan.StartUp" Collapsed="true">
+    <Position X="19.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>StartUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpactMan.Utils.Movement" Collapsed="true">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ImpactMan.Interfaces.Core.IEngine" Collapsed="true">
+    <Position X="21" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAABBAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>Interfaces\Core\IEngine.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Core.IInitializer" Collapsed="true">
+    <Position X="22.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Core\IInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IAsset" Collapsed="true">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IAsset.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IConsequence" Collapsed="true">
+    <Position X="19.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IConsequence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IConsequential" Collapsed="true">
+    <Position X="5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IConsequential.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IGameControlUnit" Collapsed="true">
+    <Position X="1.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IGameControlUnit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IGameplayUnit" Collapsed="true">
+    <Position X="6" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IGameplayUnit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IPositionable" Collapsed="true">
+    <Position X="3.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IPositionable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Globals.IUnit" Collapsed="true">
+    <Position X="3.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Globals\IUnit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.IO.InputListeners.IInputListener" Collapsed="true">
+    <Position X="24.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAgAAAgAAABAAAA=</HashCode>
+      <FileName>Interfaces\IO\InputListeners\IInputListener.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Models.Enemies.IEnemy" Collapsed="true">
+    <Position X="5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Models\Enemies\IEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Models.Menu.IMenuCommand" Collapsed="true">
+    <Position X="26.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Models\Menu\IMenuCommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Models.Menu.IMenuHolder" Collapsed="true">
+    <Position X="0.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Models\Menu\IMenuHolder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Models.Menu.IMenuItem" Collapsed="true">
+    <Position X="2.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Interfaces\Models\Menu\IMenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Models.Players.IPlayer" Collapsed="true">
+    <Position X="7.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Models\Players\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Reader.IFileReader" Collapsed="true">
+    <Position X="10.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Reader\IFileReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ImpactMan.Interfaces.Reader.IReader" Collapsed="true">
+    <Position X="10.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Reader\IReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ImpactMan.Enumerations.Game.GameState" Collapsed="true">
+    <Position X="19.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAAAgAAAAAAIAA=</HashCode>
+      <FileName>Enumerations\Game\GameStatesEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ImpactMan.Enumerations.Game.UserInputState" Collapsed="true">
+    <Position X="24.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Enumerations\Game\GameStatesEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ImpactMan.Enumerations.Menu.Menu" Collapsed="true">
+    <Position X="21" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAQAAEAAAgABYAAAJiECgAgqACBgAAAACAAMAAAAA=</HashCode>
+      <FileName>Enumerations\Menu\MenuEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ImpactMan.Enumerations.Sounds.Music" Collapsed="true">
+    <Position X="22.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerations\Sounds\SoundEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="ImpactMan.IO.InputListeners.Events.KeyPressedEventHandler" Collapsed="true">
+    <Position X="19.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>IO\InputListeners\Events\KeyPressedEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ImpactMan.IO.InputListeners.Events.MouseClickedEventHandler" Collapsed="true">
+    <Position X="21" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>IO\InputListeners\Events\MouseClickedEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

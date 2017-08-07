@@ -45,6 +45,7 @@
     <Compile Include="Attributes\MapObjectAttribute.cs" />
     <Compile Include="Constants\Consequential\ConsequentialConstants.cs" />
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
+    <Compile Include="Constants\Levels\LevelConstants.cs" />
     <Compile Include="Constants\Units\MenuConstants.cs" />
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Constants\Utils\MovementConstants.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Interfaces\Globals\IAsset.cs" />
     <Compile Include="Interfaces\Globals\IConsequence.cs" />
     <Compile Include="Interfaces\Globals\IConsequential.cs" />
+    <Compile Include="Interfaces\Globals\IDrawable.cs" />
     <Compile Include="Interfaces\Globals\IGameControlUnit.cs" />
     <Compile Include="Interfaces\Globals\IPositionable.cs" />
     <Compile Include="Interfaces\Globals\IGameplayUnit.cs" />
@@ -74,15 +76,18 @@
     <Compile Include="Interfaces\Models\Menu\IMenuHolder.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuItem.cs" />
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
+    <Compile Include="Interfaces\Reader\IFileReader.cs" />
+    <Compile Include="Interfaces\Reader\IReader.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
     <Compile Include="IO\InputListeners\Events\MouseClickedEventArgs.cs" />
     <Compile Include="IO\InputListeners\Events\MouseClickedEventHandler.cs" />
     <Compile Include="IO\InputListeners\InputListener.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventHandler.cs" />
-    <Compile Include="IO\OutputWriter\ConsoleTextWriter.cs" />
+    <Compile Include="IO\Readers\CsvFileReader.cs" />
     <Compile Include="Models\Consequences\Consequence.cs" />
     <Compile Include="Models\Consequences\Consequential.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\Levels\Level.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
@@ -126,6 +131,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="App.config" />
     <None Include="app.manifest" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

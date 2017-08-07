@@ -103,7 +103,7 @@ namespace ImpactMan.Core
             /*            this.context = new ImpactManContext();
                         this.context.Database.Initialize(true);*/
 
-            this.player = new PacMan(0, 0, "food");
+            this.player = new PacMan(0, 0);
             this.player.Load(this.Content);
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
