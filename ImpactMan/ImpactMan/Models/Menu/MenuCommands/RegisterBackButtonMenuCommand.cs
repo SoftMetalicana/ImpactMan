@@ -1,4 +1,5 @@
 ﻿using System;
+using ImpactMan.Attributes;
 
 namespace ImpactMan.Models.Menu.MenuCommands
 {
@@ -9,14 +10,21 @@ namespace ImpactMan.Models.Menu.MenuCommands
 
     public class RegisterBackButtonMenuCommand : MenuCommand
     {
-        public RegisterBackButtonMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) : base(engine, menuController, content, accountManager, user)
+        [Inject]
+        private MenuController menuController;
+
+        [Inject]
+        private ContentManager content;
+
+        public RegisterBackButtonMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
+            : base(engine/*, menuController, content, accountManager, user*/)
         {
         }
 
         public override void Execute(User user)
         {
-            this.MenuController.Initialize("LoginMenu");
-            this.MenuController.Load(this.Content);
+            this.menuController.Initialize("LoginMenu");
+            this.menuController.Load(this.content);
             this.Engine.ChangeGameState(GameState.LoginMenuActive);
             this.Engine.ClearCurrentUserDetails();
         }

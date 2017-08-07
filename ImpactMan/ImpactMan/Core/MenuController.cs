@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.Interfaces.Core;
+
+namespace ImpactMan.Core
 {
     using Constants.Graphics;
     using Constants.Units;
@@ -18,13 +20,21 @@
 
     public class MenuController
     {
+        private IEngine engine;
+        private AccountManager accountManager;
+        private ContentManager content;
+        private User user;
         private MenuHolder menu;
         private MenuCommandFactory menuCommandFactory;
         private bool isUserLoggedIn;
 
-        public MenuController(MenuCommandFactory menuCommandFactory)
+        public MenuController(IEngine engine, ContentManager content, AccountManager accountManager, User user)
         {
-            this.menuCommandFactory = menuCommandFactory;
+            this.engine = engine;
+            this.content = content;
+            this.accountManager = accountManager;
+            this.user = user;
+            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.user);
         }
 
         public void Initialize(string query)
