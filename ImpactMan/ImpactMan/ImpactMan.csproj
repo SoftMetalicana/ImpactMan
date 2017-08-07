@@ -50,6 +50,7 @@
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Constants\Utils\MovementConstants.cs" />
     <Compile Include="Context\Db\ImpactManContext.cs" />
+    <Compile Include="Context\ImpactManContext.cs" />
     <Compile Include="Context\Models\User.cs" />
     <Compile Include="Core\AccountManager.cs" />
     <Compile Include="Core\Engine.cs" />
@@ -72,12 +73,15 @@
     <Compile Include="Interfaces\Globals\IUnit.cs" />
     <Compile Include="Interfaces\IO\InputListeners\IInputListener.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
+    <Compile Include="Interfaces\Models\LevelGenerators\ILevelGenerator.cs" />
+    <Compile Include="Interfaces\Models\Levels\ILevel.cs" />
+    <Compile Include="Interfaces\Models\Mediators\IPlayerConsequenceMediator.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuCommand.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuHolder.cs" />
     <Compile Include="Interfaces\Models\Menu\IMenuItem.cs" />
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
-    <Compile Include="Interfaces\Reader\IFileReader.cs" />
-    <Compile Include="Interfaces\Reader\IReader.cs" />
+    <Compile Include="Interfaces\IO\Reader\IFileReader.cs" />
+    <Compile Include="Interfaces\IO\Reader\IReader.cs" />
     <Compile Include="Interfaces\Writer\ITextWriter.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
     <Compile Include="IO\InputListeners\Events\MouseClickedEventArgs.cs" />
@@ -89,7 +93,9 @@
     <Compile Include="Models\Consequences\Consequence.cs" />
     <Compile Include="Models\Consequences\Consequential.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\LevelGenerators\LevelGenerator.cs" />
     <Compile Include="Models\Levels\Level.cs" />
+    <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
@@ -102,6 +108,7 @@
     <Compile Include="Models\Menu\MenuCommands\SettingsMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
+    <Compile Include="Models\Placements\RectanglePlacement.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventArgs.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventHandler.cs" />
     <Compile Include="Models\Players\PacMan.cs" />
@@ -114,6 +121,7 @@
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Movement.cs" />
+    <Compile Include="Utils\Placement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

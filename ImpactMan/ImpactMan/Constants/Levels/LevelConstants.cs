@@ -9,5 +9,10 @@
         /// The name of the starting map.
         /// </summary>
         public const string StartLevel = "level.csv";
+
+        /// <summary>
+        /// Holds the separator of the different keys in the .csv level file.
+        /// </summary>
+        public static readonly char[] SeparatorSymbolsInFile = new char[] { ',' };
     }
 }
