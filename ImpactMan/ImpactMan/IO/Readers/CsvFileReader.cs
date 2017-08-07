@@ -1,12 +1,18 @@
 ﻿namespace ImpactMan.IO.Readers
 {
     using System.IO;
+    using ImpactMan.Constants.Levels;
     using ImpactMan.Interfaces.Reader;
 
     public class CsvFileReader : IFileReader
     {
         private string fileName;
         private StreamReader reader;
+
+        public CsvFileReader()
+            : this(LevelConstants.StartLevel)
+        {
+        }
 
         public CsvFileReader(string fileName)
         {

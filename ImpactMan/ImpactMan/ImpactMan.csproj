@@ -45,6 +45,7 @@
     <Compile Include="Attributes\MapObjectAttribute.cs" />
     <Compile Include="Constants\Consequential\ConsequentialConstants.cs" />
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
+    <Compile Include="Constants\Levels\LevelConstants.cs" />
     <Compile Include="Constants\Units\MenuConstants.cs" />
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Constants\Utils\MovementConstants.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Interfaces\Globals\IAsset.cs" />
     <Compile Include="Interfaces\Globals\IConsequence.cs" />
     <Compile Include="Interfaces\Globals\IConsequential.cs" />
+    <Compile Include="Interfaces\Globals\IDrawable.cs" />
     <Compile Include="Interfaces\Globals\IGameControlUnit.cs" />
     <Compile Include="Interfaces\Globals\IPositionable.cs" />
     <Compile Include="Interfaces\Globals\IGameplayUnit.cs" />
@@ -129,6 +131,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="App.config" />
     <None Include="app.manifest" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
