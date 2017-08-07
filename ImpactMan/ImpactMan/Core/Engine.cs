@@ -1,4 +1,7 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.Constants.Units;
+using ImpactMan.IO.OutputWriter;
+
+namespace ImpactMan.Core
 {
     using Enumerations.Game;
     using Enumerations.Sounds;
@@ -27,6 +30,7 @@
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
         private SoundManager soundManager;
+        private ConsoleTextWriter textWriter;
 
         private IPlayer player;
         private User user;
@@ -43,6 +47,21 @@
         private UserInputState userInputState;
 
         ImpactManContext context;
+
+        //This data should be in database
+        private Dictionary<string, int> highScores = new Dictionary<string, int>()
+        {
+            {"Ivan", 22565 },
+            {"Petkan", 5522 },
+            {"Dragan", 102 },
+            {"Toni", 55896 },
+            {"Moni", 11255254 },
+            {"Boni", 5595 },
+            {"Dancho", 787 },
+            {"Mancho", 14 },
+            {"Gancho", 6698 },
+
+        };
 
         public Engine()
             : this(new Initializer(),
@@ -118,6 +137,7 @@
             this.menuController.Load(Content);
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
 
+            this.textWriter = new ConsoleTextWriter(this.spriteBatch, this.spriteFont);
         }
 
         /// <summary>
@@ -155,9 +175,6 @@
             if (gameState == GameState.LoginMenuActive || gameState == GameState.SignUpMenuActive)
             {
                 GetPressedKeys();
-
-/*                this.userInputDetails.Name = this.userName;
-                this.userInputDetails.Password = this.userPassword;*/
             }
 
             else
@@ -185,16 +202,51 @@
 
             if (gameState == GameState.LoginMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, this.userInputDetails.Name, new Vector2(530, 293), Color.Black);
-                spriteBatch.DrawString(spriteFont, this.userInputDetails.Password, new Vector2(530, 355), Color.Black);
-                spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
+                this.textWriter.WriteOnConsole(this.userInputDetails.Name, 
+                    new Vector2(MenuConstants.LoginMenuUsernameX, 
+                    MenuConstants.LoginMenuUsernameY), 
+                    Color.Black);
+
+                this.textWriter.WriteOnConsole(this.userInputDetails.Password, 
+                    new Vector2(MenuConstants.LoginMenuPasswordX, 
+                    MenuConstants.LoginMenuPasswordY), 
+                    Color.Black);
+
+                this.textWriter.WriteOnConsole(this.errorMessage, 
+                    new Vector2(MenuConstants.LoginMenuErrorMessageX, 
+                    MenuConstants.LoginMenuErrorMessageY), 
+                    Color.Black);
             }
 
             else if (gameState == GameState.SignUpMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, this.userInputDetails.Name, new Vector2(542, 299), Color.Black);
-                spriteBatch.DrawString(spriteFont, this.userInputDetails.Password, new Vector2(542, 365), Color.Black);
-                spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
+                this.textWriter.WriteOnConsole(this.userInputDetails.Name, 
+                    new Vector2(MenuConstants.SignupMenuUsernameX, 
+                    MenuConstants.SignupMenuUsernameY), 
+                    Color.Black);
+
+                this.textWriter.WriteOnConsole(this.userInputDetails.Password, 
+                    new Vector2(MenuConstants.SignupMenuPasswordX, 
+                    MenuConstants.SignupMenuPasswordY), 
+                    Color.Black);
+
+                this.textWriter.WriteOnConsole(this.errorMessage, 
+                    new Vector2(MenuConstants.SignupMenuErrorMessageX, 
+                    MenuConstants.SignupMenuErrorMessageY), 
+                    Color.Black);
+            }
+
+            else if (gameState == GameState.HighScoresMenuActive)
+            {
+                int xCoordinate = 760;
+                int yCoordinate = 313;
+
+                foreach (var player in this.highScores.OrderByDescending(x => x.Value).Take(10))
+                {
+                    textWriter.WriteOnConsole($"{player.Key} - {player.Value}", new Vector2(xCoordinate, yCoordinate), Color.White);
+
+                    yCoordinate += 45;
+                }
             }
 
             else if(this.gameState == GameState.GameMode)
@@ -210,6 +262,11 @@
         public void ChangeGameState(GameState gameStateToChange)
         {
             this.gameState = gameStateToChange;
+        }
+
+        public void ChangeUserInputState()
+        {
+            this.userInputState = (UserInputState)(((int)userInputState + 1) % 2);
         }
 
         public void Quit()
@@ -236,11 +293,6 @@
             }
 
             pressedKeys = currentKeys;
-        }
-
-        public void ChangeUserInputState()
-        {
-            this.userInputState = (UserInputState)(((int)userInputState + 1) % 2);
         }
 
         private void OnReleasedKey(Keys key)
