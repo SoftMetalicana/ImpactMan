@@ -1,5 +1,5 @@
 ﻿using ImpactMan.Constants.Units;
-using ImpactMan.IO.OutputWriter;
+using ImpactMan.IO.Writers;
 
 namespace ImpactMan.Core
 {
@@ -137,7 +137,7 @@ namespace ImpactMan.Core
             this.menuController.Load(Content);
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
 
-            this.textWriter = new ConsoleTextWriter(this.spriteBatch, this.spriteFont);
+            this.textWriter = new ConsoleTextWriter(this.spriteFont, this.spriteBatch);
         }
 
         /// <summary>
@@ -202,17 +202,17 @@ namespace ImpactMan.Core
 
             if (gameState == GameState.LoginMenuActive)
             {
-                this.textWriter.WriteOnConsole(this.userInputDetails.Name, 
+                this.textWriter.Write(this.userInputDetails.Name, 
                     new Vector2(MenuConstants.LoginMenuUsernameX, 
                     MenuConstants.LoginMenuUsernameY), 
                     Color.Black);
 
-                this.textWriter.WriteOnConsole(this.userInputDetails.Password, 
+                this.textWriter.Write(this.userInputDetails.Password, 
                     new Vector2(MenuConstants.LoginMenuPasswordX, 
                     MenuConstants.LoginMenuPasswordY), 
                     Color.Black);
 
-                this.textWriter.WriteOnConsole(this.errorMessage, 
+                this.textWriter.Write(this.errorMessage, 
                     new Vector2(MenuConstants.LoginMenuErrorMessageX, 
                     MenuConstants.LoginMenuErrorMessageY), 
                     Color.Black);
@@ -220,17 +220,17 @@ namespace ImpactMan.Core
 
             else if (gameState == GameState.SignUpMenuActive)
             {
-                this.textWriter.WriteOnConsole(this.userInputDetails.Name, 
+                this.textWriter.Write(this.userInputDetails.Name, 
                     new Vector2(MenuConstants.SignupMenuUsernameX, 
                     MenuConstants.SignupMenuUsernameY), 
                     Color.Black);
 
-                this.textWriter.WriteOnConsole(this.userInputDetails.Password, 
+                this.textWriter.Write(this.userInputDetails.Password, 
                     new Vector2(MenuConstants.SignupMenuPasswordX, 
                     MenuConstants.SignupMenuPasswordY), 
                     Color.Black);
 
-                this.textWriter.WriteOnConsole(this.errorMessage, 
+                this.textWriter.Write(this.errorMessage, 
                     new Vector2(MenuConstants.SignupMenuErrorMessageX, 
                     MenuConstants.SignupMenuErrorMessageY), 
                     Color.Black);
@@ -243,7 +243,7 @@ namespace ImpactMan.Core
 
                 foreach (var player in this.highScores.OrderByDescending(x => x.Value).Take(10))
                 {
-                    textWriter.WriteOnConsole($"{player.Key} - {player.Value}", new Vector2(xCoordinate, yCoordinate), Color.White);
+                    textWriter.Write($"{player.Key} - {player.Value}", new Vector2(xCoordinate, yCoordinate), Color.White);
 
                     yCoordinate += 45;
                 }
