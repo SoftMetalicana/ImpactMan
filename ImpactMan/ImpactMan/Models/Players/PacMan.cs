@@ -1,7 +1,9 @@
 ﻿namespace ImpactMan.Models.Players
 {
     using System;
+    using ImpactMan.Attributes;
     using ImpactMan.Constants.Units;
+    using ImpactMan.Constants.Utils;
     using ImpactMan.Interfaces.IO.InputListeners;
     using ImpactMan.IO.InputListeners.Events;
     using ImpactMan.Utils;
@@ -12,6 +14,7 @@
     /// Concrete implemtation of a Player.
     /// For more information visit the player class.
     /// </summary>
+    [MapObject(UnitConstants.PlayerCsvKeyName)]
     public class PacMan : Player
     {
         /// <summary>
@@ -43,7 +46,7 @@
         /// <param name="keyboardState"></param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            int calculatedDistance = Movement.CalculateDistanceToAdd(gameTime);
+            int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
 
             if (keyboardState.IsKeyDown(Keys.Right))
             {

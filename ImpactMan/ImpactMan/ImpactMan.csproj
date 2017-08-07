@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Attributes\InjectAttribute.cs" />
+    <Compile Include="Attributes\MapObjectAttribute.cs" />
     <Compile Include="Constants\Consequential\ConsequentialConstants.cs" />
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
     <Compile Include="Constants\Units\MenuConstants.cs" />

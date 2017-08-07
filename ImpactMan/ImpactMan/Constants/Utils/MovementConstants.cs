@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Provides constants for the Utils.Movement static class.
+    /// If a method from the static class wants a variable there is a high chance of finding it here.
     /// </summary>
     public static class MovementConstants
     {

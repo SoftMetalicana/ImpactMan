@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace ImpactMan.Attributes
+﻿namespace ImpactMan.Attributes
 {
+    using System;
+    
     public class InjectAttribute : Attribute
     {
-
     }
 }

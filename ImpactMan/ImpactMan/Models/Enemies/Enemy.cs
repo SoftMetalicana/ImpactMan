@@ -7,11 +7,13 @@
     using Constants.Consequential;
     using Interfaces.Models.Enemies;
     using ImpactMan.Constants.Units;
+    using ImpactMan.Attributes;
 
     /// <summary>
     /// Concrete implementation of the enemy.
     /// For more info visit the classes and interfaces it inherits.
     /// </summary>
+    [MapObject(UnitConstants.EnemyCsvKeyName)]
     public class Enemy : Consequential, IEnemy
     {
         /// <summary>

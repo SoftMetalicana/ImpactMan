@@ -1,7 +1,6 @@
 ﻿namespace ImpactMan.Utils
 {
     using System;
-    using ImpactMan.Constants.Utils;
     using Microsoft.Xna.Framework;
 
     /// <summary>
@@ -17,11 +16,12 @@
         /// if you want to move to the right or subtract it for moving to the left.
         /// If you want to move up or down you should add or subtract from object.Rectangle.Y
         /// </summary>
-        /// <param name="gameTime"></param>
-        /// <returns></returns>
-        public static int CalculateDistanceToAdd(GameTime gameTime)
+        /// <param name="speedRatio">Can be taken from the Constants.Utils.MovementConstants class.</param>
+        /// <param name="gameTime">Can be taken from the Engine.</param>
+        /// <returns>The value that you must add to obj.Rectangle.X or obj.Rectangle.Y</returns>
+        public static int CalculateDistanceToAdd(int speedRatio, GameTime gameTime)
         {
-            return (int)Math.Ceiling(MovementConstants.MovementPixelRatio * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            return (int)Math.Ceiling(speedRatio * (float)gameTime.ElapsedGameTime.TotalSeconds);
         }
     }
 }

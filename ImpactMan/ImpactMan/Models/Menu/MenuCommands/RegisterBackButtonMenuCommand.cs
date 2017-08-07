@@ -10,10 +10,10 @@ namespace ImpactMan.Models.Menu.MenuCommands
 
     public class RegisterBackButtonMenuCommand : MenuCommand
     {
-        [Inject]
+        [InjectAttribute]
         private MenuController menuController;
 
-        [Inject]
+        [InjectAttribute]
         private ContentManager content;
 
         public RegisterBackButtonMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
