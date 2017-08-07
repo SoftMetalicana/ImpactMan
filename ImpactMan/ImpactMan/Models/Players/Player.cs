@@ -49,9 +49,6 @@
         /// </summary>
         /// <param name="sender">The input listener itself.</param>
         /// <param name="eventArgs">Holds basic info of the keyboard state at the moment the event was raised.</param>
-        public void OnKeyPressed(IInputListener sender, KeyPressedEventArgs eventArgs)
-        {
-            this.Update(eventArgs.GameTime, eventArgs.KeyboardState);
-        }
+        public abstract void OnKeyPressed(IInputListener sender, KeyPressedEventArgs eventArgs);
     }
 }

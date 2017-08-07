@@ -1,6 +1,10 @@
 ﻿namespace ImpactMan.Models.Players
 {
+    using System;
     using ImpactMan.Constants.Units;
+    using ImpactMan.Interfaces.IO.InputListeners;
+    using ImpactMan.IO.InputListeners.Events;
+    using ImpactMan.Utils;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
 
@@ -39,25 +43,37 @@
         /// <param name="keyboardState"></param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
+            int calculatedDistance = Movement.CalculateDistanceToAdd(gameTime);
+
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X + 5, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
+                this.Rectangle = new Rectangle(this.Rectangle.X + calculatedDistance, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
             }
 
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X - 5, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
+                this.Rectangle = new Rectangle(this.Rectangle.X - calculatedDistance, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
             }
 
             if (keyboardState.IsKeyDown(Keys.Down))
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y + 5, this.Texture.Width, this.Texture.Height);
+                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y + calculatedDistance, this.Texture.Width, this.Texture.Height);
             }
 
             if (keyboardState.IsKeyDown(Keys.Up))
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - 5, this.Texture.Width, this.Texture.Height);
+                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - calculatedDistance, this.Texture.Width, this.Texture.Height);
             }
+        }
+
+        /// <summary>
+        /// This method is subrscribed to the KeyPressed event and it redirects to the Update method.
+        /// </summary>
+        /// <param name="sender">The input listener itself.</param>
+        /// <param name="eventArgs">Holds basic info of the keyboard state at the moment the event was raised.</param>
+        public override void OnKeyPressed(IInputListener sender, KeyPressedEventArgs eventArgs)
+        {
+            this.Update(eventArgs.GameTime, eventArgs.KeyboardState);
         }
     }
 }
