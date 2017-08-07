@@ -10,8 +10,14 @@
     using Interfaces.Models.Menu;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// This is the object that hold the menu buttons. In most cases it would be the background in menu mode.
+    /// </summary>
     public class MenuHolder : GameControlUnit, IMenuHolder
     {
+        /// <summary>
+        /// This is a collection of the buttons in the menu.
+        /// </summary>
         private IList<IMenuItem> menuItems;
 
         public MenuHolder(int x, int y, int width, int height, string assetName, IList<IMenuItem> menuItems) 

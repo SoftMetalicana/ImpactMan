@@ -1,10 +1,10 @@
 ﻿namespace ImpactMan.Core
 {
-    using System.Text;
+    using Enumerations.Game;
+    using Enumerations.Sounds;
     using Constants.Graphics;
     using Context.Db;
     using Context.Models;
-    using Factories;
     using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Players;
@@ -16,9 +16,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    public enum GameState { MainMenuActive, LoginMenuActive, SignUpMenuActive, GameMode }
-    public enum UserInpuState { NameInput, PasswordInput }
+    using System.Text;
 
     /// <summary>
     /// This is the main type for your game.
@@ -28,12 +26,11 @@
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
+        private SoundManager soundManager;
 
         private IPlayer player;
         private User user;
         private User userInputDetails;
-        private string userName;
-        private string userPassword;
         private string errorMessage;
 
         private List<Keys> pressedKeys = new List<Keys>();
@@ -41,10 +38,9 @@
         private IInitializer initializer;
         private IInputListener inputListener;
         private MenuController menuController;
-/*        private MenuCommandFactory menuCommandFactory;*/
         private AccountManager accountManager;
         private GameState gameState;
-        private UserInpuState userInputState;
+        private UserInputState userInputState;
 
         ImpactManContext context;
 
@@ -57,9 +53,11 @@
         public Engine(IInitializer initializer,
                       IInputListener inputListener)
         {
-            this.graphics = new GraphicsDeviceManager(this);
-
             this.Content.RootDirectory = "Content";
+
+            this.graphics = new GraphicsDeviceManager(this);
+            this.soundManager = new SoundManager(this.Content);
+
             this.initializer = initializer;
             this.inputListener = inputListener;
         }
@@ -74,29 +72,29 @@
         {
             this.userInputDetails = new User();
             this.user = new User();
-            this.userName = String.Empty;
-            this.userPassword = String.Empty;
+            this.userInputDetails.Name = String.Empty;
+            this.userInputDetails.Password = String.Empty;
             this.errorMessage = String.Empty;
 
             this.accountManager = new AccountManager();
-/*            this.menuCommandFactory = new MenuCommandFactory(this, this.Content, this.accountManager, this.user);*/
-            this.menuController = new MenuController(this, this.Content, this.accountManager, this.user);
+            this.menuController = new MenuController(this, this.Content, this.accountManager, this.user, this.soundManager);
 
 
             // MUST BE DONE FROM HERE
             /*            this.context = new ImpactManContext();
                         this.context.Database.Initialize(true);*/
 
-            this.player = new PacMan(0, 0);
+            this.player = new PacMan(0, 0, "food");
             this.player.Load(this.Content);
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
             this.inputListener.MouseClicked += this.menuController.OnMouseClicked;
 
             this.menuController.Initialize("LoginMenu");
+            this.soundManager.PlayMusic(Music.LoginMusic);
 
             this.gameState = GameState.LoginMenuActive;
-            this.userInputState = UserInpuState.NameInput;
+            this.userInputState = UserInputState.NameInput;
 
             // TO HERE
 
@@ -116,8 +114,6 @@
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
 
             this.menuController.Load(Content);
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
@@ -160,8 +156,8 @@
             {
                 GetPressedKeys();
 
-                this.userInputDetails.Name = this.userName;
-                this.userInputDetails.Password = this.userPassword;
+/*                this.userInputDetails.Name = this.userName;
+                this.userInputDetails.Password = this.userPassword;*/
             }
 
             else
@@ -189,15 +185,15 @@
 
             if (gameState == GameState.LoginMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, userName, new Vector2(530, 293), Color.Black);
-                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(530, 355), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Name, new Vector2(530, 293), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Password, new Vector2(530, 355), Color.Black);
                 spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
             }
 
             else if (gameState == GameState.SignUpMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, userName, new Vector2(542, 299), Color.Black);
-                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(542, 365), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Name, new Vector2(542, 299), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Password, new Vector2(542, 365), Color.Black);
                 spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
             }
 
@@ -244,7 +240,7 @@
 
         public void ChangeUserInputState()
         {
-            this.userInputState = (UserInpuState)(((int)userInputState + 1) % 2);
+            this.userInputState = (UserInputState)(((int)userInputState + 1) % 2);
         }
 
         private void OnReleasedKey(Keys key)
@@ -256,13 +252,13 @@
                 ChangeUserInputState();
             }
 
-            if (userInputState == UserInpuState.NameInput)
+            if (userInputState == UserInputState.NameInput)
             {
-                sb = new StringBuilder(userName);
+                sb = new StringBuilder(this.userInputDetails.Name);
             }
             else
             {
-                sb = new StringBuilder(userPassword);
+                sb = new StringBuilder(this.userInputDetails.Password);
             }
 
             if (IsKeyLetter(key))
@@ -283,13 +279,13 @@
                 }
             }
 
-            if (userInputState == UserInpuState.NameInput)
+            if (userInputState == UserInputState.NameInput)
             {
-                userName = sb.ToString();
+                this.userInputDetails.Name = sb.ToString();
             }
             else
             {
-                userPassword = sb.ToString();
+                this.userInputDetails.Password = sb.ToString();
             }
 
         }
@@ -311,8 +307,8 @@
 
         public void ClearCurrentUserDetails()
         {
-            this.userName = String.Empty;
-            this.userPassword = String.Empty;
+            this.userInputDetails.Name = String.Empty;
+            this.userInputDetails.Password = String.Empty;
         }
     }
 }

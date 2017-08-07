@@ -5,6 +5,9 @@ namespace ImpactMan.Core
     using System.Collections.Generic;
     using Context.Models;
 
+    /// <summary>
+    /// This class takes care of the login and signup processes and the related checks and interaction with the DB.
+    /// </summary>
     public class AccountManager
     {
         private IList<User> users;

@@ -1,7 +1,7 @@
-﻿using ImpactMan.Attributes;
-
-namespace ImpactMan.Models.Menu.MenuCommands
+﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Enumerations.Game;
+    using Attributes;
     using Context.Models;
     using Core;
     using Interfaces.Core;
@@ -18,8 +18,8 @@ namespace ImpactMan.Models.Menu.MenuCommands
         [InjectAttribute]
         private ContentManager content;
 
-        public RegisterDoneMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
-            : base(engine/*, menuController, content, accountManager, user*/)
+        public RegisterDoneMenuCommand(IEngine engine) 
+            : base(engine)
         {
         }
 
