@@ -1,12 +1,18 @@
 ﻿namespace ImpactMan.Models.Static
 {
     using System;
+    using ImpactMan.Attributes;
     using ImpactMan.Constants.Consequential;
     using ImpactMan.Constants.Units;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using Models.Consequences;
-
+    
+    /// <summary>
+    /// Represents a food on the console.
+    /// An object that does not move but has consequences when the player steps on.
+    /// </summary>
+    [MapObject(UnitConstants.FoodCsvKeyName)]
     public class Food : Consequential
     {
         /// <summary>

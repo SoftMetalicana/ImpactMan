@@ -9,13 +9,13 @@
 
     public class RegisterDoneMenuCommand : MenuCommand
     {
-        [Inject]
+        [InjectAttribute]
         private AccountManager accountManager;
 
-        [Inject]
+        [InjectAttribute]
         private MenuController menuController;
 
-        [Inject]
+        [InjectAttribute]
         private ContentManager content;
 
         public RegisterDoneMenuCommand(IEngine engine) 

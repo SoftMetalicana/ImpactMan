@@ -10,10 +10,10 @@
 
     public class RegisterMenuButtonMenuCommand : MenuCommand
     {
-        [Inject]
+        [InjectAttribute]
         private MenuController menuController;
 
-        [Inject]
+        [InjectAttribute]
         private ContentManager content;
 
         public RegisterMenuButtonMenuCommand(IEngine engine) 

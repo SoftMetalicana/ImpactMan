@@ -9,13 +9,13 @@
 
     class LoginDoneMenuCommand : MenuCommand
     {
-        [Inject]
+        [InjectAttribute]
         private AccountManager accountManager;
 
-        [Inject]
+        [InjectAttribute]
         private MenuController menuController;
 
-        [Inject]
+        [InjectAttribute]
         private ContentManager content;
 
         public LoginDoneMenuCommand(IEngine engine) 
