@@ -107,6 +107,7 @@
     <Compile Include="Models\Menu\MenuCommands\SettingsMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
+    <Compile Include="Models\Placements\RectanglePlacement.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventArgs.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventHandler.cs" />
     <Compile Include="Models\Players\PacMan.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Movement.cs" />
+    <Compile Include="Utils\Placement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

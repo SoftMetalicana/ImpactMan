@@ -5,25 +5,52 @@
     using System.Linq.Expressions;
     using System.Reflection;
     using ImpactMan.Constants.Levels;
+    using ImpactMan.Constants.Units;
     using ImpactMan.Context;
     using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.IO.Reader;
     using ImpactMan.Interfaces.Models.LevelGenerators;
+    using ImpactMan.Utils;
 
     /// <summary>
     /// Takes care of generating a level from a source and returning it.
     /// </summary>
     public class LevelGenerator : ILevelGenerator
     {
-        private IFileReader fileReader;
-        private IDictionary<string, Func<int, int, IConsequential>> activationCache;
+        /// <summary>
+        /// Constants for the lamda cache.
+        /// </summary>
+        private const string FirstParamName = "x";
+        private const string SecondParamName = "y";
 
+        /// <summary>
+        /// Constants for the lamda cache.
+        /// </summary>
+        private static readonly Type IntType = typeof(int);
+        private static readonly Type[] ConstructorWantedParams = new[] { IntType, IntType };
+
+        /// <summary>
+        /// Reads from a file source.
+        /// </summary>
+        private IFileReader fileReader;
+        /// <summary>
+        /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
+        /// </summary>
+        private static IDictionary<string, Func<int, int, IConsequential>> activationCache;
+
+        /// <summary>
+        /// Instantiates the object.
+        /// </summary>
+        /// <param name="fileReader">The file reader that you want to use.</param>
         public LevelGenerator(IFileReader fileReader)
         {
             this.FileReader = fileReader;
-            this.ActivationCache = new Dictionary<string, Func<int, int, IConsequential>>();
+            ActivationCache = new Dictionary<string, Func<int, int, IConsequential>>();
         }
 
+        /// <summary>
+        /// Reads from a file source.
+        /// </summary>
         private IFileReader FileReader
         {
             get
@@ -37,27 +64,34 @@
             }
         }
 
-        private IDictionary<string, Func<int, int, IConsequential>> ActivationCache
+        /// <summary>
+        /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
+        /// </summary>
+        private static IDictionary<string, Func<int, int, IConsequential>> ActivationCache
         {
             get
             {
-                return this.activationCache;
+                return activationCache;
             }
 
             set
             {
-                this.activationCache = value;
+                activationCache = value;
             }
         }
 
+        /// <summary>
+        /// Generates and saves in cache a lambda that activates an object.
+        /// </summary>
+        /// <param name="currentCsvKeyName">The key that you want to save against the new generated lambda.</param>
         private void CacheActivationLambda(string currentCsvKeyName)
         {
             Type typeToActivate = ImpactManContext.TypesByCsvKeyName[currentCsvKeyName];
 
-            ParameterExpression xParameter = Expression.Parameter(typeof(int), "x");
-            ParameterExpression yParameter = Expression.Parameter(typeof(int), "y");
+            ParameterExpression xParameter = Expression.Parameter(IntType, FirstParamName);
+            ParameterExpression yParameter = Expression.Parameter(IntType, SecondParamName);
 
-            ConstructorInfo ctorOfType = typeToActivate.GetConstructor(new[] { typeof(int), typeof(int) });
+            ConstructorInfo ctorOfType = typeToActivate.GetConstructor(ConstructorWantedParams);
 
             NewExpression newTypeExpression = Expression.New(ctorOfType, xParameter, yParameter);
 
@@ -67,9 +101,13 @@
                                                                           yParameter)
                                                                           .Compile();
 
-            this.activationCache[currentCsvKeyName] = activatorLambda;
+            ActivationCache[currentCsvKeyName] = activatorLambda;
         }
 
+        /// <summary>
+        /// Generates a whole level consisting of IConsequential objects.
+        /// </summary>
+        /// <returns>The generated level.</returns>
         public IList<IConsequential[]> GenerateLevel()
         {
             IList<IConsequential[]> generatedLevel = new List<IConsequential[]>();
@@ -88,12 +126,19 @@
                     {
                         string currentCsvKeyName = csvKeyNames[currentCol];
                         
-                        if (!this.activationCache.ContainsKey(currentCsvKeyName))
+                        if (!ActivationCache.ContainsKey(currentCsvKeyName))
                         {
                             this.CacheActivationLambda(currentCsvKeyName);
                         }
 
-                        generatedLevel[currentRow][currentCol] = this.activationCache[currentCsvKeyName](0, 0);
+                        RectanglePlacement calculatedRectanglePlacement = 
+                                                        Placement.GetRectanglePlacement(currentRow,
+                                                                                        currentCol,
+                                                                                        UnitConstants.Width,
+                                                                                        UnitConstants.Height);
+
+                        generatedLevel[currentRow][currentCol] = ActivationCache[currentCsvKeyName](calculatedRectanglePlacement.X,
+                                                                                                         calculatedRectanglePlacement.Y);
                     }
 
                     currentRow++;
