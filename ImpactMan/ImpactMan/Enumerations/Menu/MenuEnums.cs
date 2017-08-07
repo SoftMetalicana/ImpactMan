@@ -14,7 +14,6 @@ namespace ImpactMan.Enumerations.Menu
         MainMenuPaddingLeft = 450,
 
 
-
         NewGameMenuWidth = 450,
         NewGameMenuHeight = 450,
 
@@ -25,7 +24,6 @@ namespace ImpactMan.Enumerations.Menu
         NewGameMenuPaddingLeft = 580,
 
 
-
         LoginMenuWidth = GraphicsConstants.PreferredBufferWidth,
         LoginMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
 
@@ -34,8 +32,6 @@ namespace ImpactMan.Enumerations.Menu
 
         LoginMenuPaddingTop = 260,
         LoginMenuPaddingLeft = 590,
-
-
 
 
         RegisterMenuWidth = GraphicsConstants.PreferredBufferWidth,
