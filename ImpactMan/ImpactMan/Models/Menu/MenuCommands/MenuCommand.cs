@@ -9,21 +9,21 @@
     public abstract class MenuCommand : IMenuCommand
     {
         private IEngine engine;
-        private MenuController menuController;
+/*        private MenuController menuController;
         private ContentManager content;
         private AccountManager accountManager;
-        private User user;
+        private User user;*/
 
-        protected MenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager,User user)
+        protected MenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager,User user*/)
         {
             this.Engine = engine;
-            this.MenuController = menuController;
+/*            this.MenuController = menuController;
             this.Content = content;
             this.AccountManager = accountManager;
-            this.User = user;
+            this.User = user;*/
         }
 
-        public AccountManager AccountManager
+/*        public AccountManager AccountManager
         {
             get { return this.accountManager; }
             protected set { this.accountManager = value; }
@@ -39,7 +39,7 @@
         {
             get { return this.content; }
             protected set { this.content = value; }
-        }
+        }*/
 
         public IEngine Engine
         {
@@ -47,11 +47,11 @@
             protected set { engine = value; }
         }
 
-        public MenuController MenuController
+/*        public MenuController MenuController
         {
             get { return this.menuController; }
             protected set { this.menuController = value; }
-        }
+        }*/
 
         public abstract void Execute(User user);      
     }

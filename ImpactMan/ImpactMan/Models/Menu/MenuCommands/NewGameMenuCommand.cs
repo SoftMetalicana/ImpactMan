@@ -7,8 +7,8 @@
 
     public class NewGameMenuCommand : MenuCommand
     {
-        public NewGameMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) 
-            : base(engine, menuController, content, accountManager, user)
+        public NewGameMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
+            : base(engine/*, menuController, content, accountManager, user*/)
         {
         }
 

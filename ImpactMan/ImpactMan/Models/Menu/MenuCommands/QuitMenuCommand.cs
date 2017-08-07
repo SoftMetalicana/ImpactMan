@@ -7,8 +7,8 @@
 
     public class QuitMenuCommand : MenuCommand
     {
-        public QuitMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) 
-            : base(engine, menuController, content, accountManager, user)
+        public QuitMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
+            : base(engine/*, menuController, content, accountManager, user*/)
         {
         }
 

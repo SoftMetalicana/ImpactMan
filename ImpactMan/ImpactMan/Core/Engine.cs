@@ -41,7 +41,7 @@
         private IInitializer initializer;
         private IInputListener inputListener;
         private MenuController menuController;
-        private MenuCommandFactory menuCommandFactory;
+/*        private MenuCommandFactory menuCommandFactory;*/
         private AccountManager accountManager;
         private GameState gameState;
         private UserInpuState userInputState;
@@ -79,8 +79,8 @@
             this.errorMessage = String.Empty;
 
             this.accountManager = new AccountManager();
-            this.menuCommandFactory = new MenuCommandFactory(this, this.Content, this.accountManager, this.user);
-            this.menuController = new MenuController(this.menuCommandFactory);
+/*            this.menuCommandFactory = new MenuCommandFactory(this, this.Content, this.accountManager, this.user);*/
+            this.menuController = new MenuController(this, this.Content, this.accountManager, this.user);
 
 
             // MUST BE DONE FROM HERE

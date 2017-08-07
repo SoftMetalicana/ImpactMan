@@ -1,5 +1,8 @@
-﻿namespace ImpactMan.Models.Menu.MenuCommands
+﻿
+
+namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Attributes;
     using Context.Models;
     using Core;
     using Interfaces.Core;
@@ -7,17 +10,26 @@
 
     class LoginDoneMenuCommand : MenuCommand
     {
-        public LoginDoneMenuCommand(IEngine engine, MenuController menuController, ContentManager content, AccountManager accountManager, User user) 
-            : base(engine, menuController, content, accountManager, user)
+        [Inject]
+        private AccountManager accountManager;
+
+        [Inject]
+        private MenuController menuController;
+
+        [Inject]
+        private ContentManager content;
+
+        public LoginDoneMenuCommand(IEngine engine/*, MenuController menuController, ContentManager content, AccountManager accountManager, User user*/) 
+            : base(engine/*, menuController, content, accountManager, user*/)
         {
         }
 
         public override void Execute(User user)
         {
-            if (this.AccountManager.Login(user))
+            if (this.accountManager.Login(user))
             {
-                this.MenuController.Initialize("MainMenu");
-                this.MenuController.Load(this.Content);
+                this.menuController.Initialize("MainMenu");
+                this.menuController.Load(this.content);
                 this.Engine.ClearCurrentUserDetails();
                 this.Engine.ChangeGameState(GameState.MainMenuActive);
             }
