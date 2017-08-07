@@ -1,16 +1,19 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using ImpactMan.Attributes;
-using ImpactMan.Interfaces.Core;
-
-namespace ImpactMan.Core.Factories
+﻿namespace ImpactMan.Core.Factories
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using Attributes;
+    using Interfaces.Core;
     using Context.Models;
     using Interfaces.Models.Menu;
     using Microsoft.Xna.Framework.Content;
     using Models.Menu.MenuCommands;
 
+    /// <summary>
+    /// This factory is used when menus are instantiated by MenuController class. Each menuItem keeps an IMenuCommand as a field 
+    /// which command is executed if/when the button is clicked on.
+    /// </summary>
     public class MenuCommandFactory
     {
         private IEngine engine;
@@ -30,6 +33,12 @@ namespace ImpactMan.Core.Factories
             this.soundManager = soundManager;
         }
 
+        /// <summary>
+        /// An instance of IMenuCommand is created depending on the type of menuItem.
+        /// </summary>
+        /// <param name="menuItem">Menu button</param>
+        /// <param name="menuController">This is the class that loads and manages the menus</param>
+        /// <returns></returns>
         public IMenuCommand GetInstance(string menuItem, MenuController menuController)
         {
             Type type = Type.GetType("ImpactMan.Models.Menu.MenuCommands." + menuItem + "MenuCommand");
@@ -40,6 +49,11 @@ namespace ImpactMan.Core.Factories
             return command;
         }
 
+        /// <summary>
+        /// IMenuCommands are passed to this method so that private fields are injected.
+        /// </summary>
+        /// <param name="command">IMenuCommand type</param>
+        /// <returns></returns>
         public IMenuCommand InjectDependencies(IMenuCommand command)
         {
             FieldInfo[] commandFieldInfos = command.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic);

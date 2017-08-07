@@ -1,7 +1,6 @@
-﻿using ImpactMan.Interfaces.Core;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
+    using Interfaces.Core;
     using Constants.Graphics;
     using Constants.Units;
     using Context.Models;
@@ -18,6 +17,9 @@ namespace ImpactMan.Core
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// This class takes care of the menus and buttons.
+    /// </summary>
     public class MenuController
     {
         private IEngine engine;
@@ -39,6 +41,11 @@ namespace ImpactMan.Core
             this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.user, this.soundManager);
         }
 
+        /// <summary>
+        /// Menes are initialized based on queries from other classes and methods (most of execution of MenuCommands)
+        /// </summary>
+        /// <param name="query">This is the name of the menu that will be loaded. 
+        /// It should exactly match the name in the MenuConstants class menuItemLabels dictionary</param>
         public void Initialize(string query)
         {
             bool currentMenuContainsMenuItems = MenuConstants.menuItemLabels.ContainsKey(query);
@@ -82,6 +89,12 @@ namespace ImpactMan.Core
 
         }
 
+        /// <summary>
+        /// When the mouse is clicked this method is invoked thru an event handler. 
+        /// This method on its part then invokes the update method.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="eventArgs"></param>
         public void OnMouseClicked(IInputListener sender, MouseClickedEventArgs eventArgs)
         {
             this.Update(eventArgs.GameTime, eventArgs.MouseState, eventArgs.User);

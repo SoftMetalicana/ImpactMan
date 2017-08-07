@@ -4,6 +4,9 @@
     using Enumerations.Sounds;
     using Microsoft.Xna.Framework.Content;
 
+    /// <summary>
+    /// This class takes care of the background music palyed during the game.
+    /// </summary>
     public class SoundManager
     {
         private Song sound;

@@ -1,7 +1,6 @@
-﻿using ImpactMan.Enumerations.Game;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
+    using Enumerations.Game;
     using Enumerations.Sounds;
     using Constants.Graphics;
     using Context.Db;
@@ -32,8 +31,6 @@ namespace ImpactMan.Core
         private IPlayer player;
         private User user;
         private User userInputDetails;
-        private string userName;
-        private string userPassword;
         private string errorMessage;
 
         private List<Keys> pressedKeys = new List<Keys>();
@@ -75,8 +72,8 @@ namespace ImpactMan.Core
         {
             this.userInputDetails = new User();
             this.user = new User();
-            this.userName = String.Empty;
-            this.userPassword = String.Empty;
+            this.userInputDetails.Name = String.Empty;
+            this.userInputDetails.Password = String.Empty;
             this.errorMessage = String.Empty;
 
             this.accountManager = new AccountManager();
@@ -159,8 +156,8 @@ namespace ImpactMan.Core
             {
                 GetPressedKeys();
 
-                this.userInputDetails.Name = this.userName;
-                this.userInputDetails.Password = this.userPassword;
+/*                this.userInputDetails.Name = this.userName;
+                this.userInputDetails.Password = this.userPassword;*/
             }
 
             else
@@ -188,15 +185,15 @@ namespace ImpactMan.Core
 
             if (gameState == GameState.LoginMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, userName, new Vector2(530, 293), Color.Black);
-                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(530, 355), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Name, new Vector2(530, 293), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Password, new Vector2(530, 355), Color.Black);
                 spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
             }
 
             else if (gameState == GameState.SignUpMenuActive)
             {
-                spriteBatch.DrawString(spriteFont, userName, new Vector2(542, 299), Color.Black);
-                spriteBatch.DrawString(spriteFont, userPassword, new Vector2(542, 365), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Name, new Vector2(542, 299), Color.Black);
+                spriteBatch.DrawString(spriteFont, this.userInputDetails.Password, new Vector2(542, 365), Color.Black);
                 spriteBatch.DrawString(spriteFont, errorMessage, new Vector2(505, 775), Color.Black);
             }
 
@@ -257,11 +254,11 @@ namespace ImpactMan.Core
 
             if (userInputState == UserInputState.NameInput)
             {
-                sb = new StringBuilder(userName);
+                sb = new StringBuilder(this.userInputDetails.Name);
             }
             else
             {
-                sb = new StringBuilder(userPassword);
+                sb = new StringBuilder(this.userInputDetails.Password);
             }
 
             if (IsKeyLetter(key))
@@ -284,11 +281,11 @@ namespace ImpactMan.Core
 
             if (userInputState == UserInputState.NameInput)
             {
-                userName = sb.ToString();
+                this.userInputDetails.Name = sb.ToString();
             }
             else
             {
-                userPassword = sb.ToString();
+                this.userInputDetails.Password = sb.ToString();
             }
 
         }
@@ -310,8 +307,8 @@ namespace ImpactMan.Core
 
         public void ClearCurrentUserDetails()
         {
-            this.userName = String.Empty;
-            this.userPassword = String.Empty;
+            this.userInputDetails.Name = String.Empty;
+            this.userInputDetails.Password = String.Empty;
         }
     }
 }
