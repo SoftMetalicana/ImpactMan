@@ -11,5 +11,7 @@
         /// </summary>
         public const int EnemyBonusPoints = 100;
         public const int FoodBonusPoints = 10;
+        public const int GroundBonusPoints = 0;
+        public const int WallBonusPoints = 0;
     }
 }
