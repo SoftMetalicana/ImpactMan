@@ -68,13 +68,6 @@ namespace ImpactMan.Core
 
         };
 
-        public Engine()
-            : this(new Initializer(),
-                   new InputListener(),
-                   new PlayerConsequenceMediator())
-        {
-        }
-
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
                       IPlayerConsequenceMediator playerConsequenceMediator)

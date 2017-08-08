@@ -11,12 +11,25 @@
     /// </summary>
     public class PlayerConsequenceMediator : IPlayerConsequenceMediator
     {
-        //private ILevel level;
+        private ILevel level;
 
-        //public PlayerConsequenceMediator(ILevel level)
-        //{
-        //    this.level = level;
-        //}
+        public PlayerConsequenceMediator(ILevel level)
+        {
+            this.level = level;
+        }
+
+        public ILevel Level
+        {
+            get
+            {
+                return this.level;
+            }
+
+            set
+            {
+                this.level = value;
+            }
+        }
 
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {

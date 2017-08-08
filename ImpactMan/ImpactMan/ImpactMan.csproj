@@ -145,6 +145,7 @@
     <None Include="App.config" />
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="Files\Levels\level.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

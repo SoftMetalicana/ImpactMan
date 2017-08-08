@@ -1,13 +1,12 @@
 ﻿namespace ImpactMan.Interfaces.Models.LevelGenerators
 {
-    using System.Collections.Generic;
-    using ImpactMan.Interfaces.Globals;
-    
+    using ImpactMan.Interfaces.Models.Levels;
+
     /// <summary>
     /// Takes care of generating a level from a source and returning it.
     /// </summary>
     public interface ILevelGenerator
     {
-        IList<IConsequential[]> GenerateLevel();
+        ILevel GenerateLevel();
     }
 }

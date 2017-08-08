@@ -33,10 +33,10 @@
         /// These names are passed to the .Attributes.MapObjectAttribute constructor.
         /// The MapObjects are than activated with reflection and stored into a Level.cs
         /// </summary>
-        public const string EnemyCsvKeyName = "enem";
-        public const string GroundCsvKeyName = "    ";
+        public const string EnemyCsvKeyName = "enemy";
+        public const string GroundCsvKeyName = "ground";
         public const string WallCsvKeyName = "wall";
-        public const string PlayerCsvKeyName = "play";
+        public const string PlayerCsvKeyName = "player";
         public const string FoodCsvKeyName = "food";
     }   
 }

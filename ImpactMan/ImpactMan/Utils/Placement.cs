@@ -17,8 +17,8 @@
         /// <returns></returns>
         public static RectanglePlacement GetRectanglePlacement(int currentRowOfFile, int currentColofFile, int width, int height)
         {
-            int newX = currentRowOfFile * height;
-            int newY = currentColofFile * width;
+            int newX = currentColofFile * width;
+            int newY = currentRowOfFile * height;
 
             return new RectanglePlacement(newX, newY);
         }

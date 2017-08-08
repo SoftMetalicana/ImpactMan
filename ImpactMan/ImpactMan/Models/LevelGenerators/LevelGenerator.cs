@@ -10,6 +10,8 @@
     using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.IO.Reader;
     using ImpactMan.Interfaces.Models.LevelGenerators;
+    using ImpactMan.Interfaces.Models.Levels;
+    using ImpactMan.Models.Levels;
     using ImpactMan.Utils;
 
     /// <summary>
@@ -22,13 +24,24 @@
         /// </summary>
         private const string FirstParamName = "x";
         private const string SecondParamName = "y";
+        private const string RowParamName = "row";
+        private const string ColParamName = "col";
+        private const string LevelParamName = "level";
+        private const string AddMethodPrefix = "Add";
 
         /// <summary>
         /// Constants for the lamda cache.
         /// </summary>
+        private static readonly Type LevelType = typeof(ILevel);
         private static readonly Type IntType = typeof(int);
+        private static readonly Type ObjectType = typeof(object);
         private static readonly Type[] ConstructorWantedParams = new[] { IntType, IntType };
 
+        /// <summary>
+        /// Holds the separator of the different keys in the .csv level file.
+        /// </summary>
+        private static readonly char[] SeparatorSymbolsInFile = new char[] { ',', '\t', ' ', '"' };
+        
         /// <summary>
         /// Reads from a file source.
         /// </summary>
@@ -36,7 +49,7 @@
         /// <summary>
         /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
         /// </summary>
-        private static IDictionary<string, Func<int, int, IConsequential>> activationCache;
+        private static IDictionary<string, ActionImitator> activationCache;
 
         /// <summary>
         /// Instantiates the object.
@@ -45,7 +58,7 @@
         public LevelGenerator(IFileReader fileReader)
         {
             this.FileReader = fileReader;
-            ActivationCache = new Dictionary<string, Func<int, int, IConsequential>>();
+            ActivationCache = new Dictionary<string, ActionImitator>();
         }
 
         /// <summary>
@@ -67,7 +80,7 @@
         /// <summary>
         /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
         /// </summary>
-        private static IDictionary<string, Func<int, int, IConsequential>> ActivationCache
+        private static IDictionary<string, ActionImitator> ActivationCache
         {
             get
             {
@@ -84,33 +97,54 @@
         /// Generates and saves in cache a lambda that activates an object.
         /// </summary>
         /// <param name="currentCsvKeyName">The key that you want to save against the new generated lambda.</param>
-        private void CacheActivationLambda(string currentCsvKeyName)
+        private void CacheActivationLambda(string currentCsvKeyName, ILevel level)
         {
+            // (int x, int y, ILevel level, int row, int col) => level.Add((object)new Type(x, y), row, col);
+
             Type typeToActivate = ImpactManContext.TypesByCsvKeyName[currentCsvKeyName];
 
             ParameterExpression xParameter = Expression.Parameter(IntType, FirstParamName);
             ParameterExpression yParameter = Expression.Parameter(IntType, SecondParamName);
+            ParameterExpression rowParameter = Expression.Parameter(IntType, RowParamName);
+            ParameterExpression colParameter = Expression.Parameter(IntType, ColParamName);
+            ParameterExpression levelParameter = Expression.Parameter(LevelType.MakeByRefType(), LevelParamName);
 
             ConstructorInfo ctorOfType = typeToActivate.GetConstructor(ConstructorWantedParams);
 
             NewExpression newTypeExpression = Expression.New(ctorOfType, xParameter, yParameter);
+            UnaryExpression castedNewTypeExpression = Expression.Convert(newTypeExpression, ObjectType);
 
-            Func<int, int, IConsequential> activatorLambda =
-                        Expression.Lambda<Func<int, int, IConsequential>>(newTypeExpression,
-                                                                          xParameter,
-                                                                          yParameter)
-                                                                          .Compile();
+            MethodInfo method = LevelType.GetMethod(AddMethodPrefix + currentCsvKeyName, BindingFlags.IgnoreCase |  
+                                                                                         BindingFlags.Instance |
+                                                                                         BindingFlags.Public);
+            
+            MethodCallExpression addMethodCallExpression = Expression.Call(levelParameter,
+                                                                           method, 
+                                                                           castedNewTypeExpression,
+                                                                           rowParameter,
+                                                                           colParameter);
+
+            ActionImitator activatorLambda =
+                        Expression.Lambda<ActionImitator>(newTypeExpression,
+                                                          xParameter,
+                                                          yParameter,
+                                                          levelParameter,
+                                                          rowParameter,
+                                                          colParameter)
+                                                          .Compile();
 
             ActivationCache[currentCsvKeyName] = activatorLambda;
         }
+
+        private delegate void ActionImitator(int x, int y, ref ILevel level, int row, int col);
 
         /// <summary>
         /// Generates a whole level consisting of IConsequential objects.
         /// </summary>
         /// <returns>The generated level.</returns>
-        public IList<IConsequential[]> GenerateLevel()
+        public ILevel GenerateLevel()
         {
-            IList<IConsequential[]> generatedLevel = new List<IConsequential[]>();
+            ILevel level = new Level();
 
             using (this.fileReader)
             {
@@ -119,16 +153,16 @@
                 string readLine;
                 while (!string.IsNullOrEmpty(readLine = this.fileReader.ReadLine()))
                 {
-                    string[] csvKeyNames = readLine.Split(LevelConstants.SeparatorSymbolsInFile);
+                    string[] csvKeyNames = readLine.Split(SeparatorSymbolsInFile, StringSplitOptions.RemoveEmptyEntries);
 
-                    generatedLevel.Add(new IConsequential[csvKeyNames.Length]);
+                    level.AllUnitsOnMap.Add(new IConsequential[csvKeyNames.Length]);
                     for (int currentCol = 0; currentCol < csvKeyNames.Length; currentCol++)
                     {
                         string currentCsvKeyName = csvKeyNames[currentCol];
                         
                         if (!ActivationCache.ContainsKey(currentCsvKeyName))
                         {
-                            this.CacheActivationLambda(currentCsvKeyName);
+                            this.CacheActivationLambda(currentCsvKeyName, level);
                         }
 
                         RectanglePlacement calculatedRectanglePlacement = 
@@ -137,15 +171,18 @@
                                                                                         UnitConstants.Width,
                                                                                         UnitConstants.Height);
 
-                        generatedLevel[currentRow][currentCol] = ActivationCache[currentCsvKeyName](calculatedRectanglePlacement.X,
-                                                                                                         calculatedRectanglePlacement.Y);
+                        ActivationCache[currentCsvKeyName](calculatedRectanglePlacement.X,
+                                                           calculatedRectanglePlacement.Y,
+                                                           ref level,
+                                                           currentRow,
+                                                           currentCol);
                     }
 
                     currentRow++;
                 }
             }
 
-            return generatedLevel;
+            return level;
         }
     }
 }
