@@ -100,10 +100,8 @@ namespace ImpactMan.Core
             this.accountManager = new AccountManager();
             this.menuController = new MenuController(this, this.Content, this.accountManager, this.user, this.soundManager);
 
-
-            // MUST BE DONE FROM HERE
-            /*            this.context = new ImpactManContext();
-                        this.context.Database.Initialize(true);*/
+            this.context = new ImpactManContext();
+            this.context.Database.Initialize(true);
 
             this.player = new PacMan(0, 0);
             this.player.Load(this.Content);
