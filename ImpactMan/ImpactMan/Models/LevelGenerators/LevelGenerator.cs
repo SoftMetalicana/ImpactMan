@@ -41,7 +41,7 @@
         /// Holds the separator of the different keys in the .csv level file.
         /// </summary>
         private static readonly char[] SeparatorSymbolsInFile = new char[] { ',', '\t', ' ', '"' };
-        
+
         /// <summary>
         /// Reads from a file source.
         /// </summary>
@@ -49,7 +49,7 @@
         /// <summary>
         /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
         /// </summary>
-        private static IDictionary<string, ActionImitator> activationCache;
+        private static IDictionary<string, Action<int, int, ILevel, int, int>> activationCache;
 
         /// <summary>
         /// Instantiates the object.
@@ -58,7 +58,7 @@
         public LevelGenerator(IFileReader fileReader)
         {
             this.FileReader = fileReader;
-            ActivationCache = new Dictionary<string, ActionImitator>();
+            ActivationCache = new Dictionary<string, Action<int, int, ILevel, int, int>>();
         }
 
         /// <summary>
@@ -80,7 +80,7 @@
         /// <summary>
         /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
         /// </summary>
-        private static IDictionary<string, ActionImitator> ActivationCache
+        private static IDictionary<string, Action<int, int, ILevel, int, int>> ActivationCache
         {
             get
             {
@@ -97,46 +97,42 @@
         /// Generates and saves in cache a lambda that activates an object.
         /// </summary>
         /// <param name="currentCsvKeyName">The key that you want to save against the new generated lambda.</param>
-        private void CacheActivationLambda(string currentCsvKeyName, ILevel level)
+        private void CacheActivationLambda(string currentCsvKeyName)
         {
-            // (int x, int y, ILevel level, int row, int col) => level.Add((object)new Type(x, y), row, col);
-
             Type typeToActivate = ImpactManContext.TypesByCsvKeyName[currentCsvKeyName];
 
             ParameterExpression xParameter = Expression.Parameter(IntType, FirstParamName);
             ParameterExpression yParameter = Expression.Parameter(IntType, SecondParamName);
             ParameterExpression rowParameter = Expression.Parameter(IntType, RowParamName);
             ParameterExpression colParameter = Expression.Parameter(IntType, ColParamName);
-            ParameterExpression levelParameter = Expression.Parameter(LevelType.MakeByRefType(), LevelParamName);
+            ParameterExpression levelParameter = Expression.Parameter(LevelType, LevelParamName);
 
             ConstructorInfo ctorOfType = typeToActivate.GetConstructor(ConstructorWantedParams);
 
             NewExpression newTypeExpression = Expression.New(ctorOfType, xParameter, yParameter);
             UnaryExpression castedNewTypeExpression = Expression.Convert(newTypeExpression, ObjectType);
 
-            MethodInfo method = LevelType.GetMethod(AddMethodPrefix + currentCsvKeyName, BindingFlags.IgnoreCase |  
+            MethodInfo method = LevelType.GetMethod(AddMethodPrefix + currentCsvKeyName, BindingFlags.IgnoreCase |
                                                                                          BindingFlags.Instance |
                                                                                          BindingFlags.Public);
-            
+
             MethodCallExpression addMethodCallExpression = Expression.Call(levelParameter,
-                                                                           method, 
-                                                                           castedNewTypeExpression,
+                                                                           method,
+                                                                           newTypeExpression,
                                                                            rowParameter,
                                                                            colParameter);
 
-            ActionImitator activatorLambda =
-                        Expression.Lambda<ActionImitator>(newTypeExpression,
-                                                          xParameter,
-                                                          yParameter,
-                                                          levelParameter,
-                                                          rowParameter,
-                                                          colParameter)
-                                                          .Compile();
+            Action<int, int, ILevel, int, int> activatorLambda =
+                        Expression.Lambda<Action<int, int, ILevel, int, int>>(addMethodCallExpression,
+                                                                              xParameter,
+                                                                              yParameter,
+                                                                              levelParameter,
+                                                                              rowParameter,
+                                                                              colParameter)
+                                                                              .Compile();
 
             ActivationCache[currentCsvKeyName] = activatorLambda;
         }
-
-        private delegate void ActionImitator(int x, int y, ref ILevel level, int row, int col);
 
         /// <summary>
         /// Generates a whole level consisting of IConsequential objects.
@@ -159,13 +155,13 @@
                     for (int currentCol = 0; currentCol < csvKeyNames.Length; currentCol++)
                     {
                         string currentCsvKeyName = csvKeyNames[currentCol];
-                        
+
                         if (!ActivationCache.ContainsKey(currentCsvKeyName))
                         {
-                            this.CacheActivationLambda(currentCsvKeyName, level);
+                            this.CacheActivationLambda(currentCsvKeyName);
                         }
 
-                        RectanglePlacement calculatedRectanglePlacement = 
+                        RectanglePlacement calculatedRectanglePlacement =
                                                         Placement.GetRectanglePlacement(currentRow,
                                                                                         currentCol,
                                                                                         UnitConstants.Width,
@@ -173,7 +169,7 @@
 
                         ActivationCache[currentCsvKeyName](calculatedRectanglePlacement.X,
                                                            calculatedRectanglePlacement.Y,
-                                                           ref level,
+                                                           level,
                                                            currentRow,
                                                            currentCol);
                     }
