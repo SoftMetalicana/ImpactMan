@@ -61,14 +61,14 @@
         /// <summary>
         /// The player which walks over the map.
         /// </summary>
-        private IPlayer Player
+        public IPlayer Player
         {
             get
             {
                 return this.player;
             }
 
-            set
+            private set
             {
                 this.player = value;
             }
@@ -77,35 +77,61 @@
         /// <summary>
         /// All the enemies on the map. Also walk over the map.
         /// </summary>
-        private IList<IEnemy> AllEnemies
+        public IList<IEnemy> AllEnemies
         {
             get
             {
                 return this.allEnemies;
             }
 
-            set
+            private set
             {
                 this.allEnemies = value;
             }
         }
 
+        /// <summary>
+        /// When you add a player or enemy the corresponding cell of the matrix must not be null.
+        /// When you add an object different from the STATIC declared ones you must call this backup method.
+        /// </summary>
+        /// <param name="x">X position in the console.</param>
+        /// <param name="y">Y Position in the console.</param>
+        /// <param name="row">Row in the matrix.</param>
+        /// <param name="col">Col in the matrix.</param>
         private void BackupTheFieldWithGround(int x, int y, int row, int col)
         {
             this.AllUnitsOnMap[row][col] = new Ground(x, y);
         }
 
+        /// <summary>
+        /// Adds a static consequential object in the matrix.
+        /// </summary>
+        /// <param name="consequential">The object that you want to add in the matrix.</param>
+        /// <param name="x">X position in the console.</param>
+        /// <param name="y">Y Position in the console.</param>
         private void AddConsequential(IConsequential consequential, int row, int col)
         {
             this.AllUnitsOnMap[row][col] = consequential;
         }
 
+        /// <summary>
+        /// Adds an object to the place where it belongs in the level.
+        /// </summary>
+        /// <param name="player">The player object.</param>
+        /// <param name="row">The row in the matrix.</param>
+        /// <param name="col">The col in the matrix.</param>
         public void AddPlayer(object player, int row, int col)
         {
             this.Player = (IPlayer)player;
             this.BackupTheFieldWithGround(this.Player.Rectangle.X, this.Player.Rectangle.Y, row, col);
         }
 
+        /// <summary>
+        /// Adds an object to the place where it belongs in the level.
+        /// </summary>
+        /// <param name="enemy">The enemy object.</param>
+        /// <param name="row">The row in the matrix.</param>
+        /// <param name="col">The col in the matrix.</param>
         public void AddEnemy(object enemy, int row, int col)
         {
             IEnemy toAdd = (IEnemy)enemy;
@@ -113,16 +139,34 @@
             this.BackupTheFieldWithGround(toAdd.Rectangle.X, toAdd.Rectangle.Y, row, col);
         }
 
+        /// <summary>
+        /// Adds an object to the place where it belongs in the level.
+        /// </summary>
+        /// <param name="food">The food object.</param>
+        /// <param name="row">The row in the matrix.</param>
+        /// <param name="col">The col in the matrix.</param>
         public void AddFood(object food, int row, int col)
         {
             this.AddConsequential((IConsequential)food, row, col);
         }
 
+        /// <summary>
+        /// Adds an object to the place where it belongs in the level.
+        /// </summary>
+        /// <param name="wall">The wall object.</param>
+        /// <param name="row">The row in the matrix.</param>
+        /// <param name="col">The col in the matrix.</param>
         public void AddWall(object wall, int row, int col)
         {
             this.AddConsequential((IConsequential)wall, row, col);
         }
 
+        /// <summary>
+        /// Adds an object to the place where it belongs in the level.
+        /// </summary>
+        /// <param name="ground">The ground object.</param>
+        /// <param name="row">The row in the matrix.</param>
+        /// <param name="col">The col in the matrix.</param>
         public void AddGround(object ground, int row, int col)
         {
             this.AddConsequential((IConsequential)ground, row, col);
