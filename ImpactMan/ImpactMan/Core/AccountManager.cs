@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace ImpactMan.Core
 {
@@ -42,7 +43,7 @@ namespace ImpactMan.Core
 
         private bool UserExists(User user)
         {
-            return this.users.Any(u => u.Name == user.Name);
+            return this.users.Any(u => u.Name == user.Name && user.Name != String.Empty);
         }
 
         private bool IsPasswordCorrect(User user)
