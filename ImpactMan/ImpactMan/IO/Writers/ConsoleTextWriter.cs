@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ImpactMan.Interfaces.Writer;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace ImpactMan.IO.Writers
+﻿namespace ImpactMan.IO.Writers
 {
+    using Interfaces.Writer;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+
     class ConsoleTextWriter : ITextWriter
     {
         private SpriteFont spriteFont;

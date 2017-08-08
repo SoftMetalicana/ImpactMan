@@ -56,7 +56,7 @@
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\Initializer.cs" />
-    <Compile Include="Core\MenuController.cs" />
+    <Compile Include="Core\MenuInitializer.cs" />
     <Compile Include="Core\SoundManager.cs" />
     <Compile Include="Enumerations\Game\GameStatesEnums.cs" />
     <Compile Include="Enumerations\Menu\MenuEnums.cs" />

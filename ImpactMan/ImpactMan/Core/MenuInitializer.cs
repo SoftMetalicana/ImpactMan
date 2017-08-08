@@ -20,7 +20,7 @@
     /// <summary>
     /// This class takes care of the menus and buttons.
     /// </summary>
-    public class MenuController
+    public class MenuInitializer
     {
         private IEngine engine;
         private AccountManager accountManager;
@@ -31,7 +31,7 @@
         private SoundManager soundManager;
         private bool isUserLoggedIn;
 
-        public MenuController(IEngine engine, ContentManager content, AccountManager accountManager, User user, SoundManager soundManager)
+        public MenuInitializer(IEngine engine, ContentManager content, AccountManager accountManager, User user, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;

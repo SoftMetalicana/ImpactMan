@@ -10,7 +10,7 @@
     public class RegisterBackButtonMenuCommand : MenuCommand
     {
         [InjectAttribute]
-        private MenuController menuController;
+        private MenuInitializer menuController;
 
         [InjectAttribute]
         private ContentManager content;

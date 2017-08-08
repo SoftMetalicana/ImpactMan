@@ -11,7 +11,7 @@ namespace ImpactMan.Models.Menu.MenuCommands
     public class HighScoresMenuCommand : MenuCommand
     {
         [Inject]
-        private MenuController menuController;
+        private MenuInitializer menuController;
 
         [Inject]
         private ContentManager content;

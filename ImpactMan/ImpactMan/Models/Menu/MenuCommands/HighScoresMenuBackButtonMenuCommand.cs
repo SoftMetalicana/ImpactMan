@@ -12,7 +12,7 @@ namespace ImpactMan.Models.Menu.MenuCommands
     class HighScoresMenuBackButtonMenuCommand : MenuCommand
     {
         [Inject]
-        private MenuController menuController;
+        private MenuInitializer menuController;
 
         [InjectAttribute]
         private ContentManager content;

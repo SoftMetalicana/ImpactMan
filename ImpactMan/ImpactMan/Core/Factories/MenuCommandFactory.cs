@@ -19,11 +19,11 @@
         private IEngine engine;
         private ContentManager content;
         private AccountManager accountManager;
-        private MenuController menuController;
+        private MenuInitializer menuController;
         private User user;
         private SoundManager soundManager;
 
-        public MenuCommandFactory(IEngine engine, ContentManager content, AccountManager accountManager, MenuController menuController, User user, SoundManager soundManager)
+        public MenuCommandFactory(IEngine engine, ContentManager content, AccountManager accountManager, MenuInitializer menuController, User user, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;
@@ -39,7 +39,7 @@
         /// <param name="menuItem">Menu button</param>
         /// <param name="menuController">This is the class that loads and manages the menus</param>
         /// <returns></returns>
-        public IMenuCommand GetInstance(string menuItem, MenuController menuController)
+        public IMenuCommand GetInstance(string menuItem, MenuInitializer menuController)
         {
             Type type = Type.GetType("ImpactMan.Models.Menu.MenuCommands." + menuItem + "MenuCommand");
             IMenuCommand command = (MenuCommand) Activator.CreateInstance(type, this.engine);

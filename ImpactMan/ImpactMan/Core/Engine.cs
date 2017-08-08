@@ -4,15 +4,15 @@ using ImpactMan.IO.Writers;
 
 namespace ImpactMan.Core
 {
-    using Enumerations.Game;
-    using Enumerations.Sounds;
     using Constants.Graphics;
     using Context.Db;
     using Context.Models;
+    using Enumerations.Game;
+    using Enumerations.Sounds;
+    using ImpactMan.Interfaces.Models.Mediators;
     using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Players;
-    using IO.InputListeners;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
@@ -21,8 +21,6 @@ namespace ImpactMan.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using ImpactMan.Interfaces.Models.Mediators;
-    using ImpactMan.Models.Mediators;
 
     /// <summary>
     /// This is the main type for your game.
@@ -46,7 +44,7 @@ namespace ImpactMan.Core
 
         private IInitializer initializer;
         private IInputListener inputListener;
-        private MenuController menuController;
+        private MenuInitializer menuController;
         private AccountManager accountManager;
         private GameState gameState;
         private UserInputState userInputState;
@@ -98,7 +96,7 @@ namespace ImpactMan.Core
             this.errorMessage = String.Empty;
 
             this.accountManager = new AccountManager();
-            this.menuController = new MenuController(this, this.Content, this.accountManager, this.user, this.soundManager);
+            this.menuController = new MenuInitializer(this, this.Content, this.accountManager, this.user, this.soundManager);
 
 
             // MUST BE DONE FROM HERE

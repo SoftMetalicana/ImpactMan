@@ -11,7 +11,7 @@
     public class RegisterMenuButtonMenuCommand : MenuCommand
     {
         [InjectAttribute]
-        private MenuController menuController;
+        private MenuInitializer menuController;
 
         [InjectAttribute]
         private ContentManager content;
