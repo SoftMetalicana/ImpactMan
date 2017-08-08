@@ -41,7 +41,10 @@
 
             using (IEngine game = new Engine(initializer,
                                              inputListener,
-                                             playerConsequenceMediator))
+                                             playerConsequenceMediator,
+                                             generatedLevel.Player,
+                                             generatedLevel.AllEnemies,
+                                             generatedLevel))
             {
                 game.Run();
             }

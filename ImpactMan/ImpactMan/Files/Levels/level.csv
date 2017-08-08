@@ -1,3 +1,15 @@
-"wall	    	    ",enemy,ground
-"food	    	    ",player,player
-"wall	    	    ",wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,enemy,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,enemy,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,ground,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,ground,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,food,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,food,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall
+"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,player,"wall	    	    ",wall,wall,wall,wall,wall,wall,wall,wall,wall,wall

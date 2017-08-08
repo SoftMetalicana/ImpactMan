@@ -21,6 +21,8 @@ namespace ImpactMan.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using ImpactMan.Interfaces.Models.Enemies;
+    using ImpactMan.Interfaces.Models.Levels;
 
     /// <summary>
     /// This is the main type for your game.
@@ -34,6 +36,8 @@ namespace ImpactMan.Core
         private ITextWriter textWriter;
 
         private IPlayer player;
+        private IList<IEnemy> allEnemies;
+        private ILevel level;
         private IPlayerConsequenceMediator playerConsequenceMediator;
 
         private User user;
@@ -68,7 +72,10 @@ namespace ImpactMan.Core
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
-                      IPlayerConsequenceMediator playerConsequenceMediator)
+                      IPlayerConsequenceMediator playerConsequenceMediator,
+                      IPlayer player,
+                      IList<IEnemy> allEnemies,
+                      ILevel level)
         {
             this.Content.RootDirectory = "Content";
 
@@ -78,6 +85,9 @@ namespace ImpactMan.Core
             this.initializer = initializer;
             this.inputListener = inputListener;
 
+            this.player = player;
+            this.allEnemies = allEnemies;
+            this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
         }
 
@@ -98,11 +108,10 @@ namespace ImpactMan.Core
             this.accountManager = new AccountManager();
             this.menuController = new MenuInitializer(this, this.Content, this.accountManager, this.user, this.soundManager);
 
-/*            this.context = new ImpactManContext();
-            this.context.Database.Initialize(true);*/
+            /*            this.context = new ImpactManContext();
+                        this.context.Database.Initialize(true);*/
 
-            this.player = new PacMan(0, 0);
-            this.player.Load(this.Content);
+            this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
@@ -132,6 +141,8 @@ namespace ImpactMan.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            
+            this.initializer.LoadLevel(this.level, this.Content);
 
             this.menuController.Load(Content);
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
@@ -193,12 +204,12 @@ namespace ImpactMan.Core
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
             this.spriteBatch.Begin();
-            if (gameState != GameState.GameMode)
+            if (this.gameState != GameState.GameMode)
             {
-                this.menuController.Draw(spriteBatch);
+                this.menuController.Draw(this.spriteBatch);
             }
 
-            if (gameState == GameState.LoginMenuActive)
+            if (this.gameState == GameState.LoginMenuActive)
             {
                 this.textWriter.Write(this.userInputDetails.Name, 
                     new Vector2(MenuConstants.LoginMenuUsernameX, 
@@ -216,7 +227,7 @@ namespace ImpactMan.Core
                     Color.Black);
             }
 
-            else if (gameState == GameState.SignUpMenuActive)
+            else if (this.gameState == GameState.SignUpMenuActive)
             {
                 this.textWriter.Write(this.userInputDetails.Name, 
                     new Vector2(MenuConstants.SignupMenuUsernameX, 
@@ -234,7 +245,7 @@ namespace ImpactMan.Core
                     Color.Black);
             }
 
-            else if (gameState == GameState.HighScoresMenuActive)
+            else if (this.gameState == GameState.HighScoresMenuActive)
             {
                 int xCoordinate = 60;
                 int yCoordinate = 140;
@@ -252,12 +263,18 @@ namespace ImpactMan.Core
 
                 }
 
-                textWriter.Write(sb.ToString(), new Vector2(xCoordinate, yCoordinate), Color.Black);
+                this.textWriter.Write(sb.ToString(), new Vector2(xCoordinate, yCoordinate), Color.Black);
             }
 
             else if(this.gameState == GameState.GameMode)
             {
+                this.level.Draw(this.spriteBatch);
+
                 this.player.Draw(this.spriteBatch);
+                foreach (IEnemy enemy in this.allEnemies)
+                {
+                    enemy.Draw(this.spriteBatch);
+                }
             }
 
             this.spriteBatch.End();
@@ -272,7 +289,7 @@ namespace ImpactMan.Core
 
         public void ChangeUserInputState()
         {
-            this.userInputState = (UserInputState)(((int)userInputState + 1) % 2);
+            this.userInputState = (UserInputState)(((int)this.userInputState + 1) % 2);
         }
 
         public void Quit()
@@ -290,7 +307,7 @@ namespace ImpactMan.Core
             KeyboardState keyboardState = Keyboard.GetState();
             List<Keys> currentKeys = keyboardState.GetPressedKeys().ToList();
 
-            foreach (Keys key in pressedKeys)
+            foreach (Keys key in this.pressedKeys)
             {
                 if (!currentKeys.Contains(key))
                 {
@@ -298,7 +315,7 @@ namespace ImpactMan.Core
                 }
             }
 
-            pressedKeys = currentKeys;
+            this.pressedKeys = currentKeys;
         }
 
         private void OnReleasedKey(Keys key)
@@ -310,7 +327,7 @@ namespace ImpactMan.Core
                 ChangeUserInputState();
             }
 
-            if (userInputState == UserInputState.NameInput)
+            if (this.userInputState == UserInputState.NameInput)
             {
                 sb = new StringBuilder(this.userInputDetails.Name);
             }
@@ -337,7 +354,7 @@ namespace ImpactMan.Core
                 }
             }
 
-            if (userInputState == UserInputState.NameInput)
+            if (this.userInputState == UserInputState.NameInput)
             {
                 this.userInputDetails.Name = sb.ToString();
             }
