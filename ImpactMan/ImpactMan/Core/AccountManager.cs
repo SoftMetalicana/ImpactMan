@@ -57,7 +57,7 @@ namespace ImpactMan.Core
 
         private bool UserExists(User userX)
         {
-            if (userX.Name != String.Empty && this.context.Users.Select(u => userX.Name).ToList().Contains(userX.Name))
+            if (this.context.Users.Select(u => u.Name).ToList().Contains(userX.Name))
             {
                 return true;
             }
@@ -66,7 +66,7 @@ namespace ImpactMan.Core
 
         private bool IsPasswordCorrect(User user)
         {
-            if (this.context.Users.First(u => u.Name == user.Name).Password == user.Password)
+            if (this.context.Users.Where(u => u.Name == user.Name).First().Password == user.Password)
             {
                 return true;
             }
