@@ -14,6 +14,6 @@ namespace ImpactMan.Interfaces.Writer
     {
         void Write(string text, Vector2 vector, Color color);
 
-        void WriteUserDetails(User user, string errorMessage, GameState gameState);
+        void WriteUserDetails(User user, string errorMessage);
     }
 }

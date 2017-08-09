@@ -20,7 +20,7 @@
             
         }
 
-        public override void End()
+        public override void End(User user)
         {
             this.Engine.Quit();
         }

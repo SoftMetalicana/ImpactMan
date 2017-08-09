@@ -1,10 +1,9 @@
-﻿using ImpactMan.Attributes;
-using ImpactMan.Core;
-using ImpactMan.Enumerations.Game;
-using Microsoft.Xna.Framework.Content;
-
-namespace ImpactMan.Models.Menu.MenuCommands
+﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Attributes;
+    using Core;
+    using Enumerations.Game;
+    using Microsoft.Xna.Framework.Content;
     using Context.Models;
     using Interfaces.Core;
 
@@ -29,7 +28,7 @@ namespace ImpactMan.Models.Menu.MenuCommands
 
         public override void ChangeGamestate(User user)
         {
-            Engine.ChangeGameState(GameState.HighScoresMenu);
+            State.GameState = GameState.HighScoresMenu;
         }
     }
 }

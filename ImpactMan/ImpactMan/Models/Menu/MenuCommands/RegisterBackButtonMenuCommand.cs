@@ -28,7 +28,7 @@
 
         public override void ChangeGamestate(User user)
         {
-            this.Engine.ChangeGameState(GameState.LoginMenu);
+            State.GameState = GameState.LoginMenu;
         }
     }
 }

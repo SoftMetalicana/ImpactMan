@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ImpactMan.Interfaces.Models.User;
 
 namespace ImpactMan.Context.Models
 {
-    public class User
+    public class User : IUser
     {
         public int Id { get; set; }
         public string Name { get; set; }

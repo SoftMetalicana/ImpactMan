@@ -20,16 +20,14 @@
         private ContentManager content;
         private AccountManager accountManager;
         private MenuInitializer menuController;
-        private User user;
         private SoundManager soundManager;
 
-        public MenuCommandFactory(IEngine engine, ContentManager content, AccountManager accountManager, MenuInitializer menuController, User user, SoundManager soundManager)
+        public MenuCommandFactory(IEngine engine, ContentManager content, AccountManager accountManager, MenuInitializer menuController, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;
             this.accountManager = accountManager;
             this.menuController = menuController;
-            this.user = user;
             this.soundManager = soundManager;
         }
 

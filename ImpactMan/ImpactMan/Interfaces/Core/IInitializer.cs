@@ -31,5 +31,10 @@
         /// <param name="level">The level that you want to set.</param>
         /// <param name="content">Can be taken from the Engine.</param>
         void LoadLevel(ILevel level, ContentManager content);
+
+        /// <summary>
+        /// Sets gameState plus UserInputState
+        /// </summary>
+        void SetGameStates();
     }
 }

@@ -40,7 +40,7 @@
         {
             if (userCanBeLoggedIn)
             {
-                this.Engine.ChangeGameState(GameState.MainMenu);
+                State.GameState = GameState.MainMenu;
             }
         }
 
@@ -48,7 +48,7 @@
         {
             if (!userCanBeLoggedIn)
             {
-                this.Engine.ChangeUserInputState();
+                base.ChangeUserInputState(user);
             }
         }
 

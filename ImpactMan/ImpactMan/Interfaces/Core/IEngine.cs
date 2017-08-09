@@ -16,10 +16,6 @@ namespace ImpactMan.Interfaces.Core
         /// </summary>
         void Run();
 
-        void ChangeGameState(GameState gameState);
-
-        void ChangeUserInputState();
-
         void ChangeErrorMessage(string message);
 
         void ClearCurrentUserDetails();

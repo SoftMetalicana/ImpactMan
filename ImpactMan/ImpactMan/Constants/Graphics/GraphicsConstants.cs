@@ -9,6 +9,7 @@
         /// Initial console/window width
         /// </summary>
         public const int PreferredBufferWidth = 1300;
+
         /// <summary>
         /// Initial console/window width
         /// </summary>

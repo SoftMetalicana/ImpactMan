@@ -53,8 +53,10 @@
     <Compile Include="Context\ImpactManContext.cs" />
     <Compile Include="Context\Models\User.cs" />
     <Compile Include="Core\AccountManager.cs" />
+    <Compile Include="Core\CurrentUser.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
+    <Compile Include="Core\State.cs" />
     <Compile Include="Core\Initializer.cs" />
     <Compile Include="Core\MenuInitializer.cs" />
     <Compile Include="Core\SoundManager.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Interfaces\IO\Reader\IFileReader.cs" />
     <Compile Include="Interfaces\IO\Reader\IReader.cs" />
     <Compile Include="Interfaces\Models\TextWriterStrategies\ITextWriterStrategy.cs" />
+    <Compile Include="Interfaces\Models\User\IUser.cs" />
     <Compile Include="Interfaces\Writer\ITextWriter.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
     <Compile Include="IO\InputListeners\Events\MouseClickedEventArgs.cs" />
@@ -138,6 +141,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

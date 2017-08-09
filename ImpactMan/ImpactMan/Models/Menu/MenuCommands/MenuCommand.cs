@@ -1,5 +1,7 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Core;
+    using Enumerations.Game;
     using Context.Models;
     using Interfaces.Core;
     using Interfaces.Models.Menu;
@@ -30,7 +32,7 @@
             this.ClearCurrentUserDetails();
             this.ChangeUserInputState(user);
             this.PlayMusic();
-            this.End();
+            this.End(user);
         }
 
         public abstract void InitializeMenu(User user);
@@ -49,7 +51,7 @@
 
         public virtual void ChangeUserInputState(User user)
         {
-            this.Engine.ChangeUserInputState();
+            State.UserInputState = UserInputState.NameInput;
         }
 
         public virtual void PlayMusic()
@@ -57,7 +59,7 @@
             
         }
 
-        public virtual void End()
+        public virtual void End(User user)
         {
             
         }

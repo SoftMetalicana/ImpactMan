@@ -1,11 +1,14 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.Enumerations.Game;
+
+namespace ImpactMan.Core
 {
-    using ImpactMan.Interfaces.Globals;
-    using ImpactMan.Interfaces.Models.Enemies;
-    using ImpactMan.Interfaces.Models.Levels;
+    using Interfaces.Globals;
+    using Interfaces.Models.Enemies;
+    using Interfaces.Models.Levels;
     using Interfaces.Core;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
+
 
     /// <summary>
     /// This object takes care of initializing other objects like GraphicWindow.
@@ -23,9 +26,12 @@
         /// <param name="preferredBufferHeight">Preferred height of the window/console</param>
         public void SetGraphicsWindowSize(GraphicsDeviceManager graphics, int preferredBufferWidth, int preferredBufferHeight)
         {
+
             graphics.PreferredBackBufferWidth = preferredBufferWidth;
+
             graphics.PreferredBackBufferHeight = preferredBufferHeight;
-            graphics.ApplyChanges();
+
+            graphics.ApplyChanges();         
         }
 
         /// <summary>
@@ -60,6 +66,12 @@
                     consequential.Load(content);
                 }
             }
+        }
+
+        public void SetGameStates()
+        {
+            State.GameState = GameState.LoginMenu;
+            State.UserInputState = UserInputState.NameInput;
         }
     }
 }

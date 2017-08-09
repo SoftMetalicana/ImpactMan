@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using ImpactMan.Constants.Units;
 using ImpactMan.Context;
 using ImpactMan.Context.Models;
+using ImpactMan.Core;
 using ImpactMan.Enumerations.Game;
 
 namespace ImpactMan.IO.Writers
@@ -29,16 +30,16 @@ namespace ImpactMan.IO.Writers
             this.spriteBatch.DrawString(this.spriteFont, text, vector, color);
         }
 
-        public void WriteUserDetails(User user, string errorMessage, GameState gameState)
+        public void WriteUserDetails(User user, string errorMessage)
         {
-            int userNameX = GetEnumValue(nameof(userNameX), gameState);
-            int userNameY = GetEnumValue(nameof(userNameY), gameState);
+            int userNameX = GetEnumValue(nameof(userNameX));
+            int userNameY = GetEnumValue(nameof(userNameY));
 
-            int passwordX = GetEnumValue(nameof(passwordX), gameState);
-            int passwordY = GetEnumValue(nameof(passwordY), gameState);
+            int passwordX = GetEnumValue(nameof(passwordX));
+            int passwordY = GetEnumValue(nameof(passwordY));
 
-            int errorMessageX = GetEnumValue(nameof(errorMessageX), gameState);
-            int errorMessageY = GetEnumValue(nameof(errorMessageY), gameState);
+            int errorMessageX = GetEnumValue(nameof(errorMessageX));
+            int errorMessageY = GetEnumValue(nameof(errorMessageY));
 
             this.Write(user.Name,
                 new Vector2(userNameX,
@@ -56,12 +57,12 @@ namespace ImpactMan.IO.Writers
                 Color.Black);
         }
 
-        private int GetEnumValue(string query, GameState gameState)
+        private int GetEnumValue(string query)
         {
             Type classType = ImpactManContext.AllTypesInAssembly.Where(x => x.Name.Contains("MenuConstants")).ToArray()[0];
             FieldInfo[] fieldInfos = classType.GetFields(BindingFlags.Static | BindingFlags.Public);
 
-            return (int)fieldInfos.Where(f => f.Name.ToLower().Contains(query.ToLower()) && f.Name.ToLower().Contains(gameState.ToString().ToLower()))
+            return (int)fieldInfos.Where(f => f.Name.ToLower().Contains(query.ToLower()) && f.Name.ToLower().Contains(State.GameState.ToString().ToLower()))
                 .ToList()[0].GetValue(null);
         }
     }

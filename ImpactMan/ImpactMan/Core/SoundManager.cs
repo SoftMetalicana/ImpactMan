@@ -21,6 +21,8 @@
         {
             sound = content.Load<Song>(music.ToString());
             MediaPlayer.Play(sound);
+
+            MediaPlayer.IsRepeating = true;
         }
     }
 }

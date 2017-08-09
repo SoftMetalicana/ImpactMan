@@ -25,20 +25,18 @@
         private IEngine engine;
         private AccountManager accountManager;
         private ContentManager content;
-        private User user;
         private MenuHolder menu;
         private MenuCommandFactory menuCommandFactory;
         private SoundManager soundManager;
         private bool isUserLoggedIn;
 
-        public MenuInitializer(IEngine engine, ContentManager content, AccountManager accountManager, User user, SoundManager soundManager)
+        public MenuInitializer(IEngine engine, ContentManager content, AccountManager accountManager, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;
             this.accountManager = accountManager;
-            this.user = user;
             this.soundManager = soundManager;
-            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.user, this.soundManager);
+            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.soundManager);
         }
 
         /// <summary>

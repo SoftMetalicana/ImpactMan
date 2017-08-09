@@ -29,17 +29,12 @@
 
         public override void ChangeGamestate(User user)
         {
-            this.Engine.ChangeGameState(GameState.SignUpMenu);
+            State.GameState = GameState.SignUpMenu;
         }
 
         public override void ChangeErrorMessage(User user)
         {
             this.Engine.ChangeErrorMessage(String.Empty);
-        }
-
-        public override void ChangeUserInputState(User user)
-        {
-            
         }
     }
 }

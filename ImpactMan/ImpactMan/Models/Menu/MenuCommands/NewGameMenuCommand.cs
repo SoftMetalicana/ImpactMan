@@ -24,12 +24,17 @@
 
         public override void ChangeGamestate(User user)
         {
-            this.Engine.ChangeGameState(GameState.GameMode);
+            State.GameState = GameState.GameMode;
         }
 
         public override void PlayMusic()
         {
             this.soundManager.PlayMusic(Music.GameMusic);
+        }
+
+        public override void End(User user)
+        {
+            CurrentUser.User = user;
         }
     }
 }

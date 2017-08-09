@@ -40,7 +40,7 @@
         {
             if (userCanBeRegistered)
             {
-                this.Engine.ChangeGameState(GameState.LoginMenu);
+                State.GameState = GameState.LoginMenu;
             }
         }
 

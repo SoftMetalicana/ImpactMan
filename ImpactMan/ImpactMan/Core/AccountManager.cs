@@ -18,13 +18,15 @@ namespace ImpactMan.Core
         public AccountManager(ImpactManContext context)
         {
             this.context = context;
-            this.context.Users.Add(new User()
+
+            if (context.Users.Local.Count == 0)
             {
-                Name = "MARIAN",
-                Password = "123",
-                Level = 0,
-                Id = 0
-            });
+                context.Users.Local.Add(new User()
+                {
+                    Name = "MARIAN",
+                    Password = "123"
+                });
+            }
         }
 
         public bool Login(User user)
@@ -55,12 +57,23 @@ namespace ImpactMan.Core
 
         private bool UserExists(User userX)
         {
-            return this.context.Users.Local.Any(u => u.Name == userX.Name && userX.Name != String.Empty);
+            if (userX.Name != String.Empty && this.context.Users.Select(u => userX.Name).ToList().Contains(userX.Name))
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsPasswordCorrect(User user)
         {
-            return this.context.Users.Local.Any(u => u.Name == user.Name && u.Password == user.Password);
+            if (this.context.Users.First(u => u.Name == user.Name).Password == user.Password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

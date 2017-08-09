@@ -38,7 +38,6 @@
         private ILevel level;
         private IPlayerConsequenceMediator playerConsequenceMediator;
 
-        private User user;
         private User userInputDetails;
         private string errorMessage;
 
@@ -46,10 +45,8 @@
 
         private IInitializer initializer;
         private IInputListener inputListener;
-        private MenuInitializer menuController;
+        private MenuInitializer menuInitializer;
         private AccountManager accountManager;
-        private GameState gameState;
-        private UserInputState userInputState;
 
         ImpactManContext context;
 
@@ -98,29 +95,25 @@
         protected override void Initialize()
         {
             this.context = new ImpactManContext();
-            this.context.Database.Initialize(false);
+           this.context.Database.Initialize(true);
 
             this.userInputDetails = new User();
-            this.user = new User();
             this.userInputDetails.Name = String.Empty;
             this.userInputDetails.Password = String.Empty;
             this.errorMessage = String.Empty;
 
             this.accountManager = new AccountManager(context);
-            this.menuController = new MenuInitializer(this, this.Content, this.accountManager, this.user, this.soundManager);
+            this.menuInitializer = new MenuInitializer(this, this.Content, this.accountManager, this.soundManager);
 
 
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
-            this.inputListener.MouseClicked += this.menuController.OnMouseClicked;
+            this.inputListener.MouseClicked += this.menuInitializer.OnMouseClicked;
 
-            this.menuController.Initialize("LoginMenu");
+            this.menuInitializer.Initialize("LoginMenu");
             this.soundManager.PlayMusic(Music.LoginMusic);
-
-            this.gameState = GameState.LoginMenu;
-            this.userInputState = UserInputState.NameInput;
 
             // TO HERE
 
@@ -128,6 +121,8 @@
             this.initializer.SetGraphicsWindowSize(this.graphics,
                                                    GraphicsConstants.PreferredBufferWidth,
                                                    GraphicsConstants.PreferredBufferHeight);
+            this.initializer.SetGameStates();
+
             SetWindowTitle();
             base.Initialize();
         }
@@ -143,7 +138,7 @@
 
             this.initializer.LoadLevel(this.level, this.Content);
 
-            this.menuController.Load(Content);
+            this.menuInitializer.Load(Content);
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
 
             this.textWriter = new ConsoleTextWriter(this.spriteFont, this.spriteBatch);
@@ -168,20 +163,20 @@
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 
-            if (currentKeyboardState.IsKeyDown(Keys.Home) && this.gameState == GameState.GameMode)
+            if (currentKeyboardState.IsKeyDown(Keys.Home) && State.GameState == GameState.GameMode)
             {
-                ChangeGameState(GameState.MainMenu);
-                this.menuController.Initialize("MainMenu");
-                this.menuController.Load(Content);
+                State.GameState = GameState.MainMenu;
+                this.menuInitializer.Initialize("MainMenu");
+                this.menuInitializer.Load(Content);
 
             }
 
-            if (gameState != GameState.GameMode)
+            if (State.GameState != GameState.GameMode)
             {
                 this.inputListener.GetMouseState(currentMouseState, gameTime, this.userInputDetails);
             }
 
-            if (gameState == GameState.LoginMenu || gameState == GameState.SignUpMenu)
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
             {
                 GetPressedKeys();
             }
@@ -204,22 +199,22 @@
 
             this.spriteBatch.Begin();
 
-            if (this.gameState != GameState.GameMode)
+            if (State.GameState != GameState.GameMode)
             {
-                this.menuController.Draw(this.spriteBatch);
+                this.menuInitializer.Draw(this.spriteBatch);
             }
 
-            if (this.gameState == GameState.LoginMenu)
+            if (State.GameState == GameState.LoginMenu)
             {
-                this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage, this.gameState);
+                this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
             }
 
-            else if (this.gameState == GameState.SignUpMenu)
+            else if (State.GameState == GameState.SignUpMenu)
             {
-                this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage, this.gameState);
+                this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
             }
 
-            else if (this.gameState == GameState.HighScoresMenu)
+            else if (State.GameState == GameState.HighScoresMenu)
             {
                 int count = 0;
 
@@ -238,7 +233,7 @@
                     Color.Black);
             }
 
-            else if (this.gameState == GameState.GameMode)
+            else if (State.GameState == GameState.GameMode)
             {
                 this.level.Draw(this.spriteBatch);
 
@@ -277,10 +272,10 @@
 
             if (key == Keys.Tab)
             {
-                ChangeUserInputState();
+                State.UserInputState = (UserInputState)(((int)State.UserInputState + 1) % 2);
             }
 
-            if (this.userInputState == UserInputState.NameInput)
+            if (State.UserInputState == UserInputState.NameInput)
             {
                 sb = new StringBuilder(this.userInputDetails.Name);
             }
@@ -307,7 +302,7 @@
                 }
             }
 
-            if (this.userInputState == UserInputState.NameInput)
+            if (State.UserInputState == UserInputState.NameInput)
             {
                 this.userInputDetails.Name = sb.ToString();
             }
@@ -316,16 +311,6 @@
                 this.userInputDetails.Password = sb.ToString();
             }
 
-        }
-
-        public void ChangeGameState(GameState gameStateToChange)
-        {
-            this.gameState = gameStateToChange;
-        }
-
-        public void ChangeUserInputState()
-        {
-            this.userInputState = (UserInputState)(((int)this.userInputState + 1) % 2);
         }
 
         public void Quit()
