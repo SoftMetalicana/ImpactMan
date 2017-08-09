@@ -55,12 +55,23 @@ namespace ImpactMan.Core
 
         private bool UserExists(User userX)
         {
-            return this.context.Users.Local.Any(u => u.Name == userX.Name && userX.Name != String.Empty);
+            if (this.context.Users.Select(u => userX.Name).ToList().Contains(userX.Name))
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsPasswordCorrect(User user)
         {
-            return this.context.Users.Local.Any(u => u.Name == user.Name && u.Password == user.Password);
+            if (this.context.Users.Where(u =>u.Name==user.Name).First().Password==user.Password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
