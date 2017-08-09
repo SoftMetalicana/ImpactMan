@@ -42,6 +42,7 @@ namespace ImpactMan.Core
             try
             {
                 context.Users.Add(user);
+                context.SaveChanges();
                 return true;
             }
 
