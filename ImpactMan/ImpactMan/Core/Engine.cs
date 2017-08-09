@@ -9,7 +9,7 @@ namespace ImpactMan.Core
     using Context.Models;
     using Enumerations.Game;
     using Enumerations.Sounds;
-    using ImpactMan.Interfaces.Models.Mediators;
+    using Interfaces.Models.Mediators;
     using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Players;
@@ -98,8 +98,8 @@ namespace ImpactMan.Core
             this.accountManager = new AccountManager();
             this.menuController = new MenuInitializer(this, this.Content, this.accountManager, this.user, this.soundManager);
 
-/*            this.context = new ImpactManContext();
-            this.context.Database.Initialize(true);*/
+            this.context = new ImpactManContext();
+            this.context.Database.Initialize(true);
 
             this.player = new PacMan(0, 0);
             this.player.Load(this.Content);
