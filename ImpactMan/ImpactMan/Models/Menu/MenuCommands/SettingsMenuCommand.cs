@@ -10,9 +10,14 @@
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
-            
+
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+
         }
     }
 }

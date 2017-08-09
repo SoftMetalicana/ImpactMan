@@ -82,6 +82,7 @@
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
     <Compile Include="Interfaces\IO\Reader\IFileReader.cs" />
     <Compile Include="Interfaces\IO\Reader\IReader.cs" />
+    <Compile Include="Interfaces\Models\TextWriterStrategies\ITextWriterStrategy.cs" />
     <Compile Include="Interfaces\Writer\ITextWriter.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
     <Compile Include="IO\InputListeners\Events\MouseClickedEventArgs.cs" />
@@ -116,10 +117,12 @@
     <Compile Include="Models\Static\Food.cs" />
     <Compile Include="Models\Static\Ground.cs" />
     <Compile Include="Models\Static\Wall.cs" />
+    <Compile Include="Models\TextWriterStrategies\LoginMenuStrategy.cs" />
     <Compile Include="Models\Units\GameControlUnit.cs" />
     <Compile Include="Models\Units\GameplayUnit.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\KeyValueCheck.cs" />
     <Compile Include="Utils\Movement.cs" />
     <Compile Include="Utils\Placement.cs" />
   </ItemGroup>

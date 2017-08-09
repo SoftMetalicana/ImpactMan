@@ -21,12 +21,15 @@ namespace ImpactMan.Models.Menu.MenuCommands
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
             this.menuController.Initialize("MainMenu");
             this.menuController.Load(this.content);
-            this.Engine.ChangeGameState(GameState.MainMenuActive);
-            this.Engine.ClearCurrentUserDetails();
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            this.Engine.ChangeGameState(GameState.MainMenu);
         }
     }
 }

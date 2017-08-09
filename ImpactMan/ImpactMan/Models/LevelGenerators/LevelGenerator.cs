@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Reflection;
-    using ImpactMan.Constants.Levels;
     using ImpactMan.Constants.Units;
     using ImpactMan.Context;
     using ImpactMan.Interfaces.Globals;

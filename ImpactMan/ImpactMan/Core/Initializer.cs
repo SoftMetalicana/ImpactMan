@@ -1,7 +1,11 @@
 ﻿namespace ImpactMan.Core
 {
+    using ImpactMan.Interfaces.Globals;
+    using ImpactMan.Interfaces.Models.Enemies;
+    using ImpactMan.Interfaces.Models.Levels;
     using Interfaces.Core;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Content;
 
     /// <summary>
     /// This object takes care of initializing other objects like GraphicWindow.
@@ -32,6 +36,30 @@
         public void SetGameMouse(Game game, bool isMouseVisible)
         {
             game.IsMouseVisible = isMouseVisible;
+        }
+
+        /// <summary>
+        /// Loads all the elements from the level.
+        /// Sets texture and graphic content.
+        /// </summary>
+        /// <param name="level">The level that you want to set.</param>
+        /// <param name="content">Can be taken from the Engine.</param>
+        public void LoadLevel(ILevel level, ContentManager content)
+        {
+            level.Player.Load(content);
+
+            foreach (IEnemy enemy in level.AllEnemies)
+            {
+                enemy.Load(content);
+            }
+
+            foreach (IConsequential[] array in level.AllUnitsOnMap)
+            {
+                foreach (IConsequential consequential in array)
+                {
+                    consequential.Load(content);
+                }
+            }
         }
     }
 }

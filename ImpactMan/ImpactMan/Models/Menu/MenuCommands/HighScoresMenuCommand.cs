@@ -21,11 +21,15 @@ namespace ImpactMan.Models.Menu.MenuCommands
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
             menuController.Initialize("HighScoresMenu");
             menuController.Load(this.content);
-            Engine.ChangeGameState(GameState.HighScoresMenuActive);
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            Engine.ChangeGameState(GameState.HighScoresMenu);
         }
     }
 }

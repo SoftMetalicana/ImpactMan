@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using ImpactMan.Context.Db;
 
 namespace ImpactMan.Core
 {
@@ -11,15 +13,15 @@ namespace ImpactMan.Core
     /// </summary>
     public class AccountManager
     {
-        private IList<User> users;
+        private ImpactManContext context;
 
-        public AccountManager()
+        public AccountManager(ImpactManContext context)
         {
-            this.users = new List<User>();
-            users.Add(new User()
+            this.context = context;
+            this.context.Users.Add(new User()
             {
                 Name = "MARIAN",
-                Password = "123",    
+                Password = "123",
                 Level = 0,
                 Id = 0
             });
@@ -37,18 +39,27 @@ namespace ImpactMan.Core
                 return false;
             }
 
-            this.users.Add(user);
-            return true;
+            try
+            {
+                context.Users.Add(user);
+                return true;
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
-        private bool UserExists(User user)
+        private bool UserExists(User userX)
         {
-            return this.users.Any(u => u.Name == user.Name && user.Name != String.Empty);
+            return this.context.Users.Local.Any(u => u.Name == userX.Name && userX.Name != String.Empty);
         }
 
         private bool IsPasswordCorrect(User user)
         {
-            return this.users.Any(u => u.Name == user.Name && u.Password == user.Password);
+            return this.context.Users.Local.Any(u => u.Name == user.Name && u.Password == user.Password);
         }
     }
 }

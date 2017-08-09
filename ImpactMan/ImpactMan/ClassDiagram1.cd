@@ -31,7 +31,7 @@
   <Class Name="ImpactMan.Constants.Units.MenuConstants" Collapsed="true">
     <Position X="26.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <HashCode>AAMAAAEAEAAgDAAAAAAAAAAAAAAAAAAAYACAQAAAAAA=</HashCode>
       <FileName>Constants\Units\MenuConstants.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,7 +73,7 @@
   <Class Name="ImpactMan.Core.Engine" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="26.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQCENFAIAAAAwAUBCCEAJCAAAAAAAgRAAAkAAAEAQQ=</HashCode>
+      <HashCode>gAQCFNFAIAAAAwAUBCSEAJCAAAAAAAgRAAAkAAAkAQQ=</HashCode>
       <FileName>Core\Engine.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -164,14 +164,15 @@
   <Class Name="ImpactMan.Models.Levels.Level" Collapsed="true">
     <Position X="21" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAA=</HashCode>
+      <HashCode>AAAAAkAAAAAgAgAAIAgAAAIAABAAAAABAAkAAQABEAA=</HashCode>
       <FileName>Models\Levels\Level.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ImpactMan.Models.Menu.MenuCommands.HighScoresMenuCommand" Collapsed="true">
     <Position X="3.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Menu\MenuCommands\HighScoresMenuCommand.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -258,7 +259,7 @@
   <Class Name="ImpactMan.Models.Players.Player" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACAAAEAgAAAAAAAAAQAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>Models\Players\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -373,7 +374,7 @@
   <Interface Name="ImpactMan.Interfaces.Globals.IUnit" Collapsed="true">
     <Position X="3.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\Globals\IUnit.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -415,19 +416,19 @@
   <Interface Name="ImpactMan.Interfaces.Models.Players.IPlayer" Collapsed="true">
     <Position X="7.25" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\Models\Players\IPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ImpactMan.Interfaces.Reader.IFileReader" Collapsed="true">
-    <Position X="10.25" Y="12.75" Width="1.5" />
+    <Position X="10.25" Y="12.75" Width="5.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\Reader\IFileReader.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ImpactMan.Interfaces.Reader.IReader" Collapsed="true">
-    <Position X="10.25" Y="11.5" Width="1.5" />
+    <Position X="10.25" Y="11.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\Reader\IReader.cs</FileName>
@@ -436,7 +437,7 @@
   <Enum Name="ImpactMan.Enumerations.Game.GameState" Collapsed="true">
     <Position X="19.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAAAgAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAEAAAAAAFAAAAAAAAAAAAAAgAAAAAAIAA=</HashCode>
       <FileName>Enumerations\Game\GameStatesEnums.cs</FileName>
     </TypeIdentifier>
   </Enum>
@@ -450,7 +451,7 @@
   <Enum Name="ImpactMan.Enumerations.Menu.Menu" Collapsed="true">
     <Position X="21" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAQAAEAAAgABYAAAJiECgAgqACBgAAAACAAMAAAAA=</HashCode>
+      <HashCode>ACAAQAAEAAAgABYAIAJicCgAgqACDgAAAACAAMAIgAA=</HashCode>
       <FileName>Enumerations\Menu\MenuEnums.cs</FileName>
     </TypeIdentifier>
   </Enum>

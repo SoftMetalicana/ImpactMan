@@ -70,5 +70,14 @@ namespace ImpactMan.Constants.Units
 
         public const int SignupMenuErrorMessageX = 505;
         public const int SignupMenuErrorMessageY = 775;
+
+        /// <summary>
+        /// HighScores menu text postition constants
+        /// </summary>
+        public const int HighScoresMenuX = 60;
+        public const int HighScoresMenuY = 140;
+
+        public const string HighScoresMenuNumberFormat = "### ### ### ### ###";
+        public const string HighScoresMenuPlayerFormat = "{0}. {1,-10} {2,15}";
     }
 }

@@ -18,26 +18,46 @@
         [InjectAttribute]
         private ContentManager content;
 
+        private bool userCanBeLoggedIn;
+
         public LoginDoneMenuCommand(IEngine engine) 
             : base(engine)
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
-            if (this.accountManager.Login(user))
+            userCanBeLoggedIn = this.accountManager.Login(user);
+
+            if (userCanBeLoggedIn)
             {
                 this.menuController.Initialize("MainMenu");
                 this.menuController.Load(this.content);
-                this.Engine.ClearCurrentUserDetails();
-                this.Engine.ChangeGameState(GameState.MainMenuActive);
             }
-            else
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            if (userCanBeLoggedIn)
+            {
+                this.Engine.ChangeGameState(GameState.MainMenu);
+            }
+        }
+
+        public override void ChangeUserInputState(User user)
+        {
+            if (!userCanBeLoggedIn)
+            {
+                this.Engine.ChangeUserInputState();
+            }
+        }
+
+        public override void ChangeErrorMessage(User user)
+        {
+            if (!userCanBeLoggedIn)
             {
                 this.Engine.ChangeErrorMessage("Invalid username or password!");
-                this.Engine.ClearCurrentUserDetails();
-                this.Engine.ChangeUserInputState();
-            }           
+            }
         }
     }
 }

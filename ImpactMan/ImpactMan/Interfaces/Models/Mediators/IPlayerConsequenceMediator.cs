@@ -7,7 +7,7 @@
     public interface IPlayerConsequenceMediator
     {
         ILevel Level { get; set; }
-
+        
         void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs);
     }
 }
