@@ -1,6 +1,8 @@
 ﻿namespace ImpactMan.Models.Enemies
 {
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
     using Consequences;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
@@ -16,6 +18,9 @@
     [MapObject(UnitConstants.EnemyCsvKeyName)]
     public class Enemy : Consequential, IEnemy
     {
+        private Random rnd = new Random();
+
+
         /// <summary>
         /// Instantiates the enemy.
         /// </summary>
@@ -56,7 +61,22 @@
         /// <param name="keyboardState">Can be taken from the engine.</param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            throw new NotImplementedException();
+            var dic = new Dictionary<int, Vector2>()
+            {
+                {0, new Vector2(0, -5)},
+                {1, new Vector2(0, 5)},
+                {2, new Vector2(-5, 0)},
+                {3, new Vector2(5, 5)},
+            };
+            if (//enemy == wall)
+            {
+                var newPosition = this.rnd.Next(0, 3);
+            }
+
+            var rec = new Rectangle(this.Rectangle.X + (int)dic[newPosition].X, this.Rectangle.Y + (int)dic[newPosition].Y, this.Texture.Width, this.Texture.Height);
+
+
+            this.Rectangle = rec;
         }
     }
 }

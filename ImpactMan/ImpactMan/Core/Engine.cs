@@ -168,7 +168,6 @@
                 State.GameState = GameState.MainMenu;
                 this.menuInitializer.Initialize("MainMenu");
                 this.menuInitializer.Load(Content);
-
             }
 
             if (State.GameState != GameState.GameMode)
@@ -181,9 +180,14 @@
                 GetPressedKeys();
             }
 
-            else
+            if (State.GameState == GameState.GameMode)
             {
                 this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+
+                foreach (var enemy in this.allEnemies)
+                {
+                    enemy.Update(gameTime, currentKeyboardState);
+                }
             }
 
             base.Update(gameTime);
