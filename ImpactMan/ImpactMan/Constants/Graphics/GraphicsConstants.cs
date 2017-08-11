@@ -13,7 +13,7 @@
         /// <summary>
         /// Initial console/window width
         /// </summary>
-        public const int PreferredBufferHeight = 800;
+        public const int PreferredBufferHeight = 700;
 
         /// <summary>
         /// Initial mouse state.

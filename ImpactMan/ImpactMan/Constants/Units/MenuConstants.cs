@@ -51,25 +51,25 @@ namespace ImpactMan.Constants.Units
         /// Login menu text postition constants
         /// </summary>
         public const int LoginMenuUsernameX = 530;
-        public const int LoginMenuUsernameY = 293;
+        public const int LoginMenuUsernameY = 256;
 
         public const int LoginMenuPasswordX = 530;
-        public const int LoginMenuPasswordY = 357;
+        public const int LoginMenuPasswordY = 310;
 
-        public const int LoginMenuErrorMessageX = 505;
-        public const int LoginMenuErrorMessageY = 775;
+        public const int LoginMenuErrorMessageX = 500;
+        public const int LoginMenuErrorMessageY = 678;
 
         /// <summary>
         /// Signup menu text postition constants
         /// </summary>
         public const int SignupMenuUsernameX = 542;
-        public const int SignupMenuUsernameY = 300;
+        public const int SignupMenuUsernameY = 263;
 
         public const int SignupMenuPasswordX = 542;
-        public const int SignupMenuPasswordY = 366;
+        public const int SignupMenuPasswordY = 319;
 
-        public const int SignupMenuErrorMessageX = 505;
-        public const int SignupMenuErrorMessageY = 775;
+        public const int SignupMenuErrorMessageX = 500;
+        public const int SignupMenuErrorMessageY = 678;
 
         /// <summary>
         /// HighScores menu text postition constants
