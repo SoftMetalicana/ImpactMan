@@ -52,7 +52,9 @@ namespace ImpactMan.Constants.Units
                 "Music",
                 "ResetHighScore",
                 "BackButton"
-            } }
+            } },
+
+            {"ChangePassword", new List<string>() }
         };
 
         /// <summary>
@@ -99,5 +101,17 @@ namespace ImpactMan.Constants.Units
 
         public const int SettingsMenuErrorMessageX = 500;
         public const int SettingsMenuErrorMessageY = 678;
+
+        /// <summary>
+        /// Settings menu text postition constants
+        /// </summary>
+        public const int ChangePasswordMenuUsernameX = 530;
+        public const int ChangePasswordMenuUsernameY = 256;
+
+        public const int ChangePasswordMenuPasswordX = 530;
+        public const int ChangePasswordMenuPasswordY = 310;
+
+        public const int ChangePasswordMenuErrorMessageX = 500;
+        public const int ChangePasswordMenuErrorMessageY = 678;
     }
 }

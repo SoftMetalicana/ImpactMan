@@ -53,6 +53,15 @@ namespace ImpactMan.Enumerations.Menu
         SettingsMenuPaddingTop = 100,
         SettingsMenuPaddingLeft = 450,
 
+        ChangePasswordMenuWidth = GraphicsConstants.PreferredBufferWidth,
+        ChangePasswordMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
+
+        ChangePasswordMenuItemWidth = 400,
+        ChangePasswordMenuItemHeight = 50,
+
+        ChangePasswordMenuPaddingTop = 100,
+        ChangePasswordMenuPaddingLeft = 450,
+
         HighScoresMenuWidth = GraphicsConstants.PreferredBufferWidth,
         HighScoresMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
 
