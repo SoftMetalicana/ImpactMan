@@ -51,19 +51,8 @@
         ImpactManContext context;
 
         //This data should be in database
-        private Dictionary<string, int> highScores = new Dictionary<string, int>()
-        {
-            {"Ivan", 44323424 },
-            {"Petkan", 43242 },
-            {"Dragan", 55 },
-            {"Toni", 82 },
-            {"Moni", 999575799 },
-            {"Boni", 57 },
-            {"Dancho", 5 },
-            {"Mancho", 7575757 },
-            {"Gancho", 17575729 },
+        private Dictionary<string, int> highScores;
 
-        };
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
@@ -94,8 +83,13 @@
         /// </summary>
         protected override void Initialize()
         {
+            
             this.context = new ImpactManContext();
            this.context.Database.Initialize(true);
+
+    
+            this.highScores = new Dictionary<string, int>();
+            LoadHighScores(highScores);
 
             this.userInputDetails = new User();
             this.userInputDetails.Name = String.Empty;
@@ -125,6 +119,20 @@
 
             SetWindowTitle();
             base.Initialize();
+        }
+
+        // Adds the top 10 scores to the highscore dictonary
+        private void LoadHighScores(Dictionary<string,int> highscores)
+        {
+            var users = context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
+            if (users.Count>0)
+            {
+                foreach (var user in users)
+                {
+                    highscores.Add(user.Name, user.HighScore);
+                }
+            }
+          
         }
 
         /// <summary>
