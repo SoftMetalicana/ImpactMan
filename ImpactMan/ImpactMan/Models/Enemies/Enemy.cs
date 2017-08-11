@@ -68,11 +68,7 @@
                 {2, new Vector2(-5, 0)},
                 {3, new Vector2(5, 5)},
             };
-            if (//enemy == wall)
-            {
-                var newPosition = this.rnd.Next(0, 3);
-            }
-
+            var newPosition = this.rnd.Next(0, 3);
             var rec = new Rectangle(this.Rectangle.X + (int)dic[newPosition].X, this.Rectangle.Y + (int)dic[newPosition].Y, this.Texture.Width, this.Texture.Height);
 
 
