@@ -41,7 +41,7 @@
         private User userInputDetails;
         private string errorMessage;
 
-        private List<Keys> pressedKeys = new List<Keys>();
+        private List<Keys> pressedKeys;
 
         private IInitializer initializer;
         private IInputListener inputListener;
@@ -84,6 +84,7 @@
             this.allEnemies = allEnemies;
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
+            this.pressedKeys = new List<Keys>();
         }
 
         /// <summary>
@@ -95,7 +96,7 @@
         protected override void Initialize()
         {
             this.context = new ImpactManContext();
-           this.context.Database.Initialize(true);
+            this.context.Database.Initialize(true);
 
             this.userInputDetails = new User();
             this.userInputDetails.Name = String.Empty;
@@ -115,7 +116,6 @@
             this.menuInitializer.Initialize("LoginMenu");
             this.soundManager.PlayMusic(Music.LoginMusic);
 
-            // TO HERE
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,
