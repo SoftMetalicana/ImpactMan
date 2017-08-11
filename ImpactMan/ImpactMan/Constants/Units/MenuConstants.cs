@@ -42,7 +42,7 @@ namespace ImpactMan.Constants.Units
             {
                 "HighScoresMenu", new List<string>()
                 {
-                    "HighScoresMenuBackButton"
+                    "BackButton"
                 }
             },
 
@@ -51,7 +51,7 @@ namespace ImpactMan.Constants.Units
                 "ChangePassword",
                 "Music",
                 "ResetHighScore",
-                "HighScoresMenuBackButton"
+                "BackButton"
             } }
         };
 

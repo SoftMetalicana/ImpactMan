@@ -56,10 +56,10 @@ namespace ImpactMan.Enumerations.Menu
         HighScoresMenuWidth = GraphicsConstants.PreferredBufferWidth,
         HighScoresMenuHeight = GraphicsConstants.PreferredBufferHeight - 50,
 
-        HighScoresMenuItemWidth = 100,
-        HighScoresMenuItemHeight = 30,
+        HighScoresMenuItemWidth = 400,
+        HighScoresMenuItemHeight = 50,
 
-        HighScoresMenuPaddingTop = 670,
+        HighScoresMenuPaddingTop = 650,
         HighScoresMenuPaddingLeft = 55,
     }   
 }

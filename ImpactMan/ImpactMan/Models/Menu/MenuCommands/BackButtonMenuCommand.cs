@@ -8,7 +8,7 @@
     using Microsoft.Xna.Framework.Content;
     using System;
 
-    public class HighScoresMenuBackButtonMenuCommand : MenuCommand
+    public class BackButtonMenuCommand : MenuCommand
     {
         [Inject]
         private MenuInitializer menuController;
@@ -16,7 +16,7 @@
         [InjectAttribute]
         private ContentManager content;
 
-        public HighScoresMenuBackButtonMenuCommand(IEngine engine) 
+        public BackButtonMenuCommand(IEngine engine) 
             : base(engine)
         {
         }
