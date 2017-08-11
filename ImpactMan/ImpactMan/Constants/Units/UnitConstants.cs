@@ -21,7 +21,7 @@
         /// Usually you will find those names injected in the constructors so you don't have to pass as argument an asset name.
         /// Asset names correspond to a picture that is loaded in the Content.Content.mgcb.
         /// </summary>
-        public const string EnemyAssetName = "enemy";
+        public const string EnemyAssetName = "yellow_guy";
         public const string GroundAssetName = "ground";
         public const string WallAssetName = "wall";
         public const string PlayerAssetName = "player";

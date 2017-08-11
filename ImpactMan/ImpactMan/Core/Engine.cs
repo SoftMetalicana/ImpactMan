@@ -41,7 +41,7 @@
         private User userInputDetails;
         private string errorMessage;
 
-        private List<Keys> pressedKeys = new List<Keys>();
+        private List<Keys> pressedKeys;
 
         private IInitializer initializer;
         private IInputListener inputListener;
@@ -73,6 +73,7 @@
             this.allEnemies = allEnemies;
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
+            this.pressedKeys = new List<Keys>();
         }
 
         /// <summary>
@@ -85,7 +86,7 @@
         {
             
             this.context = new ImpactManContext();
-           this.context.Database.Initialize(true);
+            this.context.Database.Initialize(true);
 
     
             this.highScores = new Dictionary<string, int>();
@@ -109,7 +110,6 @@
             this.menuInitializer.Initialize("LoginMenu");
             this.soundManager.PlayMusic(Music.LoginMusic);
 
-            // TO HERE
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,
@@ -176,7 +176,6 @@
                 State.GameState = GameState.MainMenu;
                 this.menuInitializer.Initialize("MainMenu");
                 this.menuInitializer.Load(Content);
-
             }
 
             if (State.GameState != GameState.GameMode)
@@ -189,9 +188,14 @@
                 GetPressedKeys();
             }
 
-            else
+            if (State.GameState == GameState.GameMode)
             {
                 this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+
+                foreach (var enemy in this.allEnemies)
+                {
+                    enemy.Update(gameTime, currentKeyboardState);
+                }
             }
 
             base.Update(gameTime);

@@ -60,6 +60,7 @@
     <Compile Include="Core\Initializer.cs" />
     <Compile Include="Core\MenuInitializer.cs" />
     <Compile Include="Core\SoundManager.cs" />
+    <Compile Include="Enumerations\Game\EnemyMovingDirectionsEnum.cs" />
     <Compile Include="Enumerations\Game\GameStatesEnums.cs" />
     <Compile Include="Enumerations\Menu\MenuEnums.cs" />
     <Compile Include="Enumerations\Sounds\SoundEnums.cs" />
