@@ -16,6 +16,7 @@ namespace ImpactMan.Constants.Units
             {"MainMenu", new List<string>()
             {
                 "NewGame",
+                "LoadGame",
                 "HighScores",
                 "Settings",
                 "Quit"

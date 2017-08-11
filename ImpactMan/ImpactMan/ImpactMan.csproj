@@ -103,6 +103,7 @@
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\LoadGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />

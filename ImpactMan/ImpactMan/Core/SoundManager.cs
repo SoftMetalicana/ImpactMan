@@ -19,10 +19,10 @@
 
         public void PlayMusic(Music music)
         {
-            sound = content.Load<Song>(music.ToString());
-            MediaPlayer.Play(sound);
+      //      sound = content.Load<Song>(music.ToString());
+      //      MediaPlayer.Play(sound);
 
-            MediaPlayer.IsRepeating = true;
+     //       MediaPlayer.IsRepeating = true;
         }
     }
 }
