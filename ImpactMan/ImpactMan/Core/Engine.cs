@@ -85,8 +85,8 @@
         protected override void Initialize()
         {
             
-            this.context = new ImpactManContext();
-            this.context.Database.Initialize(true);
+            this.context = new ImpactManContext(); 
+            this.context.Database.Initialize(true); 
 
     
             this.highScores = new Dictionary<string, int>();
