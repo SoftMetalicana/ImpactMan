@@ -9,7 +9,7 @@ namespace ImpactMan.Context.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public int Level { get; set; }
-        public int HightScore { get; set; }
+        public int HighScore { get; set; }
         public int CurrentScore { get; set; }
     }
 }

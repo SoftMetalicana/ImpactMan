@@ -1,4 +1,8 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.IO.Recording;
+using Microsoft.Xna.Framework.Content;
+using ScapLIB;
+
+namespace ImpactMan.Core
 {
     using Constants.Units;
     using Interfaces.Writer;
@@ -32,15 +36,14 @@
         private SpriteFont spriteFont;
         private SoundManager soundManager;
         private ITextWriter textWriter;
-
         private IPlayer player;
         private IList<IEnemy> allEnemies;
         private ILevel level;
         private IPlayerConsequenceMediator playerConsequenceMediator;
-
+        private KeyboardState previosKeyboardState;
         private User userInputDetails;
         private string errorMessage;
-
+        private Recorder recorder;
         private List<Keys> pressedKeys;
 
         private IInitializer initializer;
@@ -51,19 +54,11 @@
         ImpactManContext context;
 
         //This data should be in database
-        private Dictionary<string, int> highScores = new Dictionary<string, int>()
-        {
-            {"Ivan", 44323424 },
-            {"Petkan", 43242 },
-            {"Dragan", 55 },
-            {"Toni", 82 },
-            {"Moni", 999575799 },
-            {"Boni", 57 },
-            {"Dancho", 5 },
-            {"Mancho", 7575757 },
-            {"Gancho", 17575729 },
+        private Dictionary<string, int> highScores;
 
-        };
+        public void LoadPrevGame()
+        {
+        }
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
@@ -81,10 +76,13 @@
             this.inputListener = inputListener;
 
             this.player = player;
+            
             this.allEnemies = allEnemies;
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
             this.pressedKeys = new List<Keys>();
+
+
         }
 
         /// <summary>
@@ -95,8 +93,13 @@
         /// </summary>
         protected override void Initialize()
         {
+            
             this.context = new ImpactManContext();
             this.context.Database.Initialize(true);
+
+    
+            this.highScores = new Dictionary<string, int>();
+            LoadHighScores(highScores);
 
             this.userInputDetails = new User();
             this.userInputDetails.Name = String.Empty;
@@ -125,6 +128,20 @@
 
             SetWindowTitle();
             base.Initialize();
+        }
+
+        // Adds the top 10 scores to the highscore dictonary
+        private void LoadHighScores(Dictionary<string,int> highscores)
+        {
+            var users = context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
+            if (users.Count>0)
+            {
+                foreach (var user in users)
+                {
+                    highscores.Add(user.Name, user.HighScore);
+                }
+            }
+          
         }
 
         /// <summary>
@@ -163,6 +180,19 @@
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 
+            if (currentKeyboardState.IsKeyDown(Keys.R)&& this.previosKeyboardState != currentKeyboardState && State.GameState == GameState.GameMode)
+            {
+                if (this.recorder!= null)
+                {
+                    
+                    recorder.Dispose();
+                }
+                else
+                {
+                    this.recorder = new Recorder(new RecorderParams("GameDemo.avi",32, SharpAvi.KnownFourCCs.Codecs.MotionJpeg, 70));
+                }
+            }
+
             if (currentKeyboardState.IsKeyDown(Keys.Home) && State.GameState == GameState.GameMode)
             {
                 State.GameState = GameState.MainMenu;
@@ -191,6 +221,7 @@
             }
 
             base.Update(gameTime);
+            this.previosKeyboardState = currentKeyboardState;
         }
 
         /// <summary>
@@ -319,6 +350,7 @@
 
         public void Quit()
         {
+            
             Exit();
         }
 

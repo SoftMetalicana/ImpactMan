@@ -17,7 +17,7 @@ namespace ImpactMan.Context.Db
             : base("GameContext")
         {
             ///Initialize  the database onlt if it does not exists
-            Database.SetInitializer(new CreateDatabaseIfNotExists<ImpactManContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ImpactManContext>());
         }
 
         public DbSet<User> Users
@@ -32,5 +32,7 @@ namespace ImpactMan.Context.Db
                 this.users = value;
             }
         }
+        
     }
+   
 }

@@ -24,6 +24,7 @@
 
         public override void ChangeGamestate(User user)
         {
+            
             State.GameState = GameState.GameMode;
         }
 

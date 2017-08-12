@@ -11,6 +11,7 @@ namespace ImpactMan.Interfaces.Models.User
         int Id { get; }
         string Name { get; }
         string Password { get; }
+        int CurrentScore { get; }
         int Level { get; }
     }
 }
