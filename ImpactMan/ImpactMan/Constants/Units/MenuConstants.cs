@@ -56,7 +56,12 @@ namespace ImpactMan.Constants.Units
                 "BackButton"
             } },
 
-            {"ChangePassword", new List<string>() }
+            {
+                "ChangePassword", new List<string>()
+                {
+                    "BackButton"
+                }
+            }
         };
 
         /// <summary>
@@ -66,30 +71,6 @@ namespace ImpactMan.Constants.Units
         /// </summary>
 
         public static readonly int ErrorMessageY = (int) (GraphicsConstants.PreferredBufferHeight / 1.02);
-
-        /// <summary>
-        /// Settings menu text postition constants
-        /// </summary>
-        public const int SettingsMenuUsernameX = 530;
-        public const int SettingsMenuUsernameY = 256;
-
-        public const int SettingsMenuPasswordX = 530;
-        public const int SettingsMenuPasswordY = 310;
-
-        public const int SettingsMenuErrorMessageX = 500;
-        public const int SettingsMenuErrorMessageY = 678;
-
-        /// <summary>
-        /// Settings menu text postition constants
-        /// </summary>
-        public const int ChangePasswordMenuUsernameX = 530;
-        public const int ChangePasswordMenuUsernameY = 256;
-
-        public const int ChangePasswordMenuPasswordX = 530;
-        public const int ChangePasswordMenuPasswordY = 310;
-
-        public const int ChangePasswordMenuErrorMessageX = 500;
-        public const int ChangePasswordMenuErrorMessageY = 678;
 
         //<summary>
         // All menu constants
@@ -163,11 +144,31 @@ namespace ImpactMan.Constants.Units
         public static readonly int SettingsMenuWidth = MainMenuWidth;
         public static readonly int SettingsMenuHeight = MainMenuHeight;
                                    
-        public static readonly int SettingsMenuItemWidth = HighScoresMenuWidth / 13;
-        public static readonly int SettingsMenuItemHeight = (int)(SettingsMenuHeight / 23.33);
-                                   
-        public static readonly int SettingsMenuPaddingTop = (int)(SettingsMenuHeight - 10);
-        public static readonly int SettingsMenuPaddingLeft = (int)(SettingsMenuHeight / 23.33);
+        public static readonly int SettingsMenuItemWidth = MainMenuItemWidth;
+        public static readonly int SettingsMenuItemHeight = MainMenuItemHeight;
+
+        public static readonly int SettingsMenuPaddingTop = MainMenuPaddingTop;
+        public static readonly int SettingsMenuPaddingLeft = MainMenuPaddingLeft;
+
+        //Change Password Menu
+        public static readonly int ChangePasswordMenuWidth = MainMenuWidth;
+        public static readonly int ChangePasswordMenuHeight = MainMenuHeight;
+
+        public static readonly int ChangePasswordMenuItemWidth = LoginMenuItemWidth;
+        public static readonly int ChangePasswordMenuItemHeight = LoginMenuItemHeight;
+
+        public static readonly int ChangePasswordMenuPaddingTop = RegisterMenuPaddingTop;
+        public static readonly int ChangePasswordMenuPaddingLeft = RegisterMenuPaddingLeft;
+
+        //public static readonly int SignupMenuUsernameX = (int)(RegisterMenuWidth / 2.4);
+        //public static readonly int SignupMenuUsernameY = (int)(RegisterMenuHeight / 2.53);
+        //
+        //public static readonly int SignupMenuPasswordX = (int)(RegisterMenuWidth / 2.4);
+        //public static readonly int SignupMenuPasswordY = (int)(RegisterMenuHeight / 2.075);
+        //
+        //public static readonly int SignupMenuErrorMessageX = (int)(RegisterMenuWidth / 2.6);
+        //public static readonly int SignupMenuErrorMessageY = ErrorMessageY;
+
         /// <summary>
         /// HighScores menu text postition constants
         /// </summary>

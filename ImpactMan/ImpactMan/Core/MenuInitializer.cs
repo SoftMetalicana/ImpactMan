@@ -116,7 +116,7 @@
 
         public int GetEnumValue(string query, string valueType)
         {
-            var type =  (int)typeof(MenuConstants).GetField($"{query}{valueType}").GetValue(null);
+           var type =  (int)typeof(MenuConstants).GetField($"{query}{valueType}").GetValue(null);
 
             return type;
         }
