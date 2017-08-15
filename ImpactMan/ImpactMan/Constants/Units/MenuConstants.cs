@@ -1,5 +1,5 @@
 ﻿using ImpactMan.Constants.Graphics;
-using Microsoft.Xna.Framework;
+
 
 namespace ImpactMan.Constants.Units
 {
@@ -54,7 +54,7 @@ namespace ImpactMan.Constants.Units
         // All menu constants
         //</summary>
 
-        
+
         //Main menu params
         public static readonly int MainMenuWidth = GraphicsConstants.PreferredBufferWidth;       
         public static readonly int MainMenuHeight = GraphicsConstants.PreferredBufferHeight - 50;
@@ -87,7 +87,6 @@ namespace ImpactMan.Constants.Units
         public static readonly int RegisterMenuPaddingTop =(int)(RegisterMenuHeight/2.3);
         public static readonly int RegisterMenuPaddingLeft = (int)(RegisterMenuWidth/2.2);
 
-
         //High score menu params
         public static readonly int HighScoresMenuWidth = MainMenuWidth;
         public static readonly int HighScoresMenuHeight = MainMenuHeight;
@@ -97,8 +96,6 @@ namespace ImpactMan.Constants.Units
 
         public static readonly int HighScoresMenuPaddingTop = (int)(HighScoresMenuHeight-10);
         public static readonly int HighScoresMenuPaddingLeft = (int)(HighScoresMenuHeight / 23.33);
-
-
 
         /// <summary>
         /// Text alignment rates at different screen resolution
