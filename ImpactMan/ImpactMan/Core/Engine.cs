@@ -1,4 +1,8 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.IO.Recording;
+using Microsoft.Xna.Framework.Content;
+//using ScapLIB;
+
+namespace ImpactMan.Core
 {
     using Constants.Units;
     using Interfaces.Writer;
@@ -32,15 +36,14 @@
         private SpriteFont spriteFont;
         private SoundManager soundManager;
         private ITextWriter textWriter;
-
         private IPlayer player;
         private IList<IEnemy> allEnemies;
         private ILevel level;
         private IPlayerConsequenceMediator playerConsequenceMediator;
-
+        private KeyboardState previosKeyboardState;
         private User userInputDetails;
         private string errorMessage;
-
+        private Recorder recorder;
         private List<Keys> pressedKeys;
 
         private IInitializer initializer;
@@ -53,6 +56,9 @@
         //This data should be in database
         private Dictionary<string, int> highScores;
 
+        public void LoadPrevGame()
+        {
+        }
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
@@ -70,10 +76,13 @@
             this.inputListener = inputListener;
 
             this.player = player;
+            
             this.allEnemies = allEnemies;
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
             this.pressedKeys = new List<Keys>();
+
+
         }
 
         /// <summary>
@@ -171,6 +180,19 @@
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 
+            if (currentKeyboardState.IsKeyDown(Keys.R)&& this.previosKeyboardState != currentKeyboardState && State.GameState == GameState.GameMode)
+            {
+                if (this.recorder!= null)
+                {
+                    
+                    recorder.Dispose();
+                }
+                else
+                {
+                    this.recorder = new Recorder(new RecorderParams("GameDemo.avi",32, SharpAvi.KnownFourCCs.Codecs.MotionJpeg, 70));
+                }
+            }
+
             if (currentKeyboardState.IsKeyDown(Keys.Home) && State.GameState == GameState.GameMode)
             {
                 State.GameState = GameState.MainMenu;
@@ -199,6 +221,7 @@
             }
 
             base.Update(gameTime);
+            this.previosKeyboardState = currentKeyboardState;
         }
 
         /// <summary>
@@ -327,6 +350,7 @@
 
         public void Quit()
         {
+            
             Exit();
         }
 

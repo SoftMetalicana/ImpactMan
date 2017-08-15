@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ImpactMan.Constants.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace ImpactMan.Constants.Units
 {
@@ -16,6 +17,7 @@ namespace ImpactMan.Constants.Units
             {"MainMenu", new List<string>()
             {
                 "NewGame",
+                "LoadGame",
                 "HighScores",
                 "Settings",
                 "Quit"
@@ -113,5 +115,63 @@ namespace ImpactMan.Constants.Units
 
         public const int ChangePasswordMenuErrorMessageX = 500;
         public const int ChangePasswordMenuErrorMessageY = 678;
+
+        //<summary>
+        // All menu constants
+        //</summary>
+
+        
+        //Main menu params
+        public static readonly int MainMenuWidth = GraphicsConstants.PreferredBufferWidth;       
+        public static readonly int MainMenuHeight = GraphicsConstants.PreferredBufferHeight - 50;
+      
+        public static readonly int MainMenuItemWidth = (int)(MainMenuWidth / 3.25);
+        public static readonly int MainMenuItemHeight = MainMenuHeight / 14;
+        
+        public static readonly int MainMenuPaddingTop = MainMenuItemHeight/7;
+        public static readonly int MainMenuPaddingLeft = (int)(MainMenuWidth/ 2.888888888888889);
+
+
+        //Login menu params
+        public static readonly int LoginMenuWidth = MainMenuWidth;
+        public static readonly int LoginMenuHeight = MainMenuHeight;
+        
+        public static readonly int LoginMenuItemWidth = LoginMenuWidth/13;
+        public static readonly int LoginMenuItemHeight = (int)(LoginMenuHeight/23.33);
+        
+        public static readonly int LoginMenuPaddingTop = (int)(LoginMenuHeight/2.7);
+        public static readonly int LoginMenuPaddingLeft =(int)(LoginMenuWidth/2.2);
+
+
+        //Register menu params
+        public static readonly int RegisterMenuWidth = MainMenuWidth;
+        public static readonly int RegisterMenuHeight = MainMenuHeight;
+
+        public static readonly int RegisterMenuItemWidth = LoginMenuItemWidth;
+        public static readonly int RegisterMenuItemHeight = LoginMenuItemHeight;
+        
+        public static readonly int RegisterMenuPaddingTop =(int)(RegisterMenuHeight/2.3);
+        public static readonly int RegisterMenuPaddingLeft = (int)(RegisterMenuWidth/2.2);
+
+
+        //High score menu params
+        public static readonly int HighScoresMenuWidth = MainMenuWidth;
+        public static readonly int HighScoresMenuHeight = MainMenuHeight;
+     
+        public static readonly int HighScoresMenuItemWidth = HighScoresMenuWidth / 13;
+        public static readonly int HighScoresMenuItemHeight = (int)(HighScoresMenuHeight / 23.33);
+
+        public static readonly int HighScoresMenuPaddingTop = (int)(HighScoresMenuHeight-10);
+        public static readonly int HighScoresMenuPaddingLeft = (int)(HighScoresMenuHeight / 23.33);
+
+        //Settings menu params
+        public static readonly int SettingsMenuWidth = MainMenuWidth;
+        public static readonly int SettingsMenuHeight = MainMenuHeight;
+                                   
+        public static readonly int SettingsMenuItemWidth = HighScoresMenuWidth / 13;
+        public static readonly int SettingsMenuItemHeight = (int)(SettingsMenuHeight / 23.33);
+                                   
+        public static readonly int SettingsMenuPaddingTop = (int)(SettingsMenuHeight - 10);
+        public static readonly int SettingsMenuPaddingLeft = (int)(SettingsMenuHeight / 23.33);
     }
 }

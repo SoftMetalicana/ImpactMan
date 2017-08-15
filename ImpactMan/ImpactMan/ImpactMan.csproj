@@ -62,7 +62,6 @@
     <Compile Include="Core\SoundManager.cs" />
     <Compile Include="Enumerations\Game\EnemyMovingDirectionsEnum.cs" />
     <Compile Include="Enumerations\Game\GameStatesEnums.cs" />
-    <Compile Include="Enumerations\Menu\MenuEnums.cs" />
     <Compile Include="Enumerations\Sounds\SoundEnums.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
@@ -94,6 +93,8 @@
     <Compile Include="IO\InputListeners\InputListener.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventHandler.cs" />
     <Compile Include="IO\Readers\CsvFileReader.cs" />
+    <Compile Include="IO\Recording\Recorder.cs" />
+    <Compile Include="IO\Recording\RecorderParams.cs" />
     <Compile Include="IO\Writers\ConsoleTextWriter.cs" />
     <Compile Include="Models\Consequences\Consequence.cs" />
     <Compile Include="Models\Consequences\Consequential.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Models\Menu\MenuCommands\ChangePasswordMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\BackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\LoadGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MusicMenuCommand.cs" />
@@ -134,6 +136,14 @@
     <Compile Include="Utils\Placement.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AForge.Video, Version=2.2.4.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScapLIB\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.FFMPEG, Version=2.2.4.0, Culture=neutral, PublicKeyToken=03563089b1be05dd, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScapLIB\AForge.Video.FFMPEG.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -143,8 +153,15 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="ScapLIB">
+      <HintPath>..\packages\ScapLIB\ScapLIB.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpAvi, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpAvi.2.1.0\lib\net45\SharpAvi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>

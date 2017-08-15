@@ -1,20 +1,18 @@
 ﻿namespace ImpactMan.Core
 {
-    using Interfaces.Core;
     using Constants.Graphics;
     using Constants.Units;
     using Context.Models;
     using Factories;
-    using Enumerations.Menu;
+    using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Menu;
     using IO.InputListeners.Events;
-    using Models.Menu;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using System;
+    using Models.Menu;
     using System.Collections.Generic;
 
     /// <summary>
@@ -118,7 +116,9 @@
 
         public int GetEnumValue(string query, string valueType)
         {
-            return (int)Enum.Parse(typeof(Menu), $"{query}{valueType}");
+            var type =  (int)typeof(MenuConstants).GetField($"{query}{valueType}").GetValue(null);
+
+            return type;
         }
     }
 }
