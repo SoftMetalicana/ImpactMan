@@ -61,8 +61,8 @@
     <Compile Include="Core\MenuInitializer.cs" />
     <Compile Include="Core\SoundManager.cs" />
     <Compile Include="Enumerations\Game\EnemyMovingDirectionsEnum.cs" />
-    <Compile Include="Enumerations\Game\GameStatesEnums.cs" />
-    <Compile Include="Enumerations\Sounds\SoundEnums.cs" />
+    <Compile Include="Enumerations\Game\GameStates.cs" />
+    <Compile Include="Enumerations\Sounds\Sound.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
     <Compile Include="Interfaces\Globals\IAsset.cs" />
@@ -104,7 +104,6 @@
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
-    <Compile Include="Models\Menu\MenuCommands\LoadGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />
@@ -123,7 +122,6 @@
     <Compile Include="Models\Static\Food.cs" />
     <Compile Include="Models\Static\Ground.cs" />
     <Compile Include="Models\Static\Wall.cs" />
-    <Compile Include="Models\TextWriterStrategies\LoginMenuStrategy.cs" />
     <Compile Include="Models\Units\GameControlUnit.cs" />
     <Compile Include="Models\Units\GameplayUnit.cs" />
     <Compile Include="StartUp.cs" />

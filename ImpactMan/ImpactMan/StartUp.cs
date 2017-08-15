@@ -1,4 +1,8 @@
-﻿namespace ImpactMan
+﻿using ImpactMan.Context.Db;
+using ImpactMan.Interfaces.Writer;
+using ImpactMan.IO.Writers;
+
+namespace ImpactMan
 {
     using System;
     using System.Collections.Generic;
@@ -29,6 +33,9 @@
         [STAThread]
         public static void Main()
         {
+            ImpactManContext context = new ImpactManContext();
+            AccountManager accountManager = new AccountManager(context);
+
             IInitializer initializer = new Initializer();
             IInputListener inputListener = new InputListener();
 
@@ -44,7 +51,9 @@
                                              playerConsequenceMediator,
                                              generatedLevel.Player,
                                              generatedLevel.AllEnemies,
-                                             generatedLevel))
+                                             generatedLevel, 
+                                             context, 
+                                             accountManager))
             {
                 game.Run();
             }

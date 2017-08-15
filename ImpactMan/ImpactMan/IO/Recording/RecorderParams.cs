@@ -1,8 +1,6 @@
 ﻿using SharpAvi;
 using SharpAvi.Codecs;
 using SharpAvi.Output;
-using System.Windows.Forms;
-using System.Drawing;
 
 namespace ImpactMan.IO.Recording
 {

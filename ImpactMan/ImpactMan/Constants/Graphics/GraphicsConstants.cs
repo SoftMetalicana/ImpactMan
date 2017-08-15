@@ -15,7 +15,7 @@ namespace ImpactMan.Constants.Graphics
         /// <summary>
         /// Initial console/window width
         /// </summary>
-        public static readonly int PreferredBufferHeight = Screen.PrimaryScreen.Bounds.Height;
+        public static readonly int PreferredBufferHeight = Screen.PrimaryScreen.Bounds.Height - 70;
 
         /// <summary>
         /// Initial mouse state.

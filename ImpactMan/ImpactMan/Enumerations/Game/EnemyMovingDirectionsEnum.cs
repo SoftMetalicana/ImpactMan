@@ -1,8 +1,10 @@
 ﻿namespace ImpactMan.Enumerations.Game
 {
-    public enum EnemyMovingDirectionsEnum
+    public enum EnemyMovingDirections
     {
-        Default, 
-
+        Left,
+        Right,
+        Down,
+        Up
     }
 }

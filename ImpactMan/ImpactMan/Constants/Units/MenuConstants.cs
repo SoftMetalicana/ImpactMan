@@ -17,7 +17,6 @@ namespace ImpactMan.Constants.Units
             {"MainMenu", new List<string>()
             {
                 "NewGame",
-                "LoadGame",
                 "HighScores",
                 "Settings",
                 "Quit"
@@ -49,38 +48,7 @@ namespace ImpactMan.Constants.Units
             }
         };
 
-        /// <summary>
-        /// Login menu text postition constants
-        /// </summary>
-        public const int LoginMenuUsernameX = 530;
-        public const int LoginMenuUsernameY = 256;
 
-        public const int LoginMenuPasswordX = 530;
-        public const int LoginMenuPasswordY = 310;
-
-        public const int LoginMenuErrorMessageX = 500;
-        public const int LoginMenuErrorMessageY = 678;
-
-        /// <summary>
-        /// Signup menu text postition constants
-        /// </summary>
-        public const int SignupMenuUsernameX = 542;
-        public const int SignupMenuUsernameY = 263;
-
-        public const int SignupMenuPasswordX = 542;
-        public const int SignupMenuPasswordY = 319;
-
-        public const int SignupMenuErrorMessageX = 500;
-        public const int SignupMenuErrorMessageY = 678;
-
-        /// <summary>
-        /// HighScores menu text postition constants
-        /// </summary>
-        public const int HighScoresMenuX = 60;
-        public const int HighScoresMenuY = 140;
-
-        public const string HighScoresMenuNumberFormat = "### ### ### ### ###";
-        public const string HighScoresMenuPlayerFormat = "{0}. {1,-10} {2,15}";
 
         //<summary>
         // All menu constants
@@ -94,7 +62,7 @@ namespace ImpactMan.Constants.Units
         public static readonly int MainMenuItemWidth = (int)(MainMenuWidth / 3.25);
         public static readonly int MainMenuItemHeight = MainMenuHeight / 14;
         
-        public static readonly int MainMenuPaddingTop = MainMenuItemHeight/7;
+        public static readonly int MainMenuPaddingTop = MainMenuItemHeight * 4;
         public static readonly int MainMenuPaddingLeft = (int)(MainMenuWidth/ 2.888888888888889);
 
 
@@ -129,5 +97,47 @@ namespace ImpactMan.Constants.Units
 
         public static readonly int HighScoresMenuPaddingTop = (int)(HighScoresMenuHeight-10);
         public static readonly int HighScoresMenuPaddingLeft = (int)(HighScoresMenuHeight / 23.33);
+
+
+
+        /// <summary>
+        /// Text alignment rates at different screen resolution
+        /// </summary>
+        private static readonly double TextPositionAlignmentWidth = (GraphicsConstants.PreferredBufferWidth / 1920.0);
+        private static readonly double TextPositionAlignmentHeight = (GraphicsConstants.PreferredBufferHeight / 1080.0);
+
+
+        /// <summary>
+        /// Login menu text postition constants
+        /// </summary>
+        public static readonly int LoginMenuUsernameX = (int)(781 * TextPositionAlignmentWidth);
+        public static readonly int LoginMenuUsernameY = (int)(397 * TextPositionAlignmentHeight);
+
+        public static readonly int LoginMenuPasswordX = (int)(781 * TextPositionAlignmentWidth);
+        public static readonly int LoginMenuPasswordY = (int)(483 * TextPositionAlignmentHeight);
+
+        public static readonly int LoginMenuErrorMessageX = (int)(768 * TextPositionAlignmentWidth);
+        public static readonly int LoginMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
+
+        /// <summary>
+        /// Signup menu text postition constants
+        /// </summary>
+        public static readonly int SignupMenuUsernameX = (int)(797 * TextPositionAlignmentWidth);
+        public static readonly int SignupMenuUsernameY = (int)(406 * TextPositionAlignmentHeight);
+
+        public static readonly int SignupMenuPasswordX = (int)(797 * TextPositionAlignmentWidth);
+        public static readonly int SignupMenuPasswordY = (int)(496 * TextPositionAlignmentHeight);
+
+        public static readonly int SignupMenuErrorMessageX = (int)(820 * TextPositionAlignmentWidth);
+        public static readonly int SignupMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
+
+        /// <summary>
+        /// HighScores menu text postition constants
+        /// </summary>
+        public const int HighScoresMenuX = 60;
+        public const int HighScoresMenuY = 140;
+
+        public const string HighScoresMenuNumberFormat = "### ### ### ### ###";
+        public const string HighScoresMenuPlayerFormat = "{0}. {1,-10} {2,15}";
     }
 }

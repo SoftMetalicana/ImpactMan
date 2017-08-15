@@ -1,4 +1,5 @@
-﻿using ImpactMan.Enumerations.Game;
+﻿using ImpactMan.Constants.Graphics;
+using ImpactMan.Enumerations.Game;
 
 namespace ImpactMan.Core
 {
