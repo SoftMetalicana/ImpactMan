@@ -1,32 +1,15 @@
-wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall
-wall	food	food	food	food	player	wall	food	food	food	food	food	food	food	wall	food	food	food	food	food	food	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	wall	wall	wall	wall	food	wall	food	wall	wall	wall	wall	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall	food	wall	food	food	food	food	food	food	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	wall	wall	food	wall	wall	wall	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	food	food	food	food	food	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	wall	wall	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	enemy	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	wall	wall	food	wall	food	wall	enemy	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	food	food	enemy	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall	food	wall
-wall	food	wall	wall	wall	food	wall	food	food	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	wall	wall	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall
-wall	food	wall	food	wall	food	wall	food	food	food	food	food	food	food	wall	food	food	food	food	food	food	food	wall
-wall	food	wall	food	wall	food	wall	wall	wall	wall	wall	wall	wall	food	wall	wall	wall	wall	wall	wall	wall	food	wall
-wall	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	food	wall
-wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall
+wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall
+wall	food	food	food	wall	food	food	food	food	food	wall	food	wall	food	food	food	food	wall	food	food	food	food	food	food	food	food	food	wall
+wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	wall	wall	food	wall	wall	wall	wall	food	wall	wall	wall	food	wall	wall
+wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	food	food	wall	food	food	food	food	wall	food	food	food	wall
+wall	food	wall	food	wall	food	wall	food	wall	enemy	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	wall	wall	food	wall	wall	wall
+wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	food	wall	food	food	food	wall
+wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	wall	enemy	wall	wall	food	wall	food	wall
+wall	food	wall	food	wall	player	wall	food	wall	food	food	food	wall	food	wall	food	wall	food	wall	food	food	food	food	wall	food	wall	food	wall
+wall	food	food	food	wall	food	food	food	wall	food	wall	wall	wall	food	wall	food	wall	food	food	food	wall	food	food	wall	food	wall	food	wall
+wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	food	wall	enemy	wall	food	wall	food	wall	wall	food	wall	food	wall	food	wall
+wall	food	wall	food	wall	food	wall	food	food	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	wall	food	food	food	wall
+wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	wall	food	wall	food	wall
+wall	food	wall	food	wall	wall	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	wall	food	food	wall	food	wall	food	wall
+wall	food	food	food	food	food	food	food	wall	food	food	food	food	food	food	food	wall	food	food	food	wall	food	food	food	food	wall	food	wall
+wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall	wall
