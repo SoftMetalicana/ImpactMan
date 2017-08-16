@@ -1,10 +1,9 @@
-﻿using ImpactMan.Models.Exceptions;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
+    using Models.Exceptions;
     using System.Collections.Generic;
     using Constants.Graphics;
-    using Constants.Units;
+    using Constants.Menu;
     using Context.Models;
     using Factories;
     using Interfaces.Core;

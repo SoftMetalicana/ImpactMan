@@ -25,8 +25,6 @@
             {
                 this.soundManager.PlayMusic(Music.GameMusic);
             }
-
-
         }
     }
 }

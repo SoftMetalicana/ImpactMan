@@ -1,7 +1,7 @@
 ﻿namespace ImpactMan.Core
 {
     using Constants.Graphics;
-    using Constants.Units;
+    using Constants.Menu;
     using Context.Db;
     using Context.Models;
     using Enumerations.Game;

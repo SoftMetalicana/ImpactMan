@@ -1,7 +1,7 @@
 ﻿using ImpactMan.Constants.Graphics;
 
 
-namespace ImpactMan.Constants.Units
+namespace ImpactMan.Constants.Menu
 {
     using System.Collections.Generic;
 
@@ -40,12 +40,11 @@ namespace ImpactMan.Constants.Units
                 "RegisterDone",
                 "RegisterBackButton"
             } },
+
+            {"HighScoresMenu", new List<string>()
             {
-                "HighScoresMenu", new List<string>()
-                {
-                    "HighScoresMenuBackButton"
-                }
-            }
+                "HighScoresMenuBackButton"
+            } }
         };
 
 
