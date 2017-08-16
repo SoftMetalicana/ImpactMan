@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.Interfaces.Models.LevelGenerators;
+
+namespace ImpactMan.Core
 {
     using Constants.Graphics;
     using Constants.Menu;
@@ -34,6 +36,7 @@
         private readonly IPlayerConsequenceMediator playerConsequenceMediator;
         private readonly IInitializer initializer;
         private readonly IInputListener inputListener;
+        private ILevelGenerator levelGenerator;
 
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
@@ -62,7 +65,8 @@
                       IList<IEnemy> allEnemies,
                       ILevel level,
                       ImpactManContext context,
-                      AccountManager accountManager)
+                      AccountManager accountManager,
+                      ILevelGenerator levelGenerator)
         {
             //Content
             this.Content.RootDirectory = "Content";
@@ -82,6 +86,9 @@
 
             //InputListener
             this.inputListener = inputListener;
+
+            //LevelGenerator
+            this.levelGenerator = levelGenerator;
 
             this.player = player;
 
@@ -146,7 +153,7 @@
 
             this.errorMessage = string.Empty;
 
-            this.playerDeathHandler = new PlayerDeathHandler(this.context, this.menuInitializer, this.Content);
+            this.playerDeathHandler = new PlayerDeathHandler(this.context, this.menuInitializer, this.Content, this.levelGenerator);
 
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;

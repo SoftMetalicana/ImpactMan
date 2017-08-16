@@ -53,7 +53,8 @@ namespace ImpactMan
                                              generatedLevel.AllEnemies,
                                              generatedLevel, 
                                              context, 
-                                             accountManager))
+                                             accountManager, 
+                                             levelGenerator))
             {
                 game.Run();
             }

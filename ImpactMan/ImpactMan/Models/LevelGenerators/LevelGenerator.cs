@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Models.LevelGenerators
+﻿using ImpactMan.Interfaces.Models.Players;
+
+namespace ImpactMan.Models.LevelGenerators
 {
     using System;
     using System.Collections.Generic;

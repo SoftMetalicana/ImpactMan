@@ -31,6 +31,8 @@ namespace ImpactMan.Models.Menu.MenuCommands
 
             State.GameState = GameState.SignUpMenu;
 
+            this.Engine.ClearCurrentUserDetails();
+
             this.Engine.ChangeErrorMessage(String.Empty);
         }
     }
