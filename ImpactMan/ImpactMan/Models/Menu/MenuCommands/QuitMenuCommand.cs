@@ -12,6 +12,8 @@
 
         public override void Execute(User user)
         {
+            base.Execute(user);
+
             this.Engine.Quit();
         }
     }

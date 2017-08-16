@@ -28,6 +28,8 @@
 
         public override void Execute(User user)
         {
+            base.Execute(user);
+
             string message = String.Empty;
 
             userCanBeRegistered = this.accountManager.Register(user, out message);
@@ -42,7 +44,7 @@
             }
             else
             {
-                this.Engine.ChangeErrorMessage(Messages.UserAlreadyRegisteredMessage);
+                this.Engine.ChangeErrorMessage(message);
             }
         }
     }

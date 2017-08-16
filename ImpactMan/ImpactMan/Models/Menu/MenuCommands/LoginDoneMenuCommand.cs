@@ -1,9 +1,9 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Enumerations.Game;
     using Attributes;
     using Context.Models;
     using Core;
-    using Enumerations.Game;
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
 
@@ -24,9 +24,11 @@
 
         public override void Execute(User user)
         {
-            this.userCanBeLoggedIn = this.accountManager.Login(user);
+            base.Execute(user);
 
-            if (this.userCanBeLoggedIn)
+            userCanBeLoggedIn = this.accountManager.Login(user);
+
+            if (userCanBeLoggedIn)
             {
                 this.menuController.Initialize("MainMenu");
                 this.menuController.Load(this.content);

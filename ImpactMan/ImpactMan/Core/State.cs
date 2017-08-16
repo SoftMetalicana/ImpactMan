@@ -1,6 +1,6 @@
 ﻿namespace ImpactMan.Core
 {
-    using ImpactMan.Enumerations.Game;
+    using Enumerations.Game;
 
     public class State
     {

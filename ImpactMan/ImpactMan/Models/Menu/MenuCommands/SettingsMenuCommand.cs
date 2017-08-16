@@ -23,6 +23,8 @@
 
         public override void Execute(User user)
         {
+            base.Execute(user);
+
             this.menuController.Initialize("SettingsMenu");
             this.menuController.Load(this.content);
 

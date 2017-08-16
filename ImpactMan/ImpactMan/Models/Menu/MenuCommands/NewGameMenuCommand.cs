@@ -19,6 +19,8 @@
 
         public override void Execute(User user)
         {
+            base.Execute(user);
+
             State.GameState = GameState.GameMode;
 
             if (this.soundManager.IsRunning())
