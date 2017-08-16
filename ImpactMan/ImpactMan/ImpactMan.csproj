@@ -110,6 +110,8 @@
     <Compile Include="Models\Enemies\Enemy.cs" />
     <Compile Include="Models\Exceptions\MissingMenuException.cs" />
     <Compile Include="Models\LevelGenerators\LevelGenerator.cs" />
+    <Compile Include="Models\Levels\Events\PlayerAffectedEnemyEventArgs.cs" />
+    <Compile Include="Models\Levels\Events\PlayerAffectedEnemyEventHandler.cs" />
     <Compile Include="Models\Levels\Level.cs" />
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
     <Compile Include="Models\Menu\MenuCommands\BackButtonMenuCommand.cs" />

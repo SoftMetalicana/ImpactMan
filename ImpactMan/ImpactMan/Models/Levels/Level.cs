@@ -1,12 +1,12 @@
 ﻿namespace ImpactMan.Models.Levels
 {
+    using System;
     using System.Collections.Generic;
     using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.Models.Enemies;
     using ImpactMan.Interfaces.Models.Levels;
     using ImpactMan.Interfaces.Models.Players;
     using ImpactMan.Models.Static;
-    using ImpactMan.Utils;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
@@ -16,6 +16,8 @@
     /// </summary>
     public class Level : ILevel
     {
+        public event PlayerAffectedEnemyEventHandler PlayerAffectedEnemy;
+
         /// <summary>
         /// The player which walks over the map.
         /// </summary>
@@ -116,6 +118,11 @@
             this.AllUnitsOnMap[row][col] = consequential;
         }
 
+        protected virtual void OnEnemyAffectedPlayer(PlayerAffectedEnemyEventArgs eventArgs)
+        {
+            this.PlayerAffectedEnemy?.Invoke(this, eventArgs);
+        }
+
         /// <summary>
         /// Adds an object to the place where it belongs in the level.
         /// </summary>
@@ -191,9 +198,17 @@
 
         public IConsequence GetAffectedObjectConsequence(Rectangle helperRectangle)
         {
-            // TODO: check the enemies first
+            foreach (IEnemy enemy in this.AllEnemies)
+            {
+                bool objectIsAffected = enemy.TryToAffect(helperRectangle);
+
+                if (objectIsAffected)
+                {
+                    this.OnEnemyAffectedPlayer(new PlayerAffectedEnemyEventArgs(this.Player));
+                }
+            }
+
             IConsequence affectedObjectConsequence = default(IConsequence);
-            
             foreach (IConsequential[] array in this.allUnitsOnMap)
             {
                 foreach (IConsequential consequentialUnit in array)

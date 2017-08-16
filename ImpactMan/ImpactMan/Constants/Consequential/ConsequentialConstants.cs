@@ -18,10 +18,10 @@
         /// The distance from center for every object that the player can interact with
         /// to activate and get consequences from.
         /// </summary>
-        public const double EnemyDistanceFromCenterToAffect = 69;
-        public const double WallDistanceFromCenterToAffect = 69;
-        public const double FoodDistanceFromCenterToAffect = 25;
-        public const double GroundDistanceFromCenterToAffect = 25;
+        //public const double EnemyDistanceFromCenterToAffect = 69;
+        //public const double WallDistanceFromCenterToAffect = 69;
+        //public const double FoodDistanceFromCenterToAffect = 25;
+        //public const double GroundDistanceFromCenterToAffect = 25;
 
         /// <summary>
         /// Flags that tell the player if he can move or not

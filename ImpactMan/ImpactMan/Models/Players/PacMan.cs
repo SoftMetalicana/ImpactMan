@@ -1,8 +1,6 @@
 ﻿namespace ImpactMan.Models.Players
 {
-    using System;
     using ImpactMan.Attributes;
-    using ImpactMan.Constants.Positionable;
     using ImpactMan.Constants.Units;
     using ImpactMan.Constants.Utils;
     using ImpactMan.Interfaces.IO.InputListeners;
@@ -54,6 +52,8 @@
             int helperY = 0;
             int helperWidth = 0;
             int helperHeigth = 0;
+
+            int test = this.Points;
 
             Rectangle desiredRectangle = this.Rectangle;
             // done
