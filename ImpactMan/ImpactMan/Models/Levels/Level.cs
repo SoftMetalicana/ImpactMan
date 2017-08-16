@@ -1,6 +1,5 @@
 ﻿namespace ImpactMan.Models.Levels
 {
-    using System;
     using System.Collections.Generic;
     using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.Models.Enemies;
@@ -118,6 +117,10 @@
             this.AllUnitsOnMap[row][col] = consequential;
         }
 
+        /// <summary>
+        /// Raises an event...
+        /// </summary>
+        /// <param name="eventArgs"></param>
         protected virtual void OnEnemyAffectedPlayer(PlayerAffectedEnemyEventArgs eventArgs)
         {
             this.PlayerAffectedEnemy?.Invoke(this, eventArgs);
