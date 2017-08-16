@@ -1,7 +1,7 @@
 ﻿namespace ImpactMan.Interfaces.Models.Menu
 {
-    using Globals;
     using System.Collections.Generic;
+    using Globals;
 
     public interface IMenuHolder : IGameControlUnit
     {

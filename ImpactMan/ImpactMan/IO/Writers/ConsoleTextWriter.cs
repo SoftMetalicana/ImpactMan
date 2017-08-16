@@ -1,20 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using ImpactMan.Constants.Units;
-using ImpactMan.Context;
-using ImpactMan.Context.Models;
-using ImpactMan.Core;
-using ImpactMan.Enumerations.Game;
-
-namespace ImpactMan.IO.Writers
+﻿namespace ImpactMan.IO.Writers
 {
+    using ImpactMan.Context;
+    using ImpactMan.Context.Models;
+    using ImpactMan.Core;
     using Interfaces.Writer;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using Constants.Graphics;
 
-    class ConsoleTextWriter : ITextWriter
+    public class ConsoleTextWriter : ITextWriter
     {
         private SpriteFont spriteFont;
         private SpriteBatch spriteBatch;
@@ -32,14 +29,15 @@ namespace ImpactMan.IO.Writers
 
         public void WriteUserDetails(User user, string errorMessage)
         {
-            int userNameX = GetEnumValue(nameof(userNameX));
-            int userNameY = GetEnumValue(nameof(userNameY));
+            int userNameX = this.GetEnumValue(nameof(userNameX));
+            int userNameY = this.GetEnumValue(nameof(userNameY));
 
-            int passwordX = GetEnumValue(nameof(passwordX));
-            int passwordY = GetEnumValue(nameof(passwordY));
+            int passwordX = this.GetEnumValue(nameof(passwordX));
+            int passwordY = this.GetEnumValue(nameof(passwordY));
 
-            int errorMessageX = GetEnumValue(nameof(errorMessageX));
-            int errorMessageY = GetEnumValue(nameof(errorMessageY));
+            int errorMessageX = (GraphicsConstants.PreferredBufferWidth - errorMessage.Length * 12) /
+                                2;
+            int errorMessageY = this.GetEnumValue(nameof(errorMessageY));
 
             this.Write(user.Name,
                 new Vector2(userNameX,

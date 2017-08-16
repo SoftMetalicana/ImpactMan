@@ -1,12 +1,11 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
-    using Enumerations.Game;
     using Attributes;
     using Context.Models;
     using Core;
+    using Enumerations.Game;
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
-    using System;
 
     public class HighScoresMenuBackButtonMenuCommand : MenuCommand
     {
@@ -21,14 +20,13 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
+            base.Execute(user);
+
             this.menuController.Initialize("MainMenu");
             this.menuController.Load(this.content);
-        }
 
-        public override void ChangeGamestate(User user)
-        {
             State.GameState = GameState.MainMenu;
         }
     }

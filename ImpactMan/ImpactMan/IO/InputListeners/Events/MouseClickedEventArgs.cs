@@ -1,9 +1,9 @@
 ﻿namespace ImpactMan.IO.InputListeners.Events
 {
+    using System;
     using Context.Models;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using System;
 
     /// <summary>
     /// Holds basic info about the current state of the mouse.

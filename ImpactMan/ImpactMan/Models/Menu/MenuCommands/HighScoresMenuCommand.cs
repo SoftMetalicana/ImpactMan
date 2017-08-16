@@ -20,14 +20,13 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
+            base.Execute(user);
+
             menuController.Initialize("HighScoresMenu");
             menuController.Load(this.content);
-        }
 
-        public override void ChangeGamestate(User user)
-        {
             State.GameState = GameState.HighScoresMenu;
         }
     }

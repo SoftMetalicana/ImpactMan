@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using ImpactMan.Context.Models;
-
-namespace ImpactMan.Context.Db
+﻿namespace ImpactMan.Context.Db
 {
     using System.Data.Entity;
+    using ImpactMan.Context.Models;
 
     /// <summary>
     /// 
@@ -32,7 +30,5 @@ namespace ImpactMan.Context.Db
                 this.users = value;
             }
         }
-        
     }
-   
 }

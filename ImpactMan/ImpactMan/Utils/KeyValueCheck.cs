@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Input;
-
-namespace ImpactMan.Utils
+﻿namespace ImpactMan.Utils
 {
+    using Microsoft.Xna.Framework.Input;
+
     public static class KeyValueCheck
     {
         public static bool IsKeyLetter(Keys key)
@@ -16,7 +11,7 @@ namespace ImpactMan.Utils
 
         public static bool IsKeyDigit(Keys key)
         {
-            return key >= Keys.D0 && key <= Keys.D9 || key >= Keys.NumPad0 && key <= Keys.NumPad9;
+            return (key >= Keys.D0 && key <= Keys.D9) || (key >= Keys.NumPad0 && key <= Keys.NumPad9);
         }
     }
 }

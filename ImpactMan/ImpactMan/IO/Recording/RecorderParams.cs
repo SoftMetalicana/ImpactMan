@@ -1,35 +1,35 @@
-﻿using SharpAvi;
-using SharpAvi.Codecs;
-using SharpAvi.Output;
-
 namespace ImpactMan.IO.Recording
 {
+    using SharpAvi;
+    using SharpAvi.Codecs;
+    using SharpAvi.Output;
+
     public class RecorderParams
     {
-        public RecorderParams(string filename, int FrameRate, FourCC Encoder, int Quality)
+        private readonly int framesPerSecond, quality;
+        private readonly string fileName;
+        private readonly FourCC codec;
+
+        public RecorderParams(string filename, int frameRate, FourCC encoder, int quality)
         {
-            FileName = filename;
-            FramesPerSecond = FrameRate;
-            Codec = Encoder;
-            this.Quality = Quality;
+            this.fileName = filename;
+            this.framesPerSecond = frameRate;
+            this.codec = encoder;
+            this.quality = quality;
 
-            Height = Constants.Graphics.GraphicsConstants.PreferredBufferHeight;
-            Width = Constants.Graphics.GraphicsConstants.PreferredBufferWidth;
-
+            this.Height = Constants.Graphics.GraphicsConstants.PreferredBufferHeight;
+            this.Width = Constants.Graphics.GraphicsConstants.PreferredBufferWidth;
         }
 
-        string FileName;
-        public int FramesPerSecond, Quality;
-        FourCC Codec;
-
         public int Height { get; private set; }
+
         public int Width { get; private set; }
 
         public AviWriter CreateAviWriter()
         {
-            return new AviWriter(FileName)
+            return new AviWriter(this.fileName)
             {
-                FramesPerSecond = FramesPerSecond,
+                FramesPerSecond = this.framesPerSecond,
                 EmitIndex1 = true,
             };
         }
@@ -37,23 +37,21 @@ namespace ImpactMan.IO.Recording
         public IAviVideoStream CreateVideoStream(AviWriter writer)
         {
             // Select encoder type based on FOURCC of codec
-
-            if (Codec == KnownFourCCs.Codecs.Uncompressed)
-                return writer.AddUncompressedVideoStream(Width, Height);
-            else if (Codec == KnownFourCCs.Codecs.MotionJpeg)
-                return writer.AddMotionJpegVideoStream(Width, Height, Quality);
+            if (this.codec == KnownFourCCs.Codecs.Uncompressed)
+                return writer.AddUncompressedVideoStream(this.Width, this.Height);
+            else if (this.codec == KnownFourCCs.Codecs.MotionJpeg)
+                return writer.AddMotionJpegVideoStream(this.Width, this.Height, this.quality);
             else
             {
-                return writer.AddMpeg4VideoStream(Width, Height, (double)writer.FramesPerSecond,
+                return writer.AddMpeg4VideoStream(this.Width, this.Height, (double)writer.FramesPerSecond,
                     // It seems that all tested MPEG-4 VfW codecs ignore the quality affecting parameters passed through VfW API
                     // They only respect the settings from their own configuration dialogs, and Mpeg4VideoEncoder currently has no support for this
-                    quality: Quality,
-                    codec: Codec,
+                    quality: this.quality,
+                    codec: this.codec,
                     // Most of VfW codecs expect single-threaded use, so we wrap this encoder to special wrapper
                     // Thus all calls to the encoder (including its instantiation) will be invoked on a single thread although encoding (and writing) is performed asynchronously
                     forceSingleThreadedAccess: true);
             }
         }
     }
-
 }

@@ -1,22 +1,17 @@
 ﻿namespace ImpactMan.Models.Players
 {
     using Interfaces.IO.InputListeners;
-    using IO.InputListeners.Events;
     using Interfaces.Models.Players;
-    using Units;
+    using IO.InputListeners.Events;
     using Models.Players.Events;
+    using Units;
 
     /// <summary>
     /// Usually there is only one player in the game.
     /// Holds logic for the visualising, updating, drawing.
     /// </summary>
     public abstract class Player : GameplayUnit, IPlayer
-    {
-        /// <summary>
-        /// An event that notifice the ones that subscribed.
-        /// </summary>
-        public event PlayerTriedToMoveEventHandler PlayerTriedToMove;
-        
+    {       
         /// <summary>
         /// The players points that are gonna be used in the DB record.
         /// </summary>
@@ -35,6 +30,11 @@
         }
 
         /// <summary>
+        /// An event that notifice the ones that subscribed.
+        /// </summary>
+        public event PlayerTriedToMoveEventHandler PlayerTriedToMove;
+
+        /// <summary>
         /// The players points that are gonna be used in the DB record.
         /// </summary>
         public int Points
@@ -51,6 +51,13 @@
         }
 
         /// <summary>
+        /// This method is subrscribed to the KeyPressed event and it redirects to the Update method.
+        /// </summary>
+        /// <param name="sender">The input listener itself.</param>
+        /// <param name="eventArgs">Holds basic info of the keyboard state at the moment the event was raised.</param>
+        public abstract void OnKeyPressed(IInputListener sender, KeyPressedEventArgs eventArgs);
+
+        /// <summary>
         /// This is an event trigger. Every time the player tries to move
         /// the subscibers will be notified.
         /// </summary>
@@ -59,12 +66,5 @@
         {
             this.PlayerTriedToMove?.Invoke(this, eventArgs);
         }
-
-        /// <summary>
-        /// This method is subrscribed to the KeyPressed event and it redirects to the Update method.
-        /// </summary>
-        /// <param name="sender">The input listener itself.</param>
-        /// <param name="eventArgs">Holds basic info of the keyboard state at the moment the event was raised.</param>
-        public abstract void OnKeyPressed(IInputListener sender, KeyPressedEventArgs eventArgs);
     }
 }

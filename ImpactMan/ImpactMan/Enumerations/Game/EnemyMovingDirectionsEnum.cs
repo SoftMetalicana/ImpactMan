@@ -2,6 +2,7 @@
 {
     public enum EnemyMovingDirections
     {
+        Default,    
         Left,
         Right,
         Down,

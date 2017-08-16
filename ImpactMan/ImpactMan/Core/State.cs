@@ -1,7 +1,7 @@
-﻿using ImpactMan.Enumerations.Game;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
+    using Enumerations.Game;
+
     public class State
     {
         private static GameState gameState;
