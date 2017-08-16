@@ -24,45 +24,35 @@
             protected set { engine = value; }
         }
 
-        public virtual void Execute(User user)
-        {
-            this.InitializeMenu(user);
+        public abstract void Execute(User user);
+
+        /*            this.InitializeMenu(user);
             this.ChangeGamestate(user);
             this.ChangeErrorMessage(user);
             this.ClearCurrentUserDetails();
             this.ChangeUserInputState(user);
             this.PlayMusic();
-            this.End(user);
-        }
+            this.End(user);*/
 
-        public abstract void InitializeMenu(User user);
-
-        public abstract void ChangeGamestate(User user);
-
-        public virtual void ChangeErrorMessage(User user)
-        {
-            
-        }
-
-        public virtual void ClearCurrentUserDetails()
-        {
-            this.Engine.ClearCurrentUserDetails();
-        }
-
-        public virtual void ChangeUserInputState(User user)
-        {
-            State.UserInputState = UserInputState.NameInput;
-        }
-
-        public virtual void PlayMusic()
-        {
-            
-        }
-
-        public virtual void End(User user)
-        {
-            
-        }
+        /*       public abstract void InitializeMenu(User user);
+               public abstract void ChangeGamestate(User user);
+               public virtual void ChangeErrorMessage(User user)
+               {
+               }
+               public virtual void ClearCurrentUserDetails()
+               {
+                   this.Engine.ClearCurrentUserDetails();
+               }
+               public virtual void ChangeUserInputState(User user)
+               {
+                   State.UserInputState = UserInputState.NameInput;
+               }
+               public virtual void PlayMusic()
+               {
+               }
+               public virtual void End(User user)
+               {
+               }*/
 
     }
 }

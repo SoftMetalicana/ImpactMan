@@ -1,14 +1,14 @@
 ﻿namespace ImpactMan.Models.Menu
 {
     using Context.Models;
-    using Units;
+    using Interfaces.Models.Menu;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using System.Linq;
-    using Interfaces.Models.Menu;
     using System.Collections.Generic;
+    using System.Linq;
+    using Units;
 
     /// <summary>
     /// This is the object that hold the menu buttons. In most cases it would be the background in menu mode.

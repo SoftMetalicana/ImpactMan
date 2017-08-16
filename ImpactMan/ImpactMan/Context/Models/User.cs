@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ImpactMan.Interfaces.Models.User;
-
-namespace ImpactMan.Context.Models
+﻿namespace ImpactMan.Context.Models
 {
+    using ImpactMan.Interfaces.Models.User;
+
     public class User : IUser
     {
         public int Id { get; set; }

@@ -1,14 +1,13 @@
 ﻿namespace ImpactMan.Core.Factories
 {
-    using System;
-    using System.Linq;
-    using System.Reflection;
     using Attributes;
     using Interfaces.Core;
-    using Context.Models;
     using Interfaces.Models.Menu;
     using Microsoft.Xna.Framework.Content;
     using Models.Menu.MenuCommands;
+    using System;
+    using System.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// This factory is used when menus are instantiated by MenuController class. Each menuItem keeps an IMenuCommand as a field 
@@ -40,9 +39,9 @@
         public IMenuCommand GetInstance(string menuItem, MenuInitializer menuController)
         {
             Type type = Type.GetType("ImpactMan.Models.Menu.MenuCommands." + menuItem + "MenuCommand");
-            IMenuCommand command = (MenuCommand) Activator.CreateInstance(type, this.engine);
+            IMenuCommand command = (MenuCommand)Activator.CreateInstance(type, this.engine);
 
-            command = InjectDependencies(command);
+            command = this.InjectDependencies(command);
 
             return command;
         }
@@ -71,7 +70,6 @@
                         commandFieldInfo.SetValue(command, value);
                     }
                 }
-
             }
 
             return command;

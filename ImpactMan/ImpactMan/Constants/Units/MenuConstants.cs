@@ -1,9 +1,7 @@
-﻿using ImpactMan.Constants.Graphics;
-
-
-namespace ImpactMan.Constants.Units
+﻿namespace ImpactMan.Constants.Units
 {
     using System.Collections.Generic;
+    using ImpactMan.Constants.Graphics;
 
     public static class MenuConstants
     {
@@ -12,9 +10,9 @@ namespace ImpactMan.Constants.Units
         /// It is very important that these labels are exactly the same as the names of the images in the content pipeline 
         /// as they are used as asset names when the menus are uploaded.
         /// </summary>
-        public static readonly Dictionary<string, List<string>> menuItemLabels = new Dictionary<string, List<string>>()
+        public static readonly Dictionary<string, List<string>> MenuItemLabels = new Dictionary<string, List<string>>()
         {
-            {"MainMenu", new List<string>()
+            { "MainMenu", new List<string>()
             {
                 "NewGame",
                 "HighScores",
@@ -22,79 +20,92 @@ namespace ImpactMan.Constants.Units
                 "Quit"
             } },
 
-            {"NewGameMenu", new List<string>()
+            { "NewGameMenu", new List<string>()
             {
                 "NewGame",
                 "ResumeGame",
                 "Quit"
             } },
 
-            {"LoginMenu", new List<string>()
+            { "LoginMenu", new List<string>()
             {
                 "LoginDone",
                 "RegisterMenuButton"
             } },
 
-            {"RegisterMenu", new List<string>()
+            { "RegisterMenu", new List<string>()
             {
                 "RegisterDone",
                 "RegisterBackButton"
             } },
-            {
-                "HighScoresMenu", new List<string>()
+
+            { "HighScoresMenu", new List<string>()
                 {
-                    "HighScoresMenuBackButton"
+                    "BackButton"
+                }
+            },
+
+            { "SettingsMenu", new List<string>()
+            {
+                "ChangePassword",
+                "Music",
+                "ResetHighScore",
+                "BackButton"
+            } },
+
+            { "ChangePassword", new List<string>()
+                {
+                    "BackButton"
                 }
             }
         };
 
-
-
-        //<summary>
-        // All menu constants
-        //</summary>
-
-
-        //Main menu params
-        public static readonly int MainMenuWidth = GraphicsConstants.PreferredBufferWidth;       
+        /// <summary>
+        /// Main menu params
+        /// </summary>
+        public static readonly int MainMenuWidth = GraphicsConstants.PreferredBufferWidth;
         public static readonly int MainMenuHeight = GraphicsConstants.PreferredBufferHeight - 50;
-      
+
         public static readonly int MainMenuItemWidth = (int)(MainMenuWidth / 3.25);
         public static readonly int MainMenuItemHeight = MainMenuHeight / 14;
+
+        public static readonly int MainMenuPaddingTop = MainMenuItemHeight / 7;
+        public static readonly int MainMenuPaddingLeft = (int)(MainMenuWidth / 2.888888888888889);
         
-        public static readonly int MainMenuPaddingTop = MainMenuItemHeight * 4;
-        public static readonly int MainMenuPaddingLeft = (int)(MainMenuWidth/ 2.888888888888889);
-
-
-        //Login menu params
+        /// <summary>
+        /// Login menu params
+        /// </summary>
         public static readonly int LoginMenuWidth = MainMenuWidth;
         public static readonly int LoginMenuHeight = MainMenuHeight;
-        
-        public static readonly int LoginMenuItemWidth = LoginMenuWidth/13;
-        public static readonly int LoginMenuItemHeight = (int)(LoginMenuHeight/23.33);
-        
-        public static readonly int LoginMenuPaddingTop = (int)(LoginMenuHeight/2.7);
-        public static readonly int LoginMenuPaddingLeft =(int)(LoginMenuWidth/2.2);
 
+        public static readonly int LoginMenuItemWidth = LoginMenuWidth / 13;
+        public static readonly int LoginMenuItemHeight = (int)(LoginMenuHeight / 23.33);
 
-        //Register menu params
+        public static readonly int LoginMenuPaddingTop = (int)(LoginMenuHeight / 2.7);
+        public static readonly int LoginMenuPaddingLeft = (int)(LoginMenuWidth / 2.2);
+
+        /// <summary>
+        /// Register menu params
+        /// </summary>
         public static readonly int RegisterMenuWidth = MainMenuWidth;
         public static readonly int RegisterMenuHeight = MainMenuHeight;
 
         public static readonly int RegisterMenuItemWidth = LoginMenuItemWidth;
         public static readonly int RegisterMenuItemHeight = LoginMenuItemHeight;
-        
-        public static readonly int RegisterMenuPaddingTop =(int)(RegisterMenuHeight/2.3);
-        public static readonly int RegisterMenuPaddingLeft = (int)(RegisterMenuWidth/2.2);
 
-        //High score menu params
+        public static readonly int RegisterMenuPaddingTop = (int)(RegisterMenuHeight / 2.3);
+        public static readonly int RegisterMenuPaddingLeft = (int)(RegisterMenuWidth / 2.2);
+        
+        /// <summary>
+        /// High score menu params
+        /// </summary>
         public static readonly int HighScoresMenuWidth = MainMenuWidth;
         public static readonly int HighScoresMenuHeight = MainMenuHeight;
-     
+
         public static readonly int HighScoresMenuItemWidth = HighScoresMenuWidth / 13;
         public static readonly int HighScoresMenuItemHeight = (int)(HighScoresMenuHeight / 23.33);
 
-        public static readonly int HighScoresMenuPaddingTop = (int)(HighScoresMenuHeight-10);
+        public static readonly int HighScoresMenuPaddingTop = (int)(HighScoresMenuHeight - 10);
         public static readonly int HighScoresMenuPaddingLeft = (int)(HighScoresMenuHeight / 23.33);
 
         /// <summary>
@@ -102,7 +113,6 @@ namespace ImpactMan.Constants.Units
         /// </summary>
         private static readonly double TextPositionAlignmentWidth = (GraphicsConstants.PreferredBufferWidth / 1920.0);
         private static readonly double TextPositionAlignmentHeight = (GraphicsConstants.PreferredBufferHeight / 1080.0);
-
 
         /// <summary>
         /// Login menu text postition constants
@@ -127,6 +137,30 @@ namespace ImpactMan.Constants.Units
 
         public static readonly int SignupMenuErrorMessageX = (int)(820 * TextPositionAlignmentWidth);
         public static readonly int SignupMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
+
+        /// <summary>
+        /// Settings menu params
+        /// </summary>
+        public static readonly int SettingsMenuWidth = MainMenuWidth;
+        public static readonly int SettingsMenuHeight = MainMenuHeight;
+
+        public static readonly int SettingsMenuItemWidth = MainMenuItemWidth;
+        public static readonly int SettingsMenuItemHeight = MainMenuItemHeight;
+
+        public static readonly int SettingsMenuPaddingTop = MainMenuPaddingTop;
+        public static readonly int SettingsMenuPaddingLeft = MainMenuPaddingLeft;
+
+        /// <summary>
+        /// Change Password Menu
+        /// </summary>
+        public static readonly int ChangePasswordMenuWidth = MainMenuWidth;
+        public static readonly int ChangePasswordMenuHeight = MainMenuHeight;
+
+        public static readonly int ChangePasswordMenuItemWidth = LoginMenuItemWidth;
+        public static readonly int ChangePasswordMenuItemHeight = LoginMenuItemHeight;
+
+        public static readonly int ChangePasswordMenuPaddingTop = RegisterMenuPaddingTop;
+        public static readonly int ChangePasswordMenuPaddingLeft = RegisterMenuPaddingLeft;
 
         /// <summary>
         /// HighScores menu text postition constants

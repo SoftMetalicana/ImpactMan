@@ -1,17 +1,14 @@
-﻿using ImpactMan.Utils;
-
-namespace ImpactMan.Models.Enemies
+﻿namespace ImpactMan.Models.Enemies
 {
-    using Constants.Utils;
-    using Enumerations.Game;
-    using Attributes;
+    using System.Collections.Generic;
     using Consequences;
     using Constants.Consequential;
-    using Constants.Units;
+    using Enumerations.Game;
+    using ImpactMan.Attributes;
+    using ImpactMan.Constants.Units;
     using Interfaces.Models.Enemies;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using System;
 
     /// <summary>
     /// Concrete implementation of the enemy.
@@ -51,7 +48,7 @@ namespace ImpactMan.Models.Enemies
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
         /// <param name="bonusPoints">he bonus points that you want to give to the player.</param>
         public Enemy(int x, int y, string assetName, int bonusPoints)
-            : base(x, y, assetName, bonusPoints)
+            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyDistanceFromCenterToActivate)
         {
             this.currentDirection = EnemyMovingDirections.Down;
         }

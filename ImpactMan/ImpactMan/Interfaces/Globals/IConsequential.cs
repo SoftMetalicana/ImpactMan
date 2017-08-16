@@ -6,6 +6,8 @@
     /// </summary>
     public interface IConsequential : IGameplayUnit
     {
+        double DistanceFromCenterToActivate { get; }
+
         /// <summary>
         /// This method always gives info about a consequence.
         /// </summary>

@@ -1,10 +1,10 @@
 ﻿namespace ImpactMan.Models.Menu
 {
     using Context.Models;
-    using Units;
+    using Interfaces.Models.Menu;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using Interfaces.Models.Menu;
+    using Units;
 
     /// <summary>
     /// These are the menu buttons. They perfom checks whether the mouse has clicked on them 
@@ -44,7 +44,7 @@
         /// <param name="user">The current user</param>
         public override void Update(GameTime gameTime, MouseState mouseState, User user)
         {
-            if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released
+            if (mouseState.LeftButton == ButtonState.Pressed && this.oldMouseState.LeftButton == ButtonState.Released
                 && this.Rectangle.Contains(mouseState.Position))
             {
                 this.MenuCommand.Execute(user);

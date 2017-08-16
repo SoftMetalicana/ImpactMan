@@ -1,4 +1,5 @@
-﻿namespace ImpactMan.Models.Menu.MenuCommands
+﻿
+namespace ImpactMan.Models.Menu.MenuCommands
 {
     using Enumerations.Game;
     using System;
@@ -16,24 +17,18 @@
         [InjectAttribute]
         private ContentManager content;
 
-        public RegisterMenuButtonMenuCommand(IEngine engine) 
+        public RegisterMenuButtonMenuCommand(IEngine engine)
             : base(engine)
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
             this.menuController.Initialize("RegisterMenu");
             this.menuController.Load(this.content);
-        }
 
-        public override void ChangeGamestate(User user)
-        {
             State.GameState = GameState.SignUpMenu;
-        }
 
-        public override void ChangeErrorMessage(User user)
-        {
             this.Engine.ChangeErrorMessage(String.Empty);
         }
     }
