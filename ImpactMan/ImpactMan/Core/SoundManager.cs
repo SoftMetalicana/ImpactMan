@@ -24,5 +24,16 @@
 
             MediaPlayer.IsRepeating = true;
         }
+
+        public bool IsRunning()
+        {
+            MediaState playerState = MediaPlayer.State;
+            return playerState.ToString() == "Playing";
+        }
+
+        public void StopMusic()
+        {
+            MediaPlayer.Stop();
+        }
     }
 }

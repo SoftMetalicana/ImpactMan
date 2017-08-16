@@ -12,25 +12,28 @@
         [Inject]
         private SoundManager soundManager;
 
-        public NewGameMenuCommand(IEngine engine) 
+        public NewGameMenuCommand(IEngine engine)
             : base(engine)
         {
         }
 
         public override void InitializeMenu(User user)
         {
-            
+
         }
 
         public override void ChangeGamestate(User user)
         {
-            
+
             State.GameState = GameState.GameMode;
         }
 
         public override void PlayMusic()
         {
-            this.soundManager.PlayMusic(Music.GameMusic);
+            if (this.soundManager.IsRunning())
+            {
+                this.soundManager.PlayMusic(Music.GameMusic);
+            }
         }
 
         public override void End(User user)
