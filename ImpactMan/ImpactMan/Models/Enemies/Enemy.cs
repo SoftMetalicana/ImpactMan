@@ -21,7 +21,6 @@ namespace ImpactMan.Models.Enemies
     public class Enemy : Consequential, IEnemy
     {
         private EnemyMovingDirections currentDirection;
-        private Random rnd;
 
         /// <summary>
         /// Instantiates the enemy.
@@ -54,7 +53,6 @@ namespace ImpactMan.Models.Enemies
         public Enemy(int x, int y, string assetName, int bonusPoints)
             : base(x, y, assetName, bonusPoints)
         {
-            this.rnd = new Random();
             this.currentDirection = EnemyMovingDirections.Down;
         }
 
@@ -65,22 +63,22 @@ namespace ImpactMan.Models.Enemies
         /// <param name="keyboardState">Can be taken from the engine.</param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            bool directionShouldChange = true;
+            //bool directionShouldChange = true;
 
-            if (directionShouldChange)
-            {
-                currentDirection = (EnemyMovingDirections) (rnd.Next() % 3);
-            }
+            //if (directionShouldChange)
+            //{
+            //    currentDirection = (EnemyMovingDirections) (rnd.Next() % 3);
+            //}
 
-            int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
+            //int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
 
-            Vector2 displacement = MovementConstants.directions[currentDirection];
-            Rectangle rect = this.Rectangle;
+            //Vector2 displacement = MovementConstants.directions[currentDirection];
+            //Rectangle rect = this.Rectangle;
 
-            this.Rectangle = new Rectangle(
-                (int) (rect.X + displacement.X * calculatedDistance), 
-                (int) (rect.Y + displacement.Y * calculatedDistance), rect.Width,
-                rect.Height);
+            //this.Rectangle = new Rectangle(
+            //    (int) (rect.X + displacement.X * calculatedDistance), 
+            //    (int) (rect.Y + displacement.Y * calculatedDistance), rect.Width,
+            //    rect.Height);
         }
     }
 }
