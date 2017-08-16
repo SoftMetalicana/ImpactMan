@@ -34,10 +34,10 @@
 
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {
-            IConsequence someShit = this.Level.GetAffectedObjectConsequence(eventArgs.DesiredPosition);
+            IConsequence someShit = this.Level.GetAffectedObjectConsequence(eventArgs.HelperRectangle);
             sender.Points += someShit?.BonusPoints ?? 0;
 
-            if (someShit == null || someShit.PlayerCanMove)
+            if (someShit != null && someShit.PlayerCanMove)
             {
                 sender.Rectangle = eventArgs.DesiredPosition;
             }

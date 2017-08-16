@@ -189,33 +189,31 @@
             }
         }
 
-        public IConsequence GetAffectedObjectConsequence(Rectangle rectangle)
+        public IConsequence GetAffectedObjectConsequence(Rectangle helperRectangle)
         {
             // TODO: check the enemies first
             IConsequence affectedObjectConsequence = default(IConsequence);
-
+            
             foreach (IConsequential[] array in this.allUnitsOnMap)
             {
                 foreach (IConsequential consequentialUnit in array)
                 {
-                    double calculatedDistance = Movement.CalculateDistanceBetweenObjectCenters(rectangle, consequentialUnit);
+                    bool objectIsAffected = consequentialUnit.TryToAffect(helperRectangle);
 
-                    if (this.ObjectIsAffected(calculatedDistance, consequentialUnit.DistanceFromCenterToAffect))
+                    if (objectIsAffected)
                     {
                         affectedObjectConsequence = consequentialUnit.GiveConsequence();
 
-                        goto ReturnFoundConsequence;
+                        if (!affectedObjectConsequence.PlayerCanMove)
+                        {
+                            goto ReturnResult;
+                        }
                     }
                 }
             }
-
-            ReturnFoundConsequence:
+            
+            ReturnResult:
             return affectedObjectConsequence;
-        }
-
-        private bool ObjectIsAffected(double calculatedDistance, double neededDistanceToAffect)
-        {
-            return calculatedDistance <= neededDistanceToAffect;
         }
     }
 }

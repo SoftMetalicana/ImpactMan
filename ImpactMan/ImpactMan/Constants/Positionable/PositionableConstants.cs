@@ -2,6 +2,6 @@
 {
     public static class PositionableConstants
     {
-        public const double ObjectCenterOffset = 35;
+        public const int ObjectCenterOffset = 35;
     }
 }

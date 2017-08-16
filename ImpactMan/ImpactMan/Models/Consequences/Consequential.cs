@@ -88,5 +88,10 @@
         {
             return new Consequence(this.BonusPoints, this.PlayerCanMove);
         }
+
+        public virtual bool TryToAffect(Rectangle invaderRectangle)
+        {
+            return this.Rectangle.Intersects(invaderRectangle);
+        }
     }
 }
