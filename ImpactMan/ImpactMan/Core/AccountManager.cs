@@ -18,15 +18,6 @@ namespace ImpactMan.Core
         public AccountManager(ImpactManContext context)
         {
             this.context = context;
-
-/*            if (context.Users.Local.Count == 0)
-            {
-                context.Users.Local.Add(new User()
-                {
-                    Name = "MARIAN",
-                    Password = "123"
-                });
-            }*/
         }
 
         public bool Login(User user)

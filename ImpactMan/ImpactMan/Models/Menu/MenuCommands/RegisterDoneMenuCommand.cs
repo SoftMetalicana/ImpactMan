@@ -25,7 +25,7 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
             userCanBeRegistered = this.accountManager.Register(user);
 
@@ -33,20 +33,10 @@
             {
                 this.menuController.Initialize("LoginMenu");
                 this.menuController.Load(this.content);
-            }
-        }
 
-        public override void ChangeGamestate(User user)
-        {
-            if (userCanBeRegistered)
-            {
                 State.GameState = GameState.LoginMenu;
             }
-        }
-
-        public override void ChangeErrorMessage(User user)
-        {
-            if (!userCanBeRegistered)
+            else
             {
                 this.Engine.ChangeErrorMessage("User already registered");
             }
