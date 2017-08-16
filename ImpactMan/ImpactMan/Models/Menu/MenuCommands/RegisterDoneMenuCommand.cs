@@ -42,7 +42,7 @@
             }
             else
             {
-                this.Engine.ChangeErrorMessage(Messages.UserAlreadyRegisteredMessage);
+                this.Engine.ChangeErrorMessage(message);
             }
         }
     }

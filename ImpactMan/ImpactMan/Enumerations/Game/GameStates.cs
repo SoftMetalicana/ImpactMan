@@ -7,7 +7,8 @@
         SignUpMenu,
         HighScoresMenu,
         GameMode,
-        SettingsMenu
+        SettingsMenu,
+        ChangePasswordMenu
     }
 
     public enum UserInputState

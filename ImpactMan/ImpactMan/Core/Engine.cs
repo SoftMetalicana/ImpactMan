@@ -226,7 +226,7 @@
                 this.inputListener.GetMouseState(currentMouseState, gameTime, this.userInputDetails);
             }
 
-            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu || State.GameState == GameState.ChangePasswordMenu)
             {
                 this.GetPressedKeys();
             }
@@ -262,7 +262,7 @@
             }
 
             //Draw input text on console
-            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu || State.GameState == GameState.ChangePasswordMenu)
             {
                 this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
             }

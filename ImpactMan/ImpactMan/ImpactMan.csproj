@@ -107,6 +107,7 @@
     <Compile Include="Models\Levels\Level.cs" />
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
     <Compile Include="Models\Menu\MenuCommands\BackButtonMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\ChangePasswordDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\ChangePasswordMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
     <Compile Include="Models\Placements\RectanglePlacement.cs" />
+    <Compile Include="Models\Players\ChangePasswordModel.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventArgs.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventHandler.cs" />
     <Compile Include="Models\Players\PacMan.cs" />

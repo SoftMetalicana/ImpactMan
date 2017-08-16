@@ -1,12 +1,11 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
-    using Enumerations.Game;
     using Attributes;
     using Context.Models;
     using Core;
+    using Enumerations.Game;
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
-    using System;
 
     public class HighScoresMenuBackButtonMenuCommand : MenuCommand
     {
