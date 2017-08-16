@@ -164,6 +164,7 @@
 
             //Sets initial game state to LoginMenu state
             this.initializer.SetGameStates();
+            this.initializer.PassContentManagerToAllObjectsInLevel(this.level, this.Content);
 
             //Sets window title
             this.SetWindowTitle();
