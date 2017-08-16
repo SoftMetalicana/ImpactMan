@@ -57,6 +57,7 @@
     <Compile Include="Context\Models\User.cs" />
     <Compile Include="Core\AccountManager.cs" />
     <Compile Include="Core\CurrentUser.cs" />
+    <Compile Include="Core\DataLoader.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\State.cs" />
@@ -66,8 +67,12 @@
     <Compile Include="Enumerations\Game\EnemyMovingDirectionsEnum.cs" />
     <Compile Include="Enumerations\Game\GameStates.cs" />
     <Compile Include="Enumerations\Sounds\Sound.cs" />
+    <Compile Include="Interfaces\Core\IAccountManager.cs" />
+    <Compile Include="Interfaces\Core\IDataLoader.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
+    <Compile Include="Interfaces\Core\IMenuInitializer.cs" />
+    <Compile Include="Interfaces\Core\ISoundManager.cs" />
     <Compile Include="Interfaces\Globals\IAsset.cs" />
     <Compile Include="Interfaces\Globals\IConsequence.cs" />
     <Compile Include="Interfaces\Globals\IConsequential.cs" />
@@ -159,7 +164,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram1.cd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Files\Levels\level.csv" />
     <None Include="packages.config" />
   </ItemGroup>
