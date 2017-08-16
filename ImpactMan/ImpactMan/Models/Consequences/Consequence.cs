@@ -15,15 +15,30 @@
         /// </summary>
         private int bonusPoints;
         private bool playerCanMove;
+        private IConsequential sender;
 
         /// <summary>
         /// Instantiates the object.
         /// </summary>
         /// <param name="bonusPoints">The bonus points you want to give to the player.</param>
-        public Consequence(int bonusPoints, bool playerCanMove)
+        public Consequence(int bonusPoints, bool playerCanMove, IConsequential sender)
         {
             this.BonusPoints = bonusPoints;
             this.PlayerCanMove = playerCanMove;
+            this.Sender = sender;
+        }
+
+        public IConsequential Sender
+        {
+            get
+            {
+                return this.sender;
+            }
+
+            private set
+            {
+                this.sender = value;
+            }
         }
 
         /// <summary>

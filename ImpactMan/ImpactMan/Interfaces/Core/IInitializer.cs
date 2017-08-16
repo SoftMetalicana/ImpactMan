@@ -36,5 +36,7 @@
         /// Sets gameState plus UserInputState
         /// </summary>
         void SetGameStates();
+
+        void PassContentManagerToAllObjectsInLevel(ILevel level, ContentManager contentManager);
     }
 }

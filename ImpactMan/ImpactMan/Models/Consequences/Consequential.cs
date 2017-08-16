@@ -2,6 +2,7 @@
 {
     using Interfaces.Globals;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Content;
     using Units;
 
     /// <summary>
@@ -17,6 +18,7 @@
         /// Flag that tells the player if he can move or not.
         /// </summary>
         private bool playerCanMove;
+        private ContentManager content;
 
         /// <summary>
         /// Instantiates the object.
@@ -32,6 +34,19 @@
             this.PlayerCanMove = playerCanMove;
         }
 
+        public ContentManager Content
+        {
+            get
+            {
+                return this.content;
+            }
+
+            set
+            {
+                this.content = value;
+            }
+        }
+
         /// <summary>
         /// The bonus points that you give to the player.
         /// </summary>
@@ -42,7 +57,7 @@
                 return this.bonusPoints;
             }
 
-            private set
+            protected set
             {
                 this.bonusPoints = value;
             }
@@ -67,7 +82,7 @@
         /// <returns>The consequences that are applied to the player</returns>
         public virtual IConsequence GiveConsequence()
         {
-            return new Consequence(this.BonusPoints, this.PlayerCanMove);
+            return new Consequence(this.BonusPoints, this.PlayerCanMove, this);
         }
 
         public virtual bool TryToAffect(Rectangle invaderRectangle)

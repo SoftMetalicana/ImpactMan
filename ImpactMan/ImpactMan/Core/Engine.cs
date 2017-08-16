@@ -162,9 +162,13 @@
                 GraphicsConstants.PreferredBufferWidth,
 
                 GraphicsConstants.PreferredBufferHeight);
+            
 
             //Sets initial game state to LoginMenu state
             this.initializer.SetGameStates();
+
+            //Pass content to all objects in the map
+            this.initializer.PassContentManagerToAllObjectsInLevel(this.level, this.Content);
 
             //Sets window title
             this.SetWindowTitle();

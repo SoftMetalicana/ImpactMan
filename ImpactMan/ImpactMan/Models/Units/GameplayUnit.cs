@@ -96,7 +96,7 @@
                 return this.assetName;
             }
 
-            private set
+            protected set
             {
                 this.assetName = value;
             }
