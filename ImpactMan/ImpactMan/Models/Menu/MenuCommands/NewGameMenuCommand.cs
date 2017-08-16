@@ -17,10 +17,25 @@
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
-            this.Engine.ChangeGameState(GameState.GameMode);
+            
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            
+            State.GameState = GameState.GameMode;
+        }
+
+        public override void PlayMusic()
+        {
             this.soundManager.PlayMusic(Music.GameMusic);
+        }
+
+        public override void End(User user)
+        {
+            CurrentUser.User = user;
         }
     }
 }

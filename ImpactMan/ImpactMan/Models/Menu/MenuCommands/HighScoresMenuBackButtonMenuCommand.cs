@@ -1,7 +1,6 @@
-﻿using ImpactMan.Enumerations.Game;
-
-namespace ImpactMan.Models.Menu.MenuCommands
+﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Enumerations.Game;
     using Attributes;
     using Context.Models;
     using Core;
@@ -9,7 +8,7 @@ namespace ImpactMan.Models.Menu.MenuCommands
     using Microsoft.Xna.Framework.Content;
     using System;
 
-    class HighScoresMenuBackButtonMenuCommand : MenuCommand
+    public class HighScoresMenuBackButtonMenuCommand : MenuCommand
     {
         [Inject]
         private MenuInitializer menuController;
@@ -17,16 +16,20 @@ namespace ImpactMan.Models.Menu.MenuCommands
         [InjectAttribute]
         private ContentManager content;
 
-        public HighScoresMenuBackButtonMenuCommand(IEngine engine) : base(engine)
+        public HighScoresMenuBackButtonMenuCommand(IEngine engine) 
+            : base(engine)
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
             this.menuController.Initialize("MainMenu");
             this.menuController.Load(this.content);
-            this.Engine.ChangeGameState(GameState.MainMenuActive);
-            this.Engine.ClearCurrentUserDetails();
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            State.GameState = GameState.MainMenu;
         }
     }
 }

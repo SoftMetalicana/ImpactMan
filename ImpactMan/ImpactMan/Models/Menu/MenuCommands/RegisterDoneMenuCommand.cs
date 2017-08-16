@@ -18,26 +18,37 @@
         [InjectAttribute]
         private ContentManager content;
 
+        private bool userCanBeRegistered;
+
         public RegisterDoneMenuCommand(IEngine engine) 
             : base(engine)
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
-            if (this.accountManager.Register(user))
+            userCanBeRegistered = this.accountManager.Register(user);
+
+            if (userCanBeRegistered)
             {
                 this.menuController.Initialize("LoginMenu");
                 this.menuController.Load(this.content);
-                this.Engine.ChangeGameState(GameState.LoginMenuActive);
-                this.Engine.ClearCurrentUserDetails();
-                this.Engine.ChangeUserInputState();
             }
-            else
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            if (userCanBeRegistered)
+            {
+                State.GameState = GameState.LoginMenu;
+            }
+        }
+
+        public override void ChangeErrorMessage(User user)
+        {
+            if (!userCanBeRegistered)
             {
                 this.Engine.ChangeErrorMessage("User already registered");
-                this.Engine.ClearCurrentUserDetails();
-                this.Engine.ChangeUserInputState();
             }
         }
     }

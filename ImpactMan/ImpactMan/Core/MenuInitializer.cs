@@ -1,20 +1,18 @@
 ﻿namespace ImpactMan.Core
 {
-    using Interfaces.Core;
     using Constants.Graphics;
     using Constants.Units;
     using Context.Models;
     using Factories;
-    using Enumerations.Menu;
+    using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Menu;
     using IO.InputListeners.Events;
-    using Models.Menu;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using System;
+    using Models.Menu;
     using System.Collections.Generic;
 
     /// <summary>
@@ -25,20 +23,18 @@
         private IEngine engine;
         private AccountManager accountManager;
         private ContentManager content;
-        private User user;
         private MenuHolder menu;
         private MenuCommandFactory menuCommandFactory;
         private SoundManager soundManager;
         private bool isUserLoggedIn;
 
-        public MenuInitializer(IEngine engine, ContentManager content, AccountManager accountManager, User user, SoundManager soundManager)
+        public MenuInitializer(IEngine engine, ContentManager content, AccountManager accountManager, SoundManager soundManager)
         {
             this.engine = engine;
             this.content = content;
             this.accountManager = accountManager;
-            this.user = user;
             this.soundManager = soundManager;
-            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.user, this.soundManager);
+            this.menuCommandFactory = new MenuCommandFactory(this.engine, this.content, this.accountManager, this, this.soundManager);
         }
 
         /// <summary>
@@ -120,7 +116,9 @@
 
         public int GetEnumValue(string query, string valueType)
         {
-            return (int)Enum.Parse(typeof(Menu), $"{query}{valueType}");
+            var type =  (int)typeof(MenuConstants).GetField($"{query}{valueType}").GetValue(null);
+
+            return type;
         }
     }
 }

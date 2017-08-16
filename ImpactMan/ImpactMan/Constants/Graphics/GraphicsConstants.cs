@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Constants.Graphics
+﻿using System.Windows.Forms;
+
+namespace ImpactMan.Constants.Graphics
 {
     /// <summary>
     /// Provides constants for the graphics.
@@ -8,11 +10,12 @@
         /// <summary>
         /// Initial console/window width
         /// </summary>
-        public const int PreferredBufferWidth = 1300;
+        public static readonly int PreferredBufferWidth = Screen.PrimaryScreen.Bounds.Width;
+
         /// <summary>
         /// Initial console/window width
         /// </summary>
-        public const int PreferredBufferHeight = 800;
+        public static readonly int PreferredBufferHeight = Screen.PrimaryScreen.Bounds.Height - 70;
 
         /// <summary>
         /// Initial mouse state.

@@ -1,28 +1,31 @@
-﻿using ImpactMan.Constants.Units;
-using ImpactMan.Interfaces.Writer;
+﻿/*using ScapLIB;*/
+
+using System.Threading;
 using ImpactMan.IO.Writers;
 
 namespace ImpactMan.Core
 {
     using Constants.Graphics;
+    using Constants.Units;
     using Context.Db;
     using Context.Models;
     using Enumerations.Game;
     using Enumerations.Sounds;
-    using ImpactMan.Interfaces.Models.Mediators;
     using Interfaces.Core;
     using Interfaces.IO.InputListeners;
+    using Interfaces.Models.Enemies;
+    using Interfaces.Models.Levels;
+    using Interfaces.Models.Mediators;
     using Interfaces.Models.Players;
+    using Interfaces.Writer;
+    using IO.Recording;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using Models.Players;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using ImpactMan.Interfaces.Models.Enemies;
-    using ImpactMan.Interfaces.Models.Levels;
 
     /// <summary>
     /// This is the main type for your game.
@@ -32,7 +35,16 @@ namespace ImpactMan.Core
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
+
+        private ImpactManContext context;
+
+        private MenuInitializer menuInitializer;
+        private AccountManager accountManager;
         private SoundManager soundManager;
+        private Recorder recorder;
+
+        private IInitializer initializer;
+        private IInputListener inputListener;
         private ITextWriter textWriter;
 
         private IPlayer player;
@@ -40,55 +52,50 @@ namespace ImpactMan.Core
         private ILevel level;
         private IPlayerConsequenceMediator playerConsequenceMediator;
 
-        private User user;
+        private KeyboardState previosKeyboardState;
         private User userInputDetails;
         private string errorMessage;
 
-        private List<Keys> pressedKeys = new List<Keys>();
+        private List<Keys> pressedKeys;
 
-        private IInitializer initializer;
-        private IInputListener inputListener;
-        private MenuInitializer menuController;
-        private AccountManager accountManager;
-        private GameState gameState;
-        private UserInputState userInputState;
-
-        ImpactManContext context;
-
-        //This data should be in database
-        private Dictionary<string, int> highScores = new Dictionary<string, int>()
-        {
-            {"Ivan", 44323424 },
-            {"Petkan", 43242 },
-            {"Dragan", 55 },
-            {"Toni", 82 },
-            {"Moni", 999575799 },
-            {"Boni", 57 },
-            {"Dancho", 5 },
-            {"Mancho", 7575757 },
-            {"Gancho", 17575729 },
-
-        };
+        private Dictionary<string, int> highScores; //This should be removed from here
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
                       IPlayerConsequenceMediator playerConsequenceMediator,
                       IPlayer player,
                       IList<IEnemy> allEnemies,
-                      ILevel level)
+                      ILevel level,
+                      ImpactManContext context,
+                      AccountManager accountManager)
         {
+            //Content
             this.Content.RootDirectory = "Content";
 
+            //Context - DB
+            this.context = context;
+
+            //User account manager
+            this.accountManager = accountManager;
+
+            //Graphics and sound
             this.graphics = new GraphicsDeviceManager(this);
             this.soundManager = new SoundManager(this.Content);
 
+            //Initializer
             this.initializer = initializer;
+
+            //InputListener
             this.inputListener = inputListener;
 
-            this.player = player;
+            //Game
+            this.player = player;    
             this.allEnemies = allEnemies;
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
+
+            //PressedKeys
+            this.pressedKeys = new List<Keys>();
         }
 
         /// <summary>
@@ -99,37 +106,42 @@ namespace ImpactMan.Core
         /// </summary>
         protected override void Initialize()
         {
-            this.userInputDetails = new User();
-            this.user = new User();
-            this.userInputDetails.Name = String.Empty;
-            this.userInputDetails.Password = String.Empty;
+            //Initialize DB
+            this.context.Database.Initialize(true);
+
+            //Initializes new menuInitializer which takes care of menus in the game
+            this.menuInitializer = new MenuInitializer(this, this.Content, this.accountManager, this.soundManager);
+
+            this.menuInitializer.Initialize("LoginMenu");
+            this.soundManager.PlayMusic(Music.LoginMusic);
+
+            //Sets current user
+            this.userInputDetails = new User
+            {
+                Name = String.Empty,
+                Password = String.Empty
+            };
+
             this.errorMessage = String.Empty;
-
-            this.accountManager = new AccountManager();
-            this.menuController = new MenuInitializer(this, this.Content, this.accountManager, this.user, this.soundManager);
-
-            /*            this.context = new ImpactManContext();
-                        this.context.Database.Initialize(true);*/
 
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
-            this.inputListener.MouseClicked += this.menuController.OnMouseClicked;
-
-            this.menuController.Initialize("LoginMenu");
-            this.soundManager.PlayMusic(Music.LoginMusic);
-
-            this.gameState = GameState.LoginMenuActive;
-            this.userInputState = UserInputState.NameInput;
-
-            // TO HERE
+            this.inputListener.MouseClicked += this.menuInitializer.OnMouseClicked;
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,
                                                    GraphicsConstants.PreferredBufferWidth,
+               
                                                    GraphicsConstants.PreferredBufferHeight);
-            SetWindowTitle();
+
+            //Sets initial game state to LoginMenu state
+            this.initializer.SetGameStates();
+
+            //Sets window title
+            this.SetWindowTitle();
+
             base.Initialize();
         }
 
@@ -141,13 +153,15 @@ namespace ImpactMan.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-            
+
             this.initializer.LoadLevel(this.level, this.Content);
 
-            this.menuController.Load(Content);
+            this.menuInitializer.Load(Content);
+
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
 
             this.textWriter = new ConsoleTextWriter(this.spriteFont, this.spriteBatch);
+
         }
 
         /// <summary>
@@ -169,30 +183,49 @@ namespace ImpactMan.Core
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 
-            if (currentKeyboardState.IsKeyDown(Keys.Home) && this.gameState == GameState.GameMode)
+            if (currentKeyboardState.IsKeyDown(Keys.R) && this.previosKeyboardState != currentKeyboardState && State.GameState == GameState.GameMode)
             {
-                ChangeGameState(GameState.MainMenuActive);
-                this.menuController.Initialize("MainMenu");
-                this.menuController.Load(Content);
+                if (this.recorder!= null)
+                {
+                    
+                    recorder.Dispose();
+                }
 
+                else
+                {
+                    this.recorder = new Recorder(new RecorderParams("GameDemo.avi",32, SharpAvi.KnownFourCCs.Codecs.MotionJpeg, 70));
+                }
             }
 
-            if (gameState != GameState.GameMode)
+            if (currentKeyboardState.IsKeyDown(Keys.Home) && State.GameState == GameState.GameMode)
+            {
+                State.GameState = GameState.MainMenu;
+                this.menuInitializer.Initialize("MainMenu");
+                this.menuInitializer.Load(Content);
+            }
+
+            if (State.GameState != GameState.GameMode)
             {
                 this.inputListener.GetMouseState(currentMouseState, gameTime, this.userInputDetails);
             }
 
-            if (gameState == GameState.LoginMenuActive || gameState == GameState.SignUpMenuActive)
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
             {
                 GetPressedKeys();
             }
 
-            else
+            if (State.GameState == GameState.GameMode)
             {
                 this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+
+                foreach (var enemy in this.allEnemies)
+                {
+                    enemy.Update(gameTime, currentKeyboardState);
+                }
             }
 
             base.Update(gameTime);
+            this.previosKeyboardState = currentKeyboardState;
         }
 
         /// <summary>
@@ -204,73 +237,46 @@ namespace ImpactMan.Core
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
             this.spriteBatch.Begin();
-            if (this.gameState != GameState.GameMode)
+
+            //Draw menu on console
+            if (State.GameState != GameState.GameMode)
             {
-                this.menuController.Draw(this.spriteBatch);
+                this.menuInitializer.Draw(this.spriteBatch);
             }
 
-            if (this.gameState == GameState.LoginMenuActive)
+            //Draw input text on console
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
             {
-                this.textWriter.Write(this.userInputDetails.Name, 
-                    new Vector2(MenuConstants.LoginMenuUsernameX, 
-                    MenuConstants.LoginMenuUsernameY), 
-                    Color.Black);
-
-                this.textWriter.Write(this.userInputDetails.Password, 
-                    new Vector2(MenuConstants.LoginMenuPasswordX, 
-                    MenuConstants.LoginMenuPasswordY), 
-                    Color.Black);
-
-                this.textWriter.Write(this.errorMessage, 
-                    new Vector2(MenuConstants.LoginMenuErrorMessageX, 
-                    MenuConstants.LoginMenuErrorMessageY), 
-                    Color.Black);
+                this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
             }
 
-            else if (this.gameState == GameState.SignUpMenuActive)
+            //Draw highscore stats on console
+            else if (State.GameState == GameState.HighScoresMenu)
             {
-                this.textWriter.Write(this.userInputDetails.Name, 
-                    new Vector2(MenuConstants.SignupMenuUsernameX, 
-                    MenuConstants.SignupMenuUsernameY), 
-                    Color.Black);
-
-                this.textWriter.Write(this.userInputDetails.Password, 
-                    new Vector2(MenuConstants.SignupMenuPasswordX, 
-                    MenuConstants.SignupMenuPasswordY), 
-                    Color.Black);
-
-                this.textWriter.Write(this.errorMessage, 
-                    new Vector2(MenuConstants.SignupMenuErrorMessageX, 
-                    MenuConstants.SignupMenuErrorMessageY), 
-                    Color.Black);
-            }
-
-            else if (this.gameState == GameState.HighScoresMenuActive)
-            {
-                int xCoordinate = 60;
-                int yCoordinate = 140;
                 int count = 0;
 
                 StringBuilder sb = new StringBuilder();
 
-                foreach (var player in this.highScores.OrderByDescending(x => x.Value).Take(10))
+                this.highScores.OrderByDescending(x => x.Value).Take(10).ToList().ForEach(p =>
                 {
+                    string score = p.Value.ToString(MenuConstants.HighScoresMenuNumberFormat);
 
-                    string score = player.Value.ToString("### ### ### ### ###");
-
-                    sb.AppendLine($"{++count}. {player.Key,-10} {score,15}");
+                    sb.AppendLine(string.Format(MenuConstants.HighScoresMenuPlayerFormat, ++count, p.Key, score));
                     sb.AppendLine();
+                });
 
-                }
-
-                this.textWriter.Write(sb.ToString(), new Vector2(xCoordinate, yCoordinate), Color.Black);
+                this.textWriter.Write(sb.ToString(),
+                    new Vector2(MenuConstants.HighScoresMenuX, MenuConstants.HighScoresMenuY),
+                    Color.Black);
             }
 
-            else if(this.gameState == GameState.GameMode)
+            //Draw game in playmode
+            else if (State.GameState == GameState.GameMode)
             {
                 this.level.Draw(this.spriteBatch);
 
                 this.player.Draw(this.spriteBatch);
+
                 foreach (IEnemy enemy in this.allEnemies)
                 {
                     enemy.Draw(this.spriteBatch);
@@ -282,26 +288,9 @@ namespace ImpactMan.Core
             base.Draw(gameTime);
         }
 
-        public void ChangeGameState(GameState gameStateToChange)
-        {
-            this.gameState = gameStateToChange;
-        }
-
-        public void ChangeUserInputState()
-        {
-            this.userInputState = (UserInputState)(((int)this.userInputState + 1) % 2);
-        }
-
-        public void Quit()
-        {
-            Exit();
-        }
-
-        public void SetWindowTitle(string title = GraphicsConstants.WindowTitle)
-        {
-            this.Window.Title = title;
-        }
-
+        /// <summary>
+        /// Checks if a key has been pressed and then released
+        /// </summary>
         private void GetPressedKeys()
         {
             KeyboardState keyboardState = Keyboard.GetState();
@@ -322,26 +311,28 @@ namespace ImpactMan.Core
         {
             StringBuilder sb = new StringBuilder();
 
+            //If pressed key is tab then shift between username and password
             if (key == Keys.Tab)
             {
-                ChangeUserInputState();
+                State.UserInputState = (UserInputState)(((int)State.UserInputState + 1) % 2);
             }
 
-            if (this.userInputState == UserInputState.NameInput)
+            if (State.UserInputState == UserInputState.NameInput)
             {
                 sb = new StringBuilder(this.userInputDetails.Name);
             }
+
             else
             {
                 sb = new StringBuilder(this.userInputDetails.Password);
             }
 
-            if (IsKeyLetter(key))
+            if (Utils.KeyValueCheck.IsKeyLetter(key))
             {
                 sb.Append(key);
             }
 
-            else if (IsKeyDigit(key))
+            else if (Utils.KeyValueCheck.IsKeyDigit(key))
             {
                 sb.Append(key.ToString().Replace("NumPad", "").Replace("D", ""));
             }
@@ -354,7 +345,7 @@ namespace ImpactMan.Core
                 }
             }
 
-            if (this.userInputState == UserInputState.NameInput)
+            if (State.UserInputState == UserInputState.NameInput)
             {
                 this.userInputDetails.Name = sb.ToString();
             }
@@ -365,14 +356,15 @@ namespace ImpactMan.Core
 
         }
 
-        private bool IsKeyLetter(Keys key)
+        public void Quit()
         {
-            return key >= Keys.A && key <= Keys.Z;
+            
+            Exit();
         }
 
-        private bool IsKeyDigit(Keys key)
+        public void SetWindowTitle(string title = GraphicsConstants.WindowTitle)
         {
-            return key >= Keys.D0 && key <= Keys.D9 || key >= Keys.NumPad0 && key <= Keys.NumPad9;
+            this.Window.Title = title;
         }
 
         public void ChangeErrorMessage(string message)
@@ -382,8 +374,11 @@ namespace ImpactMan.Core
 
         public void ClearCurrentUserDetails()
         {
-            this.userInputDetails.Name = String.Empty;
-            this.userInputDetails.Password = String.Empty;
+            this.userInputDetails = new User()
+            {
+                Name = String.Empty,
+                Password = String.Empty
+            };
         }
     }
 }

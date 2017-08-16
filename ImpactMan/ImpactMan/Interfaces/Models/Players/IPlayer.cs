@@ -20,7 +20,7 @@
         /// The current points of the player.
         /// This points are going the be used as a record in the database.
         /// </summary>
-        int Points { get; }
+        int Points { get; set; }
 
         /// <summary>
         /// A handler of the key pressed event. Obviously the player is interested in this event.

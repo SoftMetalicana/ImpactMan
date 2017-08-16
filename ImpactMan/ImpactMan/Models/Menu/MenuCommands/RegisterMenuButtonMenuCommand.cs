@@ -21,13 +21,20 @@
         {
         }
 
-        public override void Execute(User user)
+        public override void InitializeMenu(User user)
         {
             this.menuController.Initialize("RegisterMenu");
             this.menuController.Load(this.content);
-            this.Engine.ClearCurrentUserDetails();
+        }
+
+        public override void ChangeGamestate(User user)
+        {
+            State.GameState = GameState.SignUpMenu;
+        }
+
+        public override void ChangeErrorMessage(User user)
+        {
             this.Engine.ChangeErrorMessage(String.Empty);
-            this.Engine.ChangeGameState(GameState.SignUpMenuActive);
         }
     }
 }

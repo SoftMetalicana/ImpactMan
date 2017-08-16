@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using ImpactMan.Context.Db;
 
 namespace ImpactMan.Core
 {
@@ -11,18 +13,20 @@ namespace ImpactMan.Core
     /// </summary>
     public class AccountManager
     {
-        private IList<User> users;
+        private ImpactManContext context;
 
-        public AccountManager()
+        public AccountManager(ImpactManContext context)
         {
-            this.users = new List<User>();
-            users.Add(new User()
+            this.context = context;
+
+/*            if (context.Users.Local.Count == 0)
             {
-                Name = "MARIAN",
-                Password = "123",    
-                Level = 0,
-                Id = 0
-            });
+                context.Users.Local.Add(new User()
+                {
+                    Name = "MARIAN",
+                    Password = "123"
+                });
+            }*/
         }
 
         public bool Login(User user)
@@ -37,18 +41,39 @@ namespace ImpactMan.Core
                 return false;
             }
 
-            this.users.Add(user);
-            return true;
+            try
+            {
+                context.Users.Add(user);
+                context.SaveChanges();
+                return true;
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
-        private bool UserExists(User user)
+        private bool UserExists(User userX)
         {
-            return this.users.Any(u => u.Name == user.Name && user.Name != String.Empty);
+            if (this.context.Users.Select(u => u.Name).ToList().Contains(userX.Name))
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsPasswordCorrect(User user)
         {
-            return this.users.Any(u => u.Name == user.Name && u.Password == user.Password);
+            if (this.context.Users.Where(u => u.Name == user.Name).First().Password == user.Password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -9,11 +9,11 @@
         /// <summary>
         /// The width of all units.
         /// </summary>
-        public const int Width = 50;
+        public static readonly int Width = Constants.Graphics.GraphicsConstants.PreferredBufferWidth/26;
         /// <summary>
         /// The height of all units.
         /// </summary>
-        public const int Height = 50;
+        public static readonly int Height = Constants.Graphics.GraphicsConstants.PreferredBufferHeight/14;
 
         /// <summary>
         /// Asset names for the objects that are printed on the console/map/window.
@@ -21,7 +21,7 @@
         /// Usually you will find those names injected in the constructors so you don't have to pass as argument an asset name.
         /// Asset names correspond to a picture that is loaded in the Content.Content.mgcb.
         /// </summary>
-        public const string EnemyAssetName = "enemy";
+        public const string EnemyAssetName = "yellow_guy";
         public const string GroundAssetName = "ground";
         public const string WallAssetName = "wall";
         public const string PlayerAssetName = "player";

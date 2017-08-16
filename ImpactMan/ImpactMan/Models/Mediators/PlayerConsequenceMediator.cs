@@ -33,8 +33,6 @@
 
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {
-
-
             sender.Rectangle = eventArgs.DesiredPosition;
         }
     }
