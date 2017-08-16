@@ -20,10 +20,10 @@
 
         public void PlayMusic(Music music)
         {
-            this.sound = this.content.Load<Song>(music.ToString());
+/*            this.sound = this.content.Load<Song>(music.ToString());
             MediaPlayer.Play(this.sound);
 
-            MediaPlayer.IsRepeating = true;
+            MediaPlayer.IsRepeating = true;*/
         }
 
         public bool IsRunning()

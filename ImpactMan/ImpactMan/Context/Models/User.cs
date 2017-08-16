@@ -7,8 +7,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public int Level { get; set; }
+        public int Level { get; set; } //probably should be removed
         public int HighScore { get; set; }
-        public int CurrentScore { get; set; }
+        public int CurrentScore { get; set; } //probably should be removed
     }
 }

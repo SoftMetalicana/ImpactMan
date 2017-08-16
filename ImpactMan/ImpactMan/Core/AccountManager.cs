@@ -80,32 +80,32 @@ namespace ImpactMan.Core
             }
         }
 
-public bool ChangePassword(User user, out string message)
-       {
-           if (user == null)
-           {
-               throw new ArgumentNullException(Constants.ExceptionMessages.UserNullException);
-           }
+        public bool ChangePassword(User user, out string message)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(Constants.ExceptionMessages.UserNullException);
+            }
 
-           var userName = CurrentUser.User.Name;
-           if (context.Users.First(u=>u.Name == userName).Password!= user.Name)
-           {
-               message = AccountManagerConstants.InvalidOldUserPassword;
-               return false;
-           }
+            var userName = CurrentUser.User.Name;
+            if (context.Users.First(u => u.Name == userName).Password != user.Name)
+            {
+                message = AccountManagerConstants.InvalidOldUserPassword;
+                return false;
+            }
 
-           if (!this.IsPasswordValid(user))
-           {
-               message = AccountManagerConstants.InvalidUserPassword;
-               return false;
-           }
+            if (!this.IsPasswordValid(user))
+            {
+                message = AccountManagerConstants.InvalidUserPassword;
+                return false;
+            }
 
-           this.context.Users.First(u => u.Name == userName).Password = user.Password;
-           this.context.SaveChanges();
-           message = AccountManagerConstants.SuccessfulPasswordChange;
-           return true;
-       }
-            private bool UserExists(User user)
+            this.context.Users.First(u => u.Name == userName).Password = user.Password;
+            this.context.SaveChanges();
+            message = AccountManagerConstants.SuccessfulPasswordChange;
+            return true;
+        }
+        private bool UserExists(User user)
         {
             if (this.context.Users.Select(u => u.Name).ToList().Contains(user.Name))
             {
