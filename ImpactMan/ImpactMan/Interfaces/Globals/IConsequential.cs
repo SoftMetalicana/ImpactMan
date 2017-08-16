@@ -1,5 +1,7 @@
 ﻿namespace ImpactMan.Interfaces.Globals
 {
+    using Microsoft.Xna.Framework;
+    
     /// <summary>
     /// Everything seen in the map inherits from this interface.
     /// It returns the consequences 
@@ -13,5 +15,7 @@
         /// </summary>
         /// <returns>The consequences from the current object that you step on.</returns>
         IConsequence GiveConsequence();
+
+        bool TryToAffect(Rectangle invaderRectangle);
     }
 }

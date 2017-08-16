@@ -1,6 +1,8 @@
 ﻿namespace ImpactMan.Models.Players
 {
+    using System;
     using ImpactMan.Attributes;
+    using ImpactMan.Constants.Positionable;
     using ImpactMan.Constants.Units;
     using ImpactMan.Constants.Utils;
     using ImpactMan.Interfaces.IO.InputListeners;
@@ -48,28 +50,49 @@
         {
             int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
 
+            int helperX = 0;
+            int helperY = 0;
+            int helperWidth = 0;
+            int helperHeigth = 0;
+
             Rectangle desiredRectangle = this.Rectangle;
+            // done
             if (keyboardState.IsKeyDown(Keys.Right))
             {
+                helperX = this.Rectangle.Right + 1;
+                helperY = this.Rectangle.Top + 5;
+                helperHeigth = 50;
+
                 desiredRectangle = new Rectangle(this.Rectangle.X + calculatedDistance, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
             }
-
-            if (keyboardState.IsKeyDown(Keys.Left))
+            else if (keyboardState.IsKeyDown(Keys.Left))
             {
+                helperX = this.Rectangle.Left - 1;
+                helperY = this.Rectangle.Top + 5;
+                helperHeigth = 50;
+
                 desiredRectangle = new Rectangle(this.Rectangle.X - calculatedDistance, this.Rectangle.Y, this.Texture.Width, this.Texture.Height);
             }
-
-            if (keyboardState.IsKeyDown(Keys.Down))
+            else if (keyboardState.IsKeyDown(Keys.Down))
             {
+                helperX = this.Rectangle.Left + 5;
+                helperY = this.Rectangle.Bottom + 1;
+                helperWidth = 50;
+
                 desiredRectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y + calculatedDistance, this.Texture.Width, this.Texture.Height);
             }
-
-            if (keyboardState.IsKeyDown(Keys.Up))
+            else if (keyboardState.IsKeyDown(Keys.Up))
             {
+                helperX = this.Rectangle.Left + 5;
+                helperY = this.Rectangle.Top - 1;
+                helperWidth = 50;
+
                 desiredRectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - calculatedDistance, this.Texture.Width, this.Texture.Height);
             }
 
-            this.OnPlayerTriedToMove(new PlayerTriedToMoveEventArgs(desiredRectangle));
+            Rectangle helperRectangle = new Rectangle(helperX, helperY, helperWidth, helperHeigth);
+
+            this.OnPlayerTriedToMove(new PlayerTriedToMoveEventArgs(desiredRectangle, helperRectangle));
         }
 
         /// <summary>

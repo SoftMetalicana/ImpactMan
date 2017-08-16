@@ -67,6 +67,6 @@
         /// <param name="col">The col in the matrix.</param>
         void AddGround(object ground, int row, int col);
 
-        IConsequence GetAffectedObjectConsequence(Rectangle rectangle);
+        IConsequence GetAffectedObjectConsequence(Rectangle helperRectangle);
     }
 }
