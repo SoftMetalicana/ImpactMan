@@ -16,16 +16,13 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
-        }
-
-        public override void ChangeGamestate(User user)
-        {
+            this.PlayMusic();
             State.GameState = GameState.SettingsMenu;
         }
 
-        public override void PlayMusic()
+        private void PlayMusic()
         {
             if (this.soundManager.IsRunning())
             {

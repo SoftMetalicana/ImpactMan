@@ -11,13 +11,9 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
             user.HighScore = 0;
-        }
-
-        public override void ChangeGamestate(User user)
-        {
             State.GameState = GameState.SettingsMenu;
         }
     }
