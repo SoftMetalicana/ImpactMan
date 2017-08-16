@@ -34,6 +34,7 @@
         private readonly IPlayerConsequenceMediator playerConsequenceMediator;
         private readonly IInitializer initializer;
         private readonly IInputListener inputListener;
+        private readonly IPlayerDeathHandler playerDeathHandler;
 
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
@@ -61,7 +62,8 @@
                       IList<IEnemy> allEnemies,
                       ILevel level,
                       ImpactManContext context,
-                      AccountManager accountManager)
+                      AccountManager accountManager,
+                      IPlayerDeathHandler playerDeathHandler)
         {
             //Content
             this.Content.RootDirectory = "Content";
@@ -88,6 +90,8 @@
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
             this.pressedKeys = new List<Keys>();
+
+            this.playerDeathHandler = playerDeathHandler;
         }
 
         public void LoadPrevGame()
@@ -150,6 +154,8 @@
 
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
             this.inputListener.MouseClicked += this.menuInitializer.OnMouseClicked;
+
+            this.level.PlayerAffectedEnemy += this.playerDeathHandler.OnPlayerDead;
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,

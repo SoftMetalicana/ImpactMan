@@ -74,6 +74,7 @@
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
     <Compile Include="Interfaces\Core\IMenuInitializer.cs" />
+    <Compile Include="Interfaces\Core\IPlayerDeathHandler.cs" />
     <Compile Include="Interfaces\Core\ISoundManager.cs" />
     <Compile Include="Interfaces\Globals\IAsset.cs" />
     <Compile Include="Interfaces\Globals\IConsequence.cs" />

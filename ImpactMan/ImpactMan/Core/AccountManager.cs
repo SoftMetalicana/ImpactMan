@@ -1,4 +1,5 @@
-﻿using ImpactMan.Models.Menu.MenuCommands;
+﻿using ImpactMan.Interfaces.Models.User;
+using ImpactMan.Models.Menu.MenuCommands;
 
 namespace ImpactMan.Core
 {
@@ -21,7 +22,7 @@ namespace ImpactMan.Core
             this.context = context;
         }
 
-        public bool Login(User user)
+        public bool Login(IUser user)
         {
             if (user == null)
             {
@@ -38,7 +39,7 @@ namespace ImpactMan.Core
             return false;
         }
 
-        public bool Register(User user, out string message)
+        public bool Register(IUser user, out string message)
         {
             if (user == null)
             {
@@ -70,7 +71,7 @@ namespace ImpactMan.Core
 
             try
             {
-                this.context.Users.Add(user);
+                this.context.Users.Add((User)user);
                 this.context.SaveChanges();
                 return true;
             }
@@ -80,32 +81,33 @@ namespace ImpactMan.Core
             }
         }
 
-        public bool ChangePassword(User user, out string message)
+        public bool ChangePassword(IUser userInput, out string message)
         {
-            if (user == null)
+            if (userInput == null)
             {
                 throw new ArgumentNullException(Constants.ExceptionMessages.UserNullException);
             }
 
             var userName = CurrentUser.User.Name;
-            if (context.Users.First(u => u.Name == userName).Password != user.Name)
+            if (context.Users.First(u => u.Name == userName).Password != userInput.Name)
             {
                 message = AccountManagerConstants.InvalidOldUserPassword;
                 return false;
             }
 
-            if (!this.IsPasswordValid(user))
+            if (!this.IsPasswordValid(userInput))
             {
                 message = AccountManagerConstants.InvalidUserPassword;
                 return false;
             }
 
-            this.context.Users.First(u => u.Name == userName).Password = user.Password;
+            
+            this.context.Users.First(u => u.Name == userName).Password = userInput.Password;
             this.context.SaveChanges();
             message = AccountManagerConstants.SuccessfulPasswordChange;
             return true;
         }
-        private bool UserExists(User user)
+        private bool UserExists(IUser user)
         {
             if (this.context.Users.Select(u => u.Name).ToList().Contains(user.Name))
             {
@@ -119,7 +121,7 @@ namespace ImpactMan.Core
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        private bool IsPasswordCorrect(User user)
+        private bool IsPasswordCorrect(IUser user)
         {
             if (this.context.Users.First(u => u.Name == user.Name).Password == user.Password)
             {
@@ -136,7 +138,7 @@ namespace ImpactMan.Core
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        private bool IsUserNameValid(User user)
+        private bool IsUserNameValid(IUser user)
         {
             return Regex
                 .Match(user.Name, AccountManagerConstants.UserNamePattern)
@@ -148,7 +150,7 @@ namespace ImpactMan.Core
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        private bool IsPasswordValid(User user)
+        private bool IsPasswordValid(IUser user)
         {
             return Regex
                 .Match(user.Password, AccountManagerConstants.UserPasswordPattern)

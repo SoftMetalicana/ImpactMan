@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Context.Db
+﻿using ImpactMan.Interfaces.Models.User;
+
+namespace ImpactMan.Context.Db
 {
     using System.Data.Entity;
     using ImpactMan.Context.Models;
