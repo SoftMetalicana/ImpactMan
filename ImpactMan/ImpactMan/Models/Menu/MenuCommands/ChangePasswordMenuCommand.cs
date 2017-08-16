@@ -24,7 +24,7 @@
             this.menuController.Initialize("ChangePasswordMenu");
             this.menuController.Load(this.content);
 
-            State.GameState = GameState.SettingsMenu;
+            State.GameState = GameState.ChangePasswordMenu;
         }
     }
 }

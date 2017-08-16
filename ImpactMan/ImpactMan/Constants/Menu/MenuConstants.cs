@@ -56,8 +56,8 @@ namespace ImpactMan.Constants.Menu
                 
             { "ChangePasswordMenu", new List<string>()
             {
-                 "BackButton",
-                 "HighScoresMenuBackButton"
+                "ChangePasswordDone",
+                 "BackButton"
             }}
         };
 
@@ -154,26 +154,35 @@ namespace ImpactMan.Constants.Menu
         /// Settings menu params
         /// </summary>
         public static readonly int SettingsMenuWidth = MainMenuWidth;
-            public static readonly int SettingsMenuHeight = MainMenuHeight;
+        public static readonly int SettingsMenuHeight = MainMenuHeight;
        
-            public static readonly int SettingsMenuItemWidth = MainMenuItemWidth;
-            public static readonly int SettingsMenuItemHeight = MainMenuItemHeight;
+        public static readonly int SettingsMenuItemWidth = MainMenuItemWidth;
+        public static readonly int SettingsMenuItemHeight = MainMenuItemHeight;
        
-            public static readonly int SettingsMenuPaddingTop = MainMenuPaddingTop;
-            public static readonly int SettingsMenuPaddingLeft = MainMenuPaddingLeft;
+        public static readonly int SettingsMenuPaddingTop = MainMenuPaddingTop;
+        public static readonly int SettingsMenuPaddingLeft = MainMenuPaddingLeft;
        
-            /// <summary>
-            /// Change Password Menu
-            /// </summary>
-            public static readonly int ChangePasswordMenuWidth = MainMenuWidth;
-            public static readonly int ChangePasswordMenuHeight = MainMenuHeight;
+        /// <summary>
+        /// Change Password Menu
+        /// </summary>
+        public static readonly int ChangePasswordMenuWidth = MainMenuWidth;
+        public static readonly int ChangePasswordMenuHeight = MainMenuHeight;
        
-            public static readonly int ChangePasswordMenuItemWidth = LoginMenuItemWidth;
-            public static readonly int ChangePasswordMenuItemHeight = LoginMenuItemHeight;
+        public static readonly int ChangePasswordMenuItemWidth = MainMenuWidth/8;
+        public static readonly int ChangePasswordMenuItemHeight = MainMenuHeight/18;
        
-            public static readonly int ChangePasswordMenuPaddingTop = RegisterMenuPaddingTop;
-            public static readonly int ChangePasswordMenuPaddingLeft = RegisterMenuPaddingLeft;
-       
-            /// <summary>
+        public static readonly int ChangePasswordMenuPaddingTop = (int)(RegisterMenuHeight / 1.5);
+        public static readonly int ChangePasswordMenuPaddingLeft = (int)(RegisterMenuWidth / 2.35);
+
+        public static readonly int ChangePasswordMenuUsernameX = (int)(681 * TextPositionAlignmentWidth);
+        public static readonly int ChangePasswordMenuUsernameY = (int)(392 * TextPositionAlignmentHeight);
+
+        public static readonly int ChangePasswordMenuPasswordX = (int)(681 * TextPositionAlignmentWidth);
+        public static readonly int ChangePasswordMenuPasswordY = (int)(580 * TextPositionAlignmentHeight);
+
+        public static readonly int ChangePasswordMenuErrorMessageX = (int)(820 * TextPositionAlignmentWidth);
+        public static readonly int ChangePasswordMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
+
+        /// <summary>
     }
 }
