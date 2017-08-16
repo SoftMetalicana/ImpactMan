@@ -35,7 +35,7 @@
             int passwordX = this.GetEnumValue(nameof(passwordX));
             int passwordY = this.GetEnumValue(nameof(passwordY));
 
-            int errorMessageX = (Constants.Graphics.GraphicsConstants.PreferredBufferWidth - errorMessage.Length * 12) /
+            int errorMessageX = (GraphicsConstants.PreferredBufferWidth - errorMessage.Length * 12) /
                                 2;
             int errorMessageY = this.GetEnumValue(nameof(errorMessageY));
 

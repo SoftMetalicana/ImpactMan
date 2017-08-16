@@ -57,7 +57,6 @@
     <Compile Include="Context\Models\User.cs" />
     <Compile Include="Core\AccountManager.cs" />
     <Compile Include="Core\CurrentUser.cs" />
-    <Compile Include="Core\DataLoader.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\State.cs" />
@@ -88,7 +87,6 @@
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
     <Compile Include="Interfaces\IO\Reader\IFileReader.cs" />
     <Compile Include="Interfaces\IO\Reader\IReader.cs" />
-    <Compile Include="Interfaces\Models\TextWriterStrategies\ITextWriterStrategy.cs" />
     <Compile Include="Interfaces\Models\User\IUser.cs" />
     <Compile Include="Interfaces\Writer\ITextWriter.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
@@ -107,19 +105,15 @@
     <Compile Include="Models\LevelGenerators\LevelGenerator.cs" />
     <Compile Include="Models\Levels\Level.cs" />
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
-    <Compile Include="Models\Menu\MenuCommands\BackButtonMenuCommand.cs" />
-    <Compile Include="Models\Menu\MenuCommands\ChangePasswordMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
-    <Compile Include="Models\Menu\MenuCommands\MusicMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\QuitMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterMenuButtonMenuCommand.cs" />
-    <Compile Include="Models\Menu\MenuCommands\ResetHighScoreMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\SettingsMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
