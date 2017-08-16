@@ -20,14 +20,11 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
             this.menuController.Initialize("MainMenu");
             this.menuController.Load(this.content);
-        }
 
-        public override void ChangeGamestate(User user)
-        {
             State.GameState = GameState.MainMenu;
         }
     }

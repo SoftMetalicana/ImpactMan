@@ -9,6 +9,7 @@
     using System;
     using System.Linq;
     using System.Reflection;
+    using Constants.Graphics;
 
     public class ConsoleTextWriter : ITextWriter
     {

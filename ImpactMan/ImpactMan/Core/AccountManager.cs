@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using Context.Models;
     using ImpactMan.Context.Db;
 
@@ -15,15 +16,6 @@
         public AccountManager(ImpactManContext context)
         {
             this.context = context;
-
-/*            if (context.Users.Local.Count == 0)
-            {
-                context.Users.Local.Add(new User()
-                {
-                    Name = "MARIAN",
-                    Password = "123"
-                });
-            }*/
         }
 
         public bool Login(User user)
@@ -31,10 +23,28 @@
             return this.UserExists(user) && this.IsPasswordCorrect(user);
         }
 
-        public bool Register(User user)
+        public bool Register(User user, out string message)
         {
-            if (this.UserExists(user))
+            message = String.Empty;
+
+            if (!IsUserNameValid(user))
             {
+                message =
+                    "Username should contain only letters and digits and be between 4 and 8 characters long!";
+                return false;
+            }
+
+            if (!IsPasswordValid(user))
+            {
+                message =
+                    "Password should contain only letters and digits and be between 5 and 10 characters long!";
+                return false;
+            }
+
+            if (UserExists(user))
+            {
+                message =
+                    "User already registered!";
                 return false;
             }
 
@@ -50,9 +60,9 @@
             }
         }
 
-        private bool UserExists(User userX)
+        private bool UserExists(User user)
         {
-            if (this.context.Users.Select(u => u.Name).ToList().Contains(userX.Name))
+            if (this.context.Users.Select(u => u.Name).ToList().Contains(user.Name))
             {
                 return true;
             }
@@ -69,6 +79,30 @@
             {
                 return false;
             }
+        }
+
+        private bool IsUserNameValid(User user)
+        {
+            string userNamePattern = @"^[A-Za-z0-1]{4,8}$";
+
+            if (Regex.Match(user.Name, userNamePattern).Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsPasswordValid(User user)
+        {
+            string userPasswordPattern = @"^[A-Za-z0-1]{5,10}$";
+
+            if (Regex.Match(user.Password, userPasswordPattern).Success)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

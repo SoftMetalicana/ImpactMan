@@ -20,12 +20,12 @@
 
         private bool userCanBeLoggedIn;
 
-        public LoginDoneMenuCommand(IEngine engine) 
+        public LoginDoneMenuCommand(IEngine engine)
             : base(engine)
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
             this.userCanBeLoggedIn = this.accountManager.Login(user);
 
@@ -33,29 +33,13 @@
             {
                 this.menuController.Initialize("MainMenu");
                 this.menuController.Load(this.content);
-            }
-        }
 
-        public override void ChangeGamestate(User user)
-        {
-            if (this.userCanBeLoggedIn)
-            {
                 State.GameState = GameState.MainMenu;
             }
-        }
-
-        public override void ChangeUserInputState(User user)
-        {
-            if (!this.userCanBeLoggedIn)
+            else
             {
-                base.ChangeUserInputState(user);
-            }
-        }
+                State.UserInputState = UserInputState.NameInput;
 
-        public override void ChangeErrorMessage(User user)
-        {
-            if (!this.userCanBeLoggedIn)
-            {
                 this.Engine.ChangeErrorMessage("Invalid username or password!");
             }
         }
