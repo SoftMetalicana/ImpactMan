@@ -56,7 +56,7 @@
         {
             if (!userCanBeLoggedIn)
             {
-                this.Engine.ChangeErrorMessage("Invalid username or password!");
+                this.Engine.ChangeErrorMessage(Messages.InvalidUsernameOrPasswordMessage);
             }
         }
     }

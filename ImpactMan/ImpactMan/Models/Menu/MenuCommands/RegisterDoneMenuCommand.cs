@@ -41,6 +41,7 @@
             if (userCanBeRegistered)
             {
                 State.GameState = GameState.LoginMenu;
+                this.Engine.ChangeErrorMessage(Messages.UserRegisteredSuccessfullyMessage);
             }
         }
 
@@ -48,7 +49,7 @@
         {
             if (!userCanBeRegistered)
             {
-                this.Engine.ChangeErrorMessage("User already registered");
+                this.Engine.ChangeErrorMessage(Messages.UserAlreadyRegisteredMessage);
             }
         }
     }
