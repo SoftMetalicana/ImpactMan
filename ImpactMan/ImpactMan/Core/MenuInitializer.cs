@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Core
+﻿using ImpactMan.Models.Exceptions;
+
+namespace ImpactMan.Core
 {
     using Constants.Graphics;
     using Constants.Units;
@@ -44,11 +46,12 @@
         /// It should exactly match the name in the MenuConstants class menuItemLabels dictionary</param>
         public void Initialize(string query)
         {
-            bool currentMenuContainsMenuItems = MenuConstants.menuItemLabels.ContainsKey(query);
+            if (!MenuConstants.menuItemLabels.ContainsKey(query))
+            {
+                throw new MissingMenuException();
+            }
 
-            int menuItemsCount = currentMenuContainsMenuItems
-                ? MenuConstants.menuItemLabels[query].Count 
-                : 0;
+            int menuItemsCount = MenuConstants.menuItemLabels[query].Count;
 
             int menuWidth = GetEnumValue(query, "Width");
             int menuHeight = GetEnumValue(query, "Height");
@@ -59,30 +62,27 @@
             int menuItemHeight = GetEnumValue(query, "ItemHeight");
             int menuItemWidth = GetEnumValue(query, "ItemWidth");
 
-            int menuItemsInbetweenSpace = (menuHeight - menuPaddingTop - menuItemsCount * menuItemHeight) / (menuItemsCount + 1);
+            int menuItemsInbetweenSpace = (menuHeight - menuPaddingTop - menuItemsCount * menuItemHeight) / 
+                (menuItemsCount + 1);
 
             IList<IMenuItem> currentMenuItemsList = new List<IMenuItem>();
             int instantiatedMenuItemsCount = 0;
 
-            if (currentMenuContainsMenuItems)
+            foreach (var menuItem in MenuConstants.menuItemLabels[query])
             {
-                foreach (var menuItem in MenuConstants.menuItemLabels[query])
-                {
-                    currentMenuItemsList.Add(new MenuItem(menuPaddingLeft,
-                        menuPaddingTop + instantiatedMenuItemsCount * menuItemHeight + (instantiatedMenuItemsCount + 1) * menuItemsInbetweenSpace,
-                        menuItemWidth,
-                        menuItemHeight,
-                        menuItem, this.menuCommandFactory.GetInstance(menuItem, this)));
+                currentMenuItemsList.Add(new MenuItem(menuPaddingLeft,
+                    menuPaddingTop + instantiatedMenuItemsCount * menuItemHeight + (instantiatedMenuItemsCount + 1) * menuItemsInbetweenSpace,
+                    menuItemWidth,
+                    menuItemHeight,
+                    menuItem, this.menuCommandFactory.GetInstance(menuItem, this)));
 
-                    instantiatedMenuItemsCount++;
-                }
+                instantiatedMenuItemsCount++;
             }
 
             int x = (GraphicsConstants.PreferredBufferWidth - menuWidth) / 2;
             int y = (GraphicsConstants.PreferredBufferHeight - menuHeight) / 2;
 
             this.menu = new MenuHolder(x, y, menuWidth, menuHeight, query, currentMenuItemsList);
-
         }
 
         /// <summary>
@@ -116,7 +116,7 @@
 
         public int GetEnumValue(string query, string valueType)
         {
-            var type =  (int)typeof(MenuConstants).GetField($"{query}{valueType}").GetValue(null);
+            var type = (int)typeof(MenuConstants).GetField($"{query}{valueType}").GetValue(null);
 
             return type;
         }

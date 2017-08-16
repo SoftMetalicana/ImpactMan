@@ -1,13 +1,10 @@
-﻿using System;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text.RegularExpressions;
-using ImpactMan.Constants.AccountManager;
-using ImpactMan.Context.Db;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
-    using System.Collections.Generic;
+    using Constants.AccountManager;
+    using Context.Db;
+    using System;
+    using System.Linq;
+    using System.Text.RegularExpressions;
     using Context.Models;
 
     /// <summary>
@@ -24,11 +21,28 @@ namespace ImpactMan.Core
 
         public bool Login(User user)
         {
-            return UserExists(user) && IsPasswordCorrect(user);
+            if (user == null)
+            {
+                throw new ArgumentNullException(Constants.ExceptionMessages.UserNullException);
+            }
+
+            if (UserExists(user) && IsPasswordCorrect(user))
+            {
+                CurrentUser.User = user;
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool Register(User user, out string message)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(Constants.ExceptionMessages.UserNullException);
+            }
+
             message = String.Empty;
 
             if (!IsUserNameValid(user))

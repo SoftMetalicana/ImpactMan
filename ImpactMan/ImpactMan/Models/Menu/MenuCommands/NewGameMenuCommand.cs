@@ -23,7 +23,7 @@
 
             this.soundManager.PlayMusic(Music.GameMusic);
 
-            CurrentUser.User = user;
+
         }
     }
 }

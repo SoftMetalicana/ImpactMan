@@ -45,6 +45,7 @@
     <Compile Include="Attributes\MapObjectAttribute.cs" />
     <Compile Include="Constants\AccountManager\AccountManagerConstants.cs" />
     <Compile Include="Constants\Consequential\ConsequentialConstants.cs" />
+    <Compile Include="Constants\ExceptionMessages.cs" />
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
     <Compile Include="Constants\Levels\LevelConstants.cs" />
     <Compile Include="Constants\Units\MenuConstants.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Models\Consequences\Consequence.cs" />
     <Compile Include="Models\Consequences\Consequential.cs" />
     <Compile Include="Models\Enemies\Enemy.cs" />
+    <Compile Include="Models\Exceptions\MissingMenuException.cs" />
     <Compile Include="Models\LevelGenerators\LevelGenerator.cs" />
     <Compile Include="Models\Levels\Level.cs" />
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
