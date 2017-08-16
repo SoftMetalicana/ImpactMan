@@ -51,7 +51,7 @@ namespace ImpactMan.Models.Enemies
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
         /// <param name="bonusPoints">he bonus points that you want to give to the player.</param>
         public Enemy(int x, int y, string assetName, int bonusPoints)
-            : base(x, y, assetName, bonusPoints)
+            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyDistanceFromCenterToActivate)
         {
             this.currentDirection = EnemyMovingDirections.Down;
         }
