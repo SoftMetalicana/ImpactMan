@@ -229,7 +229,7 @@
                 this.inputListener.GetMouseState(currentMouseState, gameTime, this.userInputDetails);
             }
 
-            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu || State.GameState == GameState.ChangePasswordMenu)
             {
                 this.GetPressedKeys();
             }
@@ -265,7 +265,7 @@
             }
 
             //Draw input text on console
-            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu || State.GameState == GameState.ChangePasswordMenu)
             {
                 this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
             }
@@ -309,7 +309,7 @@
         }
 
         // Adds the top 10 scores to the highscore dictonary
-        private void LoadHighScores(Dictionary<string, int> highscores)
+/*        private void LoadHighScores(Dictionary<string, int> highscores)
         {
             var users = this.context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
             if (users.Count > 0)
@@ -320,7 +320,7 @@
                 }
             }
 
-        }
+        }*/
 
         /// <summary>
         /// Checks if a key has been pressed and then released

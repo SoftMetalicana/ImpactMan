@@ -1,13 +1,14 @@
 ﻿namespace ImpactMan.Core
 {
     using Enumerations.Sounds;
+    using ImpactMan.Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Media;
 
     /// <summary>
     /// This class takes care of the background music palyed during the game.
     /// </summary>
-    public class SoundManager
+    public class SoundManager:ISoundManager
     {
         private Song sound;
         private ContentManager content;

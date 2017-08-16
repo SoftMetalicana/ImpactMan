@@ -49,7 +49,7 @@
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
     <Compile Include="Constants\Levels\LevelConstants.cs" />
     <Compile Include="Constants\Menu\MenuConstants.cs" />
-    <Compile Include="Constants\Positionablee\PositionableConstants.cs" />
+    <Compile Include="Constants\Positionable\PositionableConstants.cs" />
     <Compile Include="Constants\Units\Messages.cs" />
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Constants\Utils\MovementConstants.cs" />
@@ -68,8 +68,12 @@
     <Compile Include="Enumerations\Game\EnemyMovingDirectionsEnum.cs" />
     <Compile Include="Enumerations\Game\GameStates.cs" />
     <Compile Include="Enumerations\Sounds\Sound.cs" />
+    <Compile Include="Interfaces\Core\IAccountManager.cs" />
+    <Compile Include="Interfaces\Core\IDataLoader.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
+    <Compile Include="Interfaces\Core\IMenuInitializer.cs" />
+    <Compile Include="Interfaces\Core\ISoundManager.cs" />
     <Compile Include="Interfaces\Globals\IAsset.cs" />
     <Compile Include="Interfaces\Globals\IConsequence.cs" />
     <Compile Include="Interfaces\Globals\IConsequential.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
     <Compile Include="Interfaces\IO\Reader\IFileReader.cs" />
     <Compile Include="Interfaces\IO\Reader\IReader.cs" />
+    <Compile Include="Interfaces\Models\TextWriterStrategies\ITextWriterStrategy.cs" />
     <Compile Include="Interfaces\Models\User\IUser.cs" />
     <Compile Include="Interfaces\Writer\ITextWriter.cs" />
     <Compile Include="IO\InputListeners\Events\KeyPressedEventArgs.cs" />
@@ -107,19 +112,25 @@
     <Compile Include="Models\LevelGenerators\LevelGenerator.cs" />
     <Compile Include="Models\Levels\Level.cs" />
     <Compile Include="Models\Mediators\PlayerConsequenceMediator.cs" />
+    <Compile Include="Models\Menu\MenuCommands\BackButtonMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\ChangePasswordDoneMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\ChangePasswordMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\HighScoresMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\LoginDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\MenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\MusicMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\NewGameMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\QuitMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterBackButtonMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterDoneMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\RegisterMenuButtonMenuCommand.cs" />
+    <Compile Include="Models\Menu\MenuCommands\ResetHighScoreMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuCommands\SettingsMenuCommand.cs" />
     <Compile Include="Models\Menu\MenuHolder.cs" />
     <Compile Include="Models\Menu\MenuItem.cs" />
     <Compile Include="Models\Placements\RectanglePlacement.cs" />
+    <Compile Include="Models\Players\ChangePasswordModel.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventArgs.cs" />
     <Compile Include="Models\Players\Events\PlayerTriedToMoveEventHandler.cs" />
     <Compile Include="Models\Players\PacMan.cs" />
@@ -161,7 +172,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram1.cd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Files\Levels\level.csv" />
     <None Include="packages.config" />
   </ItemGroup>

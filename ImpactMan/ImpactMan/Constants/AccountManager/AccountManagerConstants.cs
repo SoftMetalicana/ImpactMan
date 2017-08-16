@@ -8,10 +8,14 @@
         public const string InvalidUserPassword =
             "Password should contain only letters and digits and be between 5 and 10 characters long!";
 
+        public const string InvalidOldUserPassword = "Invalid old passwod.";
+
         public const string UserAlreadyRegistered = "User already registered!";
+
+        public const string SuccessfulPasswordChange = "Password changed successfully.";
 
         public const string UserNamePattern = @"^[A-Za-z0-1]{4,8}$";
 
-        public const string UserPasswordPattern = @"^[A-Za-z0-1]{5,10}$";
+        public const string UserPasswordPattern = @"^[A-Za-z0-9]{5,10}$";
     }
 }
