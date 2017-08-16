@@ -8,7 +8,7 @@
     /// <summary>
     /// This class takes care of the background music palyed during the game.
     /// </summary>
-    public class SoundManager:ISoundManager
+    public class SoundManager : ISoundManager
     {
         private Song sound;
         private ContentManager content;
@@ -20,10 +20,10 @@
 
         public void PlayMusic(Music music)
         {
-        //   this.sound = this.content.Load<Song>(music.ToString());
-        //   MediaPlayer.Play(this.sound);
-        //
-        //   MediaPlayer.IsRepeating = true;
+/*            this.sound = this.content.Load<Song>(music.ToString());
+            MediaPlayer.Play(this.sound);
+
+            MediaPlayer.IsRepeating = true;*/
         }
 
         public bool IsRunning()
