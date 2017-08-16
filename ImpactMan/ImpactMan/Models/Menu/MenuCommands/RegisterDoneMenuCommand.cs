@@ -38,10 +38,11 @@
                 this.menuController.Load(this.content);
 
                 State.GameState = GameState.LoginMenu;
+                this.Engine.ChangeErrorMessage(Messages.UserRegisteredSuccessfullyMessage);
             }
             else
             {
-                this.Engine.ChangeErrorMessage(message);
+                this.Engine.ChangeErrorMessage(Messages.UserAlreadyRegisteredMessage);
             }
         }
     }
