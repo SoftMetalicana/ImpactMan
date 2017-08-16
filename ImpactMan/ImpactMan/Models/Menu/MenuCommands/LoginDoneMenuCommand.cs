@@ -9,14 +9,11 @@
 
     public class LoginDoneMenuCommand : MenuCommand
     {
-        [InjectAttribute]
-        private AccountManager accountManager;
+        [InjectAttribute] private AccountManager accountManager;
 
-        [InjectAttribute]
-        private MenuInitializer menuController;
+        [InjectAttribute] private MenuInitializer menuController;
 
-        [InjectAttribute]
-        private ContentManager content;
+        [InjectAttribute] private ContentManager content;
 
         private bool userCanBeLoggedIn;
 
@@ -40,7 +37,9 @@
             {
                 State.UserInputState = UserInputState.NameInput;
 
-                this.Engine.ChangeErrorMessage("Invalid username or password!");
+                {
+                    this.Engine.ChangeErrorMessage(Messages.InvalidUsernameOrPasswordMessage);
+                }
             }
         }
     }
