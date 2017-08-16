@@ -5,7 +5,7 @@
     /// <summary>
     /// This interface must be inheritated by the SoundManager
     /// </summary>
-    interface ISoundManager
+    public interface ISoundManager
     {
         //This method plays the selected music
         void PlayMusic(Music music);

@@ -36,8 +36,6 @@ namespace ImpactMan
             ImpactManContext context = new ImpactManContext();
             AccountManager accountManager = new AccountManager(context);
 
-            IPlayerDeathHandler playerDeathHandler = new PlayerDeathHandler(context);
-
             IInitializer initializer = new Initializer();
             IInputListener inputListener = new InputListener();
 
@@ -55,8 +53,7 @@ namespace ImpactMan
                                              generatedLevel.AllEnemies,
                                              generatedLevel, 
                                              context, 
-                                             accountManager, 
-                                             playerDeathHandler))
+                                             accountManager))
             {
                 game.Run();
             }

@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Levels
 {
+    using System;
     using System.Collections.Generic;
     using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.Models.Enemies;
@@ -29,6 +30,10 @@
         /// The map itself.
         /// </summary>
         private IList<IConsequential[]> allUnitsOnMap;
+        /// <summary>
+        /// This level preserves the initial state.
+        /// </summary>
+        private ILevel backUp;
 
         public Level()
             : this(null, new List<IEnemy>(), new List<IConsequential[]>())
@@ -43,6 +48,7 @@
         {
             this.AllUnitsOnMap = allUnitsOnMap;
             this.AllEnemies = allEnemies;
+            this.backUp = this;
         }
 
         /// <summary>
@@ -117,10 +123,6 @@
             this.AllUnitsOnMap[row][col] = consequential;
         }
 
-        /// <summary>
-        /// Raises an event...
-        /// </summary>
-        /// <param name="eventArgs"></param>
         protected virtual void OnEnemyAffectedPlayer(PlayerAffectedEnemyEventArgs eventArgs)
         {
             this.PlayerAffectedEnemy?.Invoke(this, eventArgs);
@@ -232,6 +234,13 @@
             
             ReturnResult:
             return affectedObjectConsequence;
+        }
+
+        public void LevelReset()
+        {
+            this.Player = this.backUp.Player;
+            this.AllEnemies = this.backUp.AllEnemies;
+            this.AllUnitsOnMap = this.backUp.AllUnitsOnMap;
         }
     }
 }

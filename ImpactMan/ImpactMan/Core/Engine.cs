@@ -34,12 +34,12 @@
         private readonly IPlayerConsequenceMediator playerConsequenceMediator;
         private readonly IInitializer initializer;
         private readonly IInputListener inputListener;
-        private readonly IPlayerDeathHandler playerDeathHandler;
 
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
         private ITextWriter textWriter;
 
+        private IPlayerDeathHandler playerDeathHandler;
         private IPlayer player;
         private KeyboardState previosKeyboardState;
         private User userInputDetails;
@@ -62,8 +62,7 @@
                       IList<IEnemy> allEnemies,
                       ILevel level,
                       ImpactManContext context,
-                      AccountManager accountManager,
-                      IPlayerDeathHandler playerDeathHandler)
+                      AccountManager accountManager)
         {
             //Content
             this.Content.RootDirectory = "Content";
@@ -90,8 +89,6 @@
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
             this.pressedKeys = new List<Keys>();
-
-            this.playerDeathHandler = playerDeathHandler;
         }
 
         public void LoadPrevGame()
@@ -149,6 +146,8 @@
 
             this.errorMessage = string.Empty;
 
+            this.playerDeathHandler = new PlayerDeathHandler(this.context, this.menuInitializer, this.Content);
+
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
 
@@ -162,13 +161,9 @@
                 GraphicsConstants.PreferredBufferWidth,
 
                 GraphicsConstants.PreferredBufferHeight);
-            
 
             //Sets initial game state to LoginMenu state
             this.initializer.SetGameStates();
-
-            //Pass content to all objects in the map
-            this.initializer.PassContentManagerToAllObjectsInLevel(this.level, this.Content);
 
             //Sets window title
             this.SetWindowTitle();

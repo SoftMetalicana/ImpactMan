@@ -11,7 +11,7 @@
     /// <summary>
     /// This interface must be inheritated by the MenuIntializer
     /// </summary>
-    interface IMenuInitializer
+    public interface IMenuInitializer
     {
         void Initialize(string query);
         void OnMouseClicked(IInputListener sender, MouseClickedEventArgs eventArgs);

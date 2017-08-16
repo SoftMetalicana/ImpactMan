@@ -5,7 +5,7 @@
     /// <summary>
     /// This interface must be inheritated by the AccountManager
     /// </summary>
-    interface IAccountManager
+    public interface IAccountManager
     {
         /// This method is responsible for loging in the gameplay
         bool Login(User context);

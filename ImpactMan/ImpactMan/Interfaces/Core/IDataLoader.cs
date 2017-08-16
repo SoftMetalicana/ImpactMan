@@ -5,7 +5,7 @@
     /// <summary>
     /// This interface must be inheritated by the DataLoade
     /// </summary>
-    interface IDataLoader
+    public interface IDataLoader
     {
         //This method returns the users(UserName and HighScore) with best highscores from the databse
         Dictionary<string,int> LoadHighScores();
