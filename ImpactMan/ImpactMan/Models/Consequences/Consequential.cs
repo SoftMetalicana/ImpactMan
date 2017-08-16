@@ -14,11 +14,6 @@
         /// </summary>
         private int bonusPoints;
         /// <summary>
-        /// The distance from the player to the consequential object which is needed to activate
-        /// the consequential object.
-        /// </summary>
-        private double distanceFromCenterToAffect;
-        /// <summary>
         /// Flag that tells the player if he can move or not.
         /// </summary>
         private bool playerCanMove;
@@ -30,11 +25,10 @@
         /// <param name="y">The y coordinate of the object in the map.</param>
         /// <param name="assetName">The name of the asset from the pipeline.</param>
         /// <param name="bonusPoints">The bonus points that you want to give to the player.</param>
-        protected Consequential(int x, int y, string assetName, int bonusPoints, double distanceFromCenterToActivate, bool playerCanMove) 
+        protected Consequential(int x, int y, string assetName, int bonusPoints, bool playerCanMove) 
             : base(x, y, assetName)
         {
             this.BonusPoints = bonusPoints;
-            this.DistanceFromCenterToAffect = distanceFromCenterToActivate;
             this.PlayerCanMove = playerCanMove;
         }
 
@@ -51,19 +45,6 @@
             private set
             {
                 this.bonusPoints = value;
-            }
-        }
-
-        public double DistanceFromCenterToAffect
-        {
-            get
-            {
-                return this.distanceFromCenterToAffect;
-            }
-
-            private set
-            {
-                this.distanceFromCenterToAffect = value;
             }
         }
 

@@ -12,6 +12,8 @@
     /// </summary>
     public interface ILevel : Globals.IDrawable
     {
+        event PlayerAffectedEnemyEventHandler PlayerAffectedEnemy;
+
         /// <summary>
         /// All the enemies on the map. Also walk over the map.
         /// </summary>

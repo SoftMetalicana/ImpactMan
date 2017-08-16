@@ -1,9 +1,5 @@
-﻿using ImpactMan.Utils;
-
-namespace ImpactMan.Models.Enemies
+﻿namespace ImpactMan.Models.Enemies
 {
-    using Constants.Utils;
-    using Enumerations.Game;
     using Attributes;
     using Consequences;
     using Constants.Consequential;
@@ -11,8 +7,6 @@ namespace ImpactMan.Models.Enemies
     using Interfaces.Models.Enemies;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using System;
-    using ImpactMan.Interfaces.Globals;
 
     /// <summary>
     /// Concrete implementation of the enemy.
@@ -50,7 +44,7 @@ namespace ImpactMan.Models.Enemies
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
         /// <param name="bonusPoints">he bonus points that you want to give to the player.</param>
         public Enemy(int x, int y, string assetName, int bonusPoints)
-            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyDistanceFromCenterToAffect, ConsequentialConstants.EnemyPlayerCanMove)
+            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyPlayerCanMove)
         {
         }
 
@@ -61,22 +55,6 @@ namespace ImpactMan.Models.Enemies
         /// <param name="keyboardState">Can be taken from the engine.</param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            //bool directionShouldChange = true;
-
-            //if (directionShouldChange)
-            //{
-            //    currentDirection = (EnemyMovingDirections) (rnd.Next() % 3);
-            //}
-
-            //int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
-
-            //Vector2 displacement = MovementConstants.directions[currentDirection];
-            //Rectangle rect = this.Rectangle;
-
-            //this.Rectangle = new Rectangle(
-            //    (int) (rect.X + displacement.X * calculatedDistance), 
-            //    (int) (rect.Y + displacement.Y * calculatedDistance), rect.Width,
-            //    rect.Height);
         }
     }
 }
