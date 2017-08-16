@@ -44,7 +44,21 @@ namespace ImpactMan.Constants.Menu
             {"HighScoresMenu", new List<string>()
             {
                 "HighScoresMenuBackButton"
-            } }
+            } },
+
+            { "SettingsMenu", new List<string>()
+            {
+                "ChangePassword",
+                "Music",
+                "ResetHighScore",
+                "BackButton"
+            }},
+                
+            { "ChangePasswordMenu", new List<string>()
+            {
+                 "BackButton",
+                 "HighScoresMenuBackButton"
+            }}
         };
 
 
@@ -135,5 +149,31 @@ namespace ImpactMan.Constants.Menu
 
         public const string HighScoresMenuNumberFormat = "### ### ### ### ###";
         public const string HighScoresMenuPlayerFormat = "{0}. {1,-10} {2,15}";
+
+
+        /// Settings menu params
+        /// </summary>
+        public static readonly int SettingsMenuWidth = MainMenuWidth;
+            public static readonly int SettingsMenuHeight = MainMenuHeight;
+       
+            public static readonly int SettingsMenuItemWidth = MainMenuItemWidth;
+            public static readonly int SettingsMenuItemHeight = MainMenuItemHeight;
+       
+            public static readonly int SettingsMenuPaddingTop = MainMenuPaddingTop;
+            public static readonly int SettingsMenuPaddingLeft = MainMenuPaddingLeft;
+       
+            /// <summary>
+            /// Change Password Menu
+            /// </summary>
+            public static readonly int ChangePasswordMenuWidth = MainMenuWidth;
+            public static readonly int ChangePasswordMenuHeight = MainMenuHeight;
+       
+            public static readonly int ChangePasswordMenuItemWidth = LoginMenuItemWidth;
+            public static readonly int ChangePasswordMenuItemHeight = LoginMenuItemHeight;
+       
+            public static readonly int ChangePasswordMenuPaddingTop = RegisterMenuPaddingTop;
+            public static readonly int ChangePasswordMenuPaddingLeft = RegisterMenuPaddingLeft;
+       
+            /// <summary>
     }
 }
