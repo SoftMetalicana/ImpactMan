@@ -42,7 +42,7 @@
         private static readonly char[] SeparatorSymbolsInFile = new char[] { ',', '\t', ' ', '"' };
 
         /// <summary>
-        /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
+        /// Holds cache of functions that activate an object on given coordinates(X, Y).
         /// </summary>
         private static IDictionary<string, Action<int, int, ILevel, int, int>> activationCache;
 

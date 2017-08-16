@@ -1,15 +1,11 @@
-﻿namespace ImpactMan.Core
+namespace ImpactMan.Core
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Constants.Graphics;
     using Constants.Units;
     using Context.Db;
     using Context.Models;
     using Enumerations.Game;
     using Enumerations.Sounds;
-    using ImpactMan.IO.Recording;
     using Interfaces.Core;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Enemies;
@@ -17,10 +13,14 @@
     using Interfaces.Models.Mediators;
     using Interfaces.Models.Players;
     using Interfaces.Writer;
-    using IO.Writers;
+    using IO.Recording;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using IO.Writers;
 
     /// <summary>
     /// This is the main type for your game.
@@ -38,6 +38,7 @@
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
         private ITextWriter textWriter;
+
         private IPlayer player;
         private KeyboardState previosKeyboardState;
         private User userInputDetails;
@@ -58,14 +59,27 @@
                       IPlayerConsequenceMediator playerConsequenceMediator,
                       IPlayer player,
                       IList<IEnemy> allEnemies,
-                      ILevel level)
+                      ILevel level,
+                      ImpactManContext context,
+                      AccountManager accountManager)
         {
+            //Content
             this.Content.RootDirectory = "Content";
 
+            //Context - DB
+            this.context = context;
+
+            //User account manager
+            this.accountManager = accountManager;
+
+            //Graphics and sound
             this.graphics = new GraphicsDeviceManager(this);
             this.soundManager = new SoundManager(this.Content);
 
+            //Initializer
             this.initializer = initializer;
+
+            //InputListener
             this.inputListener = inputListener;
 
             this.player = player;
@@ -110,19 +124,23 @@
         /// </summary>
         protected override void Initialize()
         {
-            this.context = new ImpactManContext();
+            //Initialize DB
             this.context.Database.Initialize(true);
 
-            this.highScores = new Dictionary<string, int>();
-            this.LoadHighScores(this.highScores);
-
-            this.userInputDetails = new User();
-            this.userInputDetails.Name = string.Empty;
-            this.userInputDetails.Password = string.Empty;
-            this.errorMessage = string.Empty;
-
-            this.accountManager = new AccountManager(this.context);
+            //Initializes new menuInitializer which takes care of menus in the game
             this.menuInitializer = new MenuInitializer(this, this.Content, this.accountManager, this.soundManager);
+
+            this.menuInitializer.Initialize("LoginMenu");
+            this.soundManager.PlayMusic(Music.LoginMusic);
+
+            //Sets current user
+            this.userInputDetails = new User
+            {
+                Name = string.Empty,
+                Password = string.Empty
+            };
+
+            this.errorMessage = string.Empty;
 
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
@@ -130,16 +148,18 @@
             this.inputListener.KeyPressed += this.player.OnKeyPressed;
             this.inputListener.MouseClicked += this.menuInitializer.OnMouseClicked;
 
-            this.menuInitializer.Initialize("LoginMenu");
-            this.soundManager.PlayMusic(Music.LoginMusic);
-
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,
-                                                   GraphicsConstants.PreferredBufferWidth,
-                                                   GraphicsConstants.PreferredBufferHeight);
+                GraphicsConstants.PreferredBufferWidth,
+
+                GraphicsConstants.PreferredBufferHeight);
+
+            //Sets initial game state to LoginMenu state
             this.initializer.SetGameStates();
 
+            //Sets window title
             this.SetWindowTitle();
+
             base.Initialize();
         }
 
@@ -155,9 +175,11 @@
             this.initializer.LoadLevel(this.level, this.Content);
 
             this.menuInitializer.Load(this.Content);
+
             this.spriteFont = this.Content.Load<SpriteFont>("sprite_font");
 
             this.textWriter = new ConsoleTextWriter(this.spriteFont, this.spriteBatch);
+
         }
 
         /// <summary>
@@ -185,6 +207,7 @@
                 {
                     this.recorder.Dispose();
                 }
+
                 else
                 {
                     this.recorder = new Recorder(new RecorderParams("GameDemo.avi", 32, SharpAvi.KnownFourCCs.Codecs.MotionJpeg, 70));
@@ -232,19 +255,19 @@
 
             this.spriteBatch.Begin();
 
+            //Draw menu on console
             if (State.GameState != GameState.GameMode)
             {
                 this.menuInitializer.Draw(this.spriteBatch);
             }
 
-            if (State.GameState == GameState.LoginMenu)
+            //Draw input text on console
+            if (State.GameState == GameState.LoginMenu || State.GameState == GameState.SignUpMenu)
             {
                 this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
             }
-            else if (State.GameState == GameState.SignUpMenu)
-            {
-                this.textWriter.WriteUserDetails(this.userInputDetails, this.errorMessage);
-            }
+
+            //Draw highscore stats on console
             else if (State.GameState == GameState.HighScoresMenu)
             {
                 int count = 0;
@@ -263,6 +286,8 @@
                     new Vector2(MenuConstants.HighScoresMenuX, MenuConstants.HighScoresMenuY),
                     Color.Black);
             }
+
+            //Draw game in playmode
             else if (State.GameState == GameState.GameMode)
             {
                 this.level.Draw(this.spriteBatch);
@@ -294,6 +319,9 @@
 
         }
 
+        /// <summary>
+        /// Checks if a key has been pressed and then released
+        /// </summary>
         private void GetPressedKeys()
         {
             KeyboardState keyboardState = Keyboard.GetState();
@@ -314,6 +342,7 @@
         {
             StringBuilder sb = null;
 
+            //If pressed key is tab then shift between username and password
             if (key == Keys.Tab)
             {
                 State.UserInputState = (UserInputState)(((int)State.UserInputState + 1) % 2);
@@ -323,6 +352,7 @@
             {
                 sb = new StringBuilder(this.userInputDetails.Name);
             }
+
             else
             {
                 sb = new StringBuilder(this.userInputDetails.Password);
@@ -354,7 +384,6 @@
             {
                 this.userInputDetails.Password = sb.ToString();
             }
-
         }
     }
 }

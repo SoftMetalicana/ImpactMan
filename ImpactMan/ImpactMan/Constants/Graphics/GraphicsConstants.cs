@@ -20,10 +20,10 @@
         /// Initial console/window width
         /// </summary>
         public static readonly int PreferredBufferWidth = Screen.PrimaryScreen.Bounds.Width;
-
+        
         /// <summary>
         /// Initial console/window width
         /// </summary>
-        public static readonly int PreferredBufferHeight = Screen.PrimaryScreen.Bounds.Height;
+        public static readonly int PreferredBufferHeight = Screen.PrimaryScreen.Bounds.Height - 70;
     }
 }

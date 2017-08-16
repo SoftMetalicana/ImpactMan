@@ -6,7 +6,7 @@
     {
         public void Write()
         {
-/*            this.textWriter.Write(this.userInputDetails.Name,
+            this.textWriter.Write(this.userInputDetails.Name,
                 new Vector2(MenuConstants.LoginMenuUsernameX,
                     MenuConstants.LoginMenuUsernameY),
                 Color.Black);
@@ -19,7 +19,7 @@
             this.textWriter.Write(this.errorMessage,
                 new Vector2(MenuConstants.LoginMenuErrorMessageX,
                     MenuConstants.LoginMenuErrorMessageY),
-                Color.Black);*/
+                Color.Black);
         }
     }
 }

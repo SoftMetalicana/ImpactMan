@@ -1,4 +1,4 @@
-﻿namespace ImpactMan.IO.Recording
+namespace ImpactMan.IO.Recording
 {
     using SharpAvi;
     using SharpAvi.Codecs;

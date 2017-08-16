@@ -1,14 +1,14 @@
 ﻿namespace ImpactMan.Models.Enemies
 {
+    using System.Collections.Generic;
     using Consequences;
     using Constants.Consequential;
+    using Enumerations.Game;
     using ImpactMan.Attributes;
     using ImpactMan.Constants.Units;
     using Interfaces.Models.Enemies;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Concrete implementation of the enemy.
@@ -17,7 +17,7 @@
     [MapObject(UnitConstants.EnemyCsvKeyName)]
     public class Enemy : Consequential, IEnemy
     {
-        private Random rnd = new Random();
+        private EnemyMovingDirections currentDirection;
 
         /// <summary>
         /// Instantiates the enemy.
@@ -48,8 +48,9 @@
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
         /// <param name="bonusPoints">he bonus points that you want to give to the player.</param>
         public Enemy(int x, int y, string assetName, int bonusPoints)
-            : base(x, y, assetName, bonusPoints)
+            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyDistanceFromCenterToActivate)
         {
+            this.currentDirection = EnemyMovingDirections.Down;
         }
 
         /// <summary>
@@ -59,17 +60,22 @@
         /// <param name="keyboardState">Can be taken from the engine.</param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            var dic = new Dictionary<int, Vector2>()
-            {
-                { 0, new Vector2(0, -5) },
-                { 1, new Vector2(0, 5) },
-                { 2, new Vector2(-5, 0) },
-                { 3, new Vector2(5, 5) },
-            };
-            var newPosition = this.rnd.Next(0, 3);
-            var rec = new Rectangle(this.Rectangle.X + (int)dic[newPosition].X, this.Rectangle.Y + (int)dic[newPosition].Y, this.Texture.Width, this.Texture.Height);
-            
-            this.Rectangle = rec;
+            //bool directionShouldChange = true;
+
+            //if (directionShouldChange)
+            //{
+            //    currentDirection = (EnemyMovingDirections) (rnd.Next() % 3);
+            //}
+
+            //int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
+
+            //Vector2 displacement = MovementConstants.directions[currentDirection];
+            //Rectangle rect = this.Rectangle;
+
+            //this.Rectangle = new Rectangle(
+            //    (int) (rect.X + displacement.X * calculatedDistance), 
+            //    (int) (rect.Y + displacement.Y * calculatedDistance), rect.Width,
+            //    rect.Height);
         }
     }
 }

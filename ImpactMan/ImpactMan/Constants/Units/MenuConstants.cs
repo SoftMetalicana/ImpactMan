@@ -15,7 +15,6 @@
             { "MainMenu", new List<string>()
             {
                 "NewGame",
-                "LoadGame",
                 "HighScores",
                 "Settings",
                 "Quit"
@@ -60,11 +59,6 @@
                 }
             }
         };
-        /// <summary>
-        /// Signup menu text postition constants
-        /// </summary>
-
-        public static readonly int ErrorMessageY = (int)(GraphicsConstants.PreferredBufferHeight / 1.02);
 
         /// <summary>
         /// Main menu params
@@ -91,18 +85,6 @@
         public static readonly int LoginMenuPaddingLeft = (int)(LoginMenuWidth / 2.2);
 
         /// <summary>
-        /// Login menu text postition constants
-        /// </summary>
-        public static readonly int LoginMenuUsernameX = (int)(LoginMenuWidth / 2.45);
-        public static readonly int LoginMenuUsernameY = (int)(LoginMenuHeight / 2.6);
-
-        public static readonly int LoginMenuPasswordX = (int)(LoginMenuWidth / 2.45);
-        public static readonly int LoginMenuPasswordY = (int)(LoginMenuHeight / 2.143);
-
-        public static readonly int LoginMenuErrorMessageX = (int)(LoginMenuWidth / 2.6);
-        public static readonly int LoginMenuErrorMessageY = ErrorMessageY;
-
-        /// <summary>
         /// Register menu params
         /// </summary>
         public static readonly int RegisterMenuWidth = MainMenuWidth;
@@ -113,15 +95,6 @@
 
         public static readonly int RegisterMenuPaddingTop = (int)(RegisterMenuHeight / 2.3);
         public static readonly int RegisterMenuPaddingLeft = (int)(RegisterMenuWidth / 2.2);
-
-        public static readonly int SignupMenuUsernameX = (int)(RegisterMenuWidth / 2.4);
-        public static readonly int SignupMenuUsernameY = (int)(RegisterMenuHeight / 2.53);
-
-        public static readonly int SignupMenuPasswordX = (int)(RegisterMenuWidth / 2.4);
-        public static readonly int SignupMenuPasswordY = (int)(RegisterMenuHeight / 2.075);
-
-        public static readonly int SignupMenuErrorMessageX = (int)(RegisterMenuWidth / 2.6);
-        public static readonly int SignupMenuErrorMessageY = ErrorMessageY;
         
         /// <summary>
         /// High score menu params
@@ -136,13 +109,34 @@
         public static readonly int HighScoresMenuPaddingLeft = (int)(HighScoresMenuHeight / 23.33);
 
         /// <summary>
-        /// HighScores menu text postition constants
+        /// Text alignment rates at different screen resolution
         /// </summary>
-        public static readonly int HighScoresMenuX = (int)(HighScoresMenuWidth / 1188.33);
-        public static readonly int HighScoresMenuY = (int)(HighScoresMenuHeight / 5);
+        private static readonly double TextPositionAlignmentWidth = (GraphicsConstants.PreferredBufferWidth / 1920.0);
+        private static readonly double TextPositionAlignmentHeight = (GraphicsConstants.PreferredBufferHeight / 1080.0);
 
-        public static readonly string HighScoresMenuNumberFormat = "### ### ### ### ###";
-        public static readonly string HighScoresMenuPlayerFormat = "{0}. {1,-10} {2,15}";
+        /// <summary>
+        /// Login menu text postition constants
+        /// </summary>
+        public static readonly int LoginMenuUsernameX = (int)(781 * TextPositionAlignmentWidth);
+        public static readonly int LoginMenuUsernameY = (int)(397 * TextPositionAlignmentHeight);
+
+        public static readonly int LoginMenuPasswordX = (int)(781 * TextPositionAlignmentWidth);
+        public static readonly int LoginMenuPasswordY = (int)(483 * TextPositionAlignmentHeight);
+
+        public static readonly int LoginMenuErrorMessageX = (int)(768 * TextPositionAlignmentWidth);
+        public static readonly int LoginMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
+
+        /// <summary>
+        /// Signup menu text postition constants
+        /// </summary>
+        public static readonly int SignupMenuUsernameX = (int)(797 * TextPositionAlignmentWidth);
+        public static readonly int SignupMenuUsernameY = (int)(406 * TextPositionAlignmentHeight);
+
+        public static readonly int SignupMenuPasswordX = (int)(797 * TextPositionAlignmentWidth);
+        public static readonly int SignupMenuPasswordY = (int)(496 * TextPositionAlignmentHeight);
+
+        public static readonly int SignupMenuErrorMessageX = (int)(820 * TextPositionAlignmentWidth);
+        public static readonly int SignupMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
 
         /// <summary>
         /// Settings menu params
@@ -167,5 +161,14 @@
 
         public static readonly int ChangePasswordMenuPaddingTop = RegisterMenuPaddingTop;
         public static readonly int ChangePasswordMenuPaddingLeft = RegisterMenuPaddingLeft;
+
+        /// <summary>
+        /// HighScores menu text postition constants
+        /// </summary>
+        public const int HighScoresMenuX = 60;
+        public const int HighScoresMenuY = 140;
+
+        public const string HighScoresMenuNumberFormat = "### ### ### ### ###";
+        public const string HighScoresMenuPlayerFormat = "{0}. {1,-10} {2,15}";
     }
 }

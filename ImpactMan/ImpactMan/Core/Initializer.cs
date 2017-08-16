@@ -1,4 +1,4 @@
-﻿namespace ImpactMan.Core
+namespace ImpactMan.Core
 {
     using ImpactMan.Enumerations.Game;
     using Interfaces.Core;
