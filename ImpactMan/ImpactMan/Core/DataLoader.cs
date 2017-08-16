@@ -16,7 +16,7 @@ namespace ImpactMan.Core
         private ImpactManContext context;
         public DataLoader(ImpactManContext context)
         {
-            this.context = context;
+            this.context = context; 
         }
         public Dictionary<string, int> LoadHighScores()
         {
