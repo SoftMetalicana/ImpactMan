@@ -1,4 +1,5 @@
-﻿namespace ImpactMan.Models.Menu.MenuCommands
+﻿
+namespace ImpactMan.Models.Menu.MenuCommands
 {
     using Enumerations.Game;
     using System;
@@ -16,7 +17,7 @@
         [InjectAttribute]
         private ContentManager content;
 
-        public RegisterMenuButtonMenuCommand(IEngine engine) 
+        public RegisterMenuButtonMenuCommand(IEngine engine)
             : base(engine)
         {
         }

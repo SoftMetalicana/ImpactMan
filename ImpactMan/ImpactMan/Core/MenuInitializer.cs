@@ -2,6 +2,7 @@
 
 namespace ImpactMan.Core
 {
+    using System.Collections.Generic;
     using Constants.Graphics;
     using Constants.Units;
     using Context.Models;
@@ -15,7 +16,6 @@ namespace ImpactMan.Core
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Models.Menu;
-    using System.Collections.Generic;
 
     /// <summary>
     /// This class takes care of the menus and buttons.
@@ -53,14 +53,14 @@ namespace ImpactMan.Core
 
             int menuItemsCount = MenuConstants.menuItemLabels[query].Count;
 
-            int menuWidth = GetEnumValue(query, "Width");
-            int menuHeight = GetEnumValue(query, "Height");
+            int menuWidth = this.GetEnumValue(query, "Width");
+            int menuHeight = this.GetEnumValue(query, "Height");
 
-            int menuPaddingTop = GetEnumValue(query, "PaddingTop");
-            int menuPaddingLeft = GetEnumValue(query, "PaddingLeft");
+            int menuPaddingTop = this.GetEnumValue(query, "PaddingTop");
+            int menuPaddingLeft = this.GetEnumValue(query, "PaddingLeft");
 
-            int menuItemHeight = GetEnumValue(query, "ItemHeight");
-            int menuItemWidth = GetEnumValue(query, "ItemWidth");
+            int menuItemHeight = this.GetEnumValue(query, "ItemHeight");
+            int menuItemWidth = this.GetEnumValue(query, "ItemWidth");
 
             int menuItemsInbetweenSpace = (menuHeight - menuPaddingTop - menuItemsCount * menuItemHeight) / 
                 (menuItemsCount + 1);
@@ -103,15 +103,12 @@ namespace ImpactMan.Core
 
         public void Update(GameTime gameTime, MouseState mouseState, User user)
         {
-
             this.menu.Update(gameTime, mouseState, user);
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            menu.Draw(spriteBatch);
+            this.menu.Draw(spriteBatch);
         }
 
         public int GetEnumValue(string query, string valueType)

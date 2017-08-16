@@ -5,10 +5,9 @@
     using Core;
     using Enumerations.Game;
     using Interfaces.Core;
-    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
 
-    public class SettingsMenuCommand : MenuCommand
+    public class ChangePasswordMenuCommand : MenuCommand
     {
         [Inject]
         private MenuInitializer menuController;
@@ -16,14 +15,13 @@
         [InjectAttribute]
         private ContentManager content;
 
-        public SettingsMenuCommand(IEngine engine)
-            : base(engine)
+        public ChangePasswordMenuCommand(IEngine engine) : base(engine)
         {
         }
 
         public override void Execute(User user)
         {
-            this.menuController.Initialize("SettingsMenu");
+            this.menuController.Initialize("ChangePasswordMenu");
             this.menuController.Load(this.content);
 
             State.GameState = GameState.SettingsMenu;

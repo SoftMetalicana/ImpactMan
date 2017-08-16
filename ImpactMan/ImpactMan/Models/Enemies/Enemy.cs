@@ -1,17 +1,14 @@
-﻿using ImpactMan.Utils;
-
-namespace ImpactMan.Models.Enemies
+﻿namespace ImpactMan.Models.Enemies
 {
-    using Constants.Utils;
-    using Enumerations.Game;
-    using Attributes;
+    using System.Collections.Generic;
     using Consequences;
     using Constants.Consequential;
-    using Constants.Units;
+    using Enumerations.Game;
+    using ImpactMan.Attributes;
+    using ImpactMan.Constants.Units;
     using Interfaces.Models.Enemies;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using System;
 
     /// <summary>
     /// Concrete implementation of the enemy.

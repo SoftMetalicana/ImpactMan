@@ -1,14 +1,13 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
-    using Enumerations.Game;
     using Attributes;
     using Context.Models;
     using Core;
+    using Enumerations.Game;
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
-    using System;
 
-    public class HighScoresMenuBackButtonMenuCommand : MenuCommand
+    public class BackButtonMenuCommand : MenuCommand
     {
         [Inject]
         private MenuInitializer menuController;
@@ -16,7 +15,7 @@
         [InjectAttribute]
         private ContentManager content;
 
-        public HighScoresMenuBackButtonMenuCommand(IEngine engine) 
+        public BackButtonMenuCommand(IEngine engine) 
             : base(engine)
         {
         }

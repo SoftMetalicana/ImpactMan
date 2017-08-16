@@ -7,26 +7,31 @@
     using Enumerations.Sounds;
     using Interfaces.Core;
 
-    public class NewGameMenuCommand : MenuCommand
+    public class MusicMenuCommand : MenuCommand
     {
         [Inject]
         private SoundManager soundManager;
 
-        public NewGameMenuCommand(IEngine engine)
-            : base(engine)
+        public MusicMenuCommand(IEngine engine) : base(engine)
         {
         }
 
         public override void Execute(User user)
         {
-            State.GameState = GameState.GameMode;
+            this.PlayMusic();
+            State.GameState = GameState.SettingsMenu;
+        }
 
+        private void PlayMusic()
+        {
             if (this.soundManager.IsRunning())
             {
-                this.soundManager.PlayMusic(Music.GameMusic);
+                this.soundManager.StopMusic();
             }
-
-
+            else
+            {
+                this.soundManager.PlayMusic(Music.LoginMusic);
+            }
         }
     }
 }

@@ -21,7 +21,7 @@
 
         private bool userCanBeRegistered;
 
-        public RegisterDoneMenuCommand(IEngine engine) 
+        public RegisterDoneMenuCommand(IEngine engine)
             : base(engine)
         {
         }

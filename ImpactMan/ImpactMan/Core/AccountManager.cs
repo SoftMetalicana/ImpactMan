@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using Context.Models;
+    using ImpactMan.Context.Db;
 
     /// <summary>
     /// This class takes care of the login and signup processes and the related checks and interaction with the DB.
@@ -68,16 +69,14 @@
 
             try
             {
-                context.Users.Add(user);
-                context.SaveChanges();
+                this.context.Users.Add(user);
+                this.context.SaveChanges();
                 return true;
             }
-
             catch (Exception)
             {
                 return false;
             }
-
         }
 
         private bool UserExists(User user)
@@ -91,7 +90,7 @@
 
         private bool IsPasswordCorrect(User user)
         {
-            if (this.context.Users.Where(u => u.Name == user.Name).First().Password == user.Password)
+            if (this.context.Users.First(u => u.Name == user.Name).Password == user.Password)
             {
                 return true;
             }

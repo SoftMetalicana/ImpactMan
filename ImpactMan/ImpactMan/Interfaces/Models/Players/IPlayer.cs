@@ -1,9 +1,9 @@
 ﻿namespace ImpactMan.Interfaces.Models.Players
 {
     using Globals;
-    using IO.InputListeners;
     using ImpactMan.IO.InputListeners.Events;
     using ImpactMan.Models.Players.Events;
+    using IO.InputListeners;
 
     /// <summary>
     /// If you want a new player in the game you must inherit from this interface.
