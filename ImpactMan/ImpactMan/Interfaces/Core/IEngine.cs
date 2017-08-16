@@ -1,8 +1,5 @@
-﻿
-
-namespace ImpactMan.Interfaces.Core
+﻿namespace ImpactMan.Interfaces.Core
 {
-    using Enumerations.Game;
     using System;
 
     /// <summary>

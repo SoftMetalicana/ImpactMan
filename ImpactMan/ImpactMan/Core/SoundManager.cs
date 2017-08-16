@@ -1,8 +1,8 @@
 ﻿namespace ImpactMan.Core
 {
-    using Microsoft.Xna.Framework.Media;
     using Enumerations.Sounds;
     using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Media;
 
     /// <summary>
     /// This class takes care of the background music palyed during the game.
@@ -19,8 +19,8 @@
 
         public void PlayMusic(Music music)
         {
-            sound = content.Load<Song>(music.ToString());
-            MediaPlayer.Play(sound);
+            this.sound = this.content.Load<Song>(music.ToString());
+            MediaPlayer.Play(this.sound);
 
             MediaPlayer.IsRepeating = true;
         }

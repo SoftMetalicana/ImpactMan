@@ -1,7 +1,6 @@
-﻿using ImpactMan.Context.Models;
-
-namespace ImpactMan.IO.InputListeners
+﻿namespace ImpactMan.IO.InputListeners
 {
+    using ImpactMan.Context.Models;
     using ImpactMan.Interfaces.IO.InputListeners;
     using ImpactMan.IO.InputListeners.Events;
     using Microsoft.Xna.Framework;
@@ -30,24 +29,32 @@ namespace ImpactMan.IO.InputListeners
         }
 
         /// <summary>
+        /// Mouse input
+        /// </summary>
+        /// <param name="mouseState"></param>
+        /// <param name="gameTime"></param>
+        /// <param name="user"></param>
+        public void GetMouseState(MouseState mouseState, GameTime gameTime, User user)
+        {
+            this.OnMouseClicked(new MouseClickedEventArgs(mouseState, gameTime, user));
+        }
+
+        /// <summary>
+        /// Mouse clicked
+        /// </summary>
+        /// <param name="eventArgs"></param>
+        protected virtual void OnMouseClicked(MouseClickedEventArgs eventArgs)
+        {
+            this.MouseClicked?.Invoke(this, eventArgs);
+        }
+
+        /// <summary>
         /// The method that takes care the invoke the event.
         /// </summary>
         /// <param name="eventArgs">Keyboard state info in the moment the event is raised.</param>
         protected virtual void OnKeyPressed(KeyPressedEventArgs eventArgs)
         {
             this.KeyPressed?.Invoke(this, eventArgs);
-        }
-
-
-        //Mouse input
-        public void GetMouseState(MouseState mouseState, GameTime gameTime, User user)
-        {
-            this.OnMouseClicked(new MouseClickedEventArgs(mouseState, gameTime, user));
-        }
-
-        protected virtual void OnMouseClicked(MouseClickedEventArgs eventArgs)
-        {
-            this.MouseClicked?.Invoke(this, eventArgs);
         }
     }
 }

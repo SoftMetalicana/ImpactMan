@@ -1,15 +1,14 @@
 ﻿namespace ImpactMan.Models.Enemies
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
     using Consequences;
+    using Constants.Consequential;
+    using ImpactMan.Attributes;
+    using ImpactMan.Constants.Units;
+    using Interfaces.Models.Enemies;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using Constants.Consequential;
-    using Interfaces.Models.Enemies;
-    using ImpactMan.Constants.Units;
-    using ImpactMan.Attributes;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Concrete implementation of the enemy.
@@ -19,7 +18,6 @@
     public class Enemy : Consequential, IEnemy
     {
         private Random rnd = new Random();
-
 
         /// <summary>
         /// Instantiates the enemy.
@@ -63,15 +61,14 @@
         {
             var dic = new Dictionary<int, Vector2>()
             {
-                {0, new Vector2(0, -5)},
-                {1, new Vector2(0, 5)},
-                {2, new Vector2(-5, 0)},
-                {3, new Vector2(5, 5)},
+                { 0, new Vector2(0, -5) },
+                { 1, new Vector2(0, 5) },
+                { 2, new Vector2(-5, 0) },
+                { 3, new Vector2(5, 5) },
             };
             var newPosition = this.rnd.Next(0, 3);
             var rec = new Rectangle(this.Rectangle.X + (int)dic[newPosition].X, this.Rectangle.Y + (int)dic[newPosition].Y, this.Texture.Width, this.Texture.Height);
-
-
+            
             this.Rectangle = rec;
         }
     }

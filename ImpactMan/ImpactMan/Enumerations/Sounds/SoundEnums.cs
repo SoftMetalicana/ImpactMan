@@ -1,4 +1,8 @@
 ﻿namespace ImpactMan.Enumerations.Sounds
 {
-    public enum Music { LoginMusic, GameMusic}
+    public enum Music
+    {
+        LoginMusic,
+        GameMusic
+    }
 }

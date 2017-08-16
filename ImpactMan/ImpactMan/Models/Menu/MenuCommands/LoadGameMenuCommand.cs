@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ImpactMan.Context.Models;
-using ImpactMan.Interfaces.Core;
-
-namespace ImpactMan.Models.Menu.MenuCommands
+﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
-    class LoadGameMenuCommand : MenuCommand
+    using System;
+    using ImpactMan.Context.Models;
+    using ImpactMan.Interfaces.Core;
+
+    public class LoadGameMenuCommand : MenuCommand
     {
         public LoadGameMenuCommand(IEngine engine) : base(engine)
         {

@@ -1,9 +1,7 @@
-﻿using ImpactMan.Constants.Units;
-using ImpactMan.Interfaces.Models.TextWriterStrategies;
-using Microsoft.Xna.Framework;
-
-namespace ImpactMan.Models.TextWriterStrategies
+﻿namespace ImpactMan.Models.TextWriterStrategies
 {
+    using ImpactMan.Interfaces.Models.TextWriterStrategies;
+
     public class LoginMenuStrategy : ITextWriterStrategy
     {
         public void Write()

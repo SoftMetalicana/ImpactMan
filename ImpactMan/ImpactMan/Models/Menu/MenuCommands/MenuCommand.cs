@@ -1,8 +1,8 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using Context.Models;
     using Core;
     using Enumerations.Game;
-    using Context.Models;
     using Interfaces.Core;
     using Interfaces.Models.Menu;
 
@@ -20,8 +20,8 @@
 
         public IEngine Engine
         {
-            get { return engine; }
-            protected set { engine = value; }
+            get { return this.engine; }
+            protected set { this.engine = value; }
         }
 
         public virtual void Execute(User user)
@@ -41,7 +41,6 @@
 
         public virtual void ChangeErrorMessage(User user)
         {
-            
         }
 
         public virtual void ClearCurrentUserDetails()
@@ -56,13 +55,10 @@
 
         public virtual void PlayMusic()
         {
-            
         }
 
         public virtual void End(User user)
         {
-            
         }
-
     }
 }

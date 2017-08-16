@@ -1,12 +1,9 @@
-﻿using System;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using ImpactMan.Context.Db;
-
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Linq;
     using Context.Models;
+    using ImpactMan.Context.Db;
 
     /// <summary>
     /// This class takes care of the login and signup processes and the related checks and interaction with the DB.
@@ -31,28 +28,26 @@ namespace ImpactMan.Core
 
         public bool Login(User user)
         {
-            return UserExists(user) && IsPasswordCorrect(user);
+            return this.UserExists(user) && this.IsPasswordCorrect(user);
         }
 
         public bool Register(User user)
         {
-            if (UserExists(user))
+            if (this.UserExists(user))
             {
                 return false;
             }
 
             try
             {
-                context.Users.Add(user);
-                context.SaveChanges();
+                this.context.Users.Add(user);
+                this.context.SaveChanges();
                 return true;
             }
-
             catch (Exception)
             {
                 return false;
             }
-
         }
 
         private bool UserExists(User userX)
@@ -66,7 +61,7 @@ namespace ImpactMan.Core
 
         private bool IsPasswordCorrect(User user)
         {
-            if (this.context.Users.Where(u => u.Name == user.Name).First().Password == user.Password)
+            if (this.context.Users.First(u => u.Name == user.Name).Password == user.Password)
             {
                 return true;
             }

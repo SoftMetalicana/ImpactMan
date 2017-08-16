@@ -12,12 +12,10 @@
 
         public override void InitializeMenu(User user)
         {
-            
         }
 
         public override void ChangeGamestate(User user)
         {
-            
         }
 
         public override void End(User user)

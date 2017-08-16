@@ -1,10 +1,9 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
-    using Enumerations.Game;
-    using System;
     using Attributes;
     using Context.Models;
     using Core;
+    using Enumerations.Game;
     using Interfaces.Core;
     using Microsoft.Xna.Framework.Content;
 
@@ -34,7 +33,7 @@
 
         public override void ChangeErrorMessage(User user)
         {
-            this.Engine.ChangeErrorMessage(String.Empty);
+            this.Engine.ChangeErrorMessage(string.Empty);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
     using Context.Models;
+    using Core;
+    using Enumerations.Game;
     using Interfaces.Core;
 
     public class ResetHighScoreMenuCommand : MenuCommand
@@ -11,12 +13,12 @@
 
         public override void InitializeMenu(User user)
         {
-            throw new System.NotImplementedException();
+            user.HighScore = 0;
         }
 
         public override void ChangeGamestate(User user)
         {
-            throw new System.NotImplementedException();
+            State.GameState = GameState.SettingsMenu;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
-    using Enumerations.Game;
-    using Enumerations.Sounds;
     using Attributes;
     using Context.Models;
     using Core;
+    using Enumerations.Game;
+    using Enumerations.Sounds;
     using Interfaces.Core;
 
     public class NewGameMenuCommand : MenuCommand
@@ -19,12 +19,10 @@
 
         public override void InitializeMenu(User user)
         {
-
         }
 
         public override void ChangeGamestate(User user)
         {
-
             State.GameState = GameState.GameMode;
         }
 

@@ -2,7 +2,6 @@
 {
     using Interfaces.IO.InputListeners;
 
-
     /// <summary>
     /// Holds pointers to all the methods of the objects that are interested of the corresponding event.
     /// </summary>

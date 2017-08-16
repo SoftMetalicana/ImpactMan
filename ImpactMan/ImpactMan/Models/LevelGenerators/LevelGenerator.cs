@@ -42,13 +42,14 @@
         private static readonly char[] SeparatorSymbolsInFile = new char[] { ',', '\t', ' ', '"' };
 
         /// <summary>
-        /// Reads from a file source.
-        /// </summary>
-        private IFileReader fileReader;
-        /// <summary>
         /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
         /// </summary>
         private static IDictionary<string, Action<int, int, ILevel, int, int>> activationCache;
+
+        /// <summary>
+        /// Reads from a file source.
+        /// </summary>
+        private IFileReader fileReader;
 
         /// <summary>
         /// Instantiates the object.
@@ -58,6 +59,22 @@
         {
             this.FileReader = fileReader;
             ActivationCache = new Dictionary<string, Action<int, int, ILevel, int, int>>();
+        }
+
+        /// <summary>
+        /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
+        /// </summary>
+        private static IDictionary<string, Action<int, int, ILevel, int, int>> ActivationCache
+        {
+            get
+            {
+                return activationCache;
+            }
+
+            set
+            {
+                activationCache = value;
+            }
         }
 
         /// <summary>
@@ -77,19 +94,50 @@
         }
 
         /// <summary>
-        /// Holds cache of functions that activate IConsequential objects on given coordinates(X, Y).
+        /// Generates a whole level consisting of IConsequential objects.
         /// </summary>
-        private static IDictionary<string, Action<int, int, ILevel, int, int>> ActivationCache
+        /// <returns>The generated level.</returns>
+        public ILevel GenerateLevel()
         {
-            get
+            ILevel level = new Level();
+
+            using (this.fileReader)
             {
-                return activationCache;
+                int currentRow = 0;
+
+                string readLine;
+                while (!string.IsNullOrEmpty(readLine = this.fileReader.ReadLine()))
+                {
+                    string[] csvKeyNames = readLine.Split(SeparatorSymbolsInFile, StringSplitOptions.RemoveEmptyEntries);
+
+                    level.AllUnitsOnMap.Add(new IConsequential[csvKeyNames.Length]);
+                    for (int currentCol = 0; currentCol < csvKeyNames.Length; currentCol++)
+                    {
+                        string currentCsvKeyName = csvKeyNames[currentCol];
+
+                        if (!ActivationCache.ContainsKey(currentCsvKeyName))
+                        {
+                            this.CacheActivationLambda(currentCsvKeyName);
+                        }
+
+                        RectanglePlacement calculatedRectanglePlacement =
+                            Placement.GetRectanglePlacement(currentRow,
+                                currentCol,
+                                UnitConstants.Width,
+                                UnitConstants.Height);
+
+                        ActivationCache[currentCsvKeyName](calculatedRectanglePlacement.X,
+                            calculatedRectanglePlacement.Y,
+                            level,
+                            currentRow,
+                            currentCol);
+                    }
+
+                    currentRow++;
+                }
             }
 
-            set
-            {
-                activationCache = value;
-            }
+            return level;
         }
 
         /// <summary>
@@ -131,53 +179,6 @@
                                                                               .Compile();
 
             ActivationCache[currentCsvKeyName] = activatorLambda;
-        }
-
-        /// <summary>
-        /// Generates a whole level consisting of IConsequential objects.
-        /// </summary>
-        /// <returns>The generated level.</returns>
-        public ILevel GenerateLevel()
-        {
-            ILevel level = new Level();
-
-            using (this.fileReader)
-            {
-                int currentRow = 0;
-
-                string readLine;
-                while (!string.IsNullOrEmpty(readLine = this.fileReader.ReadLine()))
-                {
-                    string[] csvKeyNames = readLine.Split(SeparatorSymbolsInFile, StringSplitOptions.RemoveEmptyEntries);
-
-                    level.AllUnitsOnMap.Add(new IConsequential[csvKeyNames.Length]);
-                    for (int currentCol = 0; currentCol < csvKeyNames.Length; currentCol++)
-                    {
-                        string currentCsvKeyName = csvKeyNames[currentCol];
-
-                        if (!ActivationCache.ContainsKey(currentCsvKeyName))
-                        {
-                            this.CacheActivationLambda(currentCsvKeyName);
-                        }
-
-                        RectanglePlacement calculatedRectanglePlacement =
-                                                        Placement.GetRectanglePlacement(currentRow,
-                                                                                        currentCol,
-                                                                                        UnitConstants.Width,
-                                                                                        UnitConstants.Height);
-
-                        ActivationCache[currentCsvKeyName](calculatedRectanglePlacement.X,
-                                                           calculatedRectanglePlacement.Y,
-                                                           level,
-                                                           currentRow,
-                                                           currentCol);
-                    }
-
-                    currentRow++;
-                }
-            }
-
-            return level;
         }
     }
 }

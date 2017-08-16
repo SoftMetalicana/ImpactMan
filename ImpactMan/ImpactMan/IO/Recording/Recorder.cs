@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using SharpAvi.Output;
-
-namespace ImpactMan.IO.Recording
+﻿namespace ImpactMan.IO.Recording
 {
+    using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Runtime.InteropServices;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using SharpAvi.Output;
+
     public class Recorder : IDisposable
     {
         #region Fields
 
-        AviWriter writer;
-        RecorderParams Params;
-        IAviVideoStream videoStream;
-        Thread screenThread;
-        ManualResetEvent stopThread = new ManualResetEvent(false);
+        private readonly AviWriter writer;
+        private readonly RecorderParams Params;
+        private readonly IAviVideoStream videoStream;
+        private readonly Thread screenThread;
+        private readonly ManualResetEvent stopThread = new ManualResetEvent(false);
 
         #endregion
 
@@ -28,52 +25,50 @@ namespace ImpactMan.IO.Recording
             this.Params = Params;
 
             // Create AVI writer and specify FPS
-            writer = Params.CreateAviWriter();
+            this.writer = Params.CreateAviWriter();
 
             // Create video stream
-            videoStream = Params.CreateVideoStream(writer);
+            this.videoStream = Params.CreateVideoStream(this.writer);
             // Set only name. Other properties were when creating stream, 
             // either explicitly by arguments or implicitly by the encoder used
-            videoStream.Name = "Captura";
+            this.videoStream.Name = "Captura";
 
-            screenThread = new Thread(RecordScreen)
+            this.screenThread = new Thread(this.RecordScreen)
             {
                 Name = typeof(Recorder).Name + ".RecordScreen",
                 IsBackground = true
             };
 
-            screenThread.Start();
+            this.screenThread.Start();
         }
 
         public void Dispose()
         {
-            stopThread.Set();
-            screenThread.Join();
+            this.stopThread.Set();
+            this.screenThread.Join();
 
-            // Close writer: the remaining data is written to a file and file is closed
-            writer.Close();
-
-            stopThread.Dispose();
+            this.writer.Close();
+            this.stopThread.Dispose();
         }
 
-        void RecordScreen()
+        public void RecordScreen()
         {
-            var frameInterval = TimeSpan.FromSeconds(1 / (double) writer.FramesPerSecond);
-            var buffer = new byte[Params.Width * Params.Height * 4];
+            var frameInterval = TimeSpan.FromSeconds(1 / (double)this.writer.FramesPerSecond);
+            var buffer = new byte[this.Params.Width * this.Params.Height * 4];
             Task videoWriteTask = null;
             var timeTillNextFrame = TimeSpan.Zero;
 
-            while (!stopThread.WaitOne(timeTillNextFrame))
+            while (!this.stopThread.WaitOne(timeTillNextFrame))
             {
                 var timestamp = DateTime.Now;
 
-                Screenshot(buffer);
+                this.Screenshot(buffer);
 
                 // Wait for the previous frame is written
                 videoWriteTask?.Wait();
 
                 // Start asynchronous (encoding and) writing of the new frame
-                videoWriteTask = videoStream.WriteFrameAsync(true, buffer, 0, buffer.Length);
+                videoWriteTask = this.videoStream.WriteFrameAsync(true, buffer, 0, buffer.Length);
 
                 timeTillNextFrame = timestamp + frameInterval - DateTime.Now;
                 if (timeTillNextFrame < TimeSpan.Zero)
@@ -84,21 +79,21 @@ namespace ImpactMan.IO.Recording
             videoWriteTask?.Wait();
         }
 
-        public void Screenshot(byte[] Buffer)
+        public void Screenshot(byte[] buffer)
         {
-            using (var BMP = new Bitmap(Params.Width, Params.Height))
+            using (var bmp = new Bitmap(this.Params.Width, this.Params.Height))
             {
-                using (var g = Graphics.FromImage(BMP))
+                using (var g = Graphics.FromImage(bmp))
                 {
-                    g.CopyFromScreen(Point.Empty, Point.Empty, new Size(Params.Width, Params.Height),
+                    g.CopyFromScreen(Point.Empty, Point.Empty, new Size(this.Params.Width, this.Params.Height),
                         CopyPixelOperation.SourceCopy);
 
                     g.Flush();
 
-                    var bits = BMP.LockBits(new Rectangle(0, 0, Params.Width, Params.Height), ImageLockMode.ReadOnly,
+                    var bits = bmp.LockBits(new Rectangle(0, 0, this.Params.Width, this.Params.Height), ImageLockMode.ReadOnly,
                         PixelFormat.Format32bppRgb);
-                    Marshal.Copy(bits.Scan0, Buffer, 0, Buffer.Length);
-                    BMP.UnlockBits(bits);
+                    Marshal.Copy(bits.Scan0, buffer, 0, buffer.Length);
+                    bmp.UnlockBits(bits);
                 }
             }
         }

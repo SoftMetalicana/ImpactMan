@@ -8,5 +8,4 @@
     /// <param name="sender">The input listener itself.</param>
     /// <param name="eventArgs">Basic keybaord state info at the moment the event is raised.</param>
     public delegate void KeyPressedEventHandler(IInputListener sender, KeyPressedEventArgs eventArgs);
-
 }
