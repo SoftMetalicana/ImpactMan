@@ -15,6 +15,9 @@
         {
             user.HighScore = 0;
             State.GameState = GameState.SettingsMenu;
+
+            string formatedMessage = string.Format(Messages.ResetHighScoreSuccessfullyMessage, user.Name);
+            this.Engine.ChangeErrorMessage(formatedMessage);
         }
     }
 }
