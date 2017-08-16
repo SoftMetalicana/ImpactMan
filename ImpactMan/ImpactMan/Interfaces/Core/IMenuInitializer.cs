@@ -18,6 +18,6 @@
         void Load(ContentManager content);
         void Update(GameTime gameTime, MouseState mouseState, User user);
         void Draw(SpriteBatch spriteBatch);
-        int GetEnumValue(string query, string valueType);
+        int GetEnumValue(string query, string valueType); 
     }
 }

@@ -19,7 +19,7 @@
     /// <summary>
     /// This class takes care of the menus and buttons.
     /// </summary>
-    public class MenuInitializer
+    public class MenuInitializer:IMenuInitializer
     {
         private IEngine engine;
         private AccountManager accountManager;

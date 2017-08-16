@@ -14,6 +14,6 @@
         bool IsRunning();
 
         //Stops the music played by the PlayMusic method
-        void StopMusic();
+        void StopMusic(); 
     }
 }

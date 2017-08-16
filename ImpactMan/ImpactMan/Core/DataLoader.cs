@@ -1,17 +1,16 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ImpactMan.Context.Db;
-
 namespace ImpactMan.Core
 {
+    using System.Linq;
+    using ImpactMan.Context.Db;
+    using ImpactMan.Interfaces.Core;
+
     /// <summary>
     /// The DataLoader contains all the classes responsible for taking the data from the context
     /// </summary>
-    class DataLoader
+    class DataLoader:IDataLoader
     {
         private ImpactManContext context;
         public DataLoader(ImpactManContext context)
@@ -32,6 +31,11 @@ namespace ImpactMan.Core
             }
             return topUsersDict;
             
+        }
+
+        public Dictionary<string, int> LoadLogInfo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

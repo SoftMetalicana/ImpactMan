@@ -11,6 +11,6 @@
         Dictionary<string,int> LoadHighScores();
 
         //This method returns the log data(UserName and Password) about all users
-        Dictionary<string, int> LoadLogInfo();
+        Dictionary<string, int> LoadLogInfo(); 
     }
 }
