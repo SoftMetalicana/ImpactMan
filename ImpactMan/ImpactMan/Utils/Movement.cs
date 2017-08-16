@@ -1,6 +1,8 @@
 ﻿namespace ImpactMan.Utils
 {
     using System;
+    using ImpactMan.Constants.Positionable;
+    using ImpactMan.Interfaces.Globals;
     using Microsoft.Xna.Framework;
 
     /// <summary>
@@ -10,6 +12,21 @@
     /// </summary>
     public static class Movement
     {
+        private static double GetSquare(double toGetSquareFor)
+        {
+            return Math.Pow(toGetSquareFor, 2);
+        }
+
+        private static double DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
+        {
+            return Math.Sqrt(GetSquare(x1 - x2) + GetSquare(y1 - y2));
+        }
+
+        private static double GetAxisOffsetToCenter(double axisPoint)
+        {
+            return axisPoint + PositionableConstants.ObjectCenterOffset;
+        }
+
         /// <summary>
         /// Formula that calculates the distance to add to the current position of the object.
         /// When you get the result you just add it to object.Rectangle.X 
@@ -22,6 +39,19 @@
         public static int CalculateDistanceToAdd(int speedRatio, GameTime gameTime)
         {
             return (int)Math.Ceiling(speedRatio * gameTime.ElapsedGameTime.TotalSeconds);
+        }
+
+        public static double CalculateDistanceBetweenObjectCenters(Rectangle rectangle, IPositionable consequential)
+        {
+            double playerX = GetAxisOffsetToCenter(rectangle.X);
+            double playerY = GetAxisOffsetToCenter(rectangle.Y);
+
+            double consX = GetAxisOffsetToCenter(consequential.Rectangle.X);
+            double consY = GetAxisOffsetToCenter(consequential.Rectangle.Y);
+
+            double distance = DistanceBetweenTwoPoints(playerX, playerY, consX, consY);
+
+            return distance;
         }
     }
 }

@@ -14,14 +14,16 @@
         /// The bonus points this consequence will give to the player.
         /// </summary>
         private int bonusPoints;
+        private bool playerCanMove;
 
         /// <summary>
         /// Instantiates the object.
         /// </summary>
         /// <param name="bonusPoints">The bonus points you want to give to the player.</param>
-        public Consequence(int bonusPoints)
+        public Consequence(int bonusPoints, bool playerCanMove)
         {
             this.BonusPoints = bonusPoints;
+            this.PlayerCanMove = playerCanMove;
         }
 
         /// <summary>
@@ -37,6 +39,19 @@
             private set
             {
                 this.bonusPoints = value;
+            }
+        }
+
+        public bool PlayerCanMove
+        {
+            get
+            {
+                return this.playerCanMove;
+            }
+
+            private set
+            {
+                this.playerCanMove = value;
             }
         }
     }

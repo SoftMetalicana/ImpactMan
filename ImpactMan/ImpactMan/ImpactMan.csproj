@@ -49,6 +49,7 @@
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
     <Compile Include="Constants\Levels\LevelConstants.cs" />
     <Compile Include="Constants\Menu\MenuConstants.cs" />
+    <Compile Include="Constants\PositionableConstants.cs" />
     <Compile Include="Constants\Units\Messages.cs" />
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Constants\Utils\MovementConstants.cs" />

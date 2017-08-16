@@ -33,7 +33,7 @@
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
         /// <param name="bonusPoints">he bonus points that you want to give to the player.</param>
         public Food(int x, int y, string assetName, int bonusPoints) 
-            : base(x, y, assetName, bonusPoints, ConsequentialConstants.FoodDistanceFromCenterToActivate)
+            : base(x, y, assetName, bonusPoints, ConsequentialConstants.FoodDistanceFromCenterToAffect, ConsequentialConstants.FoodPlayerCanMove)
         {
         }
 
