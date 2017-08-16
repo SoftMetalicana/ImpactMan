@@ -2,6 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text.RegularExpressions;
+using ImpactMan.Constants.AccountManager;
 using ImpactMan.Context.Db;
 
 namespace ImpactMan.Core
@@ -33,21 +34,21 @@ namespace ImpactMan.Core
             if (!IsUserNameValid(user))
             {
                 message =
-                    "Username should contain only letters and digits and be between 4 and 8 characters long!";
+                    AccountManagerConstants.InvalidUserName;
                 return false;
             }
 
             if (!IsPasswordValid(user))
             {
                 message =
-                    "Password should contain only letters and digits and be between 5 and 10 characters long!";
+                    AccountManagerConstants.InvalidUserPassword;
                 return false;
             }
 
             if (UserExists(user))
             {
                 message =
-                    "User already registered!";
+                    AccountManagerConstants.UserAlreadyRegistered;
                 return false;
             }
 
@@ -88,26 +89,16 @@ namespace ImpactMan.Core
 
         private bool IsUserNameValid(User user)
         {
-            string userNamePattern = @"^[A-Za-z0-1]{4,8}$";
-
-            if (Regex.Match(user.Name, userNamePattern).Success)
-            {
-                return true;
-            }
-
-            return false;
+            return Regex
+                .Match(user.Name, AccountManagerConstants.UserNamePattern)
+                .Success;
         }
 
         private bool IsPasswordValid(User user)
         {
-            string userPasswordPattern = @"^[A-Za-z0-1]{5,10}$";
-
-            if (Regex.Match(user.Password, userPasswordPattern).Success)
-            {
-                return true;
-            }
-
-            return false;
+            return Regex
+                .Match(user.Password, AccountManagerConstants.UserPasswordPattern)
+                .Success;
         }
     }
 }

@@ -357,8 +357,7 @@ namespace ImpactMan.Core
         }
 
         public void Quit()
-        {
-            
+        {           
             Exit();
         }
 
