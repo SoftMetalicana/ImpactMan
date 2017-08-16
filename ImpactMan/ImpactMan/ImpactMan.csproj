@@ -49,6 +49,7 @@
     <Compile Include="Constants\Graphics\GraphicsConstants.cs" />
     <Compile Include="Constants\Levels\LevelConstants.cs" />
     <Compile Include="Constants\Menu\MenuConstants.cs" />
+    <Compile Include="Constants\Positionablee\PositionableConstants.cs" />
     <Compile Include="Constants\Units\Messages.cs" />
     <Compile Include="Constants\Units\UnitConstants.cs" />
     <Compile Include="Constants\Utils\MovementConstants.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Context\Models\User.cs" />
     <Compile Include="Core\AccountManager.cs" />
     <Compile Include="Core\CurrentUser.cs" />
+    <Compile Include="Core\DataLoader.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\State.cs" />

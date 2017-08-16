@@ -22,6 +22,8 @@
 
         public override void Execute(User user)
         {
+            base.Execute(user);
+
             this.menuController.Initialize("LoginMenu");
             this.menuController.Load(this.content);
 

@@ -48,11 +48,11 @@
         private MenuInitializer menuInitializer;
         private AccountManager accountManager;
         private ImpactManContext context;
-
+        private DataLoader dataLoader;
         /// <summary>
         /// This data should be in database
         /// </summary>
-        private Dictionary<string, int> highScores;
+       
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
@@ -126,6 +126,9 @@
         {
             //Initialize DB
             this.context.Database.Initialize(true);
+
+            // Initialize the DataLoader
+            this.dataLoader = new DataLoader(context);
 
             //Initializes new menuInitializer which takes care of menus in the game
             this.menuInitializer = new MenuInitializer(this, this.Content, this.accountManager, this.soundManager);
@@ -274,7 +277,7 @@
 
                 StringBuilder sb = new StringBuilder();
 
-                this.highScores.OrderByDescending(x => x.Value).Take(10).ToList().ForEach(p =>
+                this.dataLoader.LoadHighScores().ToList().ForEach(p =>
                 {
                     string score = p.Value.ToString(MenuConstants.HighScoresMenuNumberFormat);
 
@@ -306,7 +309,7 @@
         }
 
         // Adds the top 10 scores to the highscore dictonary
-        private void LoadHighScores(Dictionary<string, int> highscores)
+/*        private void LoadHighScores(Dictionary<string, int> highscores)
         {
             var users = this.context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
             if (users.Count > 0)
@@ -317,7 +320,7 @@
                 }
             }
 
-        }
+        }*/
 
         /// <summary>
         /// Checks if a key has been pressed and then released

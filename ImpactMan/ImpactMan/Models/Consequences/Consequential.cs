@@ -17,7 +17,11 @@
         /// The distance from the player to the consequential object which is needed to activate
         /// the consequential object.
         /// </summary>
-        private double distanceFromCenterToActivate;
+        private double distanceFromCenterToAffect;
+        /// <summary>
+        /// Flag that tells the player if he can move or not.
+        /// </summary>
+        private bool playerCanMove;
 
         /// <summary>
         /// Instantiates the object.
@@ -26,11 +30,12 @@
         /// <param name="y">The y coordinate of the object in the map.</param>
         /// <param name="assetName">The name of the asset from the pipeline.</param>
         /// <param name="bonusPoints">The bonus points that you want to give to the player.</param>
-        protected Consequential(int x, int y, string assetName, int bonusPoints, double distanceFromCenterToActivate) 
+        protected Consequential(int x, int y, string assetName, int bonusPoints, double distanceFromCenterToActivate, bool playerCanMove) 
             : base(x, y, assetName)
         {
             this.BonusPoints = bonusPoints;
-            this.DistanceFromCenterToActivate = distanceFromCenterToActivate;
+            this.DistanceFromCenterToAffect = distanceFromCenterToActivate;
+            this.PlayerCanMove = playerCanMove;
         }
 
         /// <summary>
@@ -49,16 +54,29 @@
             }
         }
 
-        public double DistanceFromCenterToActivate
+        public double DistanceFromCenterToAffect
         {
             get
             {
-                return this.distanceFromCenterToActivate;
+                return this.distanceFromCenterToAffect;
             }
 
             private set
             {
-                this.distanceFromCenterToActivate = value;
+                this.distanceFromCenterToAffect = value;
+            }
+        }
+
+        public bool PlayerCanMove
+        {
+            get
+            {
+                return this.playerCanMove;
+            }
+
+            private set
+            {
+                this.playerCanMove = value;
             }
         }
 
@@ -66,9 +84,9 @@
         /// If you step on this object you must get his consequences.
         /// </summary>
         /// <returns>The consequences that are applied to the player</returns>
-        public IConsequence GiveConsequence()
+        public virtual IConsequence GiveConsequence()
         {
-            return new Consequence(this.bonusPoints);
+            return new Consequence(this.BonusPoints, this.PlayerCanMove);
         }
     }
 }

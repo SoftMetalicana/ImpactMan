@@ -1,4 +1,6 @@
-﻿namespace ImpactMan.Models.Menu.MenuCommands
+﻿using System;
+
+namespace ImpactMan.Models.Menu.MenuCommands
 {
     using Core;
     using Enumerations.Game;
@@ -24,6 +26,12 @@
             protected set { engine = value; }
         }
 
-        public abstract void Execute(User user);
+        public virtual void Execute(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(Constants.ExceptionMessages.UserNullException);
+            }
+        }
     }
 }

@@ -24,6 +24,8 @@ namespace ImpactMan.Models.Menu.MenuCommands
 
         public override void Execute(User user)
         {
+            base.Execute(user);
+
             this.menuController.Initialize("RegisterMenu");
             this.menuController.Load(this.content);
 

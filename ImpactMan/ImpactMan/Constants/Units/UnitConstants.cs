@@ -7,6 +7,15 @@
     public static class UnitConstants
     {
         /// <summary>
+        /// The width of all units.
+        /// </summary>
+        public static readonly int Width = 70;
+        /// <summary>
+        /// The height of all units.
+        /// </summary>
+        public static readonly int Height = 70;
+
+        /// <summary>
         /// Asset names for the objects that are printed on the console/map/window.
         /// If an object is printed it should ask for an asset name in one of the constructor overloads.
         /// Usually you will find those names injected in the constructors so you don't have to pass as argument an asset name.
@@ -29,15 +38,5 @@
         public const string WallCsvKeyName = "wall";
         public const string PlayerCsvKeyName = "player";
         public const string FoodCsvKeyName = "food";
-
-        /// <summary>
-        /// The width of all units.
-        /// </summary>
-        public static readonly int Width = Constants.Graphics.GraphicsConstants.PreferredBufferWidth / 26;
-
-        /// <summary>
-        /// The height of all units.
-        /// </summary>
-        public static readonly int Height = Constants.Graphics.GraphicsConstants.PreferredBufferHeight / 14;
-    }
+    }   
 }

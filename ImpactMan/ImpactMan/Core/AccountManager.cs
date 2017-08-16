@@ -4,11 +4,10 @@ namespace ImpactMan.Core
 {
     using Constants.AccountManager;
     using Context.Db;
+    using Context.Models;
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Context.Models;
-    using ImpactMan.Context.Db;
 
     /// <summary>
     /// This class takes care of the login and signup processes and the related checks and interaction with the DB.
@@ -81,7 +80,7 @@ namespace ImpactMan.Core
             }
         }
 
-       public bool ChangePassword(User user, out string message)
+public bool ChangePassword(User user, out string message)
        {
            if (user == null)
            {
@@ -106,8 +105,7 @@ namespace ImpactMan.Core
            message = AccountManagerConstants.SuccessfulPasswordChange;
            return true;
        }
-    
-        private bool UserExists(User user)
+            private bool UserExists(User user)
         {
             if (this.context.Users.Select(u => u.Name).ToList().Contains(user.Name))
             {
@@ -116,6 +114,11 @@ namespace ImpactMan.Core
             return false;
         }
 
+        /// <summary>
+        /// Checks if the provided password for the user matches the password from db.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private bool IsPasswordCorrect(User user)
         {
             if (this.context.Users.First(u => u.Name == user.Name).Password == user.Password)
@@ -128,6 +131,11 @@ namespace ImpactMan.Core
             }
         }
 
+        /// <summary>
+        /// Checks if username matches the pattern.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private bool IsUserNameValid(User user)
         {
             return Regex
@@ -135,6 +143,11 @@ namespace ImpactMan.Core
                 .Success;
         }
 
+        /// <summary>
+        /// Check if password matches the pattern.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private bool IsPasswordValid(User user)
         {
             return Regex

@@ -4,12 +4,13 @@
     using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.Models.Enemies;
     using ImpactMan.Interfaces.Models.Players;
+    using Microsoft.Xna.Framework;
 
     /// <summary>
     /// Holds all the static elements from the map.
     /// Each of these items is IConsequential.
     /// </summary>
-    public interface ILevel : IDrawable
+    public interface ILevel : Globals.IDrawable
     {
         /// <summary>
         /// All the enemies on the map. Also walk over the map.
@@ -65,5 +66,7 @@
         /// <param name="row">The row in the matrix.</param>
         /// <param name="col">The col in the matrix.</param>
         void AddGround(object ground, int row, int col);
+
+        IConsequence GetAffectedObjectConsequence(Rectangle rectangle);
     }
 }

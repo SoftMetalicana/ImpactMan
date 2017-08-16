@@ -6,6 +6,8 @@
     using ImpactMan.Interfaces.Models.Levels;
     using ImpactMan.Interfaces.Models.Players;
     using ImpactMan.Models.Static;
+    using ImpactMan.Utils;
+    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     /// <summary>
@@ -91,6 +93,30 @@
         }
 
         /// <summary>
+        /// When you add a player or enemy the corresponding cell of the matrix must not be null.
+        /// When you add an object different from the STATIC declared ones you must call this backup method.
+        /// </summary>
+        /// <param name="x">X position in the console.</param>
+        /// <param name="y">Y Position in the console.</param>
+        /// <param name="row">Row in the matrix.</param>
+        /// <param name="col">Col in the matrix.</param>
+        private void BackupTheFieldWithGround(int x, int y, int row, int col)
+        {
+            this.AllUnitsOnMap[row][col] = new Ground(x, y);
+        }
+
+        /// <summary>
+        /// Adds a static consequential object in the matrix.
+        /// </summary>
+        /// <param name="consequential">The object that you want to add in the matrix.</param>
+        /// <param name="x">X position in the console.</param>
+        /// <param name="y">Y Position in the console.</param>
+        private void AddConsequential(IConsequential consequential, int row, int col)
+        {
+            this.AllUnitsOnMap[row][col] = consequential;
+        }
+
+        /// <summary>
         /// Adds an object to the place where it belongs in the level.
         /// </summary>
         /// <param name="player">The player object.</param>
@@ -163,28 +189,33 @@
             }
         }
 
-        /// <summary>
-        /// When you add a player or enemy the corresponding cell of the matrix must not be null.
-        /// When you add an object different from the STATIC declared ones you must call this backup method.
-        /// </summary>
-        /// <param name="x">X position in the console.</param>
-        /// <param name="y">Y Position in the console.</param>
-        /// <param name="row">Row in the matrix.</param>
-        /// <param name="col">Col in the matrix.</param>
-        private void BackupTheFieldWithGround(int x, int y, int row, int col)
+        public IConsequence GetAffectedObjectConsequence(Rectangle rectangle)
         {
-            this.AllUnitsOnMap[row][col] = new Ground(x, y);
+            // TODO: check the enemies first
+            IConsequence affectedObjectConsequence = default(IConsequence);
+
+            foreach (IConsequential[] array in this.allUnitsOnMap)
+            {
+                foreach (IConsequential consequentialUnit in array)
+                {
+                    double calculatedDistance = Movement.CalculateDistanceBetweenObjectCenters(rectangle, consequentialUnit);
+
+                    if (this.ObjectIsAffected(calculatedDistance, consequentialUnit.DistanceFromCenterToAffect))
+                    {
+                        affectedObjectConsequence = consequentialUnit.GiveConsequence();
+
+                        goto ReturnFoundConsequence;
+                    }
+                }
+            }
+
+            ReturnFoundConsequence:
+            return affectedObjectConsequence;
         }
 
-        /// <summary>
-        /// Adds a static consequential object in the matrix.
-        /// </summary>
-        /// <param name="consequential">The object that you want to add in the matrix.</param>
-        /// <param name="x">X position in the console.</param>
-        /// <param name="y">Y Position in the console.</param>
-        private void AddConsequential(IConsequential consequential, int row, int col)
+        private bool ObjectIsAffected(double calculatedDistance, double neededDistanceToAffect)
         {
-            this.AllUnitsOnMap[row][col] = consequential;
+            return calculatedDistance <= neededDistanceToAffect;
         }
     }
 }
