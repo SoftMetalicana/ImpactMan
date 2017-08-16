@@ -16,5 +16,10 @@
         /// Flag which tells the player if he can move or not.
         /// </summary>
         bool PlayerCanMove { get; }
+
+        /// <summary>
+        /// The sender of the consequence.
+        /// </summary>
+        IConsequential Sender { get; }
     }
 }

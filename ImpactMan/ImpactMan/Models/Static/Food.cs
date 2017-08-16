@@ -45,7 +45,9 @@
         /// <param name="keyboardState">Can be taken from the inputListener.</param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            throw new NotImplementedException();
+            this.BonusPoints = ConsequentialConstants.GroundBonusPoints;
+            this.AssetName = UnitConstants.GroundAssetName;
+            this.Load(this.Content);
         }
     }
 }

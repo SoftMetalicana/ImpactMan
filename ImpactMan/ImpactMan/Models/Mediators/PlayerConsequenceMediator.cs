@@ -5,6 +5,7 @@
     using ImpactMan.Interfaces.Models.Mediators;
     using ImpactMan.Interfaces.Models.Players;
     using ImpactMan.Models.Players.Events;
+    using Microsoft.Xna.Framework.Input;
 
     /// <summary>
     /// Holds all the logic behind the player move.
@@ -34,12 +35,13 @@
 
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {
-            IConsequence someShit = this.Level.GetAffectedObjectConsequence(eventArgs.HelperRectangle);
-            sender.Points += someShit?.BonusPoints ?? 0;
+            IConsequence consequence = this.Level.GetAffectedObjectConsequence(eventArgs.HelperRectangle);
+            sender.Points += consequence?.BonusPoints ?? 0;
 
-            if (someShit != null && someShit.PlayerCanMove)
+            if (consequence != null && consequence.PlayerCanMove)
             {
                 sender.Rectangle = eventArgs.DesiredPosition;
+                consequence.Sender.Update(null, default(KeyboardState));
             }
         }
     }

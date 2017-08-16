@@ -65,6 +65,17 @@ namespace ImpactMan.Core
             }
         }
 
+        public void PassContentManagerToAllObjectsInLevel(ILevel level, ContentManager contentManager)
+        {
+            foreach (IConsequential[] array in level.AllUnitsOnMap)
+            {
+                foreach (IConsequential consequentialUnit in array)
+                {
+                    consequentialUnit.Content = contentManager;
+                }
+            }
+        }
+
         public void SetGameStates()
         {
             State.GameState = GameState.LoginMenu;

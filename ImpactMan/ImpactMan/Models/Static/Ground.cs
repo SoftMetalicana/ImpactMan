@@ -45,7 +45,6 @@
         /// <param name="keyboardState">Can be taken from the inputListener.</param>
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            throw new NotImplementedException();
         }
     }
 }
