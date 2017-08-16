@@ -1,4 +1,4 @@
-namespace ImpactMan.Core
+﻿namespace ImpactMan.Core
 {
     using Constants.Graphics;
     using Constants.Units;
@@ -384,30 +384,6 @@ namespace ImpactMan.Core
             {
                 this.userInputDetails.Password = sb.ToString();
             }
-        }
-
-        public void Quit()
-        {           
-            Exit();
-        }
-
-        public void SetWindowTitle(string title = GraphicsConstants.WindowTitle)
-        {
-            this.Window.Title = title;
-        }
-
-        public void ChangeErrorMessage(string message)
-        {
-            this.errorMessage = message;
-        }
-
-        public void ClearCurrentUserDetails()
-        {
-            this.userInputDetails = new User()
-            {
-                Name = String.Empty,
-                Password = String.Empty
-            };
         }
     }
 }
