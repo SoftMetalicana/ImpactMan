@@ -10,8 +10,8 @@
 
         public const string UserAlreadyRegistered = "User already registered!";
 
-        public const string UserNamePattern = @"^[A-Za-z0-1]{4,8}$";
+        public const string UserNamePattern = @"^[A-Za-z0-9]{4,8}$";
 
-        public const string UserPasswordPattern = @"^[A-Za-z0-1]{5,10}$";
+        public const string UserPasswordPattern = @"^[A-Za-z0-9]{5,10}$";
     }
 }
