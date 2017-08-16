@@ -309,7 +309,7 @@
         }
 
         // Adds the top 10 scores to the highscore dictonary
-        private void LoadHighScores(Dictionary<string, int> highscores)
+/*        private void LoadHighScores(Dictionary<string, int> highscores)
         {
             var users = this.context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
             if (users.Count > 0)
@@ -320,7 +320,7 @@
                 }
             }
 
-        }
+        }*/
 
         /// <summary>
         /// Checks if a key has been pressed and then released
