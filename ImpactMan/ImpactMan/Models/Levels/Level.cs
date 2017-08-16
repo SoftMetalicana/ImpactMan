@@ -6,6 +6,8 @@
     using ImpactMan.Interfaces.Models.Levels;
     using ImpactMan.Interfaces.Models.Players;
     using ImpactMan.Models.Static;
+    using ImpactMan.Utils;
+    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     /// <summary>
@@ -185,6 +187,35 @@
                     consequentialUnit.Draw(spriteBatch);
                 }
             }
+        }
+
+        public IConsequence GetAffectedObjectConsequence(Rectangle rectangle)
+        {
+            // TODO: check the enemies first
+            IConsequence affectedObjectConsequence = default(IConsequence);
+
+            foreach (IConsequential[] array in this.allUnitsOnMap)
+            {
+                foreach (IConsequential consequentialUnit in array)
+                {
+                    double calculatedDistance = Movement.CalculateDistanceBetweenObjectCenters(rectangle, consequentialUnit);
+
+                    if (this.ObjectIsAffected(calculatedDistance, consequentialUnit.DistanceFromCenterToAffect))
+                    {
+                        affectedObjectConsequence = consequentialUnit.GiveConsequence();
+
+                        goto ReturnFoundConsequence;
+                    }
+                }
+            }
+
+            ReturnFoundConsequence:
+            return affectedObjectConsequence;
+        }
+
+        private bool ObjectIsAffected(double calculatedDistance, double neededDistanceToAffect)
+        {
+            return calculatedDistance <= neededDistanceToAffect;
         }
     }
 }

@@ -9,11 +9,11 @@
         /// <summary>
         /// The width of all units.
         /// </summary>
-        public static readonly int Width = Constants.Graphics.GraphicsConstants.PreferredBufferWidth/26;
+        public static readonly int Width = 70;
         /// <summary>
         /// The height of all units.
         /// </summary>
-        public static readonly int Height = Constants.Graphics.GraphicsConstants.PreferredBufferHeight/14;
+        public static readonly int Height = 70;
 
         /// <summary>
         /// Asset names for the objects that are printed on the console/map/window.

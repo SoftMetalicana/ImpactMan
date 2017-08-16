@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Mediators
 {
+    using ImpactMan.Interfaces.Globals;
     using ImpactMan.Interfaces.Models.Levels;
     using ImpactMan.Interfaces.Models.Mediators;
     using ImpactMan.Interfaces.Models.Players;
@@ -33,7 +34,13 @@
 
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {
-            sender.Rectangle = eventArgs.DesiredPosition;
+            IConsequence someShit = this.Level.GetAffectedObjectConsequence(eventArgs.DesiredPosition);
+            sender.Points += someShit?.BonusPoints ?? 0;
+
+            if (someShit == null || someShit.PlayerCanMove)
+            {
+                sender.Rectangle = eventArgs.DesiredPosition;
+            }
         }
     }
 }

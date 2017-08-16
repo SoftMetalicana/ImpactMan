@@ -109,7 +109,6 @@
             ConstructorInfo ctorOfType = typeToActivate.GetConstructor(ConstructorWantedParams);
 
             NewExpression newTypeExpression = Expression.New(ctorOfType, xParameter, yParameter);
-            UnaryExpression castedNewTypeExpression = Expression.Convert(newTypeExpression, ObjectType);
 
             MethodInfo method = LevelType.GetMethod(AddMethodPrefix + currentCsvKeyName, BindingFlags.IgnoreCase |
                                                                                          BindingFlags.Instance |

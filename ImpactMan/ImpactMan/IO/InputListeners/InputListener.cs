@@ -26,7 +26,10 @@ namespace ImpactMan.IO.InputListeners
         /// <param name="gameTime">Game time can be taken from the engine.</param>
         public void GetKeyboardState(KeyboardState keyboardState, GameTime gameTime)
         {
-            this.OnKeyPressed(new KeyPressedEventArgs(keyboardState, gameTime));
+            if (keyboardState.GetPressedKeys().Length != 0)
+            {
+                this.OnKeyPressed(new KeyPressedEventArgs(keyboardState, gameTime));
+            }
         }
 
         /// <summary>

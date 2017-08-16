@@ -12,6 +12,7 @@ namespace ImpactMan.Models.Enemies
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using System;
+    using ImpactMan.Interfaces.Globals;
 
     /// <summary>
     /// Concrete implementation of the enemy.
@@ -20,8 +21,6 @@ namespace ImpactMan.Models.Enemies
     [MapObject(UnitConstants.EnemyCsvKeyName)]
     public class Enemy : Consequential, IEnemy
     {
-        private EnemyMovingDirections currentDirection;
-
         /// <summary>
         /// Instantiates the enemy.
         /// </summary>
@@ -51,9 +50,8 @@ namespace ImpactMan.Models.Enemies
         /// <param name="assetName">The name of the picure that is loaded from the pipeline.</param>
         /// <param name="bonusPoints">he bonus points that you want to give to the player.</param>
         public Enemy(int x, int y, string assetName, int bonusPoints)
-            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyDistanceFromCenterToActivate)
+            : base(x, y, assetName, bonusPoints, ConsequentialConstants.EnemyDistanceFromCenterToAffect, ConsequentialConstants.EnemyPlayerCanMove)
         {
-            this.currentDirection = EnemyMovingDirections.Down;
         }
 
         /// <summary>
