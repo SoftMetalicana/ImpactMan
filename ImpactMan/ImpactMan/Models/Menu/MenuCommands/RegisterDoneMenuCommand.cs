@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using System;
     using Enumerations.Game;
     using Attributes;
     using Context.Models;
@@ -25,29 +26,21 @@
         {
         }
 
-        public override void InitializeMenu(User user)
+        public override void Execute(User user)
         {
-            userCanBeRegistered = this.accountManager.Register(user);
+            string message = String.Empty;
+
+            userCanBeRegistered = this.accountManager.Register(user, out message);
 
             if (userCanBeRegistered)
             {
                 this.menuController.Initialize("LoginMenu");
                 this.menuController.Load(this.content);
-            }
-        }
 
-        public override void ChangeGamestate(User user)
-        {
-            if (userCanBeRegistered)
-            {
                 State.GameState = GameState.LoginMenu;
                 this.Engine.ChangeErrorMessage(Messages.UserRegisteredSuccessfullyMessage);
             }
-        }
-
-        public override void ChangeErrorMessage(User user)
-        {
-            if (!userCanBeRegistered)
+            else
             {
                 this.Engine.ChangeErrorMessage(Messages.UserAlreadyRegisteredMessage);
             }

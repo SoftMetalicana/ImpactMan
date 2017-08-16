@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using ImpactMan.Constants.Graphics;
 using ImpactMan.Constants.Units;
 using ImpactMan.Context;
 using ImpactMan.Context.Models;
@@ -38,7 +39,7 @@ namespace ImpactMan.IO.Writers
             int passwordX = GetEnumValue(nameof(passwordX));
             int passwordY = GetEnumValue(nameof(passwordY));
 
-            int errorMessageX = GetEnumValue(nameof(errorMessageX));
+            int errorMessageX = (GraphicsConstants.PreferredBufferWidth - errorMessage.Length * 12) / 2;
             int errorMessageY = GetEnumValue(nameof(errorMessageY));
 
             this.Write(user.Name,
