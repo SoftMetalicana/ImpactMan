@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Menu.MenuCommands
 {
+    using System;
     using Enumerations.Game;
     using Attributes;
     using Context.Models;
@@ -27,7 +28,9 @@
 
         public override void Execute(User user)
         {
-            userCanBeRegistered = this.accountManager.Register(user);
+            string message = String.Empty;
+
+            userCanBeRegistered = this.accountManager.Register(user, out message);
 
             if (userCanBeRegistered)
             {
@@ -38,7 +41,7 @@
             }
             else
             {
-                this.Engine.ChangeErrorMessage("User already registered");
+                this.Engine.ChangeErrorMessage(message);
             }
         }
     }
