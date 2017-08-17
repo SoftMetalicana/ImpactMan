@@ -196,15 +196,18 @@
             }
         }
 
-        public IConsequence GetAffectedObjectConsequence(Rectangle helperRectangle)
+        public IConsequence GetAffectedObjectConsequence(object investigator, Rectangle helperRectangle)
         {
-            foreach (IEnemy enemy in this.AllEnemies)
+            if (investigator is IPlayer)
             {
-                bool objectIsAffected = enemy.TryToAffect(helperRectangle);
-
-                if (objectIsAffected)
+                foreach (IEnemy enemy in this.AllEnemies)
                 {
-                    this.OnEnemyAffectedPlayer(new PlayerAffectedEnemyEventArgs(this.Player));
+                    bool objectIsAffected = enemy.TryToAffect(helperRectangle);
+
+                    if (objectIsAffected)
+                    {
+                        this.OnEnemyAffectedPlayer(new PlayerAffectedEnemyEventArgs(this.Player));
+                    }
                 }
             }
 

@@ -35,7 +35,7 @@
 
         public void OnPlayerTriedToMove(IPlayer sender, PlayerTriedToMoveEventArgs eventArgs)
         {
-            IConsequence consequence = this.Level.GetAffectedObjectConsequence(eventArgs.HelperRectangle);
+            IConsequence consequence = this.Level.GetAffectedObjectConsequence(sender, eventArgs.HelperRectangle);
             sender.Points += consequence?.BonusPoints ?? 0;
 
             if (consequence != null && consequence.PlayerCanMove)

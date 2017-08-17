@@ -16,7 +16,7 @@
             Rectangle desiredRectangle = calculatedDesiredAndHelperRectangle.desired;
             Rectangle helperRectangle = calculatedDesiredAndHelperRectangle.helper;
 
-            IConsequence consequence = level.GetAffectedObjectConsequence(helperRectangle);
+            IConsequence consequence = level.GetAffectedObjectConsequence(enemy, helperRectangle);
 
             if (consequence != null && consequence.PlayerCanMove)
             {
