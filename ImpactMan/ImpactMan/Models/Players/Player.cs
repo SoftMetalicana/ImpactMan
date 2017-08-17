@@ -1,5 +1,6 @@
 ﻿namespace ImpactMan.Models.Players
 {
+    using ImpactMan.Constants.Players;
     using Interfaces.IO.InputListeners;
     using Interfaces.Models.Players;
     using IO.InputListeners.Events;
@@ -25,7 +26,7 @@
         /// <param name="assetName">The name of the picture that is loaded from the pipeline.</param>
         /// <param name="playerName">The name of the player.</param>
         public Player(int x, int y, string assetName)
-            : base(x, y, assetName)
+            : base(x, y, PlayersConstants.PlayerWidthAndHeight, PlayersConstants.PlayerWidthAndHeight, assetName)
         {
         }
 
