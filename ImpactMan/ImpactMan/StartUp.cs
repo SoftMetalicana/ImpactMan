@@ -1,4 +1,6 @@
-﻿namespace ImpactMan
+﻿using System.Windows.Forms;
+
+namespace ImpactMan
 {
     using System;
     using Core;
@@ -30,6 +32,8 @@
         [STAThread]
         public static void Main()
         {
+            Start:
+
             ImpactManContext context = new ImpactManContext();
             AccountManager accountManager = new AccountManager(context);
 

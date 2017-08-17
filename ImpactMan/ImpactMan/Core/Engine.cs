@@ -1,4 +1,5 @@
 ﻿using ImpactMan.Interfaces.Models.LevelGenerators;
+using ImpactMan.Interfaces.Models.User;
 
 namespace ImpactMan.Core
 {
@@ -39,7 +40,6 @@ namespace ImpactMan.Core
         private readonly IInitializer initializer;
         private readonly IInputListener inputListener;
         private readonly IArtificialIntelligence artificialIntelligence;
-        private ILevelGenerator levelGenerator;
 
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
@@ -91,9 +91,6 @@ namespace ImpactMan.Core
             //InputListener
             this.inputListener = inputListener;
 
-            //LevelGenerator
-            this.levelGenerator = levelGenerator;
-
             this.player = player;
 
             this.allEnemies = allEnemies;
@@ -114,9 +111,9 @@ namespace ImpactMan.Core
             this.Exit();
         }
 
-        public void SetWindowTitle(string title = GraphicsConstants.WindowTitle)
+        public void SetWindowTitle(IPlayer player)
         {
-            this.Window.Title = title;
+            this.Window.Title = $"ImpactMan: A new begining.                   Points: {player.Points}";
         }
 
         public void ChangeErrorMessage(string message)
@@ -148,8 +145,16 @@ namespace ImpactMan.Core
             //Initializes new menuInitializer which takes care of menus in the game
             this.menuInitializer = new MenuInitializer(this, this.Content, this.accountManager, this.soundManager);
 
-            this.menuInitializer.Initialize("LoginMenu");
-            this.soundManager.PlayMusic(Music.LoginMusic);
+            if (CurrentUser.User != null)
+            {
+                this.menuInitializer.Initialize("MainMenu");
+                this.soundManager.PlayMusic(Music.LoginMusic);
+            }
+            else
+            {
+                this.menuInitializer.Initialize("LoginMenu");
+                this.soundManager.PlayMusic(Music.LoginMusic);
+            }
 
             //Sets current user
             this.userInputDetails = new User
@@ -160,7 +165,7 @@ namespace ImpactMan.Core
 
             this.errorMessage = string.Empty;
 
-            this.playerDeathHandler = new PlayerDeathHandler(this.context, this.menuInitializer, this.Content, this.levelGenerator);
+            this.playerDeathHandler = new PlayerDeathHandler(this.context, this);
 
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
@@ -179,9 +184,6 @@ namespace ImpactMan.Core
             //Sets initial game state to LoginMenu state
             this.initializer.SetGameStates();
             this.initializer.PassContentManagerToAllObjectsInLevel(this.level, this.Content);
-
-            //Sets window title
-            this.SetWindowTitle();
 
             base.Initialize();
         }
@@ -221,6 +223,9 @@ namespace ImpactMan.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //Sets window title
+            this.SetWindowTitle(this.player);
+
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 
@@ -325,19 +330,6 @@ namespace ImpactMan.Core
             base.Draw(gameTime);
         }
 
-        // Adds the top 10 scores to the highscore dictonary
-/*        private void LoadHighScores(Dictionary<string, int> highscores)
-        {
-            var users = this.context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
-            if (users.Count > 0)
-            {
-                foreach (var user in users)
-                {
-                    highscores.Add(user.Name, user.HighScore);
-                }
-            }
-
-        }*/
 
         /// <summary>
         /// Checks if a key has been pressed and then released
@@ -406,9 +398,15 @@ namespace ImpactMan.Core
             }
         }
 
-        public void GenerateCurrentLevel()
+        protected override void OnExiting(
+            Object sender,
+            EventArgs args
+        )
         {
-            throw new NotImplementedException();
+            if (State.GameState == GameState.GameMode)
+            {
+                StartUp.Main();
+            }
         }
     }
 }
