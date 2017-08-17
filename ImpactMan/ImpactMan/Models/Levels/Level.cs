@@ -210,6 +210,15 @@
                     }
                 }
             }
+            else
+            {
+                bool objectIsAffected = helperRectangle.Intersects(this.Player.Rectangle);
+
+                if (objectIsAffected)
+                {
+                    this.OnEnemyAffectedPlayer(new PlayerAffectedEnemyEventArgs(this.Player));
+                }
+            }
 
             IConsequence affectedObjectConsequence = default(IConsequence);
             foreach (IConsequential[] array in this.allUnitsOnMap)
