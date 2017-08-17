@@ -12,9 +12,7 @@
         /// </summary>
         public const bool IsMouseVisible = true;
 
-        public const string WindowTitle =
-            "ImpactMan: A new begining                                                                                                                              " +
-            "Press Home for GameMenu";
+        public static readonly string WindowTitle = $"ImpactMan: A new beginning                   Points:{0}";
 
         /// <summary>
         /// Initial console/window width

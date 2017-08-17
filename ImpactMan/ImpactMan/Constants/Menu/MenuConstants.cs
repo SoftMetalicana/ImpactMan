@@ -182,7 +182,5 @@ namespace ImpactMan.Constants.Menu
 
         public static readonly int ChangePasswordMenuErrorMessageX = (int)(820 * TextPositionAlignmentWidth);
         public static readonly int ChangePasswordMenuErrorMessageY = (int)(1056 * TextPositionAlignmentHeight);
-
-        /// <summary>
     }
 }

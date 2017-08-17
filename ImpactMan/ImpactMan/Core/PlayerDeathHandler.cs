@@ -1,7 +1,6 @@
-﻿using ImpactMan.Interfaces.IO.Reader;
-using ImpactMan.Interfaces.Models.LevelGenerators;
-using ImpactMan.IO.Readers;
-using ImpactMan.Models.LevelGenerators;
+﻿using System;
+using System.Linq.Expressions;
+using System.Windows.Forms;
 
 namespace ImpactMan.Core
 {
@@ -14,35 +13,27 @@ namespace ImpactMan.Core
     using Microsoft.Xna.Framework.Content;
     using System.Data.Entity;
     using System.Linq;
-    using ImpactMan.Core.Events;
 
     /// <summary>
     /// This class handles the events after player's death. This includes highScore management, rediretion to MainMenu and reload of last played level.
     /// </summary>
     public class PlayerDeathHandler : IPlayerDeathHandler
     {
+
         private readonly ImpactManContext context;
-        private readonly IMenuInitializer menuInitializer;
-        private readonly ContentManager content;
-        private readonly ILevelGenerator levelGenerator;
+        private IEngine engine;
 
-        public event PlayerDeadEventHandler PlayerDead;
-
-        public PlayerDeathHandler(ImpactManContext context, IMenuInitializer menuInitializer, ContentManager content, ILevelGenerator levelGenerator)
+        public PlayerDeathHandler(ImpactManContext context, IEngine engine)
         {
             this.context = context;
-            this.menuInitializer = menuInitializer;
-            this.content = content;
-            this.levelGenerator = levelGenerator;
+            this.engine = engine;
         }
 
         public void OnPlayerDead(ILevel sender, PlayerAffectedEnemyEventArgs eventArgs)
         {
-            //UpdatePlayerHighScore(eventArgs.Player);
+            UpdatePlayerHighScore(eventArgs.Player);
 
-            //ResetCurrentLevel(sender);
-
-            //ChangeGameState();
+            this.engine.Quit();
         }
 
         private void UpdatePlayerHighScore(IPlayer player)
@@ -57,24 +48,6 @@ namespace ImpactMan.Core
 
                 context.SaveChanges();
             }
-        }
-
-        private void ChangeGameState()
-        {
-            this.menuInitializer.Initialize("MainMenu");
-            this.menuInitializer.Load(this.content);
-
-            State.GameState = GameState.MainMenu;
-        }
-
-        private void ResetCurrentLevel(ILevel currentLevel)
-        {
-            IFileReader fileReader = new CsvFileReader();
-            ILevelGenerator levelGenerator = new LevelGenerator(fileReader);
-
-            ILevel generatedLevel = levelGenerator.GenerateLevel();
-
-            currentLevel = generatedLevel;
         }
     }
 }
