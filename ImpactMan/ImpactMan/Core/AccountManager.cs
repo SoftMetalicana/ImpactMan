@@ -31,7 +31,14 @@ namespace ImpactMan.Core
 
             if (UserExists(user) && IsPasswordCorrect(user))
             {
-                CurrentUser.User = user;
+                CurrentUser.User = new User()
+                {
+                    Name = user.Name,
+                    Password = user.Password,
+                    Level = user.Level,
+                    CurrentScore = user.CurrentScore,
+                    HighScore = user.HighScore
+                };
 
                 return true;
             }
@@ -101,7 +108,7 @@ namespace ImpactMan.Core
                 return false;
             }
 
-            
+
             this.context.Users.First(u => u.Name == userName).Password = userInput.Password;
             this.context.SaveChanges();
             message = AccountManagerConstants.SuccessfulPasswordChange;
