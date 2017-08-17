@@ -30,10 +30,6 @@
         /// The map itself.
         /// </summary>
         private IList<IConsequential[]> allUnitsOnMap;
-        /// <summary>
-        /// This level preserves the initial state.
-        /// </summary>
-        private ILevel backUp;
 
         public Level()
             : this(null, new List<IEnemy>(), new List<IConsequential[]>())
@@ -48,7 +44,6 @@
         {
             this.AllUnitsOnMap = allUnitsOnMap;
             this.AllEnemies = allEnemies;
-            this.backUp = this;
         }
 
         /// <summary>
@@ -234,13 +229,6 @@
             
             ReturnResult:
             return affectedObjectConsequence;
-        }
-
-        public void LevelReset()
-        {
-            this.Player = this.backUp.Player;
-            this.AllEnemies = this.backUp.AllEnemies;
-            this.AllUnitsOnMap = this.backUp.AllUnitsOnMap;
         }
     }
 }

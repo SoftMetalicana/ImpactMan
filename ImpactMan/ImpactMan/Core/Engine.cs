@@ -24,6 +24,7 @@ namespace ImpactMan.Core
     using System.Text;
     using IO.Writers;
     using ImpactMan.Interfaces.ArtificialIntelligence;
+    using System;
 
     /// <summary>
     /// This is the main type for your game.
@@ -403,6 +404,11 @@ namespace ImpactMan.Core
             {
                 this.userInputDetails.Password = sb.ToString();
             }
+        }
+
+        public void GenerateCurrentLevel()
+        {
+            throw new NotImplementedException();
         }
     }
 }

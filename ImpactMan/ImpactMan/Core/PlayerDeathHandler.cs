@@ -14,6 +14,7 @@ namespace ImpactMan.Core
     using Microsoft.Xna.Framework.Content;
     using System.Data.Entity;
     using System.Linq;
+    using ImpactMan.Core.Events;
 
     /// <summary>
     /// This class handles the events after player's death. This includes highScore management, rediretion to MainMenu and reload of last played level.
@@ -24,6 +25,8 @@ namespace ImpactMan.Core
         private readonly IMenuInitializer menuInitializer;
         private readonly ContentManager content;
         private readonly ILevelGenerator levelGenerator;
+
+        public event PlayerDeadEventHandler PlayerDead;
 
         public PlayerDeathHandler(ImpactManContext context, IMenuInitializer menuInitializer, ContentManager content, ILevelGenerator levelGenerator)
         {
