@@ -35,11 +35,11 @@ namespace ImpactMan.Core
 
         public void OnPlayerDead(ILevel sender, PlayerAffectedEnemyEventArgs eventArgs)
         {
-            UpdatePlayerHighScore(eventArgs.Player);
+            //UpdatePlayerHighScore(eventArgs.Player);
 
-            ResetCurrentLevel(sender);
+            //ResetCurrentLevel(sender);
 
-            ChangeGameState();
+            //ChangeGameState();
         }
 
         private void UpdatePlayerHighScore(IPlayer player)

@@ -1,13 +1,9 @@
-﻿using ImpactMan.Context.Db;
-using ImpactMan.Interfaces.Writer;
-using ImpactMan.IO.Writers;
-
-namespace ImpactMan
+﻿namespace ImpactMan
 {
     using System;
-    using System.Collections.Generic;
     using Core;
-    using ImpactMan.Interfaces.Globals;
+    using ImpactMan.ArtificialIntelligence;
+    using ImpactMan.Interfaces.ArtificialIntelligence;
     using ImpactMan.Interfaces.IO.InputListeners;
     using ImpactMan.Interfaces.IO.Reader;
     using ImpactMan.Interfaces.Models.LevelGenerators;
@@ -16,10 +12,11 @@ namespace ImpactMan
     using ImpactMan.IO.InputListeners;
     using ImpactMan.IO.Readers;
     using ImpactMan.Models.LevelGenerators;
-    using ImpactMan.Models.Levels;
     using ImpactMan.Models.Mediators;
     using Interfaces.Core;
-
+    using Microsoft.Xna.Framework.Input;
+    using ImpactMan.Context.Db;
+    
 #if WINDOWS || LINUX
     /// <summary>
     /// The class which the games start from.
@@ -46,6 +43,8 @@ namespace ImpactMan
 
             IPlayerConsequenceMediator playerConsequenceMediator = new PlayerConsequenceMediator(generatedLevel);
 
+            IArtificialIntelligence ai = new EnemyArtificialIntelligence(generatedLevel, Keys.Down, Keys.Right, Keys.Up, Keys.Left);
+
             using (IEngine game = new Engine(initializer,
                                              inputListener,
                                              playerConsequenceMediator,
@@ -54,7 +53,8 @@ namespace ImpactMan
                                              generatedLevel, 
                                              context, 
                                              accountManager, 
-                                             levelGenerator))
+                                             levelGenerator,
+                                             ai))
             {
                 game.Run();
             }

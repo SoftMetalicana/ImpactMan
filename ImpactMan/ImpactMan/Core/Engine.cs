@@ -23,6 +23,7 @@ namespace ImpactMan.Core
     using System.Linq;
     using System.Text;
     using IO.Writers;
+    using ImpactMan.Interfaces.ArtificialIntelligence;
 
     /// <summary>
     /// This is the main type for your game.
@@ -36,6 +37,7 @@ namespace ImpactMan.Core
         private readonly IPlayerConsequenceMediator playerConsequenceMediator;
         private readonly IInitializer initializer;
         private readonly IInputListener inputListener;
+        private readonly IArtificialIntelligence artificialIntelligence;
         private ILevelGenerator levelGenerator;
 
         private SpriteBatch spriteBatch;
@@ -66,7 +68,8 @@ namespace ImpactMan.Core
                       ILevel level,
                       ImpactManContext context,
                       AccountManager accountManager,
-                      ILevelGenerator levelGenerator)
+                      ILevelGenerator levelGenerator,
+                      IArtificialIntelligence artificialIntelligence)
         {
             //Content
             this.Content.RootDirectory = "Content";
@@ -96,6 +99,9 @@ namespace ImpactMan.Core
             this.level = level;
             this.playerConsequenceMediator = playerConsequenceMediator;
             this.pressedKeys = new List<Keys>();
+
+            // The artificial intelligence ot the enemies
+            this.artificialIntelligence = artificialIntelligence;
         }
 
         public void LoadPrevGame()
@@ -249,12 +255,9 @@ namespace ImpactMan.Core
 
             if (State.GameState == GameState.GameMode)
             {
-                this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
+                this.artificialIntelligence.MoveTheEnemies(this.allEnemies, gameTime);
 
-                foreach (var enemy in this.allEnemies)
-                {
-                    enemy.Update(gameTime, currentKeyboardState);
-                }
+                this.inputListener.GetKeyboardState(currentKeyboardState, gameTime);
             }
 
             base.Update(gameTime);

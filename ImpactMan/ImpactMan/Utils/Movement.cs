@@ -1,9 +1,10 @@
 ﻿namespace ImpactMan.Utils
 {
     using System;
-    using ImpactMan.Constants.Positionable;
-    using ImpactMan.Interfaces.Globals;
+    using ImpactMan.Constants.Utils;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
 
     /// <summary>
     /// Utils class that provides needed formulas for fluid movement of the objects.
@@ -12,21 +13,6 @@
     /// </summary>
     public static class Movement
     {
-        private static double GetSquare(double toGetSquareFor)
-        {
-            return Math.Pow(toGetSquareFor, 2);
-        }
-
-        private static double DistanceBetweenTwoPoints(double x1, double y1, double x2, double y2)
-        {
-            return Math.Sqrt(GetSquare(x1 - x2) + GetSquare(y1 - y2));
-        }
-
-        private static double GetAxisOffsetToCenter(double axisPoint)
-        {
-            return axisPoint + PositionableConstants.ObjectCenterOffset;
-        }
-
         /// <summary>
         /// Formula that calculates the distance to add to the current position of the object.
         /// When you get the result you just add it to object.Rectangle.X 
@@ -41,17 +27,55 @@
             return (int)Math.Ceiling(speedRatio * gameTime.ElapsedGameTime.TotalSeconds);
         }
 
-        public static double CalculateDistanceBetweenObjectCenters(Rectangle rectangle, IPositionable consequential)
+        public static (Rectangle desiredPosition, Rectangle helperRectangle) CalculateDesiredAndHelperRectangle(Rectangle currentRec,
+                                                                                                                Texture2D currentTex,
+                                                                                                                GameTime gameTime,
+                                                                                                                KeyboardState keyboardState)
         {
-            double playerX = GetAxisOffsetToCenter(rectangle.X);
-            double playerY = GetAxisOffsetToCenter(rectangle.Y);
+            int calculatedDistance = Movement.CalculateDistanceToAdd(MovementConstants.MovementPixelRatio, gameTime);
 
-            double consX = GetAxisOffsetToCenter(consequential.Rectangle.X);
-            double consY = GetAxisOffsetToCenter(consequential.Rectangle.Y);
+            int helperX = 0;
+            int helperY = 0;
+            int helperWidth = 0;
+            int helperHeigth = 0;
 
-            double distance = DistanceBetweenTwoPoints(playerX, playerY, consX, consY);
+            Rectangle desiredRectangle = currentRec;
+            if (keyboardState.IsKeyDown(Keys.Right))
+            {
+                helperX = currentRec.Right + 1;
+                helperY = currentRec.Top + 5;
+                helperHeigth = 50;
 
-            return distance;
+                desiredRectangle = new Rectangle(currentRec.X + calculatedDistance, currentRec.Y, currentTex.Width, currentTex.Height);
+            }
+            else if (keyboardState.IsKeyDown(Keys.Left))
+            {
+                helperX = currentRec.Left - 1;
+                helperY = currentRec.Top + 5;
+                helperHeigth = 50;
+
+                desiredRectangle = new Rectangle(currentRec.X - calculatedDistance, currentRec.Y, currentTex.Width, currentTex.Height);
+            }
+            else if (keyboardState.IsKeyDown(Keys.Down))
+            {
+                helperX = currentRec.Left + 5;
+                helperY = currentRec.Bottom + 1;
+                helperWidth = 50;
+
+                desiredRectangle = new Rectangle(currentRec.X, currentRec.Y + calculatedDistance, currentTex.Width, currentTex.Height);
+            }
+            else if (keyboardState.IsKeyDown(Keys.Up))
+            {
+                helperX = currentRec.Left + 5;
+                helperY = currentRec.Top - 1;
+                helperWidth = 50;
+
+                desiredRectangle = new Rectangle(currentRec.X, currentRec.Y - calculatedDistance, currentTex.Width, currentTex.Height);
+            }
+
+            Rectangle helperRectangle = new Rectangle(helperX, helperY, helperWidth, helperHeigth);
+
+            return (desiredRectangle, helperRectangle);
         }
     }
 }
