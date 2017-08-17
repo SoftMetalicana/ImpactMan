@@ -21,6 +21,8 @@
 
         public override void Execute(User user)
         {
+            user.Password = string.Empty;
+            user.Name = string.Empty;
             this.menuController.Initialize("ChangePasswordMenu");
             this.menuController.Load(this.content);
 
