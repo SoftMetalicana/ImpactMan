@@ -70,7 +70,5 @@
         void AddGround(object ground, int row, int col);
 
         IConsequence GetAffectedObjectConsequence(Rectangle helperRectangle);
-
-        void LevelReset();
     }
 }

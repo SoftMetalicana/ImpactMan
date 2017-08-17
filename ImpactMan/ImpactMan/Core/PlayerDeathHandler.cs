@@ -1,4 +1,5 @@
-﻿using ImpactMan.Interfaces.IO.Reader;
+﻿using ImpactMan.Core.Events;
+using ImpactMan.Interfaces.IO.Reader;
 using ImpactMan.Interfaces.Models.LevelGenerators;
 using ImpactMan.IO.Readers;
 using ImpactMan.Models.LevelGenerators;
@@ -20,24 +21,24 @@ namespace ImpactMan.Core
     /// </summary>
     public class PlayerDeathHandler : IPlayerDeathHandler
     {
+        public event PlayerDeadEventHandler PlayerDead;
+
         private readonly ImpactManContext context;
         private readonly IMenuInitializer menuInitializer;
         private readonly ContentManager content;
-        private readonly ILevelGenerator levelGenerator;
 
-        public PlayerDeathHandler(ImpactManContext context, IMenuInitializer menuInitializer, ContentManager content, ILevelGenerator levelGenerator)
+        public PlayerDeathHandler(ImpactManContext context, IMenuInitializer menuInitializer, ContentManager content)
         {
             this.context = context;
             this.menuInitializer = menuInitializer;
             this.content = content;
-            this.levelGenerator = levelGenerator;
         }
 
         public void OnPlayerDead(ILevel sender, PlayerAffectedEnemyEventArgs eventArgs)
         {
             UpdatePlayerHighScore(eventArgs.Player);
 
-            ResetCurrentLevel(sender);
+            ResetCurrentLevel();
 
             ChangeGameState();
         }
@@ -64,14 +65,9 @@ namespace ImpactMan.Core
             State.GameState = GameState.MainMenu;
         }
 
-        private void ResetCurrentLevel(ILevel currentLevel)
+        private void ResetCurrentLevel()
         {
-            IFileReader fileReader = new CsvFileReader();
-            ILevelGenerator levelGenerator = new LevelGenerator(fileReader);
-
-            ILevel generatedLevel = levelGenerator.GenerateLevel();
-
-            currentLevel = generatedLevel;
+            this.PlayerDead?.Invoke();
         }
     }
 }

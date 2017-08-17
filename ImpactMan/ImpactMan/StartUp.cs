@@ -39,22 +39,17 @@ namespace ImpactMan
             IInitializer initializer = new Initializer();
             IInputListener inputListener = new InputListener();
 
-            IFileReader fileReader = new CsvFileReader();
+/*            IFileReader fileReader = new CsvFileReader();
             ILevelGenerator levelGenerator = new LevelGenerator(fileReader);
 
-            ILevel generatedLevel = levelGenerator.GenerateLevel();
+            ILevel generatedLevel = levelGenerator.GenerateLevel();*/
 
-            IPlayerConsequenceMediator playerConsequenceMediator = new PlayerConsequenceMediator(generatedLevel);
+/*            IPlayerConsequenceMediator playerConsequenceMediator = new PlayerConsequenceMediator(generatedLevel);*/
 
             using (IEngine game = new Engine(initializer,
                                              inputListener,
-                                             playerConsequenceMediator,
-                                             generatedLevel.Player,
-                                             generatedLevel.AllEnemies,
-                                             generatedLevel, 
                                              context, 
-                                             accountManager, 
-                                             levelGenerator))
+                                             accountManager))
             {
                 game.Run();
             }

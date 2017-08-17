@@ -60,6 +60,7 @@
     <Compile Include="Core\CurrentUser.cs" />
     <Compile Include="Core\DataLoader.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Events\PlayerDeadEventHandler.cs" />
     <Compile Include="Core\Factories\MenuCommandFactory.cs" />
     <Compile Include="Core\PlayerDeathHandler.cs" />
     <Compile Include="Core\State.cs" />

@@ -104,8 +104,8 @@ namespace ImpactMan.Constants.Menu
         public static readonly int HighScoresMenuWidth = MainMenuWidth;
         public static readonly int HighScoresMenuHeight = MainMenuHeight;
 
-        public static readonly int HighScoresMenuItemWidth = HighScoresMenuWidth / 13;
-        public static readonly int HighScoresMenuItemHeight = (int)(HighScoresMenuHeight / 23.33);
+        public static readonly int HighScoresMenuItemWidth = HighScoresMenuWidth / 10;
+        public static readonly int HighScoresMenuItemHeight = (int)(HighScoresMenuHeight / 20);
 
         public static readonly int HighScoresMenuPaddingTop = (int)(HighScoresMenuHeight - 10);
         public static readonly int HighScoresMenuPaddingLeft = (int)(HighScoresMenuHeight / 23.33);

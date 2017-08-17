@@ -18,5 +18,7 @@
         void ClearCurrentUserDetails();
 
         void Quit();
+
+        void GenerateCurrentLevel();
     }
 }

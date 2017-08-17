@@ -1,4 +1,12 @@
-﻿using ImpactMan.Interfaces.Models.LevelGenerators;
+﻿using System.Windows.Forms;
+using ImpactMan.Core.Factories;
+using ImpactMan.Interfaces.IO.Reader;
+using ImpactMan.Interfaces.Models.LevelGenerators;
+using ImpactMan.IO.Readers;
+using ImpactMan.Models.LevelGenerators;
+using ImpactMan.Models.Levels;
+using ImpactMan.Models.Mediators;
+using ImpactMan.Models.Menu.MenuCommands;
 
 namespace ImpactMan.Core
 {
@@ -31,11 +39,13 @@ namespace ImpactMan.Core
     {
         private readonly GraphicsDeviceManager graphics;
         private readonly SoundManager soundManager;
-        private readonly IList<IEnemy> allEnemies;
-        private readonly ILevel level;
-        private readonly IPlayerConsequenceMediator playerConsequenceMediator;
+        private IList<IEnemy> allEnemies;
+        private ILevel level;
+        private IPlayerConsequenceMediator playerConsequenceMediator;
         private readonly IInitializer initializer;
         private readonly IInputListener inputListener;
+
+        private IFileReader fileReader;
         private ILevelGenerator levelGenerator;
 
         private SpriteBatch spriteBatch;
@@ -53,21 +63,14 @@ namespace ImpactMan.Core
         private AccountManager accountManager;
         private ImpactManContext context;
         private DataLoader dataLoader;
-        /// <summary>
-        /// This data should be in database
-        /// </summary>
        
 
         public Engine(IInitializer initializer,
                       IInputListener inputListener,
-                      IPlayerConsequenceMediator playerConsequenceMediator,
-                      IPlayer player,
-                      IList<IEnemy> allEnemies,
-                      ILevel level,
                       ImpactManContext context,
-                      AccountManager accountManager,
-                      ILevelGenerator levelGenerator)
+                      AccountManager accountManager)
         {
+
             //Content
             this.Content.RootDirectory = "Content";
 
@@ -87,14 +90,6 @@ namespace ImpactMan.Core
             //InputListener
             this.inputListener = inputListener;
 
-            //LevelGenerator
-            this.levelGenerator = levelGenerator;
-
-            this.player = player;
-
-            this.allEnemies = allEnemies;
-            this.level = level;
-            this.playerConsequenceMediator = playerConsequenceMediator;
             this.pressedKeys = new List<Keys>();
         }
 
@@ -132,6 +127,9 @@ namespace ImpactMan.Core
         /// </summary>
         protected override void Initialize()
         {
+            //Generates current level
+            GenerateCurrentLevel();
+
             //Initialize DB
             this.context.Database.Initialize(true);
 
@@ -153,7 +151,7 @@ namespace ImpactMan.Core
 
             this.errorMessage = string.Empty;
 
-            this.playerDeathHandler = new PlayerDeathHandler(this.context, this.menuInitializer, this.Content, this.levelGenerator);
+            this.playerDeathHandler = new PlayerDeathHandler(this.context, this.menuInitializer, this.Content);
 
             this.player = this.playerConsequenceMediator.Level.Player;
             this.player.PlayerTriedToMove += this.playerConsequenceMediator.OnPlayerTriedToMove;
@@ -162,6 +160,8 @@ namespace ImpactMan.Core
             this.inputListener.MouseClicked += this.menuInitializer.OnMouseClicked;
 
             this.level.PlayerAffectedEnemy += this.playerDeathHandler.OnPlayerDead;
+
+            this.playerDeathHandler.PlayerDead += this.GenerateCurrentLevel;
 
             this.initializer.SetGameMouse(this, GraphicsConstants.IsMouseVisible);
             this.initializer.SetGraphicsWindowSize(this.graphics,
@@ -321,20 +321,6 @@ namespace ImpactMan.Core
             base.Draw(gameTime);
         }
 
-        // Adds the top 10 scores to the highscore dictonary
-/*        private void LoadHighScores(Dictionary<string, int> highscores)
-        {
-            var users = this.context.Users.OrderByDescending(u => u.HighScore).Take(10).ToList();
-            if (users.Count > 0)
-            {
-                foreach (var user in users)
-                {
-                    highscores.Add(user.Name, user.HighScore);
-                }
-            }
-
-        }*/
-
         /// <summary>
         /// Checks if a key has been pressed and then released
         /// </summary>
@@ -400,6 +386,20 @@ namespace ImpactMan.Core
             {
                 this.userInputDetails.Password = sb.ToString();
             }
+        }
+
+        public void GenerateCurrentLevel()
+        {
+            this.fileReader = new CsvFileReader();
+            this.levelGenerator = new LevelGenerator(fileReader);
+
+            this.level = this.levelGenerator.GenerateLevel();
+            this.initializer.LoadLevel(this.level, this.Content);
+
+            this.allEnemies = level.AllEnemies;
+
+            this.playerConsequenceMediator = new PlayerConsequenceMediator(level);
+            this.player = this.playerConsequenceMediator.Level.Player;
         }
     }
 }
