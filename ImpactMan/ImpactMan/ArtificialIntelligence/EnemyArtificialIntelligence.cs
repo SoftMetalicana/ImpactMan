@@ -35,25 +35,15 @@
                     continue;
                 }
 
-                int currentKey = 0;
-                while (true)
+                int currentKey = this.random.Next(0, 4);
+                Keys key = this.directionKeys[currentKey];
+                while (!enemy.TryUpdate(gameTime, new KeyboardState(key), this.level))
                 {
-                    Keys key = this.directionKeys[currentKey++];
-                    int indexOfKey = this.directionKeys.IndexOf(key);
-                    if (this.enemiesAndCurrentDirections.ContainsKey(enemy) &&
-                        this.enemiesAndCurrentDirections[enemy].Equals(this.directionKeys[(indexOfKey + 2) % this.directionKeys.Count]))
-                    {
-                        continue;
-                    }
-
-                    bool enemyMovedSuccessfully = enemy.TryUpdate(gameTime, new KeyboardState(key), this.level);
-
-                    if (enemyMovedSuccessfully)
-                    {
-                        this.enemiesAndCurrentDirections[enemy] = key;
-                        break;
-                    }
+                    currentKey = this.random.Next(0, 4);
+                    key = this.directionKeys[currentKey];
                 }
+
+                this.enemiesAndCurrentDirections[enemy] = key;
             }
         }
     }
